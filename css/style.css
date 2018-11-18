@@ -137,12 +137,39 @@ vertical-align:middle;
 	src:url(DancingScript-Bold.ttf);
 }
 
+.unselectable{
+	font-family: DancingScript;
+	-webkit-user-select:none;
+  -khtml-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  -o-user-select:none;
+  user-select:none;
+}
+
+/*CSS Variables*/
+:root{
+	--primary-color: #b90415;
+	--primary-color-hover: #d3071b;
+	--secondary-color: #103063;
+	--secondary-color-hover: #143f85;
+	--light-color: #f4f4f4;
+}
+
 body{
 	background-color: #252529;
 	color: #fff;
 	margin: 0;
 	line-height: 1.6;
 	font-family: 'PT Sans', sans-serif;
+}
+
+.footer-copyright{
+	background-color: #303136;
+}
+
+hr{
+	border-color: #dc3545;
 }
 
 img{
@@ -152,7 +179,7 @@ img{
 .head-container{
 	width:100%;
 	height: 150px;
-	background-color: dodgerblue;
+	background-color: #dc3545;
 	text-align: center;
 	padding-top: 50px;
 	font-weight: bold;
@@ -185,8 +212,23 @@ img{
 	font-size: 2rem;
 }
 
+/*Section*/
+.section{
+	padding: 2rem 0;
+}
+
+.section-head{
+	font-size: 2.5rem;
+	margin: 0;
+	margin-bottom: 20px; 
+}
+
+.section{
+	font-size: 2rem;
+}
+
+
 #modify{
-	margin-top: 10vh;
 }
 
 .lead{
@@ -207,4 +249,151 @@ img{
 
 .border-new{
 	border: 3px solid #343a40 !important;
+}
+
+.mb{
+	margin-bottom: 1rem;
+}
+
+.mt{
+	margin-top: 1rem;
+}
+
+/*Slideshow*/
+
+.slider {
+  max-width: 1920px;
+  height: 700px;
+  margin: 20px auto;
+  position: relative;
+}
+.slide1,.slide2,.slide3,.slide4,.slide5,.slide6,.slide7,.slide8,.slide9 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.slide1 {
+  background: url(../images/modify.jpg)no-repeat center;
+      background-size: cover;
+    animation:fade 8s infinite;
+-webkit-animation:fade 8s infinite;
+
+} 
+.slide2 {
+  background: url(../images/modify2.jpg)no-repeat center;
+      background-size: cover;
+    animation:fade2 8s infinite;
+-webkit-animation:fade2 8s infinite;
+}
+.slide3 {
+    background: url(../images/modify3.jpg)no-repeat center;
+      background-size: cover;
+    animation:fade3 8s infinite;
+-webkit-animation:fade3 8s infinite;
+}
+
+.slide4 {
+  background: url(../images/purchase1.jpg)no-repeat center;
+      background-size: cover;
+    animation:fade4 8s infinite;
+-webkit-animation:fade4 8s infinite;
+
+} 
+.slide5 {
+  background: url(../images/purchase2.jpg)no-repeat center;
+      background-size: cover;
+    animation:fade5 8s infinite;
+-webkit-animation:fade5 8s infinite;
+}
+.slide6 {
+    background: url(../images/purchase3.jpg)no-repeat center;
+      background-size: cover;
+    animation:fade6 8s infinite;
+-webkit-animation:fade6 8s infinite;
+}
+
+.slide7 {
+  background: url(../images/a_dvert1.jpg)no-repeat center;
+      background-size: cover;
+    animation:fade7 8s infinite;
+-webkit-animation:fade7 8s infinite;
+
+} 
+.slide8 {
+  background: url(../images/a_dvert2.jpg)no-repeat center;
+      background-size: cover;
+    animation:fade8 8s infinite;
+-webkit-animation:fade8 8s infinite;
+}
+.slide9 {
+    background: url(../images/modify3.jpg)no-repeat center;
+      background-size: cover;
+    animation:fade9 8s infinite;
+-webkit-animation:fade9 8s infinite;
+}
+
+@keyframes fade
+{
+  0%   {opacity:1}
+  33.333% { opacity: 0}
+  66.666% { opacity: 0}
+  100% { opacity: 1}
+}
+@keyframes fade2
+{
+  0%   {opacity:0}
+  33.333% { opacity: 1}
+  66.666% { opacity: 0 }
+  100% { opacity: 0}
+}
+@keyframes fade3
+{
+  0%   {opacity:0}
+  33.333% { opacity: 0}
+  66.666% { opacity: 1}
+  100% { opacity: 0}
+}
+
+@keyframes fade4
+{
+  0%   {opacity:1}
+  33.333% { opacity: 0}
+  66.666% { opacity: 0}
+  100% { opacity: 1}
+}
+@keyframes fade5
+{
+  0%   {opacity:0}
+  33.333% { opacity: 1}
+  66.666% { opacity: 0 }
+  100% { opacity: 0}
+}
+@keyframes fade6
+{
+  0%   {opacity:0}
+  33.333% { opacity: 0}
+  66.666% { opacity: 1}
+  100% { opacity: 0}
+}
+
+@keyframes fad7
+{
+  0%   {opacity:1}
+  33.333% { opacity: 0}
+  66.666% { opacity: 0}
+  100% { opacity: 1}
+}
+@keyframes fade8
+{
+  0%   {opacity:0}
+  33.333% { opacity: 1}
+  66.666% { opacity: 0 }
+  100% { opacity: 0}
+}
+@keyframes fade9
+{
+  0%   {opacity:0}
+  33.333% { opacity: 0}
+  66.666% { opacity: 1}
+  100% { opacity: 0}
 }

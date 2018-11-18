@@ -13,7 +13,7 @@
 <body>
 	<header>
 		<div class="head-container">
-			<h1>BikeLabs</h1>
+			<h1 class="unselectable">BikeLabs</h1>
 		</div>
 		
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
