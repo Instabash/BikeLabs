@@ -147,6 +147,10 @@ vertical-align:middle;
   user-select:none;
 }
 
+.header-padding{
+  padding-left: 10px;
+}
+
 /*CSS Variables*/
 :root{
 	--primary-color: #b90415;
@@ -227,9 +231,6 @@ img{
 	font-size: 2rem;
 }
 
-
-#modify{
-}
 
 .lead{
 	font-size: 1.3rem;
