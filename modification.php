@@ -1,10 +1,8 @@
 <?php
-	include_once ('header.php');
+include_once 'header.php'
 ?>
-
-
-<!-- Modification section -->
-
+	
+<!-- Modify section -->
 <section id="modify" class="section">
 	<div class="container">
 		<h2 class="section-head">
@@ -19,8 +17,9 @@
 		</div>
 	</div>
 </section>
+<hr>
 
-
-<?php 
-	include_once('footer.php');
+	<!-- Footer -->
+<?php
+include_once 'footer.php'
 ?>
