@@ -137,6 +137,10 @@ vertical-align:middle;
 	src:url(DancingScript-Bold.ttf);
 }
 
+.page-footer{
+   width:100%;
+}
+
 .unselectable{
 	font-family: DancingScript;
 	-webkit-user-select:none;
@@ -218,7 +222,7 @@ img{
 
 /*Section*/
 .section{
-	padding: 2rem 0;
+	padding: 4rem 0;
 }
 
 .section-head{
@@ -231,9 +235,51 @@ img{
 	font-size: 2rem;
 }
 
+.sppartsection{
+  font-size: 1rem; 
+}
+
+.modsection{
+    font-size: 1rem; 
+}
+
+.input-xs {
+  height: 22px;
+  padding: 2px 5px;
+  font-size: 12px;
+  line-height: 1.5; /* If Placeholder of the input is moved up, rem/modify this. */
+  border-radius: 3px;
+}
+
+.row {
+  display: flex;
+}
+
+.left {
+  flex: 25%;
+  border-right: 2px white solid;
+}
+
+.right {
+  flex: 75%;
+  padding-left: 10px;
+}
+
+.modright{
+  flex: 50%;
+  padding-left: 10px;
+}
+
+.modleft{
+  flex: 50%;
+}
 
 .lead{
 	font-size: 1.3rem;
+}
+
+.columnleft{
+  float: left;
 }
 
 /*Utility classes*/
@@ -244,19 +290,33 @@ img{
 	padding: 0 3rem;
 }
 
-.fromToFilter{
-  display: flex;
-  margin-top: 7px;
-}
-
-
-.alignlesscontainer{
+.spmain{
   max-width: 1180px;
   margin: 0 auto;
   padding: 0 3rem;
-  background-color: white;
-  color: #252529;
+  /*background-color: white;*/
+  color: white;
   border-radius: 5px;
+}
+
+.modmain{
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 3rem;
+  /*background-color: white;*/
+  color: white;
+  border-radius: 5px;
+  padding-top: 40px;
+}
+
+
+
+.modbtn1{
+}
+
+.modmarginleft{
+  display: flex;
+  justify-content: center;
 }
 
 .container a{
@@ -275,6 +335,10 @@ img{
 	margin-top: 1rem;
 }
 
+.pr{
+  padding-right: 12rem !important;
+}
+
 .hide{
   display:none;
 }
@@ -290,6 +354,14 @@ img{
   margin: 20px auto;
   position: relative;
 }
+
+.modslider{
+  max-width: 1920px;
+  height: 400px;
+  margin: 8px auto;
+  position: relative;
+}
+
 .slide1,.slide2,.slide3,.slide4,.slide5,.slide6,.slide7,.slide8,.slide9 {
   position: absolute;
   width: 100%;
