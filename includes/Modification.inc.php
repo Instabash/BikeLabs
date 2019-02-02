@@ -9,6 +9,7 @@ if(isset($_POST['btnmod1']))
 	if($model == "Choose..." || $year == "Choose...")
 	{
 		header("Location: ../modification.php?form=empty");
+		
 		exit();
 	}
 	else{
@@ -23,12 +24,24 @@ if(isset($_POST['btnmod1']))
 
 		$imageName = $imgrow['bike_img_name'];
 
-		$_SESSION['spec1'] = $specrow['bike_name'];
-		$_SESSION['spec2'] = $specrow['bike_model'];
-		$_SESSION['spec3'] = $specrow['bike_type'];
-		$_SESSION['spec5'] = $specrow['bike_price'];
-		$_SESSION['spec6'] = $specrow['bike_desc'];
-		header("Location: ../modification.php");
+		$spec1 = $specrow['bike_name'];
+		$spec2 = $specrow['bike_model'];
+		$spec3 = $specrow['bike_type'];
+		$spec5 = $specrow['bike_price'];
+		$spec6 = $specrow['bike_desc'];
+
+		$_SESSION['spec1'] = $spec1;
+		$_SESSION['spec2'] = $spec2;
+		$_SESSION['spec3'] = $spec3;
+		$_SESSION['spec5'] = $spec5;
+		$_SESSION['spec6'] = $spec6;
+
+		$_SESSION['imagename'] = $imageName;
+
+
+		
+		header('Location: ../modification.php?form=filled');
+
 		exit();
 
 	}
