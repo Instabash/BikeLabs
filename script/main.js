@@ -1,5 +1,4 @@
-	//Search script
 
-function onButtonClick(){
-  document.getElementById('textInput').className="show";
+function showDiv() {
+    document.getElementById("modaftersubmission").style.visibility = 'visible';
 }
