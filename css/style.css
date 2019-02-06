@@ -301,6 +301,7 @@ img{
 
 .modmain{
   max-width: 1180px;
+  height: auto;
   margin: 0 auto;
   padding: 0 3rem;
   /*background-color: white;*/
@@ -319,6 +320,11 @@ img{
 .modmarginleft{
   display: flex;
   justify-content: center;
+}
+
+.moderror{
+  color : red;
+  text-align: center;
 }
 
 .container a{
