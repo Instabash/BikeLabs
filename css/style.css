@@ -327,6 +327,10 @@ img{
   text-align: center;
 }
 
+.select2-results {  
+  color:black;
+}
+
 .container a{
 	margin-bottom: 3vh;
 }

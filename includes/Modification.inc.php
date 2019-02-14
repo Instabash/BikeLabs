@@ -2,9 +2,9 @@
 // session_start();
 	
 	include_once 'dbh.inc.php';
-	$model = $_POST['model'];
-	$year = $_POST['year'];
-
+	$model = $_POST['model']; //switch back to modmodelselect 
+	$year = $_POST['year'];//switch back to modyearselect 
+	// $make = $_POST['modmakeselect'];
 	
 	
 		$imagesql = "SELECT bike_img_name FROM b_images WHERE bikemodel='$model' AND bikeyear = '$year'";
@@ -35,19 +35,19 @@
 
 
 
-<div class='row'>
+<!-- <div class='row'>
 	<div class='modleft'>
 		<div class='modslider border-new border border-dark rounded'>
 			<div class='modmarginleft'>
 				<?php
-					if(isset($spec1) && !empty($spec1))
+					//if(isset($spec1) && !empty($spec1))
 					{
-						$imagename1 =  "images/".$imageName.".jpg";
-						echo "<img id = 'modimage' src= $imagename1>";
+					//	$imagename1 =  "images/".$imageName.".jpg";
+					//	echo "<img id = 'modimage' src= $imagename1>";
 					}
-					else 
+					//else 
 					{
-						echo "";
+					//	echo "";
 					}	
 				?>
 			</div>
@@ -62,20 +62,20 @@
 
 		<div class='modmarginleft'>
 			<?php
-				if(isset($spec1) && !empty($spec1))
+				//if(isset($spec1) && !empty($spec1))
 				{
-					echo "</br>";
-					echo "Company : ". $spec1;
-					echo "</br>";
-					echo "Condition : " . $spec3;
-					echo "</br>";
-					echo "Price : " . $spec5;
-					echo "</br>";
-					echo "Description : " .  $spec6;
-					
+				//	echo "</br>";
+				//	echo "Company : ". $spec1;
+				//	echo "</br>";
+				//	echo "Condition : " . $spec3;
+				//	echo "</br>";
+				//	echo "Price : " . $spec5;
+				//	echo "</br>";
+				//	echo "Description : " .  $spec6;
+				//	
 				}
-				else {
-					echo "";
+				//else {
+				//	echo "";
 				}
 			?>
 		</div>
@@ -126,5 +126,5 @@
 </div>
 <div class="modmain" id="modaftersubmission2">
 
-</div>
+</div> -->
 		
