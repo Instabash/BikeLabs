@@ -1,25 +1,34 @@
 
 
 $(document).ready(function() {
-    $('.js-example-basic-multiple').select2({
-    	placeholder:"Select parts or add your own parts",
-    	tags: true
-    });
-
-    
+    // $('.js-example-basic-multiple').select2({
+    // 	placeholder:"Select parts or add your own parts",
+    // 	tags: true
+    // });
+    $('input[name="radiopkg1"]').on('change', function() {
+	  // this, in the anonymous function, refers to the changed-<input>:
+	  // select the element(s) you want to show/hide:
+	  $('.customparts')
+	      // pass a Boolean to the method, if the numeric-value of the changed-<input>
+	      // is exactly equal to 2 and that <input> is checked, the .business-fields
+	      // will be shown:
+	      .toggle(+this.value === 2 && this.checked);
+	// trigger the change event, to show/hide the .business-fields element(s) on
+	// page-load:
+	}).change();
+	    
 });
+
+
 //test for select2 box
-// $(document).on('click', '#btnmod13', function(e)
-// {
-// 	e.preventDefault();
+$(document).ready(function() {
+    $('.js-example-basic-multiple').select2({
+    	placeholder: "Select a state",
+    	tags: true,
+    	allowClear: true
 
-// 	var selectbox = [];
-
-// 	$.each($("#selectbox option:selected"), function(){
-// 		selectbox.push($(this).val());
-// 	});
-// 	alert("You have selected : " + selectbox.join(","));
-// });
+    });
+});
 
 
 
