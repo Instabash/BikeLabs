@@ -131,7 +131,7 @@ include_once 'header.php'
 						<label>Choose custom parts</label>
 						<input type="radio" name="radiopkg1" id="togglecustom" value="2">
 					</div><br>
-					<div class="customparts "><br>
+					<div class="customparts"><br>
 					  	<select style="width: 100%" class="js-example-basic-multiple js-states form-control select2-hidden-accessible" multiple="multiple"  tabindex="-1" aria-hidden="true" name="select2[]" id="selectbox">
 						    <option>Headlight</option>
 						    <option>Jumps</option>
@@ -147,13 +147,10 @@ include_once 'header.php'
 				<div class="modbtn1">
 					<button type="submit" id="btnmod13" name="btnmod13" class="btn btn-danger" style="margin: 10px;" value="">Next</button>
 				</div>
-
-				
 				<!-- <div class="modbtn1">
 					<button type="submit" id="btnmod13" name="btnmod13" class="btn btn-danger" style="margin: 10px;" value="">Next</button>
 				</div>
- -->
-
+				-->
 			</div>
 		</form>
 		<div class="modmain" id="modaftersubmission">

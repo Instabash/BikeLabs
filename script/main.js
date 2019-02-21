@@ -30,6 +30,34 @@ $(document).ready(function() {
     });
 });
 
+$(document).ready(function(){
+	$('input[name="pickup-type-radio"]').on('change', function() {
+	  // this, in the anonymous function, refers to the changed-<input>:
+	  // select the element(s) you want to show/hide:
+	  $('.homepickup-pick')
+	      // pass a Boolean to the method, if the numeric-value of the changed-<input>
+	      // is exactly equal to 2 and that <input> is checked, the .business-fields
+	      // will be shown:
+	      .toggle(+this.value === 1 && this.checked);
+	// trigger the change event, to show/hide the .business-fields element(s) on
+	// page-load:
+	}).change();
+});
+
+$(document).ready(function(){
+	$('input[name="pickup-type-radio"]').on('change', function() {
+	  // this, in the anonymous function, refers to the changed-<input>:
+	  // select the element(s) you want to show/hide:
+	  $('.dropoff-pick')
+	      // pass a Boolean to the method, if the numeric-value of the changed-<input>
+	      // is exactly equal to 2 and that <input> is checked, the .business-fields
+	      // will be shown:
+	      .toggle(+this.value === 2 && this.checked);
+	// trigger the change event, to show/hide the .business-fields element(s) on
+	// page-load:
+	}).change();
+});
+
 
 
 

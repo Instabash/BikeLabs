@@ -247,6 +247,14 @@ img{
     font-size: 1rem; 
 }
 
+.paymentsec{
+  font-size: 1rem;
+}
+
+.order-method-div-top{
+  text-align: left;
+}
+
 .input-xs {
   height: 22px;
   padding: 2px 5px;
@@ -533,6 +541,12 @@ img{
 
  .select2-search__field { width: 100% !important; }
 
+.home-pick label{
+  width: 210px;
+  text-align: right;
+  margin-right: 20px;
+  line-height: 36px;
+}
 
 @keyframes fade
 {
