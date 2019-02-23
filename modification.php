@@ -1,5 +1,6 @@
 <?php
 // session_start();
+	$title = 'Modification';
 include_once 'header.php'
 ?>
 <!-- Modify section -->

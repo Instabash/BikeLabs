@@ -1,4 +1,5 @@
 <?php
+	$title = 'New motorbikes';
 include_once 'header.php'
 ?>
 	<!-- New Bikes -->

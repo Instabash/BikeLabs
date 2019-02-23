@@ -1,4 +1,5 @@
 <?php
+	$title = 'Address Confirmation';
 	include_once 'header.php';
 ?>
 <!-- Payment/Confirmation section -->

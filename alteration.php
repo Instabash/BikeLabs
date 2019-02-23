@@ -1,4 +1,5 @@
 <?php
+	$title = 'Alteration';
 include_once 'header.php'
 ?>
 

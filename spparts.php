@@ -1,4 +1,5 @@
 <?php
+$title = 'Spare Parts';
 include_once 'header.php'
 ?>
 <!-- spare parts -->
