@@ -28,7 +28,7 @@
 	<!--custom js-->
 	<script src="script/main.js"></script>
 </head>
-<body>
+<body  style="min-width: 1350px;">
 	<header>
 		<div class="head-container">
 			<h1 class="unselectable">BikeLabs</h1>
