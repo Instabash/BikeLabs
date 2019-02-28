@@ -24,10 +24,10 @@ include_once 'header.php'
 			  		<label>Motorbike model</label>
 			  		<div id="myBtnContainer">
 					  <button class="filter btn mb-2" onclick="filterSelection('all')"> Show all</button><br>
-					  <button class="filter btn mb-2" onclick="filterSelection('cars')"> Cars</button><br>
-					  <button class="filter btn mb-2" onclick="filterSelection('animals')"> Animals</button><br>
-					  <button class="filter btn mb-2" onclick="filterSelection('fruits')"> Fruits</button><br>
-					  <button class="filter btn mb-2" onclick="filterSelection('colors')"> Colors</button><br>
+					  <button class="filter btn mb-2" onclick="filterSelection('cars')"> Honda</button><br>
+					  <button class="filter btn mb-2" onclick="filterSelection('animals')"> Superstar</button><br>
+					  <button class="filter btn mb-2" onclick="filterSelection('fruits')"> Superpower</button><br>
+					  <button class="filter btn mb-2" onclick="filterSelection('colors')"> Unique</button><br>
 					</div>
 			  	</div>
 		  	</div>
