@@ -3,12 +3,16 @@ $title = 'Spare Parts';
 include_once 'header.php'
 ?>
 <!-- spare parts -->
-
+<style>
+	body{
+		
+	}
+</style>
 <section id="spparts" class="section sppartsection">
-	<div class="container" style="max-width: 1410px;">
+	<div class="container" style="max-width: 1410px; min-width: 1017px !important;">
 		<h2>Spare parts</h2> <br>
-		<div class="row">
-			<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search..">
+		<div class="row" >
+			<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search.." style="max-width: 100% !important;">
 		  	<div class="left mt-4">
 		  		<h4>Filters</h4>
 		  		<div class="pb-3">

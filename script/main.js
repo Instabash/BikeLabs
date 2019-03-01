@@ -113,7 +113,7 @@ for (var i = 0; i < btns.length; i++) {
   });
 }
 
-
+//-----------------------javascript for spareparts filter for search bar
 function myFunction() {
   // Declare variables
   var input, filter, ul, li, a, i, txtValue;
@@ -133,7 +133,7 @@ function myFunction() {
     }
   }
 }
-
+//-----------------------javascript for spareparts filter for price range
 function priceRange() {
   // Declare variables
   var input, filter, ul, li, a, i, txtValue;
@@ -159,7 +159,10 @@ function priceRange() {
   }
 }
 
-
+function switch_div(show) {  
+  document.getElementById("show_"+show).style.display = "block";
+  document.getElementById("show_"+((show==1)?2:1)).style.display = "none";
+}   
 
 // $(document).ready(function() {
 //   const events = {

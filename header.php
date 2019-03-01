@@ -28,8 +28,13 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 	<!--custom js-->
 	<script src="script/main.js"></script>
+
+	<link rel="shortcut icon" href="../favicon.ico"> 
+	<link rel="stylesheet" type="text/css" href="css/default.css" />
+	<link rel="stylesheet" type="text/css" href="css/component.css" />
+	<script src="js/modernizr.custom.js"></script>
 </head>
-<body style="min-width: 1000px;">
+<body style="">
 	<header>
 		<div class="head-container">
 			<h1 class="unselectable">BikeLabs</h1>
