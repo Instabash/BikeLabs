@@ -14,10 +14,10 @@ include_once 'header.php'
 		  		<div class="pb-3">
 				  	<label>Price</label>
 				  	<div class="p-1 pl-5 pr-5 ">
-				  		<input type="number" placeholder="From" class="form-control input-s" aria-label="Small" aria-describedby="">
+				  		<input type="number" id="fromInput" onkeyup="priceRange()" placeholder="From" class="form-control input-s" aria-label="Small" aria-describedby="">
 				  	</div>
 				  	<div class="p-1 pl-5 pr-5 pt-3">
-				  		<input type="number" placeholder="To" class="form-control input-s" aria-label="Small" aria-describedby="">
+				  		<input type="number" id="toInput" onkeyup="priceRange()" placeholder="To" class="form-control input-s" aria-label="Small" aria-describedby="">
 				  	</div>
 		  		</div>
 		  		<div class="pb-3">
@@ -39,7 +39,7 @@ include_once 'header.php'
 					  			<div>
 					  				<label class="productName">Motor</label><br>
 					  				<label>Price:</label>
-					  				<label>333 Rs</label>
+					  				<label class="price">333</label>
 					  			</div>
 	  						</a>
 						</div>
@@ -49,7 +49,7 @@ include_once 'header.php'
 						  		<div>
 					  				<label class="productName">chain</label><br>
 					  				<label>Price:</label>
-					  				<label>333 Rs</label>
+					  				<label class="price">423</label>
 					  			</div>
 	  						</a>							
 	  					</div>
@@ -59,7 +59,7 @@ include_once 'header.php'
 						  		<div>
 					  				<label class="productName">crankshaft</label><br>
 					  				<label>Price:</label>
-					  				<label>333 Rs</label>
+					  				<label class="price">123</label>
 					  			</div>
 	  						</a>
 					  		
@@ -70,7 +70,7 @@ include_once 'header.php'
 						  		<div>
 					  				<label class="productName">piston</label><br>
 					  				<label>Price:</label>
-					  				<label>333 Rs</label>
+					  				<label class="price">523</label>
 					  			</div>
 	  						</a>
 					  		
@@ -81,7 +81,7 @@ include_once 'header.php'
 				  				<div>
 					  				<label class="productName">taillight</label><br>
 					  				<label>Price:</label>
-					  				<label>333 Rs</label>
+					  				<label class="price">5213</label>
 					  			</div>
 	  						</a>
 			  				
@@ -92,7 +92,7 @@ include_once 'header.php'
 				  				<div>
 					  				<label class="productName">chain spocket</label><br>
 					  				<label>Price:</label>
-					  				<label>333 Rs</label>
+					  				<label class="price">123</label>
 					  			</div>
 	  						</a>
 			  				
@@ -103,7 +103,7 @@ include_once 'header.php'
 				  				<div>
 					  				<label class="productName">Handle bar</label><br>
 					  				<label>Price:</label>
-					  				<label>333 Rs</label>
+					  				<label class="price">111</label>
 					  			</div>
 	  						</a>
 			  				
@@ -114,7 +114,7 @@ include_once 'header.php'
 				  				<div>
 					  				<label class="productName">Air Filter</label><br>
 					  				<label>Price:</label>
-					  				<label>333 Rs</label>
+					  				<label class="price">523</label>
 					  			</div>
 	  						</a>
 			  				
@@ -125,7 +125,7 @@ include_once 'header.php'
 				  				<div>
 					  				<label class="productName">NGK Sparkplugs</label><br>
 					  				<label>Price:</label>
-					  				<label>333 Rs</label>
+					  				<label class="price">1255</label>
 					  			</div>
 	  						</a>
 			  				
@@ -136,7 +136,7 @@ include_once 'header.php'
 				  				<div>
 					  				<label class="productName">Exhaust</label><br>
 					  				<label>Price:</label>
-					  				<label>333 Rs</label>
+					  				<label class="price">6643</label>
 					  			</div>
 	  						</a>
 			  				
@@ -147,10 +147,9 @@ include_once 'header.php'
 				  				<div>
 					  				<label class="productName">Silencer</label><br>
 					  				<label>Price:</label>
-					  				<label>333 Rs</label>
+					  				<label class="price">3235</label>
 					  			</div>
 	  						</a>
-			  				
 			  			</div>
 				</div>
 		  	</div>

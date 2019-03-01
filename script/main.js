@@ -134,6 +134,31 @@ function myFunction() {
   }
 }
 
+function priceRange() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  fromInput = +document.getElementById('fromInput').value;
+  toInput = +document.getElementById('toInput').value;
+  ul = document.getElementById("myUL");
+  li = ul.getElementsByClassName('filterDiv');
+
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+    a = li[i].getElementsByClassName("price")[0];
+    var result;
+    result = a.innerHTML;
+    if (fromInput == "" && toInput == "") {
+      toInput = 9999999;
+      li[i].style.display = "";
+    } 
+    if (result >= fromInput && result <= toInput){
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+
 
 
 // $(document).ready(function() {
