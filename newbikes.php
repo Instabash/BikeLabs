@@ -18,38 +18,38 @@ include_once 'header.php'
 									</a>
 								</div>
 								<div id="collapse_0" class="accordion-body collapse in">
-									<div class="accordion-inner">
-										<ul class="list-unstyled">
+									<div class="accordion-inner tags">
+										<ul class="list-unstyled filterSection">
 											<li>
 												<label class="filter-check clearfix">
-													<input type="checkbox" title="Honda">
-													<a href="">Honda</a>
+													<input type="checkbox" rel="honda" id="honda" />
+        											<label for="honda">Honda</label>
 												</label>
 											</li>
 											<li>
 												<label class="filter-check clearfix">
-													<input type="checkbox" title="Yamaha">
-													<a href="">Unique</a>
+													<input type="checkbox" rel="superstar" id="superstar" />
+        											<label for="superstar">Superstar</label>
 												</label>
 											</li>
 											<li>
 												<label class="filter-check clearfix">
-													<input type="checkbox" title="Suzuki">
-													<a href="">Yamaha</a>
+													<input type="checkbox" rel="superpower" id="superpower" />
+        											<label for="superpower">Superpower</label>
 												</label>
 											</li>
 											<li>
 												<label class="filter-check clearfix">
-													<input type="checkbox" title="Super Power">
-													<a href="">Super Power</a>
+													<input type="checkbox" rel="unique" id="unique" />
+        											<label for="unique">Unique</label>
 												</label>
 											</li>
 											<li>
 												<label class="filter-check clearfix">
-													<input type="checkbox" title="Kawasaki">
-													<a href="">Superstar</a>
+													<input type="checkbox" rel="yamaha" id="yamaha" />
+        											<label for="yamaha">Yamaha</label>
 												</label>
-											</li>	
+											</li>
 										</ul>
 									</div>
 								</div>
@@ -62,24 +62,24 @@ include_once 'header.php'
 									</a>
 								</div>
 								<div id="collapse_1" class="accordion-body collapse in">
-									<div class="accordion-inner">
+									<div class="accordion-inner tags">
 										<ul class="list-unstyled">
 											<li>
 												<label class="filter-check clearfix">
-													<input type="checkbox" title="">
-													<a href="">70cc</a>
+													<input type="checkbox" rel="70cc" id="70cc" />
+        											<label for="70cc">70cc</label>
 												</label>
 											</li>
 											<li>
 												<label class="filter-check clearfix">
-													<input type="checkbox" title="">
-													<a href="">125cc</a>
+													<input type="checkbox" rel="125cc" id="125cc" />
+        											<label for="125cc">125cc</label>
 												</label>
 											</li>
 											<li>
 												<label class="filter-check clearfix">
-													<input type="checkbox" title="">
-													<a href="">150cc</a>
+													<input type="checkbox" rel="150cc" id="150cc" />
+        											<label for="150cc">150cc</label>
 												</label>
 											</li>
 										</ul>
@@ -96,11 +96,7 @@ include_once 'header.php'
 								<div id="collapse_2" class="accordion-body collapse in">
 									<div class="accordion-inner">
 										<form action="#" method="post" onsubmit="return false">
-											<div style="margin:0;padding:0;display:inline">
-												<input name="utf8" type="hidden" value="✓">
-												<input name="authenticity_token" type="hidden" value="AoNANCgpuGrFJnZXS92jr2Ked1IOOfSaChD81AY38x8=">
-											</div>
-											<select id="pr_from" style="width: 100%;" class="nomargin" data-parsley-required="" data-parsley-lt="#pr_to" data-parsley-lt-message="Select a lower value." data-parsley-id="1864">
+											<select id="fromInput" style="width: 100%;" class="nomargin">
 												<option value="">Price From</option>
 												<option value="10000">10,000</option>
 												<option value="20000">20,000</option>
@@ -122,7 +118,7 @@ include_once 'header.php'
 											</select>
 											<div class="mb10">
 											</div>
-											<select id="pr_to" class="nomargin" style="width: 100%;" data-parsley-required="" data-parsley-id="0368">
+											<select id="toInput" class="nomargin" style="width: 100%;" >
 												<option value="" selected="selected">Price To</option>
 												<option value="20000">20,000</option>
 												<option value="30000">30,000</option>
@@ -141,7 +137,10 @@ include_once 'header.php'
 												<option value="1000000">1,000,000</option>
 												<option value="2000000">2,000,000</option>
 											</select>
-											<input type="submit" class="btn btn-primary btn-block" value="Go">
+											<input type="submit" class="btn btn-primary btn-block" id="btngo" value="Go" onclick="priceRange()">
+											<div id="clear-selection">
+												
+											</div>
 										</form>                  
 									</div>
 								</div>
@@ -150,116 +149,122 @@ include_once 'header.php'
 					</div>
 				</div>
 				<div class="col-md-10 search-listing pull-right">
-					<div class="" id="myUL">
-						<div class="filterDiv cars m-3 border-new border border-dark rounded">
+					<div class="results" id="myUL">
+						<div class="honda 70cc filterDiv  m-3 border-new border border-dark rounded">
 							<a href="">
 								<img src="images/1.jpg">
 								<div>
 									<label class="productName">Motor</label><br>
 									<label>Price:</label>
-									<label class="price">333</label>
+									<label class="price">10000</label>
 								</div>
 							</a>
 						</div>
-						<div class="filterDiv colors fruits m-3  border-new border border-dark rounded">
+						<div class="honda 125cc filterDiv  m-3  border-new border border-dark rounded">
 							<a href="">
 								<img src="images/a_dvert1.jpg">
 								<div>
 									<label class="productName">chain</label><br>
 									<label>Price:</label>
-									<label class="price">423</label>
+									<label class="price">20000</label>
 								</div>
 							</a>							
 						</div>
-						<div class="filterDiv cars m-3  border-new border border-dark rounded">
+						<div class="superstar 70cc filterDiv  m-3  border-new border border-dark rounded">
 							<a href="">
 								<img src="images/a_dvert2.jpg">
 								<div>
 									<label class="productName">crankshaft</label><br>
 									<label>Price:</label>
-									<label class="price">123</label>
+									<label class="price">10023</label>
 								</div>
 							</a>
-							
 						</div>
-						<div class="filterDiv cars m-3  border-new border border-dark rounded">
+						<div class="superstar 125cc filterDiv  m-3  border-new border border-dark rounded">
 							<a href="">
 								<img src="images/modify.jpg">
 								<div>
 									<label class="productName">piston</label><br>
 									<label>Price:</label>
-									<label class="price">523</label>
+									<label class="price">17000</label>
 								</div>
 							</a>
-							
 						</div>
-						<div class="filterDiv colors m-3  border-new border border-dark rounded">
+						<div class="superpower 125cc filterDiv  m-3  border-new border border-dark rounded">
 							<a href="">
 								<img src="images/modify2.jpg">
 								<div>
 									<label class="productName">taillight</label><br>
 									<label>Price:</label>
-									<label class="price">5213</label>
+									<label class="price">39000</label>
 								</div>
 							</a>
-							
 						</div>
-						<div class="filterDiv animals m-3  border-new border border-dark rounded">
+						<div class="yamaha 70cc filterDiv  m-3  border-new border border-dark rounded">
 							<a href="">
 								<img src="images/modify3.jpg">
 								<div>
 									<label class="productName">chain spocket</label><br>
 									<label>Price:</label>
-									<label class="price">123</label>
+									<label class="price">33000</label>
 								</div>
 							</a>
-							
 						</div>
-						<div class="filterDiv colors m-3  border-new border border-dark rounded">
+						<div class="honda 150cc filterDiv  m-3  border-new border border-dark rounded">
 							<a href="">
 								<img src="images/purchase1.jpg">
 								<div>
 									<label class="productName">Handle bar</label><br>
 									<label>Price:</label>
-									<label class="price">111</label>
+									<label class="price">60000</label>
 								</div>
 							</a>
-							
 						</div>
-						<div class="filterDiv animals m-3  border-new border border-dark rounded">
+						<div class="unique 150cc filterDiv  m-3  border-new border border-dark rounded">
 							<a href="">
 								<img src="images/purchase2.jpg">
 								<div>
 									<label class="productName">Air Filter</label><br>
 									<label>Price:</label>
-									<label class="price">523</label>
+									<label class="price">14000</label>
 								</div>
 							</a>
-							
 						</div>
-						<div class="filterDiv animals m-3  border-new border border-dark rounded">
+						<div class="honda 125cc filterDiv  m-3  border-new border border-dark rounded">
 							<a href="">
 								<img src="images/purchase2.jpg">
 								<div>
 									<label class="productName">NGK Sparkplugs</label><br>
 									<label>Price:</label>
-									<label class="price">1255</label>
+									<label class="price">16000</label>
 								</div>
 							</a>
-							
 						</div>
-						<div class="filterDiv animals m-3  border-new border border-dark rounded">
+						<div class="superpower 70cc filterDiv  m-3  border-new border border-dark rounded">
 							<a href="">
 								<img src="images/purchase2.jpg">
 								<div>
 									<label class="productName">Exhaust</label><br>
 									<label>Price:</label>
-									<label class="price">6643</label>
+									<label class="price">22000</label>
 								</div>
 							</a>
-							
 						</div>
-						<div class="filterDiv animals m-3  border-new border border-dark rounded">
+						<div class="unique 150cc filterDiv  m-3  border-new border border-dark rounded">
+							<a href="">
+								<img src="images/modify2.jpg">
+								<div>
+									<label class="productName">Silencer</label><br>
+									<label>Price:</label>
+									<label class="price">20000</label>
+								</div>
+							</a>
+						</div>
+						<!-- <div class="
+							<?php 
+								// POST[''] 
+							?> 
+							filterDiv  m-3  border-new border border-dark rounded">
 							<a href="">
 								<img src="images/modify2.jpg">
 								<div>
@@ -268,12 +273,23 @@ include_once 'header.php'
 									<label class="price">3235</label>
 								</div>
 							</a>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
 		</div>
-	</section>
-	<?php
+	</div>	
+</section>
+<script type="text/javascript">
+    	$('div.tags').find('input:checkbox').on('click', function() {
+		    let
+		    els = $('.results > div').hide(),
+		    checked = $('div.tags').find('input:checked').each(function() {
+		        els.filter('.'+$(this).attr('rel')).show();
+		    });
+		    if (!checked.length) els.show();
+		});
+</script>
+<?php
 	include_once 'footer.php'
-	?>
+?>

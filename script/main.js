@@ -156,6 +156,9 @@ function priceRange() {
     } else {
       li[i].style.display = "none";
     }
+    if (!(fromInput == "0" && !toInput == "0")) {
+        document.getElementById('clear-selection').innerHTML = '<a href="#" id="clrlink">Clear selection</a>';
+    }
   }
 }
 
@@ -163,6 +166,50 @@ function switch_div(show) {
   document.getElementById("show_"+show).style.display = "block";
   document.getElementById("show_"+((show==1)?2:1)).style.display = "none";
 }   
+
+
+//------------------------CHECKBOX FILTER-----------------------------------//
+$(document).ready(function() {
+$('div.tags').find('input:checkbox').on('click', function() {
+        let
+        els = $('.results > div').hide(),
+        checked = $('div.tags').find('input:checked').each(function() {
+            els.filter('.'+$(this).attr('rel')).show();
+        });
+        if (!checked.length) els.show();
+    });
+});
+//------------------------CHECKBOX FILTER END--------------------------------------//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // $(document).ready(function() {
 //   const events = {
