@@ -109,7 +109,8 @@ input, select {
 vertical-align:middle;
 }
 
-/*Main code*/
+/*-----------------------------------------Main code----------------------------------------------------*/
+.navbar-nav > li > .dropdown-menu > .dropdown-item:active { background-color: #000005 !important; }
 @media screen and (max-width: 580px){
   .hide-on-small{
     display: none;
@@ -250,6 +251,10 @@ img{
 }
 
 .orderconsec{
+  font-size: 1rem;
+}
+
+.postadsection{
   font-size: 1rem;
 }
 
@@ -1171,3 +1176,20 @@ input::-webkit-input-placeholder {
 /*------------------------------------------------------------------------------------*/
                                       /*FILTERS*/
 /*------------------------------------------------------------------------------------*/
+
+
+/* ---- button-group ---- */
+
+
+
+/* ---- isotope ---- */
+
+
+
+/* clear fix */
+
+
+/* ui group */
+
+
+

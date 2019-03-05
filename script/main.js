@@ -169,16 +169,7 @@ function switch_div(show) {
 
 
 //------------------------CHECKBOX FILTER-----------------------------------//
-$(document).ready(function() {
-$('div.tags').find('input:checkbox').on('click', function() {
-        let
-        els = $('.results > div').hide(),
-        checked = $('div.tags').find('input:checked').each(function() {
-            els.filter('.'+$(this).attr('rel')).show();
-        });
-        if (!checked.length) els.show();
-    });
-});
+
 //------------------------CHECKBOX FILTER END--------------------------------------//
 
 
