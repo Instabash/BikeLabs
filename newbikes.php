@@ -8,6 +8,7 @@ include_once 'header.php'
 		<h3>New motorbikes</h3> <br>
 		<div class="search-page-new">
 			<div class="row">
+				<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search.." style="max-width: 100% !important;">
 				<div class="mt-3 col-md-2 used-car-refine-search">
 					<div class="sidebar-filters border-new">
 						<div class="filter-panel-new box">
@@ -150,7 +151,7 @@ include_once 'header.php'
 				</div>
 				<div class="col-md-10 search-listing pull-right">
 					<div class="results" id="myUL">
-						<div class="honda 70cc filterDiv  m-3 border-new border border-dark rounded">
+						<div class="all honda 70cc filterDiv  m-3 border-new border border-dark rounded">
 							<a href="">
 								<img src="images/1.jpg">
 								<div>
@@ -160,7 +161,7 @@ include_once 'header.php'
 								</div>
 							</a>
 						</div>
-						<div class="honda 125cc filterDiv  m-3  border-new border border-dark rounded">
+						<div class="all honda 125cc filterDiv  m-3  border-new border border-dark rounded">
 							<a href="">
 								<img src="images/a_dvert1.jpg">
 								<div>
@@ -170,7 +171,7 @@ include_once 'header.php'
 								</div>
 							</a>							
 						</div>
-						<div class="superstar 70cc filterDiv  m-3  border-new border border-dark rounded">
+						<div class="all superstar 70cc filterDiv  m-3  border-new border border-dark rounded">
 							<a href="">
 								<img src="images/a_dvert2.jpg">
 								<div>
@@ -180,7 +181,7 @@ include_once 'header.php'
 								</div>
 							</a>
 						</div>
-						<div class="superstar 125cc filterDiv  m-3  border-new border border-dark rounded">
+						<div class="all superstar 125cc filterDiv  m-3  border-new border border-dark rounded">
 							<a href="">
 								<img src="images/modify.jpg">
 								<div>
@@ -190,7 +191,7 @@ include_once 'header.php'
 								</div>
 							</a>
 						</div>
-						<div class="superpower 125cc filterDiv  m-3  border-new border border-dark rounded">
+						<div class="all superpower 125cc filterDiv  m-3  border-new border border-dark rounded">
 							<a href="">
 								<img src="images/modify2.jpg">
 								<div>
@@ -200,7 +201,7 @@ include_once 'header.php'
 								</div>
 							</a>
 						</div>
-						<div class="yamaha 70cc filterDiv  m-3  border-new border border-dark rounded">
+						<div class="all yamaha 70cc filterDiv  m-3  border-new border border-dark rounded">
 							<a href="">
 								<img src="images/modify3.jpg">
 								<div>
@@ -210,7 +211,7 @@ include_once 'header.php'
 								</div>
 							</a>
 						</div>
-						<div class="honda 150cc filterDiv  m-3  border-new border border-dark rounded">
+						<div class="all honda 150cc filterDiv  m-3  border-new border border-dark rounded">
 							<a href="">
 								<img src="images/purchase1.jpg">
 								<div>
@@ -220,7 +221,7 @@ include_once 'header.php'
 								</div>
 							</a>
 						</div>
-						<div class="unique 150cc filterDiv  m-3  border-new border border-dark rounded">
+						<div class="all unique 150cc filterDiv  m-3  border-new border border-dark rounded">
 							<a href="">
 								<img src="images/purchase2.jpg">
 								<div>
@@ -230,7 +231,7 @@ include_once 'header.php'
 								</div>
 							</a>
 						</div>
-						<div class="honda 125cc filterDiv  m-3  border-new border border-dark rounded">
+						<div class="all honda 125cc filterDiv  m-3  border-new border border-dark rounded">
 							<a href="">
 								<img src="images/purchase2.jpg">
 								<div>
@@ -240,7 +241,7 @@ include_once 'header.php'
 								</div>
 							</a>
 						</div>
-						<div class="superpower 70cc filterDiv  m-3  border-new border border-dark rounded">
+						<div class="all superpower 70cc filterDiv  m-3  border-new border border-dark rounded">
 							<a href="">
 								<img src="images/purchase2.jpg">
 								<div>
@@ -250,7 +251,7 @@ include_once 'header.php'
 								</div>
 							</a>
 						</div>
-						<div class="unique 150cc filterDiv  m-3  border-new border border-dark rounded">
+						<div class="all unique 150cc filterDiv  m-3  border-new border border-dark rounded">
 							<a href="">
 								<img src="images/modify2.jpg">
 								<div>
