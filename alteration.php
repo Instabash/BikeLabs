@@ -1,6 +1,6 @@
 <?php
 	$title = 'Alteration';
-include_once 'header.php'
+	include_once 'includes/header.php';
 ?>
 <section id="alter" class="section modsection">
 	<form id="modform1" action = "" method = "POST">
@@ -158,5 +158,5 @@ include_once 'header.php'
 
 	<!-- Footer -->
 <?php
-include_once 'footer.php'
+	include_once 'includes/footer.php';
 ?>

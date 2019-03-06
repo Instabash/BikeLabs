@@ -1,5 +1,5 @@
 <?php
-include_once 'header.php'
+	include_once 'includes/header.php';
 ?>
 <!-- Index section -->
 <div id="showcase">
@@ -89,5 +89,5 @@ include_once 'header.php'
 </section>
 
 <?php
-include_once 'footer.php'
+	include_once 'includes/footer.php';
 ?>

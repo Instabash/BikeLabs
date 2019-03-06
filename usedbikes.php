@@ -1,6 +1,6 @@
 <?php
-$title = 'Used motorbikes';
-include_once 'header.php'
+	$title = 'Used motorbikes';
+	include_once 'includes/header.php';
 ?>
 <!-- New Bikes -->
 <section id="spparts" class="section sppartsection">
@@ -291,6 +291,7 @@ include_once 'header.php'
 		    if (!checked.length) els.show();
 		});
 </script>
+
 <?php
-	include_once 'footer.php'
+	include_once 'includes/footer.php';
 ?>

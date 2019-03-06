@@ -1,6 +1,6 @@
 <?php
-$title = 'Address Confirmation';
-include_once 'header.php';
+	$title = 'Address Confirmation';
+	include_once 'includes/header.php';
 ?>
 <!-- Payment/Confirmation section -->
 <section id="addresscon" class="section addressconsec">
@@ -111,5 +111,5 @@ include_once 'header.php';
 	</div>
 </section>
 <?php
-include_once 'footer.php';
+	include_once 'includes/footer.php';
 ?>
