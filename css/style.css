@@ -653,6 +653,14 @@ img{
   line-height: 36px;
 }
 
+.advertpick label{
+  width: 210px;
+  text-align: right;
+  margin-right: 20px;
+  line-height: 36px;
+}
+
+
 /*filter stuff*/
 
 .filterDiv {
@@ -1193,3 +1201,6 @@ input::-webkit-input-placeholder {
 
 
 
+.redborder {
+    border-color: red !important;
+}
