@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 
 include_once 'dbh.inc.php';
 
@@ -35,7 +35,7 @@ if($resultcheck > 0)
 }
 
 
-?>
+?> -->
 <!-- 
 for ($i=0; $i < count($spartIdarray); $i++) { 
 		echo $postid[$i]."<br>";
