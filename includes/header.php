@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,7 +71,7 @@
 			
 		</div> -->
 		
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<nav class=" navbar navbar-expand-lg navbar-light bg-light">
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		    <span class="navbar-toggler-icon"></span>
 		  </button>
@@ -101,8 +104,36 @@
       			</li>
 		      	
 		    </ul>
+		    <?php
+		    	if(isset($_SESSION['userId']))
+		    	{
+		    		$userId = $_SESSION["userUId"];
+	    			echo 
+	    			'
+	    			<p style="margin:5px;color:black;">Logged in as : '.$userId.'</p>
+	    			<form class="form-inline" action="includes/logout.inc.php" style="margin-left: 10px;" method="post">
+						<button type="submit" class="btn btn-default" name="logout-submit">Logout</button>
+					</form>';
+		    	}
+		    	else
+		    	{
+		    		echo 
+		    		'<form class="form-inline" action="includes/login.inc.php" style="margin-right: 10px;" method="post">
+					  	<div class="form-group">
+		                    <input type="text" class="form-control" name="mailuid" placeholder="Username/E-mail..">
+		                </div>
+		                <div class="form-group">
+		                    <input type="password" class="form-control" name="pwd" placeholder="Password..">
+		                </div>
+		                <button type="submit" class="btn btn-default" name="login-submit">Login</button>
+					</form>
+					<a href="signup.php">Signup</a>';
+		    	}
+		    ?>
+		    
+			
 
-		    <form id="demo-2">
+		    <form id="demo-2" style="margin-left: 10px;" >
 				<input type="search" placeholder="Search">
 			</form>
 		  </div>	
