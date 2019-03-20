@@ -128,7 +128,7 @@
 		<div class="fullAlter hide" id="show_2">
 			<h4 class="p-3">Please add the following details to submit your advert</h4>
 			<div class="advertpick form-wrap clearfix border-new border border-dark rounded">
-				<form class="p-2">
+				<form action="" method="post" enctype="multipart/form-data" class="p-2">
 					<div class="form-row p-2 pt-4 mb-3">
 						<label for="title">Title</label>
 						<div>
@@ -166,15 +166,12 @@
 					<div class="form-row pl-2 pr-2 pb-3">
 						<label>Upload some images. (Minimum 5.)</label>
 						<div class="" style="padding-top: 20px;">
-							<button type="button" class="btn btn-outline-secondary">Upload</button>
+							<label for="upload_file" class="btn btn-outline-secondary text-center">Upload file</label>
+							<input type="file" id="upload_file" name="upload_file[]" onchange="preview_image();" multiple/>
+							<!-- <button type="button" class="btn btn-outline-secondary">Upload</button> -->
 						</div>
 					</div>
-					<div class="hide">
-						<p>images uploaded:<?php
-								//echo $_POST['imgs_uploaded'];
-						?></p>
-						<img src="images/<?php //echo POST['userupload'] ?>">
-					</div>
+					<div id="image_preview" class="" style="max-width: 200px !important;max-height:200px !important;display: flex;"></div>
 					<div class="form-row p-2">
 						<label>House name/Number</label>
 						<div class="">
@@ -219,7 +216,17 @@
 		</div>
 	</div>
 </section>
+<script>
 
+function preview_image() 
+{
+ var total_file=document.getElementById("upload_file").files.length;
+ for(var i=0;i<total_file;i++)
+ {
+  	$('#image_preview').append("<img src='"+URL.createObjectURL(event.target.files[i])+"'>");
+ }
+}
+</script>
 <?php	
 	include_once 'includes/footer.php';
 ?>
