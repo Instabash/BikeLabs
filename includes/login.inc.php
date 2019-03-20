@@ -14,7 +14,7 @@ if (isset($_POST['login-submit']))
 	}
 	else
 	{
-		$sql = "SELECT * FROM users WHERE uidUsers=? OR emailUsers=?;";
+		$sql = "SELECT * FROM users WHERE uidUsers=?;";
 		$stmt = mysqli_stmt_init($conn);
 		if (!mysqli_stmt_prepare($stmt, $sql)) 
 		{
@@ -23,7 +23,7 @@ if (isset($_POST['login-submit']))
 		}
 		else
 		{
-			mysqli_stmt_bind_param($stmt, "ss", $mailuid, $mailuid);
+			mysqli_stmt_bind_param($stmt, "s", $mailuid);
 			mysqli_stmt_execute($stmt);
 			$result = mysqli_stmt_get_result($stmt);
 			if($row = mysqli_fetch_assoc($result))
@@ -40,7 +40,15 @@ if (isset($_POST['login-submit']))
 					$_SESSION['userId'] = $row['idUsers'];
 					$_SESSION['userUId'] = $row['uidUsers'];
 
-					header("Location: ../index.php?login=success");
+					if (isset($_SESSION['curr_page'])) {
+				        header("Location: ../..".$_SESSION['curr_page']);
+				    }
+				    else{
+				    	$_SESSION['current_page'] = $_SERVER['HTTP_REFERER'];
+				    	header("Location: ". $_SESSION['current_page']);
+				    }
+					
+
 					exit();
 				}
 				else
