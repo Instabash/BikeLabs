@@ -486,6 +486,53 @@ img{
 .hide{
   display:none;
 }
+
+#upload_file{
+  color: #6c757d;
+    background-color: transparent;
+    background-image: none;
+    border-color: #6c757d;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+input[type="file"] {
+    display: none !important;
+}
+
+.aaa .imagebutton{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.aaa img{
+  width: 100%;
+  height: auto;
+}
+
 .show{
   display:block;
 }
@@ -1253,3 +1300,4 @@ input::-webkit-input-placeholder {
 .redborder {
     border-color: red !important;
 }
+
