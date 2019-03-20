@@ -29,10 +29,13 @@
 					{
 						echo '<p style="color:red;padding:5px;";>Username is taken!</p>';
 					}
+
 				}
-				elseif ($_GET['signup'] == "success") 
-				{
-					echo '<p style="color:green;padding:5px;";>Signup successful!</p>';
+				if (isset($_GET['signup'])) {
+					if ($_GET['signup'] == "success") 
+					{
+						echo '<p style="color:green;padding:5px;";>Signup successful!</p>';
+					}
 				}
 			?>
 			<div class="form-row modmarginleft">
