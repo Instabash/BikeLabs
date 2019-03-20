@@ -1,5 +1,8 @@
 <?php
-	session_start();
+	if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
 ?>
 <!DOCTYPE html>
 <html>
@@ -110,7 +113,7 @@
 		    		$userId = $_SESSION["userUId"];
 	    			echo 
 	    			'
-	    			<p style="margin:5px;color:black;">Logged in as : '.$userId.'</p>
+	    			<p style="margin:5px;color:black;">Logged in as : <a href="#"> '.$userId.' </a></p>
 	    			<form class="form-inline" action="includes/logout.inc.php" style="margin-left: 10px;" method="post">
 						<button type="submit" class="btn btn-default" name="logout-submit">Logout</button>
 					</form>';
