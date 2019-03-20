@@ -1,4 +1,11 @@
 <?php
+session_start();
+if(!isset($_SESSION['userUId'])){
+	$current_page = $_SERVER['REQUEST_URI'];
+	$_SESSION['curr_page'] = $current_page;
+   	header("Location:LoginOrRegister.php");
+}
+
 $title = 'Spare Parts';
 include_once 'includes/header.php';
 include_once 'includes/dbh.inc.php';
