@@ -39,6 +39,7 @@ if(!isset($_SESSION))
 	<!---------------------------------------------------------------Select2 css--------------------------------------------------------------->
 	<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" /> -->
 	<link rel="stylesheet" type="text/css" href="/BikeLabs/css/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="/BikeLabs/css/dropzone.css">
 
 	<!---------------------------------CSS end---------------------------------->
 
@@ -62,11 +63,10 @@ if(!isset($_SESSION))
 
 	<!--custom js-->
 	<script src="/BikeLabs/script/main.js"></script>
-
+	<script src="/BikeLabs/script/imageupload.js"></script>
 	<!-- isotope script  -->
 	<script src="/BikeLabs/script/isotope.pkgd.min.js"></script>
 	
-	<script src="/BikeLabs/script/dropzone.js"></script>
 	<!---------------------------------Scripts end---------------------------------->
 
 </head>
@@ -135,7 +135,7 @@ if(!isset($_SESSION))
 									<button type="submit" class="btn btn-primary" name="login-submit">Sign in</button>
 								</form>
 							<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">New around here? Sign up</a>
+								<a class="dropdown-item" href="signup.php">New around here? Sign up</a>
 								<a class="dropdown-item" href="#">Forgot password?</a>
 							</div>
 						</li>
