@@ -212,20 +212,16 @@
 						<button type="submit" id="" name="" class="btn btn-outline-danger" value="">Post the advert</button>
 					</div>
 				</form>
+				<form action="/file-upload" class="dropzone">
+				    <div class="fallback">
+				    	<input name="file" type="file" multiple />
+				  	</div>
+				</form>
 			</div>
 		</div>
 	</div>
 </section>
 <script>
-
-function preview_image() 
-{
- var total_file=document.getElementById("upload_file").files.length;
- for(var i=0;i<total_file;i++)
- {
-  	$('#image_preview').append("<img src='"+URL.createObjectURL(event.target.files[i])+"'>");
- }
-}
 </script>
 <?php	
 	include_once 'includes/footer.php';
