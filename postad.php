@@ -128,7 +128,7 @@
 		<div class="fullAlter hide" id="show_2">
 			<h4 class="p-3">Please add the following details to submit your advert</h4>
 			<div class="advertpick form-wrap clearfix border-new border border-dark rounded">
-				<form action="" method="post" enctype="multipart/form-data" class="p-2">
+				<form class="p-2">
 					<div class="form-row p-2 pt-4 mb-3">
 						<label for="title">Title</label>
 						<div>
@@ -163,15 +163,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="form-row pl-2 pr-2 pb-3">
-						<label>Upload some images. (Minimum 5.)</label>
-						<div class="" style="padding-top: 20px;">
-							<label for="upload_file" class="btn btn-outline-secondary text-center">Upload file</label>
-							<input type="file" id="upload_file" name="upload_file[]" onchange="preview_image();" multiple/>
-							<!-- <button type="button" class="btn btn-outline-secondary">Upload</button> -->
-						</div>
-					</div>
-					<div id="image_preview" class="" style="max-width: 200px !important;max-height:200px !important;display: flex;"></div>
+					
 					<div class="form-row p-2">
 						<label>House name/Number</label>
 						<div class="">
@@ -208,20 +200,25 @@
 							</div>
 						</div>
 					</div>
+					<div class="form-row pl-2 pr-2 pb-3 field" align="left">
+						<div style="padding-top: 20px;">
+							<label>Upload some images. (Minimum 5.)</label>
+						</div>
+						<div style="padding-top: 20px;max-width: 630px;">
+							<input type="file" title=" " id="files" name="files[]" multiple />
+						</div>
+						
+					</div>
 					<div class="addressbtn" style="float:right;padding:10px;">
 						<button type="submit" id="" name="" class="btn btn-outline-danger" value="">Post the advert</button>
 					</div>
-				</form>
-				<form action="/file-upload" class="dropzone">
-				    <div class="fallback">
-				    	<input name="file" type="file" multiple />
-				  	</div>
 				</form>
 			</div>
 		</div>
 	</div>
 </section>
 <script>
+
 </script>
 <?php	
 	include_once 'includes/footer.php';
