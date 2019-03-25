@@ -3,23 +3,21 @@ session_start();
 if(!isset($_SESSION['userUId'])){
 	$current_page = $_SERVER['REQUEST_URI'];
 	$_SESSION['curr_page'] = $current_page;
-   	header("Location:LoginOrRegister.php");
+	header("Location:LoginOrRegister.php");
 }
 
 $title = 'Spare Parts';
 include_once 'includes/header.php';
 include_once 'includes/dbh.inc.php';
 
-$spaartsql = "SELECT * FROM spare_parts";
+$spaartsql = "SELECT * FROM post_ad";
 $stmt = mysqli_stmt_init($conn);
-
-
 ?>
 <!-- spare parts -->
 <style>
-body{
+	body{
 
-}
+	}
 </style>
 <section id="spparts" class="section sppartsection">
 	<div class="container" style="max-width: 1410px; min-width: 1017px !important;">
@@ -178,196 +176,56 @@ body{
 						mysqli_stmt_execute($stmt);
 						$result = mysqli_stmt_get_result($stmt);
 
+
 						while ($row = mysqli_fetch_assoc($result)) {
-							echo 
-							'<div class="all honda 70cc filterDiv m-3 border-new border border-dark rounded">
-								<a href="pages/spareparts/spareparttemp.php?partid='.$row['part_id'].'">
-									<img src="images/1.jpg">
-									<div>
-										<label class="productName">'.$row['part_name'].'</label><br>
-										<label>Price:</label>
-										<label class="price">'.$row['part_price'].'</label>
+							$imgnamesql = "SELECT ad_image_name FROM post_ad_images WHERE ad_id = ".$row['ad_id'].";";
+
+							if(!mysqli_stmt_prepare($stmt, $imgnamesql))
+							{
+								echo "SQL statement failed";
+							}
+							else
+							{
+								mysqli_stmt_execute($stmt);
+								$result1 = mysqli_stmt_get_result($stmt);
+
+								while ($row1 = mysqli_fetch_assoc($result1)) 
+								{
+									//echo $row['ad_image_name'];
+									
+									?>
+									<div class="all honda 70cc filterDiv m-3 border-new border border-dark rounded">
+										<a href="pages/spareparts/spareparttemp.php?partid=<?php echo $row['ad_id'] ?>">
+											<img src="images/sparepartimg/<?php echo $row1['ad_image_name'] ?>">
+											<div>
+												<label class="productName"><?php echo $row['ad_title'] ?></label><br>
+												<label>Price:</label>
+												<label class="price"><?php echo $row['ad_price'] ?></label>
+											</div>
+										</a>
 									</div>
-								</a>
-							</div>';
+									<?php 
+								}			
+							}
 						}	
 					}
 					?>
-						<!-- <div class="all honda 125cc filterDiv  m-3  border-new border border-dark rounded">
-							<a href="">
-								<img src="images/a_dvert1.jpg">
-								<div>
-									<label class="productName">chain</label><br>
-									<label>Price:</label>
-									<label class="price">20000</label>
-								</div>
-							</a>							
-						</div>
-						<div class="all superstar 70cc filterDiv  m-3  border-new border border-dark rounded">
-							<a href="">
-								<img src="images/a_dvert2.jpg">
-								<div>
-									<label class="productName">crankshaft</label><br>
-									<label>Price:</label>
-									<label class="price">10023</label>
-								</div>
-							</a>
-						</div>
-						<div class="all superstar 125cc filterDiv  m-3  border-new border border-dark rounded">
-							<a href="">
-								<img src="images/modify.jpg">
-								<div>
-									<label class="productName">piston</label><br>
-									<label>Price:</label>
-									<label class="price">17000</label>
-								</div>
-							</a>
-						</div>
-						<div class="all superpower 125cc filterDiv  m-3  border-new border border-dark rounded">
-							<a href="">
-								<img src="images/modify2.jpg">
-								<div>
-									<label class="productName">taillight</label><br>
-									<label>Price:</label>
-									<label class="price">39000</label>
-								</div>
-							</a>
-						</div>
-						<div class="all yamaha 70cc filterDiv  m-3  border-new border border-dark rounded">
-							<a href="">
-								<img src="images/modify3.jpg">
-								<div>
-									<label class="productName">chain spocket</label><br>
-									<label>Price:</label>
-									<label class="price">33000</label>
-								</div>
-							</a>
-						</div>
-						<div class="all honda 150cc filterDiv  m-3  border-new border border-dark rounded">
-							<a href="">
-								<img src="images/purchase1.jpg">
-								<div>
-									<label class="productName">Handle bar</label><br>
-									<label>Price:</label>
-									<label class="price">60000</label>
-								</div>
-							</a>
-						</div>
-						<div class="all unique 150cc filterDiv  m-3  border-new border border-dark rounded">
-							<a href="">
-								<img src="images/purchase2.jpg">
-								<div>
-									<label class="productName">Air Filter</label><br>
-									<label>Price:</label>
-									<label class="price">14000</label>
-								</div>
-							</a>
-						</div>
-						<div class="all honda 125cc filterDiv  m-3  border-new border border-dark rounded">
-							<a href="">
-								<img src="images/purchase2.jpg">
-								<div>
-									<label class="productName">NGK Sparkplugs</label><br>
-									<label>Price:</label>
-									<label class="price">16000</label>
-								</div>
-							</a>
-						</div>
-						<div class="all superpower 70cc filterDiv  m-3  border-new border border-dark rounded">
-							<a href="">
-								<img src="images/purchase2.jpg">
-								<div>
-									<label class="productName">Exhaust</label><br>
-									<label>Price:</label>
-									<label class="price">22000</label>
-								</div>
-							</a>
-						</div>
-						<div class="all unique 150cc filterDiv  m-3  border-new border border-dark rounded">
-							<a href="">
-								<img src="images/modify2.jpg">
-								<div>
-									<label class="productName">Silencer</label><br>
-									<label>Price:</label>
-									<label class="price">20000</label>
-								</div>
-							</a>
-						</div> -->
-						<!-- <div class="
-							<?php 
-								// POST[''] 
-							?> 
-							filterDiv  m-3  border-new border border-dark rounded">
-							<a href="">
-								<img src="images/modify2.jpg">
-								<div>
-									<label class="productName">Silencer</label><br>
-									<label>Price:</label>
-									<label class="price">3235</label>
-								</div>
-							</a>
-						</div> -->
-					</div>
 				</div>
 			</div>
 		</div>
-	</section>
-	<script>
+	</div>
+</section>
+<script>
 
-		$('div.tags').find('input:checkbox').on('click', function() {
-			let
-			els = $('.results > div').hide(),
-			checked = $('div.tags').find('input:checked').each(function() {
-				els.filter('.'+$(this).attr('rel')).show();
-			});
-			if (!checked.length) els.show();
+	$('div.tags').find('input:checkbox').on('click', function() {
+		let
+		els = $('.results > div').hide(),
+		checked = $('div.tags').find('input:checked').each(function() {
+			els.filter('.'+$(this).attr('rel')).show();
 		});
+		if (!checked.length) els.show();
+	});
 
-
-
-// external js: isotope.pkgd.js
-
-
-// store filter for each group
-// var filters = {};
-
-// $('.filters').on( 'click', '.buttonfag', function( event ) {
-// 	var $button = $( event.currentTarget );
-//   // get group key
-//   var $buttonGroup = $button.parents('.button-group');
-//   var filterGroup = $buttonGroup.attr('data-filter-group');
-//   // set filter for group
-//   filters[ filterGroup ] = $button.attr('data-filter');
-//   // combine filters
-//   var filterValue = concatValues( filters );
-//   // set filter for Isotope
-//   // init Isotope
-//   var $grid = $('.grid').isotope({
-//   	itemSelector: '.color-shape',
-//   	percentPosition: true
-//   });
-
-//   $grid.isotope({ filter: filterValue });
-// });
-
-// // change is-checked class on buttons
-// $('.button-group').each( function( i, buttonGroup ) {
-// 	var $buttonGroup = $( buttonGroup );
-// 	$buttonGroup.on( 'click', 'button', function( event ) {
-// 		$buttonGroup.find('.is-checked').removeClass('is-checked');
-// 		var $button = $( event.currentTarget );
-// 		$button.addClass('is-checked');
-// 	});
-// });
-
-// // flatten object by concatting values
-// function concatValues( obj ) {
-// 	var value = '';
-// 	for ( var prop in obj ) {
-// 		value += obj[ prop ];
-// 	}
-// 	return value;
-// }
 </script>
 
 <!-- Footer -->
