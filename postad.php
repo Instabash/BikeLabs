@@ -1,4 +1,10 @@
 <?php
+	session_start();
+	if(!isset($_SESSION['userUId'])){
+		$current_page = $_SERVER['REQUEST_URI'];
+		$_SESSION['curr_page'] = $current_page;
+	   	header("Location:LoginOrRegister.php");
+	}
 	$title = 'Post an advert';
 	include_once 'includes/header.php';
 ?>
@@ -128,19 +134,19 @@
 		<div class="fullAlter hide" id="show_2">
 			<h4 class="p-3">Please add the following details to submit your advert</h4>
 			<div class="advertpick form-wrap clearfix border-new border border-dark rounded">
-				<form class="p-2">
+				<form class="p-2" action="includes/postad.inc.php" method="post" enctype="multipart/form-data">
 					<div class="form-row p-2 pt-4 mb-3">
 						<label for="title">Title</label>
 						<div>
 							<div class="input-group">
-								<input type="text" class="form-control" name="title" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1">
+								<input type="text" class="form-control" name="sptitle" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1">
 							</div>
 						</div>
 					</div>
 					<div class="form-row p-2">
 						<label>Condition</label>
 						<div class="select-wrap mb-2">
-							<select class="btn" name="title" id="title">
+							<select class="btn" name="spcondition" id="title">
 								<option value="" disabled selected>Select</option>
 								<option value="New">New</option>
 								<option value="Used">Used</option>
@@ -151,24 +157,23 @@
 						<label>Description</label>
 						<div>
 							<div class="input-group mb-3">
-								<textarea class="form-control" rows="5" cols="50" id="description" style="resize: none;"></textarea>
+								<textarea class="form-control" rows="5" cols="50" id="description" name="spdescription" style="resize: none;"></textarea>
 							</div>
 						</div>
 					</div>
 					<div class="form-row pl-2 pr-2 pt-2">
 						<label>Price</label>
-						<div>
-							<div class="input-group mb-3">
-								<input type="text" class="form-control" name="price" placeholder="Price" aria-label="Price" aria-describedby="basic-addon1">
+							<div>
+						<div class="input-group mb-3">
+								<input type="text" class="form-control" name="spprice" placeholder="Price" aria-label="Price" aria-describedby="basic-addon1">
 							</div>
 						</div>
 					</div>
-					
 					<div class="form-row p-2">
 						<label>House name/Number</label>
 						<div class="">
 							<div class="input-group mb-3">
-								<input type="text" class="form-control" name="hname-no" placeholder="House name or number" aria-label="House name or number" aria-describedby="basic-addon1">
+								<input type="text" class="form-control" name="sphomename" placeholder="House name or number" aria-label="House name or number" aria-describedby="basic-addon1">
 							</div>
 						</div>
 					</div>
@@ -176,14 +181,14 @@
 						<label>Postcode</label>
 						<div class="">
 							<div class="input-group mb-3">
-								<input type="text" class="form-control" name="pcode" placeholder="Postcode" aria-label="Postcode" aria-describedby="basic-addon1">
+								<input type="text" class="form-control" name="sppcode" placeholder="Postcode" aria-label="Postcode" aria-describedby="basic-addon1">
 							</div>
 						</div>
 					</div>
 					<div class="form-row p-2">
 						<label>Country/Region</label>
 						<div class="select-wrap mb-3">
-							<select class="btn" name="country-region" id="title">
+							<select class="btn" name="spcountryregion" id="title">
 								<option value="IS" selected="selected">Islamabad</option>
 								<option value="KHI">Karachi</option>
 								<option value="LH">Lahore</option>
@@ -196,7 +201,7 @@
 						<label>Phone Number</label>
 						<div>
 							<div class="input-group mb-3">
-								<input type="text" class="form-control" name="phone" placeholder="Phone number" aria-label="Phone number" aria-describedby="basic-addon1">
+								<input type="text" class="form-control" name="spphone" placeholder="Phone number" aria-label="Phone number" aria-describedby="basic-addon1">
 							</div>
 						</div>
 					</div>
@@ -205,12 +210,11 @@
 							<label>Upload some images. (Minimum 5.)</label>
 						</div>
 						<div style="padding-top: 20px;max-width: 630px;">
-							<input type="file" title=" " id="files" name="files[]" multiple />
+							<input type="file" id="files" name="files[]" multiple />
 						</div>
-						
 					</div>
 					<div class="addressbtn" style="float:right;padding:10px;">
-						<button type="submit" id="" name="" class="btn btn-outline-danger" value="">Post the advert</button>
+						<button type="submit" name="spsubmit" class="btn btn-outline-danger">Post the advert</button>
 					</div>
 				</form>
 			</div>
