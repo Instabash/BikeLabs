@@ -23,19 +23,19 @@
 		<div class="fullAlter hide" id="show_1">
 			<h4 class="p-3">Please add the following details to submit your advert</h4>
 			<div class="advertpick form-wrap clearfix border-new border border-dark rounded">
-				<form class="p-2">
+				<form class="p-2" action="includes/postadbike.inc.php" method="post" enctype="multipart/form-data">
 					<div class="form-row p-2 pt-4 mb-3">
 						<label for="title">Title</label>
 						<div>
 							<div class="input-group">
-								<input type="text" class="form-control" name="title" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1">
+								<input type="text" class="form-control" name="bktitle" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1">
 							</div>
 						</div>
 					</div>
 					<div class="form-row p-2">
 						<label>Condition</label>
 						<div class="select-wrap mb-2">
-							<select class="btn" name="title" id="title">
+							<select class="btn" name="bkcondition" id="title">
 								<option value="" disabled selected>Select</option>
 								<option value="New">New</option>
 								<option value="Used">Used</option>
@@ -45,7 +45,7 @@
 					<div class="form-row p-2">
 						<label>Make</label>
 						<div class="select-wrap mb-2">
-							<select class="btn" name="title" id="title">
+							<select class="btn" name="bkmake" id="title">
 								<option value="" disabled selected>Select</option>
 								<option value="2018">Honda</option>
 							    <option value="2017">SuperPower</option>
@@ -57,7 +57,7 @@
 						<label for="title">Year</label>
 						<div>
 							<div class="input-group">
-								<input type="text" class="form-control" name="year" placeholder="Year" aria-label="Year" aria-describedby="basic-addon1">
+								<input type="text" class="form-control" name="bkyear" placeholder="Year" aria-label="Year" aria-describedby="basic-addon1">
 							</div>
 						</div>
 					</div>
@@ -65,7 +65,7 @@
 						<label>Description</label>
 						<div>
 							<div class="input-group mb-3">
-								<textarea class="form-control" rows="5" cols="50" id="description" style="resize: none;"></textarea>
+								<textarea class="form-control" rows="5" cols="50" name="bkdescription" id="description" style="resize: none;"></textarea>
 							</div>
 						</div>
 					</div>
@@ -73,27 +73,15 @@
 						<label>Price</label>
 						<div>
 							<div class="input-group mb-3">
-								<input type="text" class="form-control" name="price" placeholder="Price" aria-label="Price" aria-describedby="basic-addon1">
+								<input type="text" class="form-control" name="bkprice" placeholder="Price" aria-label="Price" aria-describedby="basic-addon1">
 							</div>
 						</div>
-					</div>
-					<div class="form-row pl-2 pr-2 pb-3">
-						<label>Upload some images. (Minimum 5.)</label>
-						<div class="" style="padding-top: 20px;">
-							<button type="button" class="btn btn-outline-secondary">Upload</button>
-						</div>
-					</div>
-					<div class="hide">
-						<p>images uploaded:<?php
-								//echo $_POST['imgs_uploaded'];
-						?></p>
-						<img src="images/<?php //echo POST['userupload'] ?>">
 					</div>
 					<div class="form-row p-2">
 						<label>House name/Number</label>
 						<div class="">
 							<div class="input-group mb-3">
-								<input type="text" class="form-control" name="hname-no" placeholder="House name or number" aria-label="House name or number" aria-describedby="basic-addon1">
+								<input type="text" class="form-control" name="bkhomename" placeholder="House name or number" aria-label="House name or number" aria-describedby="basic-addon1">
 							</div>
 						</div>
 					</div>
@@ -101,14 +89,14 @@
 						<label>Postcode</label>
 						<div class="">
 							<div class="input-group mb-3">
-								<input type="text" class="form-control" name="pcode" placeholder="Postcode" aria-label="Postcode" aria-describedby="basic-addon1">
+								<input type="text" class="form-control" name="bkpcode" placeholder="Postcode" aria-label="Postcode" aria-describedby="basic-addon1">
 							</div>
 						</div>
 					</div>
 					<div class="form-row p-2">
 						<label>Country/Region</label>
 						<div class="select-wrap mb-3">
-							<select class="btn" name="country-region" id="title">
+							<select class="btn" name="bkcountryregion" id="title">
 								<option value="IS" selected="selected">Islamabad</option>
 								<option value="KHI">Karachi</option>
 								<option value="LH">Lahore</option>
@@ -121,12 +109,20 @@
 						<label>Phone Number</label>
 						<div>
 							<div class="input-group mb-3">
-								<input type="text" class="form-control" name="phone" placeholder="Phone number" aria-label="Phone number" aria-describedby="basic-addon1">
+								<input type="text" class="form-control" name="bkphone" placeholder="Phone number" aria-label="Phone number" aria-describedby="basic-addon1">
 							</div>
 						</div>
 					</div>
+					<div class="form-row pl-2 pr-2 pb-3 field" align="left">
+						<div style="padding-top: 20px;">
+							<label>Upload some images. (Minimum 5.)</label>
+						</div>
+						<div style="padding-top: 20px;max-width: 630px;">
+							<input type="file" id="bkfiles" name="files[]" multiple />
+						</div>
+					</div>
 					<div class="addressbtn" style="float:right;padding:10px;">
-						<button type="submit" id="" name="" class="btn btn-outline-danger" value="">Post the advert</button>
+						<button type="submit" name="bksubmit" class="btn btn-outline-danger">Post the advert</button>
 					</div>
 				</form>
 			</div>
@@ -134,7 +130,7 @@
 		<div class="fullAlter hide" id="show_2">
 			<h4 class="p-3">Please add the following details to submit your advert</h4>
 			<div class="advertpick form-wrap clearfix border-new border border-dark rounded">
-				<form class="p-2" action="includes/postad.inc.php" method="post" enctype="multipart/form-data">
+				<form class="p-2" action="includes/postadsp.inc.php" method="post" enctype="multipart/form-data">
 					<div class="form-row p-2 pt-4 mb-3">
 						<label for="title">Title</label>
 						<div>
@@ -210,7 +206,7 @@
 							<label>Upload some images. (Minimum 5.)</label>
 						</div>
 						<div style="padding-top: 20px;max-width: 630px;">
-							<input type="file" id="files" name="files[]" multiple />
+							<input type="file" id="spfiles" name="files[]" multiple />
 						</div>
 					</div>
 					<div class="addressbtn" style="float:right;padding:10px;">
