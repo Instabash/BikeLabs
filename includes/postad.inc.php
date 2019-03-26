@@ -40,15 +40,13 @@ if (isset($_POST['spsubmit']))
 		$ad_id = $conn->insert_id;
 	}
 
-
 	for($i=0;$i<count($_FILES["files"]["name"]);$i++){
+
 		$fileName = $_FILES["files"]['name'][$i];
 		$fileTmpName = $_FILES["files"]["tmp_name"][$i];
 		$fileSize = $_FILES["files"]['size'][$i];
 		$fileError = $_FILES["files"]['error'][$i];
 		$fileType = $_FILES["files"]['type'][$i];
-
-		
 
 		$fileExt = explode('.', $fileName);
 		$fileActualExt = strtolower(end($fileExt));
@@ -95,16 +93,15 @@ if (isset($_POST['spsubmit']))
 								header("Location: ../postad.php?uploadsuccess");
 										// print_r($ad_date);	
 							}
-
 						}
-
 					}
 					else
 					{
 						echo "Your file is too big";
 					}
 				}
-				else {
+				else 
+				{
 					echo "There was an error uploading your file";
 				}
 			}
