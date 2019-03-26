@@ -1,17 +1,16 @@
 <?php
-session_start();
-if(!isset($_SESSION['userUId'])){
-	$current_page = $_SERVER['REQUEST_URI'];
-	$_SESSION['curr_page'] = $current_page;
-	header("Location:LoginOrRegister.php");
-}
+	session_start();
+	if(!isset($_SESSION['userUId'])){
+		$current_page = $_SERVER['REQUEST_URI'];
+		$_SESSION['curr_page'] = $current_page;
+		header("Location:LoginOrRegister.php");
+	}
+	$title = 'Spare Parts';
+	include_once 'includes/header.php';
+	include_once 'includes/dbh.inc.php';
 
-$title = 'Spare Parts';
-include_once 'includes/header.php';
-include_once 'includes/dbh.inc.php';
-
-$spaartsql = "SELECT * FROM post_ad";
-$stmt = mysqli_stmt_init($conn);
+	$spaartsql = "SELECT * FROM post_ad WHERE ad_type = 'sparepart' ORDER BY `ad_date` DESC";;
+	$stmt = mysqli_stmt_init($conn);
 ?>
 <!-- spare parts -->
 <style>
@@ -178,7 +177,7 @@ $stmt = mysqli_stmt_init($conn);
 
 
 						while ($row = mysqli_fetch_assoc($result)) {
-							$imgnamesql = "SELECT ad_image_name FROM post_ad_images WHERE ad_id = ".$row['ad_id'].";";
+							$imgnamesql = "SELECT ad_image_name FROM post_ad_images WHERE ad_id = {$row['ad_id']} AND ad_image_thumb = '0';";
 
 							if(!mysqli_stmt_prepare($stmt, $imgnamesql))
 							{
