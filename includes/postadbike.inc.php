@@ -55,7 +55,7 @@ if (isset($_POST['bksubmit']))
 			{
 				if ($fileError === 0) 
 				{
-					if ($fileSize < 500000) 
+					if ($fileSize < 5000000) 
 					{
 						$fileNameNew = uniqid('', true).'.'.$fileActualExt;
 						$fileDestination = '../images/sparepartimg/' . $fileNameNew;
