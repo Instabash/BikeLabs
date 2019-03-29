@@ -19,7 +19,7 @@
 		<div class="homepickup-pick">
 			<h4 class="p-3">Where are we picking up your motorbike from?</h4>
 			<div class="home-pick form-wrap clearfix border-new border border-dark rounded">
-				<form class="p-2">
+				<form class="p-2" action="payment.php">
 					<div class="form-row p-2 pt-4 mb-3">
 						<label for="title">Title</label>
 						<div class="select-wrap ">
@@ -61,7 +61,7 @@
 					<div class="form-row p-2">
 						<label>Country/Region</label>
 						<div class="select-wrap mb-3">
-							<select class="btn" name="country-region" id="title">
+							<select class="btn" name="countryorregion" id="title">
 								<option value="IS" selected="selected">Islamabad</option>
 								<option value="KHI">Karachi</option>
 								<option value="LH">Lahore</option>
@@ -74,7 +74,7 @@
 						<label>House name/Number</label>
 						<div class="">
 							<div class="input-group mb-3">
-								<input type="text" class="form-control" name="hname-no" placeholder="House name or number" aria-label="House name or number" aria-describedby="basic-addon1">
+								<input type="text" class="form-control" name="hnameorno" placeholder="House name or number" aria-label="House name or number" aria-describedby="basic-addon1">
 							</div>
 						</div>
 					</div>
@@ -110,6 +110,19 @@
 		</div>
 	</div>
 </section>
+<script type="text/javascript" src="script/getparameters.js"></script>
+<script>
+	var firstData = sessionStorage.getItem('partid');
+	console.log(firstData);	
+
+	var query = window.location.search.substring(1);
+	var qs = parse_query_string(query);
+	// console.log(qs.quant);	
+	var quant = qs.quant;
+	sessionStorage.setItem('quant', quant);
+	var second = sessionStorage.getItem('quant');
+	console.log(second);	
+</script>
 <?php
 	include_once 'includes/footer.php';
 ?>

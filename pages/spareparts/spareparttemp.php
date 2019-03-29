@@ -126,13 +126,13 @@ $stmt = mysqli_stmt_init($conn);
 						</p><br>
 						<div class="input-group" style="padding-left: 100px;padding-right: 100px;">
 							<span class="input-group-btn">
-								<button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
+								<button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant">
 									<span class="fas fa-minus-square"></span>
 								</button>
 							</span>
-							<input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="10">
+							<input type="text" name="quant" class="form-control input-number" value="1" min="1" max="10">
 							<span class="input-group-btn">
-								<button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+								<button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant">
 									<span class="fas fa-plus-square"></span>
 								</button>
 							</span>
@@ -141,13 +141,14 @@ $stmt = mysqli_stmt_init($conn);
 					</div>
 					<div class="mt-3 p-3">
 						<button type="button" name="cartBtn" class="btn btn-outline-danger">Add to cart</button>
-						<button type="submit" name="buyNowBtn" class="btn btn-outline-danger">Buy now</button>
+						<button type="submit" class="btn btn-outline-danger">Buy now</button>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
 </section>
+<script type="text/javascript" src="../../script/getparameters.js"></script>
 <script type="">
 	var slideIndex = 1;
 	showDivs(slideIndex);
@@ -237,6 +238,13 @@ $stmt = mysqli_stmt_init($conn);
         	e.preventDefault();
         }
     });
+
+	var query = window.location.search.substring(1);
+	var qs = parse_query_string(query);
+	// console.log(qs.quant);	
+	var partid = qs.partid;
+	sessionStorage.setItem('partid', partid);
+
 </script>
 
 <?php

@@ -80,7 +80,60 @@
 		
 	</div>
 </section>		
+<script type="text/javascript" src="script/getparameters.js"></script>
+<script>
+	var firstData = sessionStorage.getItem('partid');
+	console.log(firstData);	
 
+	var query = window.location.search.substring(1);
+	var qs = parse_query_string(query);
+	// console.log(qs.quant);	
+	var quant = qs.quant;
+	sessionStorage.setItem('quant', quant);
+
+	var second = sessionStorage.getItem('quant');
+	console.log(second);	
+
+	var query = window.location.search.substring(1);
+	var qs = parse_query_string(query);
+	// console.log(qs.quant);
+
+	var title = qs.title;
+	sessionStorage.setItem('title', title);
+	var third = sessionStorage.getItem('title');
+	console.log(third);	
+
+	var fname = qs.fname;
+	sessionStorage.setItem('fname', fname);
+	var fourth = sessionStorage.getItem('fname');
+	console.log(fourth);	
+
+	var lname = qs.lname;
+	sessionStorage.setItem('lname', lname);
+	var fifth = sessionStorage.getItem('lname');
+	console.log(fifth);	
+
+	var phone = qs.phone;
+	sessionStorage.setItem('phone', phone);
+	var sixth = sessionStorage.getItem('phone');
+	console.log(sixth);	
+
+	var countryorregion = qs.countryorregion;
+	sessionStorage.setItem('countryorregion', countryorregion);
+	var seventh = sessionStorage.getItem('countryorregion');
+	console.log(seventh);	
+
+	var hnameorno = qs.hnameorno;
+	sessionStorage.setItem('hnameorno', hnameorno);
+	var eigth = sessionStorage.getItem('hnameorno');
+	console.log(eigth);	
+
+	var pcode = qs.pcode;
+	sessionStorage.setItem('pcode', pcode);
+	var ningth = sessionStorage.getItem('pcode');
+	console.log(ningth);	
+
+</script>
 <?php
 	include_once 'includes/footer.php';
 ?>
