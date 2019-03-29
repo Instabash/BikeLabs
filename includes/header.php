@@ -27,7 +27,7 @@ if(!isset($_SESSION))
 	<link rel="stylesheet" type="text/css" href="/BikeLabs/css/PTSans.css">
 
 	<!--------------------------------------------------------------- custom buttons --------------------------------------------------------------->
-	<link rel="stylesheet" type="text/css" href="css/component.css" />
+	<link rel="stylesheet" type="text/css" href="/BikeLabs/css/component.css" />
 
 	<!---------------------------------------------------------------Bootstrap cdn--------------------------------------------------------------->
 	<!-- <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> -->
@@ -64,6 +64,7 @@ if(!isset($_SESSION))
 	<!--custom js-->
 	<script src="/BikeLabs/script/main.js"></script>
 	<script src="/BikeLabs/script/imageupload.js"></script>
+	<script src="/BikeLabs/script/getparameters.js"></script>
 	<!-- isotope script  -->
 	<script src="/BikeLabs/script/isotope.pkgd.min.js"></script>
 	
