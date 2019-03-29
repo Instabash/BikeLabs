@@ -130,7 +130,7 @@
 		<div class="fullAlter hide" id="show_2">
 			<h4 class="p-3">Please add the following details to submit your advert</h4>
 			<div class="advertpick form-wrap clearfix border-new border border-dark rounded">
-				<form class="p-2" action="includes/postadsp.inc.php" method="post" enctype="multipart/form-data">
+				<form class="p-2" id="form" action="includes/postadsp.inc.php" method="post" enctype="multipart/form-data">
 					<div class="form-row p-2 pt-4 mb-3">
 						<label for="title">Title</label>
 						<div>
