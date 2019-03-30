@@ -1,6 +1,8 @@
 <?php
+	session_start();
 	$title = 'Address Confirmation';
 	include_once 'includes/header.php';
+	//$_SESSION["quant"] = $_POST["quant"];
 ?>
 <!-- Payment/Confirmation section -->
 <section id="addresscon" class="section addressconsec">
@@ -115,13 +117,19 @@
 	var firstData = sessionStorage.getItem('partid');
 	console.log(firstData);	
 
-	var query = window.location.search.substring(1);
-	var qs = parse_query_string(query);
-	// console.log(qs.quant);	
-	var quant = qs.quant;
-	sessionStorage.setItem('quant', quant);
-	var second = sessionStorage.getItem('quant');
-	console.log(second);	
+	// var query = window.location.search.substring(1);
+	// var qs = parse_query_string(query);
+	// // console.log(qs.quant);
+	// var quant1 = qs.quant;
+	
+ //  		localStorage.setItem('quant', quant1);	
+	
+
+	
+	
+	
+	// var second = sessionStorage.getItem('quant');
+	// console.log(second);	
 </script>
 <?php
 	include_once 'includes/footer.php';
