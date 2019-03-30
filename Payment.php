@@ -13,7 +13,7 @@
 				//echo POST['ORDER-METHOD'];
 			?> -->
 			<img src="">
-			<a href="">Change order method</a>
+			<a href="" id="orderredirect">Change order method</a>
 		</div>
 		<div class="cart-div-second p-3 border-new border border-dark border-top-0 rounded">
 			<!-- <?php
@@ -82,55 +82,52 @@
 </section>		
 <script type="text/javascript" src="script/getparameters.js"></script>
 <script>
-	var firstData = sessionStorage.getItem('partid');
-	console.log(firstData);	
-
+	
+	// $('#orderredirect').click(function() {
+	// 	var a = document.getElementById('orderredirect'); 
+	// 	a.href = "addresscon.php?quant="+quant;
+	// });
 	var query = window.location.search.substring(1);
 	var qs = parse_query_string(query);
+
+	var partid = localStorage.getItem('partid'); //part-id from spareparttemp.php
+	console.log(partid);	
+
 	// console.log(qs.quant);	
-	var quant = qs.quant;
-	sessionStorage.setItem('quant', quant);
-
-	var second = sessionStorage.getItem('quant');
-	console.log(second);	
-
-	var query = window.location.search.substring(1);
-	var qs = parse_query_string(query);
-	// console.log(qs.quant);
-
+	
 	var title = qs.title;
-	sessionStorage.setItem('title', title);
-	var third = sessionStorage.getItem('title');
+	localStorage.setItem('title', title); //title from addresscon.php
+	var third = localStorage.getItem('title');
 	console.log(third);	
 
 	var fname = qs.fname;
-	sessionStorage.setItem('fname', fname);
-	var fourth = sessionStorage.getItem('fname');
+	localStorage.setItem('fname', fname); //fname from addresscon.php
+	var fourth = localStorage.getItem('fname');
 	console.log(fourth);	
 
 	var lname = qs.lname;
-	sessionStorage.setItem('lname', lname);
-	var fifth = sessionStorage.getItem('lname');
+	localStorage.setItem('lname', lname); //lname from addresscon.php
+	var fifth = localStorage.getItem('lname');
 	console.log(fifth);	
 
 	var phone = qs.phone;
-	sessionStorage.setItem('phone', phone);
-	var sixth = sessionStorage.getItem('phone');
+	localStorage.setItem('phone', phone); //phone from addresscon.php
+	var sixth = localStorage.getItem('phone');
 	console.log(sixth);	
 
 	var countryorregion = qs.countryorregion;
-	sessionStorage.setItem('countryorregion', countryorregion);
-	var seventh = sessionStorage.getItem('countryorregion');
+	localStorage.setItem('countryorregion', countryorregion); //countryorregion from addresscon.php
+	var seventh = localStorage.getItem('countryorregion');
 	console.log(seventh);	
 
 	var hnameorno = qs.hnameorno;
-	sessionStorage.setItem('hnameorno', hnameorno);
-	var eigth = sessionStorage.getItem('hnameorno');
+	localStorage.setItem('hnameorno', hnameorno); //hnameorno from addresscon.php
+	var eigth = localStorage.getItem('hnameorno');
 	console.log(eigth);	
 
 	var pcode = qs.pcode;
-	sessionStorage.setItem('pcode', pcode);
-	var ningth = sessionStorage.getItem('pcode');
+	localStorage.setItem('pcode', pcode); //pcode from addresscon.php
+	var ningth = localStorage.getItem('pcode');
 	console.log(ningth);	
 
 </script>
