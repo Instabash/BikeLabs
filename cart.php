@@ -3,9 +3,7 @@ $title = 'Payment';
 include_once 'includes/dbh.inc.php';
 include_once 'includes/header.php';
 	// $part_id = $_GET["partid"];
-
 ?>
-
 <section id="cart" class="section fontsec">
 	<div class="container">
 		<div class="paymentmain" style="margin-left: 0px;margin-right: 0px">
@@ -50,19 +48,7 @@ include_once 'includes/header.php';
 													<p><?php echo $item['quantity'];?></p>
 												</td>
 											</tr>
-											
-											
-											<!-- <?php
-											//echo $item['product_id'];?><br><?php
-											//echo $item['title'];?><br><?php
-											//echo $item['price'];?><br><?php
-											//echo $item['default_img'];?><br>
-											<br><?php
-											//$_SESSION['cartItemId'] = array();
-											?> -->
-											
 										</form>
-										
 										<?php 
 									}
 								}
