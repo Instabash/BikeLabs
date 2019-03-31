@@ -112,57 +112,70 @@ if(!isset($_SESSION))
 				<ul class="navbar-nav">
 					<?php
 					if(!isset($_SESSION['userId']))
-					{?>
-						<li class="nav-item header-padding" style="color: #dc3545;">
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Login </a>
-							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-								<form class="px-4 py-3" action="includes/login.inc.php" method="post">
-									<div class="form-group">
-										<label for="exampleDropdownFormEmail1">Email address</label>
-										<input type="text" class="form-control" name="mailuid" placeholder="Username/E-mail..">
-									</div>
-									<div class="form-group">
-										<label for="exampleDropdownFormPassword1">Password</label>
-										<input type="password" class="form-control" name="pwd" placeholder="Password..">
-									</div>
-									<div class="form-group">
-										<div class="form-check">
-											<input type="checkbox" class="form-check-input" id="dropdownCheck">
-											<label class="form-check-label" for="dropdownCheck">
-												Remember me
-											</label>
+						{?>
+							<li class="nav-item header-padding" style="color: #dc3545;">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Login </a>
+								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+									<form class="px-4 py-3" action="includes/login.inc.php" method="post">
+										<div class="form-group">
+											<label for="exampleDropdownFormEmail1">Email address</label>
+											<input type="text" class="form-control" name="mailuid" placeholder="Username/E-mail..">
 										</div>
-									</div>
-									<button type="submit" class="btn btn-primary" name="login-submit">Sign in</button>
-								</form>
-							<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="signup.php">New around here? Sign up</a>
-								<a class="dropdown-item" href="#">Forgot password?</a>
+										<div class="form-group">
+											<label for="exampleDropdownFormPassword1">Password</label>
+											<input type="password" class="form-control" name="pwd" placeholder="Password..">
+										</div>
+										<div class="form-group">
+											<div class="form-check">
+												<input type="checkbox" class="form-check-input" id="dropdownCheck">
+												<label class="form-check-label" for="dropdownCheck">
+													Remember me
+												</label>
+											</div>
+										</div>
+										<button type="submit" class="btn btn-primary" name="login-submit">Sign in</button>
+									</form>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="signup.php">New around here? Sign up</a>
+									<a class="dropdown-item" href="#">Forgot password?</a>
+								</div>
+							</li>
+							<?php 
+						}
+						?>
+					</ul>
+					<div id="cartIcon" style="margin-right: 20px;">
+						<a href="cart.php">
+							<img id="image" style="width: 40px;margin-right: 20px;" src="/BikeLabs/images/cart3.svg">
+							<div id="text" style = "color: #dc3545;">
+								<span class="day"><?php
+								if (!count($_SESSION['cart']) == 0) {
+									echo count($_SESSION['cart']);
+								}
+								?></span>
 							</div>
-						</li>
-					<?php 
-					}
-					?>
-				</ul>
-				
-				<?php
-				if(isset($_SESSION['userId']))
-				{
-					$userId = $_SESSION["userUId"];
-					?>
-					<p style="margin:5px;color:black;">Logged in as : <a href="#"> <?php echo $userId ?> </a></p>
+						</a>
+					</div>
+					
+					
+					<?php
+					if(isset($_SESSION['userId']))
+					{
+						$userId = $_SESSION["userUId"];
+						?>
+						<p style="margin:5px;color:black;">Logged in as : <a href="#"> <?php echo $userId ?> </a></p>
 						<form class="form-inline" action="includes/logout.inc.php" style="margin-left: 10px;" method="post">
 							<button type="submit" class="btn btn-default" name="logout-submit">Logout</button>
 						</form>
-				<?php
-				}
-				?>
+						<?php
+					}
+					?>
 
 
 
-				<form id="demo-2" style="margin-left: 10px;" >
-					<input type="search" placeholder="Search">
-				</form>
-			</div>	
-		</nav>
-	</header>
+					<form id="demo-2" style="margin-left: 10px;" >
+						<input type="search" placeholder="Search">
+					</form>
+				</div>	
+			</nav>
+		</header>
