@@ -21,7 +21,7 @@
 		<div class="homepickup-pick">
 			<h4 class="p-3">Where are we picking up your motorbike from?</h4>
 			<div class="home-pick form-wrap clearfix border-new border border-dark rounded">
-				<form class="p-2" action="payment.php">
+				<form class="p-2" action="payment.php" method="post">
 					<div class="form-row p-2 pt-4 mb-3">
 						<label for="title">Title</label>
 						<div class="select-wrap ">
