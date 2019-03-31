@@ -1348,3 +1348,39 @@ input[type="file"] {
     border-color: red !important;
 }
 
+.thumbimg{
+  width: 80px;
+  height: 80px;
+  vertical-align: middle;
+}
+
+table, th, td {
+  border-bottom: 2px solid #dc3545;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+  text-align: left;    
+}
+
+#cartIcon
+{
+    width:40px;
+    height: 40px;
+    position:relative;
+}
+
+#image
+{    
+    position:absolute;
+    left:0;
+    top:0;
+}
+#text
+{
+    z-index:100;
+    position:absolute;    
+    color: #dc3545;
+    left:30px;
+    bottom:30px;
+}
