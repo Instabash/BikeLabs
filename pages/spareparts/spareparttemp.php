@@ -110,8 +110,8 @@ $stmt = mysqli_stmt_init($conn);
 							<p></p>
 						</div>
 						<div class="mt-3 p-3">
-							<button type="button" name="cartBtn" class="btn btn-outline-danger">Add to cart</button>
-							<button type="submit" class="btn btn-outline-danger">Buy now</button>
+							<button type="submit" name="cartBtn" class="btn btn-outline-danger">Add to cart</button>
+							<button type="submit" name="buyBtn" class="btn btn-outline-danger">Buy now</button>
 						</div>
 					</form>
 				</div>
