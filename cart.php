@@ -1,8 +1,8 @@
 <?php
-	$title = 'Payment';
-	include_once 'includes/dbh.inc.php';
-	include_once 'includes/header.php';
-	$part_id = $_GET["partid"];
+$title = 'Payment';
+include_once 'includes/dbh.inc.php';
+include_once 'includes/header.php';
+	// $part_id = $_GET["partid"];
 
 ?>
 
@@ -11,41 +11,71 @@
 		<div class="paymentmain" style="margin-left: 0px;margin-right: 0px">
 			<div class="paymentleft">
 				<div class="p-3 mt-3 border-new border border-dark rounded ">
-				<div class="payment-method-div-third">
-					<div style="width: 98%;">
-		 				<h5 style="text-align: center">Your cart</h5><br>
-		 				
-		 				
+					<div class="payment-method-div-third">
+						<div style="width: 98%;">
+							<h5 style="text-align: center">Your cart</h5><br>
+						</div>
 					</div>
-					
 				</div>
-			</div>
-			<div class="p-3 mt-3 border-new border border-dark rounded ">
-				<div class="payment-method-div-third">
-					<div style="width: 98%;">
-
-						
-
-		 				
-		 				<?php
-		 					foreach($_SESSION['cart'] as $item)
-								{?>
-									<input type="checkbox" name="checkitem"><?php
-								    echo $item['product_id'];?><br><?php
-								    echo $item['title'];?><br><?php
-								    echo $item['price'];?><br><?php
-								    echo $item['default_img'];?><br><?php
-								    echo $item['quantity'];?><br><?php
+				<div class="p-3 mt-3 border-new border border-dark rounded ">
+					<div class="payment-method-div-third">
+						<div style="width: 98%;">
+							<?php
+								if (!empty($_SESSION["cart"])) {?>
+							<table style="width:100%">
+								<tr>
+									<th><input type="checkbox" name="checkAll"><a style="padding-left:5px;">Select Items</a></th>
+									<th></th>
+									<th>Price</th>
+									<th>Quantity</th>
+								</tr>
+								<?php
+									foreach($_SESSION['cart'] as $item)
+									{
+										?>
+										<form action="includes/cartprocess.inc.php?partid=<?php echo $item['product_id'] ?>" method="post">
+											<tr>
+												<td align="center" valign="middle">
+													<input type="checkbox" name="checkitem">
+													<img class="thumbimg" src="images/sparepartimg/<?php echo $item['default_img'];?>">
+													<a href=""><?php echo $item['title'];?></a>
+												</td>
+												<td>
+													<button class="btn btn-danger" type="submit" name="removeItem">remove</button>
+												</td>
+												<td align="center" valign="middle">
+													<p><?php echo $item['price'];?></p>
+												</td>
+												<td > 
+													<p><?php echo $item['quantity'];?></p>
+												</td>
+											</tr>
+											
+											
+											<!-- <?php
+											//echo $item['product_id'];?><br><?php
+											//echo $item['title'];?><br><?php
+											//echo $item['price'];?><br><?php
+											//echo $item['default_img'];?><br>
+											<br><?php
+											//$_SESSION['cartItemId'] = array();
+											?> -->
+											
+										</form>
+										
+										<?php 
+									}
 								}
-		 				?>
-
-
+								else
+									{?>
+										<p>There are no items in your cart..</p><?php
+									}
+									?>
+							</table>
+						</div>
 					</div>
-					
 				</div>
 			</div>
-			</div>
-			
 			<div class="p-3 mt-3 border-new border-0 border-dark rounded paymentright">
 				<h4 class="pb-3">Your cart:</h4>
 				<div class="row">
@@ -76,7 +106,7 @@
 						<p class="border-bottom border-dark">14141414rs</p>
 					</div>
 				</div>
-				
+
 				<div class="payment-btn pt-4">
 					<button type="submit" id="" name="" class="btn btn-danger" value="">Place order</button>
 				</div>
@@ -86,5 +116,5 @@
 </section>
 
 <?php
-	include_once 'includes/footer.php';
+include_once 'includes/footer.php';
 ?>
