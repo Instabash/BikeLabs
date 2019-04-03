@@ -17,7 +17,7 @@ if (isset($_POST['bksubmit']))
 	$ad_date = date('Y-m-d H:i:s');
 	$user = $_SESSION['userId'];
 	
-	$sql = "INSERT INTO post_ad (ad_title, ad_type, ad_date, ad_price, ad_description, idUsers, ad_condition, ad_user_hname, ad_user_pcode, ad_user_country, ad_user_phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+	$sql = "INSERT INTO post_ad (ad_title, ad_type, ad_date, ad_price, ad_description, idUsers, ad_condition, ad_user_hname, ad_user_pcode, ad_user_country, ad_user_phone, bike_make, bike_year) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 	$stmt = mysqli_stmt_init($conn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) 
 	{
@@ -25,7 +25,7 @@ if (isset($_POST['bksubmit']))
 	}	
 	else
 	{
-		mysqli_stmt_bind_param($stmt, "sssssssssss", $Title, $ad_type, $ad_date, $Price, $Description, $user, $Condition, $HomeName, $PostCode, $CountryReg, $Phone);
+		mysqli_stmt_bind_param($stmt, "sssssssssssss", $Title, $ad_type, $ad_date, $Price, $Description, $user, $Condition, $HomeName, $PostCode, $CountryReg, $Phone, $Make, $Year);
 		mysqli_stmt_execute($stmt);
 		$ad_id = $conn->insert_id;
 	}
@@ -44,7 +44,7 @@ if (isset($_POST['bksubmit']))
 
 		$thumbnail = $i;
 
-		if (empty($Title) || empty($Condition) || empty($Description) || empty($Price) || empty($HomeName) || empty($PostCode) || empty($CountryReg) || empty($Phone))
+		if (empty($Title) || empty($Condition) || empty($Description) || empty($Price) || empty($HomeName) || empty($PostCode) || empty($CountryReg) || empty($Phone) || empty($Make) || empty($Year))
 		{
 			header("Location: ../postad.php?error=empty");
 			exit();

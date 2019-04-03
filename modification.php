@@ -5,7 +5,7 @@
 ?>
 <!-- Modify section -->
 <section id="modify" class="section modsection">
-		<form id="modform1" action = "" method = "POST">
+		<form id="modform1" action = "includes/modprocess.inc.php" method = "post">
 			<div class="container">
 				<h3>Step 1: Select your motorbike</h3><br>
 				<h6>Choose the Model, Year, and Make of your Motorbike</h6><br>
@@ -36,9 +36,9 @@
 						<label style="padding: 2px;">Make</label>
 						<select class="custom-select" id="yearselect" name="modmakeselect">
 						    <option selected>Choose...</option>
-						    <option value="2018">Honda</option>
-						    <option value="2017">SuperPower</option>
-				    		<option value="2016">Unique</option>
+						    <option value="Honda">Honda</option>
+						    <option value="SuperPower">SuperPower</option>
+				    		<option value="Unique">Unique</option>
 					  	</select>
 					</div>
 				</div><br><br><br><br>
@@ -47,7 +47,7 @@
 				<div class="row">
 					<div class="modleft1 border-new border border-dark rounded p-3">
 						<h5>Package 1</h5>
-						<div class="packageList">
+						<div class="packageList" style="height: 288px;">
 							<ul>
 								<li>Handle bar</li>
 								<li>Air Filter</li>
@@ -55,7 +55,7 @@
 								<li>Exhaust & Silencer</li>
 							</ul>
 						</div>
-						<div style="padding-top: 200px">
+						<div style="">
 							<div class="pkgslider border-new border border-dark rounded">
 								<div class="pkg1slide1"></div>
 								<div class="pkg1slide2"></div>
@@ -69,19 +69,17 @@
 					</div>
 					<div class="modmiddle1 border-new border border-dark rounded p-3">
 						<h5>Package 2</h5>
-						<div class="packageList">
+						<div class="packageList" style="height: 288px;">
 							<ul>
 								<li>Handle bar</li>
 								<li>Air Filter</li>
 								<li>NGK Sparkplugs</li>
 								<li>Exhaust & Silencer</li>
-								<li>Handle bar</li>
-								<li>Air Filter</li>
-								<li>NGK Sparkplugs</li>
-								<li>Exhaust & Silencer</li>
+								<li>Seat (Customer Choice)</li>
+								<li>Paint (Customer Choice)</li>
 							</ul>
 						</div>
-						<div style="padding-top: 100px">
+						<div style="">
 							<div class="pkgslider border-new border border-dark rounded" style="vertical-align: bottom;">
 								<div class="pkg2slide1"></div>
 								<div class="pkg2slide2"></div>
@@ -89,27 +87,25 @@
 							</div>
 							<div class="border-new border border-dark rounded" style="background-color: #dc3545;">
 								Select
-								<input type="radio" name="radiopkg1" >
+								<input type="radio" name="radiopkg2" >
 							</div>
 						</div>
-						
 					</div>
 					<div class="modright1 border-new border border-dark rounded p-3">
 						<h5>Package 3</h5>
-						<div class="packageList">
+						<div class="packageList" style="height: 288px;">
 							<ul>
 								<li>Handle bar</li>
-								<li>Air Filter</li>
-								<li>NGK Sparkplugs</li>
-								<li>Exhaust & Silencer</li>
-								<li>Handle bar</li>
-								<li>Air Filter</li>
-								<li>NGK Sparkplugs</li>
-								<li>Exhaust & Silencer</li>
-								<li>Handle bar</li>
-								<li>Air Filter</li>
-								<li>NGK Sparkplugs</li>
-								<li>Exhaust & Silencer</li>
+							    <li>Air Filter</li>
+							    <li>NGK Sparkplugs</li>
+							    <li>Exhaust & Silencer</li>
+							    <li>Seat (Customer Choice)</li>
+							    <li>Paint (Customer Choice)</li>
+							    <li>Headlight</li>
+							    <li>Jumps</li>
+							    <li>Mudguard</li>
+							    <li>Chain Spocket</li>
+							    <li>Tail Light</li>
 							</ul>
 						</div>
 						<div>
@@ -120,7 +116,7 @@
 							</div>
 							<div class="border-new border border-dark rounded" style="background-color: #dc3545;">
 								Select
-								<input type="radio" name="radiopkg1" >
+								<input type="radio" name="radiopkg3" >
 							</div>
 						</div>
 						
@@ -134,19 +130,22 @@
 					</div><br>
 					<div class="customparts"><br>
 					  	<select style="width: 100%" class="js-example-basic-multiple js-states form-control select2-hidden-accessible" multiple="multiple"  tabindex="-1" aria-hidden="true" name="select2[]" id="selectbox">
+						    <option>Handle bar</option>
+						    <option>Air Filter</option>
+						    <option>NGK Sparkplugs</option>
+						    <option>Exhaust & Silencer</option>
+						    <option>Seat</option>
+						    <option>Paint</option>
 						    <option>Headlight</option>
 						    <option>Jumps</option>
-						    <option>Seats</option>
 						    <option>Mudguard</option>
-						    <option>Color</option>
 						    <option>Chain Spocket</option>
-						    <option>Exhaust</option>
 						    <option>Tail Light</option>
 						</select>
 					</div>
 				</div><br><br>
 				<div class="modbtn1">
-					<button type="submit" id="btnmod13" name="btnmod13" class="btn btn-danger" style="margin: 10px;" value="">Next</button>
+					<button type="submit" name="btnmod" class="btn btn-outline-danger">Next</button>
 				</div>
 				<!-- <div class="modbtn1">
 					<button type="submit" id="btnmod13" name="btnmod13" class="btn btn-danger" style="margin: 10px;" value="">Next</button>

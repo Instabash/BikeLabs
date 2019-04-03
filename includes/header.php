@@ -88,9 +88,6 @@ if(!isset($_SESSION))
 					<li class="nav-item active header-padding" style="color: #dc3545;">
 						<a class="nav-link" href="/BikeLabs/index.php">Home <span class="sr-only">(current)</span></a>
 					</li>
-					<li class="nav-item header-padding" style="color: #dc3545;">
-						<a class="nav-link" href="/BikeLabs/spareparts.php">Purchase spare parts</a>
-					</li>
 					<li class="nav-item dropdown header-padding" style="color: #dc3545;">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Modify your bike </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -98,11 +95,17 @@ if(!isset($_SESSION))
 							<a class="dropdown-item" href="/BikeLabs/alteration.php">Engine Alteration</a>
 						</div>
 					</li>
+					<li class="nav-item header-padding" style="color: #dc3545;">
+						<a class="nav-link" href="/BikeLabs/newbikes.php">Purchase Bikes</a>
+					</li>
+					<li class="nav-item header-padding" style="color: #dc3545;">
+						<a class="nav-link" href="/BikeLabs/newparts.php">Purchase spare parts</a>
+					</li>
 					<li class="nav-item dropdown header-padding" style="color: #dc3545;">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Purchase bikes </a>
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Find Ads.</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="/BikeLabs/newbikes.php">New Bikes</a>
-							<a class="dropdown-item" href="/BikeLabs/usedbikes.php">Used Bikes</a>
+							<a class="dropdown-item" href="/BikeLabs/usedbikes.php">Bikes</a>
+							<a class="dropdown-item" href="/BikeLabs/spareparts.php">Spare Parts</a>
 						</div>
 					</li>
 					<li class="nav-item header-padding" style="color: #dc3545;">
@@ -116,7 +119,7 @@ if(!isset($_SESSION))
 							<li class="nav-item header-padding" style="color: #dc3545;">
 								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Login </a>
 								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-									<form class="px-4 py-3" action="includes/login.inc.php" method="post">
+									<form class="px-4 py-3" action="/BikeLabs/includes/login.inc.php" method="post">
 										<div class="form-group">
 											<label for="exampleDropdownFormEmail1">Email address</label>
 											<input type="text" class="form-control" name="mailuid" placeholder="Username/E-mail..">
@@ -136,7 +139,7 @@ if(!isset($_SESSION))
 										<button type="submit" class="btn btn-primary" name="login-submit">Sign in</button>
 									</form>
 									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="signup.php">New around here? Sign up</a>
+									<a class="dropdown-item" href="/BikeLabs/signup.php">New around here? Sign up</a>
 									<a class="dropdown-item" href="#">Forgot password?</a>
 								</div>
 							</li>
@@ -144,27 +147,32 @@ if(!isset($_SESSION))
 						}
 						?>
 					</ul>
-					<div id="cartIcon" style="margin-right: 20px;">
-						<a href="cart.php">
-							<img id="image" style="width: 40px;margin-right: 20px;" src="/BikeLabs/images/cart3.svg">
-							<div id="text" style = "color: #dc3545;">
-								<span class="day"><?php
-								if (!count($_SESSION['cart']) == 0) {
-									echo count($_SESSION['cart']);
+					<?php
+					if (isset($_SESSION['userId'])) {?>
+						<div id="cartIcon" style="margin-right: 20px;">
+							<a href="/BikeLabs/cart.php">
+								<img id="image" style="width: 40px;margin-right: 20px;" src="/BikeLabs/images/cart3.svg">
+								<div id="text" style = "color: #dc3545;">
+									<span class="day"><?php
+									if (isset($_SESSION['cart'])) {
+										if (!count($_SESSION['cart']) == 0) {
+											echo count($_SESSION['cart']);
+										}
+									} 	
 								}
 								?></span>
 							</div>
 						</a>
 					</div>
-					
-					
+
+
 					<?php
 					if(isset($_SESSION['userId']))
 					{
 						$userId = $_SESSION["userUId"];
 						?>
-						<p style="margin:5px;color:black;">Logged in as : <a href="#"> <?php echo $userId ?> </a></p>
-						<form class="form-inline" action="includes/logout.inc.php" style="margin-left: 10px;" method="post">
+						<p style="margin:5px;color:black;">Logged in as : <a href="/../BikeLabs/pages/panels/userdash.php"> <?php echo $userId ?> </a></p>
+						<form class="form-inline" action="/BikeLabs/includes/logout.inc.php" style="margin-left: 10px;" method="post">
 							<button type="submit" class="btn btn-default" name="logout-submit">Logout</button>
 						</form>
 						<?php

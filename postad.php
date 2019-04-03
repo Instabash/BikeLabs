@@ -47,9 +47,9 @@
 						<div class="select-wrap mb-2">
 							<select class="btn" name="bkmake" id="title">
 								<option value="" disabled selected>Select</option>
-								<option value="2018">Honda</option>
-							    <option value="2017">SuperPower</option>
-					    		<option value="2016">Unique</option>
+								<option value="Honda">Honda</option>
+							    <option value="SuperPower">SuperPower</option>
+					    		<option value="Unique">Unique</option>
 							</select>
 						</div>
 					</div>
