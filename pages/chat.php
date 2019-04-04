@@ -1,17 +1,17 @@
-<?php
-session_start();
-include_once '../includes/header.php';
-include_once '../includes/dbh.inc.php';
-if (isset($_GET['usertoid']) || isset($_GET['partid'])) {
-	$touserid = $_GET['usertoid'];
-	$partid = $_GET['partid'];
-	$fromuserid = $_SESSION['userId'];
-	echo $touserid;
-	echo $fromuserid;
-	$chatincom = "SELECT * FROM chat_message WHERE to_user_id = $touserid AND from_user_id = $fromuserid AND part_id = $partid;";
-	$chatoutgo = "SELECT * FROM chat_message WHERE from_user_id  = $fromuserid AND to_user_id = $touserid AND part_id = $partid;";
-	$stmt = mysqli_stmt_init($conn);
-}
+<!-- <?php
+// session_start();
+// include_once '../includes/header.php';
+// include_once '../includes/dbh.inc.php';
+// if (isset($_GET['usertoid']) || isset($_GET['partid'])) {
+// 	$touserid = $_GET['usertoid'];
+// 	$partid = $_GET['partid'];
+// 	$fromuserid = $_SESSION['userId'];
+// 	echo $touserid;
+// 	echo $fromuserid;
+// 	$chatincom = "SELECT * FROM chat_message WHERE to_user_id = $touserid AND from_user_id = $fromuserid AND part_id = $partid;";
+// 	$chatoutgo = "SELECT * FROM chat_message WHERE from_user_id  = $fromuserid AND to_user_id = $touserid AND part_id = $partid;";
+// 	$stmt = mysqli_stmt_init($conn);
+// }
 
 ?>
 <section id="biketemplate" class="section biketemplatesec">
@@ -32,8 +32,8 @@ if (isset($_GET['usertoid']) || isset($_GET['partid'])) {
 							</div>
 						</div>
 						<div class="inbox_chat">
-							<!-- THE CURRENT USER THAT WE WILL GET WITH THE USERID WILL BE HERE -->
-							<div class="chat_list active_chat">
+							THE CURRENT USER THAT WE WILL GET WITH THE USERID WILL BE HERE -->
+							<!-- <div class="chat_list active_chat">
 								<div class="chat_people">
 									<div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
 									<div class="chat_ib">
@@ -43,7 +43,7 @@ if (isset($_GET['usertoid']) || isset($_GET['partid'])) {
 									</div>
 								</div>
 							</div>
-							<!-- REST OF THE PAST CHAT USERS IF ANY, WILL BE IN A LOOP -->
+							REST OF THE PAST CHAT USERS IF ANY, WILL BE IN A LOOP
 							<div class="chat_list">
 								<div class="chat_people">
 									<div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
@@ -53,7 +53,7 @@ if (isset($_GET['usertoid']) || isset($_GET['partid'])) {
 										astrology under one roof.</p>
 									</div>
 								</div>
-							</div>
+							</div> -->
 							<!-- <div class="chat_list">
 								<div class="chat_people">
 									<div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
@@ -104,7 +104,7 @@ if (isset($_GET['usertoid']) || isset($_GET['partid'])) {
 									</div>
 								</div>
 							</div> -->
-						</div>
+						<!-- </div>
 					</div>
 					<div class="mesgs">
 						<div class="msg_history">
@@ -113,19 +113,19 @@ if (isset($_GET['usertoid']) || isset($_GET['partid'])) {
 								<div class="received_msg">
 									<div class="received_withd_msg">
 										<?php 
-										if(!mysqli_stmt_prepare($stmt, $chatoutgo))
-										{
-											echo "SQL statement failed";
-										}
-										else
-										{
-											mysqli_stmt_execute($stmt);
-											$result = mysqli_stmt_get_result($stmt);
-											while ($row = mysqli_fetch_assoc($result)) {
-												?>
-												<p><?php echo $row['chat_message']; ?></p>
-												<span class="time_date"><?php echo $row['time_stamp']; ?></span>
-												<?php 
+										// if(!mysqli_stmt_prepare($stmt, $chatoutgo))
+										// {
+										// 	echo "SQL statement failed";
+										// }
+										// else
+										// {
+										// 	mysqli_stmt_execute($stmt);
+										// 	$result = mysqli_stmt_get_result($stmt);
+										// 	while ($row = mysqli_fetch_assoc($result)) {
+										// 		?>
+										// 		<p><?php //echo $row['chat_message']; ?></p>
+										// 		<span class="time_date"><?php// echo $row['time_stamp']; ?></span>
+										// 		<?php 
 											} 
 										}
 										?>
@@ -135,24 +135,24 @@ if (isset($_GET['usertoid']) || isset($_GET['partid'])) {
 							<div class="outgoing_msg">
 								<div class="sent_msg">
 									<?php 
-									if(!mysqli_stmt_prepare($stmt, $chatincom))
-									{
-										echo "SQL statement failed";
-									}
-									else
-									{
-										mysqli_stmt_execute($stmt);
-										$result2 = mysqli_stmt_get_result($stmt);
-										while ($row2 = mysqli_fetch_assoc($result2)) {
-											?>
-											<p><?php echo $row2['chat_message']; ?></p>
-											<span class="time_date"><?php echo $row2['time_stamp']; ?></span>
-											<?php 
+									// if(!mysqli_stmt_prepare($stmt, $chatincom))
+									// {
+									// 	echo "SQL statement failed";
+									// }
+									// else
+									// {
+									// 	mysqli_stmt_execute($stmt);
+									// 	$result2 = mysqli_stmt_get_result($stmt);
+									// 	while ($row2 = mysqli_fetch_assoc($result2)) {
+									// 		?>
+									// 		<p><?php //echo $row2['chat_message']; ?></p>
+									// 		<span class="time_date"><?php// echo $row2['time_stamp']; ?></span>
+									// 		<?php 
 										} 
 									}
 									?>
 								</div>
-							</div>
+							</div> -->
 						<!-- <div class="incoming_msg">
 							<div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
 							<div class="received_msg">
@@ -179,7 +179,7 @@ if (isset($_GET['usertoid']) || isset($_GET['partid'])) {
 								</div>
 							</div>
 						</div> --> 
-					</div>
+					<!-- </div>
 					<div class="type_msg">
 						<div class="input_msg_write">
 							<form id="chatmsgsub">
@@ -221,5 +221,5 @@ if (isset($_GET['usertoid']) || isset($_GET['partid'])) {
 </script>
 
 <?php
-include_once '../includes/footer.php';
-?>
+// include_once '../includes/footer.php';
+?> -->
