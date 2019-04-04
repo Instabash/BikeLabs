@@ -62,11 +62,15 @@ if(!isset($_SESSION))
 	<script src="/BikeLabs/script/select2.min.js"></script>
 
 	<!--custom js-->
+	
 	<script src="/BikeLabs/script/main.js"></script>
 	<script src="/BikeLabs/script/imageupload.js"></script>
 	<script src="/BikeLabs/script/getparameters.js"></script>
 	<!-- isotope script  -->
 	<script src="/BikeLabs/script/isotope.pkgd.min.js"></script>
+
+	<!-- dropzone js -->
+	<script src="/BikeLabs/script/dropzone.js"></script>
 	
 	<!---------------------------------Scripts end---------------------------------->
 
@@ -99,7 +103,7 @@ if(!isset($_SESSION))
 						<a class="nav-link" href="/BikeLabs/newbikes.php">Purchase Bikes</a>
 					</li>
 					<li class="nav-item header-padding" style="color: #dc3545;">
-						<a class="nav-link" href="/BikeLabs/newparts.php">Purchase spare parts</a>
+						<a class="nav-link" href="/BikeLabs/newspareparts.php">Purchase spare parts</a>
 					</li>
 					<li class="nav-item dropdown header-padding" style="color: #dc3545;">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Find Ads.</a>
