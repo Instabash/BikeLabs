@@ -1321,7 +1321,7 @@ input[type="file"] {
   display: block !important;
 }
 .imageThumb {
-  max-height: 75px;
+  max-height: 85px;
   border: 2px solid;
   padding: 1px;
   cursor: pointer;
