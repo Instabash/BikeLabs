@@ -1,7 +1,16 @@
 <?php
 session_start();
+
+// echo "<pre>";
+// $j = json_decode($_POST['images']);
+// var_dump($_POST); 
+//file_put_contents("../images/sparepartimg/{$fileNameNew}", base64_decode($j[0]->Content));
+
+// header('Content-type:image/jpg');
+// echo base64_decode($j[0]->Content);
+// exit;
 include_once 'dbh.inc.php';
-if (isset($_POST['bksubmit'])) 
+if (isset($_POST['images'])) 
 {
 	$Title = $_POST['bktitle'];
 	$Condition = $_POST['bkcondition'];
@@ -30,13 +39,13 @@ if (isset($_POST['bksubmit']))
 		$ad_id = $conn->insert_id;
 	}
 
-	for($i=0;$i<count($_FILES["files"]["name"]);$i++){
-
-		$fileName = $_FILES["files"]['name'][$i];
-		$fileTmpName = $_FILES["files"]["tmp_name"][$i];
-		$fileSize = $_FILES["files"]['size'][$i];
-		$fileError = $_FILES["files"]['error'][$i];
-		$fileType = $_FILES["files"]['type'][$i];
+	for($i=0;$i<count(json_decode($_POST['images']));$i++){
+		$j = json_decode($_POST['images']);
+		$fileName = $j[$i]->FileName;
+		//$fileTmpName = $_FILES["files"]["tmp_name"][$i];
+		$fileSize =  $j[$i]->FileSizeInBytes;
+		//$fileError = $_FILES["files"]['error'][$i];
+		//$fileType = $_FILES["files"]['type'][$i];
 
 		$fileExt = explode('.', $fileName);
 		$fileActualExt = strtolower(end($fileExt));
@@ -44,17 +53,17 @@ if (isset($_POST['bksubmit']))
 
 		$thumbnail = $i;
 
-		if (empty($Title) || empty($Condition) || empty($Description) || empty($Price) || empty($HomeName) || empty($PostCode) || empty($CountryReg) || empty($Phone) || empty($Make) || empty($Year))
-		{
-			header("Location: ../postad.php?error=empty");
-			exit();
-		}
-		else
-		{
+		//if (empty($Title) || empty($Condition) || empty($Description) || empty($Price) || empty($HomeName) || empty($PostCode) || empty($CountryReg) || empty($Phone) || empty($Make) || empty($Year))
+		//{
+			//header("Location: ../postad.php?error=empty");
+			//exit();
+		//}
+		//else
+		//{
 			if (in_array($fileActualExt, $allowed)) 
 			{
-				if ($fileError === 0) 
-				{
+				//if ($fileError === 0) 
+				//{
 					if ($fileSize < 5000000) 
 					{
 						$fileNameNew = uniqid('', true).'.'.$fileActualExt;
@@ -81,7 +90,8 @@ if (isset($_POST['bksubmit']))
 							{
 								mysqli_stmt_bind_param($stmt, "sss", $ad_id, $fileNameNew, $thumbnail);
 								mysqli_stmt_execute($stmt);
-								move_uploaded_file($fileTmpName, $fileDestination);
+								file_put_contents($fileDestination, base64_decode($j[$i]->Content));
+								//move_uploaded_file($fileTmpName, $fileDestination);
 								header("Location: ../postad.php?uploadsuccess");
 										// print_r($ad_date);	
 							}
@@ -91,18 +101,18 @@ if (isset($_POST['bksubmit']))
 					{
 						echo "Your file is too big";
 					}
-				}
-				else 
-				{
-					echo "There was an error uploading your file";
-				}
+				//}
+				// else 
+				// {
+				// 	echo "There was an error uploading your file";
+				// }
 			}
 			else
 			{
 				echo "You cannot upload files of this type";
 
 			}
-		}
+		//}
 	}
 }
 ?>
