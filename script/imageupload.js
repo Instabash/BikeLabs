@@ -46,60 +46,60 @@
 //    return count
 // }
 
-$(document).ready(function() {
-    if (window.File && window.FileList && window.FileReader) {
-        $("#bkfiles").on("change", function(e) {
-            var files = e.target.files,
-            filesLength = files.length;
+// $(document).ready(function() {
+//     if (window.File && window.FileList && window.FileReader) {
+//         $("#bkfiles").on("change", function(e) {
+//             var files = e.target.files,
+//             filesLength = files.length;
             
 
-            for (var i = 0; i < filesLength; i++) {
+//             for (var i = 0; i < filesLength; i++) {
 
-                var f = files[i]
-                var fileReader = new FileReader();
-                fileReader.onload = (function(e) {
-                    var file = e.target;
-                    $("<span class=\"pip\" style='text-align:center;'>" +
-                        "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + f.name + "\"/>" +
-                        "<br/><span>" + f.name + "</span>" +
-                        "<br/><span class=\"remove\">Remove image</span>" +
-                        "</span>").insertAfter("#bkfiles");
-                    $(".remove").click(function(){
-                        $(this).parent(".pip").remove();
-                    });
-    });
+//                 var f = files[i]
+//                 var fileReader = new FileReader();
+//                 fileReader.onload = (function(e) {
+//                     var file = e.target;
+//                     $("<span class=\"pip\" style='text-align:center;'>" +
+//                         "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + f.name + "\"/>" +
+//                         "<br/><span>" + f.name + "</span>" +
+//                         "<br/><span class=\"remove\">Remove image</span>" +
+//                         "</span>").insertAfter("#bkfiles");
+//                     $(".remove").click(function(){
+//                         $(this).parent(".pip").remove();
+//                     });
+//     });
 
-        fileReader.readAsDataURL(f);
-    }
-});
-        $("#spfiles").on("change", function(e) {
-            var files = e.target.files,
-            filesLength = files.length;
+//         fileReader.readAsDataURL(f);
+//     }
+// });
+//         $("#spfiles").on("change", function(e) {
+//             var files = e.target.files,
+//             filesLength = files.length;
             
 
-            for (var i = 0; i < filesLength; i++) {
+//             for (var i = 0; i < filesLength; i++) {
 
-                var f = files[i]
-                var fileReader = new FileReader();
-                fileReader.onload = (function(e) {
-                    var file = e.target;
-                    $("<span class=\"pip\" style='text-align:center;'>" +
-                        "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + f.name + "\"/>" +
-                        "<br/><span>" + f.name + "</span>" +
-                        "<br/><span class=\"remove\">Remove image</span>" +
-                        "</span>").insertAfter("#spfiles");
-                    $(".remove").click(function(){
-                        $(this).parent(".pip").remove();
-                    });
-    });
+//                 var f = files[i]
+//                 var fileReader = new FileReader();
+//                 fileReader.onload = (function(e) {
+//                     var file = e.target;
+//                     $("<span class=\"pip\" style='text-align:center;'>" +
+//                         "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + f.name + "\"/>" +
+//                         "<br/><span>" + f.name + "</span>" +
+//                         "<br/><span class=\"remove\">Remove image</span>" +
+//                         "</span>").insertAfter("#spfiles");
+//                     $(".remove").click(function(){
+//                         $(this).parent(".pip").remove();
+//                     });
+//     });
 
-        fileReader.readAsDataURL(f);
-    }
-});
-    } else {
-        alert("Your browser doesn't support to File API")
-    }
-});
+//         fileReader.readAsDataURL(f);
+//     }
+// });
+//     } else {
+//         alert("Your browser doesn't support to File API")
+//     }
+// });
 
 
 
