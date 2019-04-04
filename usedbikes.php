@@ -96,7 +96,6 @@
 								</div>
 							</div>
 						</div>
-
 						<div class="accordion-group" id="price">
 							<div class="accordion-heading">
 								<a class="accordion-toggle" data-toggle="collapse" href="#collapse_2">
@@ -149,7 +148,6 @@
 										</select>
 										<input type="submit" class="btn btn-primary btn-block" id="btngo" value="Go" onclick="priceRange()">
 										<div id="clear-selection">
-
 										</div>
 									</form>                  
 								</div>
