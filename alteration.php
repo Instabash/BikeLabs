@@ -3,14 +3,14 @@
 	include_once 'includes/header.php';
 ?>
 <section id="alter" class="section modsection">
-	<form id="modform1" action = "" method = "POST">
+	<form id="modform1" action = "includes/altprocess.inc.php" method = "post" autocomplete="off">
 			<div class="container">
 				<h3>Step 1: Select your motorbike</h3><br>
 				<h6>Choose the Model, Year, and Make of your Motorbike</h6><br>
 				<div class="form-row modmarginleft">
 					<div class="col-3" >
 						<label style="padding: 2px;">Model</label>
-						<select class="custom-select" id="modelselect" name="modmodelselect">
+						<select class="custom-select" id="modelselect" name="altmodelselect">
 						    <option selected>Choose...</option>
 						    <option value="70cc">70cc</option>
 						    <option value="150cc">125cc</option>
@@ -21,7 +21,7 @@
 				<div class="form-row modmarginleft">
 					<div class="col-3">
 						<label style="padding: 2px;">Year</label>
-						<select class="custom-select" id="yearselect" name="modyearselect">
+						<select class="custom-select" id="yearselect" name="altyearselect">
 						    <option selected>Choose...</option>
 						    <option value="2018">2018</option>
 						    <option value="2017">2017</option>
@@ -32,11 +32,11 @@
 				<div class="form-row modmarginleft">
 					<div class="col-3">
 						<label style="padding: 2px;">Make</label>
-						<select class="custom-select" id="yearselect" name="modmakeselect">
+						<select class="custom-select" id="yearselect" name="altmakeselect">
 						    <option selected>Choose...</option>
-						    <option value="2018">Honda</option>
-						    <option value="2017">SuperPower</option>
-				    		<option value="2016">Unique</option>
+						    <option value="Honda">Honda</option>
+						    <option value="SuperPower">SuperPower</option>
+				    		<option value="Unique">Unique</option>
 					  	</select>
 					</div>
 				</div><br><br><br><br>
@@ -72,7 +72,7 @@
 								</div>
 								<div class="border-new border border-dark rounded" style="background-color: #dc3545;">
 									Select
-									<input type="radio" name="radiopkg1" >
+									<input type="radio" name="genradiopkg1" >
 								</div>
 							</div>
 						</div>
@@ -98,7 +98,7 @@
 								</div>
 								<div class="border-new border border-dark rounded" style="background-color: #dc3545;">
 									Select
-									<input type="radio" name="radiopkg1" >
+									<input type="radio" name="genradiopkg2" >
 								</div>
 							</div>
 							
@@ -141,11 +141,11 @@
 					</div>
 					<div class="border-new border border-dark rounded" style="background-color: #dc3545;">
 						Select
-						<input type="radio" name="radiopkg1" >
+						<input type="radio" name="altradiopkg1" >
 					</div>
 				</div>
 				<div class="modbtn1">
-					<button type="submit" id="btnmod13" name="btnmod13" class="btn btn-danger" style="margin: 10px;" value="">Next</button>
+					<button type="submit" id="btnmod13" name="btnalt" class="btn btn-danger" style="margin: 10px;" value="">Next</button>
 				</div>
 				<!-- <div class="modbtn1">
 					<button type="submit" id="btnmod13" name="btnmod13" class="btn btn-danger" style="margin: 10px;" value="">Next</button>
