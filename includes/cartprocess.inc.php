@@ -1,6 +1,7 @@
 <?php
 include_once 'dbh.inc.php';
 session_start();
+
 if(isset($_POST['cartBtn']))
 {
 	if(!empty($_POST["quant"])) {
@@ -42,6 +43,7 @@ if(isset($_POST['cartBtn']))
 		header("Location: ../cart.php?partid=$part_id");
 	}
 }
+
 elseif (isset($_POST['buyBtn'])) {
 	if(!empty($_POST["quant"])) {
 		$quantity = $_POST["quant"];
@@ -83,12 +85,10 @@ elseif (isset($_POST['buyBtn'])) {
 	}
 }
 if (isset($_POST['removeItem'])) {
-		foreach($_SESSION['cart'] as $key => $item) {
-			if ($_GET["partid"] == $item['product_id']) {
-				unset($_SESSION["cart"][$key]);	
-			}
-			
-		
+	foreach($_SESSION['cart'] as $key => $item) {
+		if ($_GET["partid"] == $item['product_id']) {
+			unset($_SESSION["cart"][$key]);	
+		}
 		header("Location: ../cart.php?$cartId");
 	}
 }
