@@ -5,7 +5,7 @@
 ?>
 <!-- Modify section -->
 <section id="modify" class="section modsection">
-		<form id="modform1" action = "includes/modprocess.inc.php" method = "post">
+		<form id="modform1" action = "includes/modprocess.inc.php" method = "post" autocomplete="off"> 
 			<div class="container">
 				<h3>Step 1: Select your motorbike</h3><br>
 				<h6>Choose the Model, Year, and Make of your Motorbike</h6><br>
@@ -34,7 +34,7 @@
 				<div class="form-row modmarginleft">
 					<div class="col-3">
 						<label style="padding: 2px;">Make</label>
-						<select class="custom-select" id="yearselect" name="modmakeselect">
+						<select class="custom-select" name="modmakeselect">
 						    <option selected>Choose...</option>
 						    <option value="Honda">Honda</option>
 						    <option value="SuperPower">SuperPower</option>
@@ -49,10 +49,10 @@
 						<h5>Package 1</h5>
 						<div class="packageList" style="height: 288px;">
 							<ul>
-								<li>Handle bar</li>
-								<li>Air Filter</li>
-								<li>NGK Sparkplugs</li>
-								<li>Exhaust & Silencer</li>
+								<li>Remove jump cover</li>
+								<li>Reflectors</li>
+								<li>HID Lights</li>
+								<li>Body paint (User defined)</li>
 							</ul>
 						</div>
 						<div style="">
@@ -71,12 +71,12 @@
 						<h5>Package 2</h5>
 						<div class="packageList" style="height: 288px;">
 							<ul>
-								<li>Handle bar</li>
-								<li>Air Filter</li>
-								<li>NGK Sparkplugs</li>
-								<li>Exhaust & Silencer</li>
-								<li>Seat (Customer Choice)</li>
-								<li>Paint (Customer Choice)</li>
+								<li>Remove jump cover</li>
+								<li>Reflectors</li>
+								<li>HID Lightsgs</li>
+								<li>Remove mudguard</li>
+								<li>Add theme (User defined)</li>
+								<li>Body paint (User defined)</li>
 							</ul>
 						</div>
 						<div style="">
@@ -95,17 +95,14 @@
 						<h5>Package 3</h5>
 						<div class="packageList" style="height: 288px;">
 							<ul>
-								<li>Handle bar</li>
-							    <li>Air Filter</li>
-							    <li>NGK Sparkplugs</li>
-							    <li>Exhaust & Silencer</li>
-							    <li>Seat (Customer Choice)</li>
-							    <li>Paint (Customer Choice)</li>
-							    <li>Headlight</li>
-							    <li>Jumps</li>
-							    <li>Mudguard</li>
-							    <li>Chain Spocket</li>
-							    <li>Tail Light</li>
+								<li>Remove jump cover</li>
+							    <li>Reflectors</li>
+							    <li>HID Lights</li>
+							    <li>Remove mudguard</li>
+							    <li>Short meter</li>
+							    <li>Remove headlight holders</li>
+							    <li>Body paint (User defined)</li>
+							    <li>Add theme (User defined)</li>
 							</ul>
 						</div>
 						<div>

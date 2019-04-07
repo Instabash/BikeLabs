@@ -2,8 +2,6 @@
 $title = 'Payment';
 include_once 'includes/header.php';
 ?>
-
-
 <section id="payment" class="section paymentsec">
 	<div class="container">
 		<h1>Your order</h1><br>
@@ -44,7 +42,9 @@ include_once 'includes/header.php';
 			<div class="p-3 mt-3 border-new border-0 border-dark rounded paymentright">
 				<h4 class="pb-3">Your cart:</h4>
 				<?php
-				foreach($_SESSION['cart'] as $item)
+				if(isset($_SESSION['cart']))
+				{
+					foreach($_SESSION['cart'] as $item)
 					{
 						echo $item['product_id'];?><br><?php
 						echo $item['title'];?><br><?php
@@ -52,36 +52,53 @@ include_once 'includes/header.php';
 						echo $item['default_img'];?><br><?php
 						echo $item['quantity'];?><br><?php
 					}
+				}
+
+				if (isset($_SESSION['modaddress'])) {
 					?>
-				<!-- <div class="row">
-					<div class="payment-total-left">
-						<p class="border border-dark border-left-0">Item #1:</p>
-						<p class="border-bottom border-right border-dark">Item #2:</p>
-						<p class="border-bottom border-right border-dark">Item #3:</p>
-						<p class="border-bottom border-right border-dark">Item #4:</p>
-						<p class="border-bottom border-right border-dark">Item #5:</p>
-					</div>
-					<div class="payment-total-right">
-						<p class="border-top border-bottom border-dark">4231rs</p>
-						<p class="border-bottom border-dark">141rs</p>
-						<p class="border-bottom border-dark">14141414rs</p>
-						<p class="border-bottom border-dark">1414rs</p>
-						<p class="border-bottom border-dark">111rs</p>
-					</div>
-				</div>
-				<div class="row mt-5">
-					<div class="payment-total-left">
-						<p class="border border-dark border-left-0">Tax:</p>
-						<p class="border-right border-bottom border-dark">Subtotal:</p>
-						<p class="border-right border-bottom border-dark">Total:</p>
-					</div>
-					<div class="payment-total-right">
-						<p class="border-top border-bottom border-dark">41414rs</p>
-						<p class="border-bottom border-dark">1414141rs</p>
-						<p class="border-bottom border-dark">14141414rs</p>
-					</div>
-				</div> -->
-				
+					<h4>Custom Modification</h4>
+					<?php
+					foreach ($_SESSION['modcart'] as $item) {
+						if ($item['selectedpkg'] == 1) {?>
+							<div class="border border-dark border-new"><h5 class="p-2">Selected package</h5><?php echo $item['selectedpkg'];?><br></div>
+							<div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div>
+							<div class="border border-dark border-new"><h5 class="p-2">Custom mods (if any)</h5><?php echo $item['description'];?><br></div>
+							<div class="border border-dark border-new"><h5 class="p-2">Additional parts</h5><br></div>
+							<?php 
+							foreach ($item['ctmpts'] as $key) {
+								echo $key;?><br><?php
+							}
+							?>
+							<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><?php echo $item['price'];?><br></div><?php
+						}
+						elseif ($item['selectedpkg'] == 2){?>
+							<div class="border border-dark border-new"><h5 class="p-2">Selected package</h5><?php echo $item['selectedpkg'];?><br></div>
+							<div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div>
+							<div class="border border-dark border-new"><h5 class="p-2">Theme</h5><?php echo $item['theme'];?><br></div>
+							<div class="border border-dark border-new"><h5 class="p-2">Custom mods (if any)</h5><?php echo $item['description'];?><br></div>
+							<div class="border border-dark border-new"><h5 class="p-2">Additional parts</h5>
+							<?php 
+							foreach ($item['ctmpts'] as $key) {
+								echo $key;?><br></div><?php
+							}
+							?>
+							<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><?php echo $item['price'];?><br></div><?php
+						}
+						elseif ($item['selectedpkg'] == 3){?>
+							<img class="thumbimg"> src="images/<?php echo $item['default_img'] ?>"><br>
+							<?php 
+							echo "Selected package: " . $item['selectedpkg'];?><br><?php
+							echo "Paint: " . $item['paint'];?><br><?php
+							echo "Theme: " .$item['theme'];?><br><?php
+							echo "Custom mods (if any): " .$item['description'];?><br><?php
+							echo "Package Price: " .$item['price'];?><br><?php
+						}
+					}
+				}
+				//if (isset($_SESSION['modaddress'])) {
+				//
+				//}
+				?>
 				<div class="payment-btn pt-4">
 					<button type="submit" id="" name="" class="btn btn-danger" value="">Place order</button>
 				</div>

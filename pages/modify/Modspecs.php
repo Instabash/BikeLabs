@@ -2,19 +2,14 @@
 
 session_start();
 include_once '../../includes/header.php';
-// include_once '../../includes/dbh.inc.php';
-// $part_id = $_GET["partid"];
-
-// $sql = "SELECT * FROM post_ad WHERE ad_id='$part_id'";
-// $result = mysqli_query($conn, $sql);
-
-// $stmt = mysqli_stmt_init($conn);
 ?>
 <?php
-if (isset($_GET['pkg'])) {?>
+if (isset($_GET['pkg'])) {
+	$_SESSION['packageselected'] = $_GET['pkg'];
+	?>
 <section id="modspecs" class="section fontsec">
-	<form>
-		<div class="container" >
+	<form action="../../includes/moddetailprocess.inc.php" method="post">
+		<div class="container">
 			<div>
 				<?php
 				if($_GET['pkg'] == "1")
@@ -31,7 +26,7 @@ if (isset($_GET['pkg'])) {?>
 						<?php 
 						if ($key == "Body paint (User defined):") {?>
 							<div class="pb-4">
-								<select class="js-example-responsive" style="width: 50%">
+								<select class="js-example-responsive" name="modpaintselect" style="width: 50%">
 									<option>Black</option>
 									<option>White</option>
 									<option>Blue</option>
@@ -49,7 +44,7 @@ if (isset($_GET['pkg'])) {?>
 				elseif($_GET['pkg'] == "2")
 				{?>
 					<h3>You have selected package 2</h3><br>
-					<h5>Also specify what modification you would like to implement from the package you have selected.</h5><br>
+					<h5>Please specify what modification you would like to implement from the package you have selected.</h5><br>
 					<?php
 					$pkg2 = array(
 						"Remove jump cover","Reflectors","HID Lights","Remove mudguard","Add theme (User defined):","Body paint (User defined):"
@@ -60,7 +55,7 @@ if (isset($_GET['pkg'])) {?>
 						<?php 
 						if ($key == "Body paint (User defined):") {?>
 							<div class="pb-4">
-								<select class="js-example-responsive" style="width: 50%">
+								<select class="js-example-responsive" name="modpaintselect" style="width: 50%">
 									<option>Black</option>
 									<option>White</option>
 									<option>Blue</option>
@@ -74,7 +69,7 @@ if (isset($_GET['pkg'])) {?>
 						<?php }
 						if ($key == "Add theme (User defined):") {?>
 							<div class="pb-4">
-								<select class="js-example-responsive" style="width: 50%">
+								<select class="js-example-responsive" name="modthemeselect" style="width: 50%">
 									<option>Flaming skulls theme</option>
 									<option>Harley davidson theme</option>
 									<option>Batman theme</option>
@@ -89,7 +84,7 @@ if (isset($_GET['pkg'])) {?>
 				elseif($_GET['pkg'] == "3")
 				{?>
 					<h3>You have selected package 3</h3><br>
-					<h5>Also specify what modification you would like to implement from the package you have selected.</h5><br>
+					<h5>Please specify what modification you would like to implement from the package you have selected.</h5><br>
 					<?php
 					$pkg3 = array(
 						"Remove jump cover","Reflectors","HID Lights","Remove mudguard","Short meter","Remove headlight holders","Body paint (User defined):","Add theme (User defined):"
@@ -100,7 +95,7 @@ if (isset($_GET['pkg'])) {?>
 						<?php 
 						if ($key == "Body paint (User defined):") {?>
 							<div class="pb-4">
-								<select class="js-example-responsive" style="width: 50%">
+								<select class="js-example-responsive" name="modpaintselect" style="width: 50%">
 									<option>Black</option>
 									<option>White</option>
 									<option>Blue</option>
@@ -114,7 +109,7 @@ if (isset($_GET['pkg'])) {?>
 						<?php }
 						if ($key == "Add theme (User defined):") {?>
 							<div class="pb-4">
-								<select class="js-example-responsive" style="width: 50%">
+								<select class="js-example-responsive" name="modthemeselect" style="width: 50%">
 									<option>Flaming skulls theme</option>
 									<option>Harley davidson theme</option>
 									<option>Batman theme</option>
@@ -131,6 +126,8 @@ if (isset($_GET['pkg'])) {?>
 					echo '<script>window.location="../../modification.php"</script>';
 				<?php }?>
 			</div><br><br>
+			<?php
+				if ($_GET['pkg'] == "1" || $_GET['pkg'] == "2") {?>
 			<h4>If you want to add parts from other packages</h4>
 			<h5>Please select from the options below</h5><br>
 			<div class="" style="background-color: #dc3545;">
@@ -139,16 +136,25 @@ if (isset($_GET['pkg'])) {?>
 			</div><br>
 			<div class="customparts">
 				<select style="width: 100%" class="js-example-basic-multiple js-states form-control select2-hidden-accessible" multiple="multiple"  tabindex="-1" aria-hidden="true" name="select2[]" id="selectbox">
-					<option>Remove jump cover</option>
-					<option>Reflectors</option>
-					<option>HID Lights</option>
-					<option>Remove mudguard</option>
-					<option>Short meter</option>
-					<option>Remove headlight holders</option>
-					<option>Body paint (User defined)</option>
-					<option>Add theme (User defined)</option>
+					<?php 
+						if ($_GET['pkg'] == "1") {?>
+							<option>Short meter</option>
+							<option>Remove headlight holders</option>
+							<option>Remove mudguard</option>
+							<option>Add theme (User defined)</option>
+						<?php }
+						elseif ($_GET['pkg'] == "2") {?>
+							<option>Short meter</option>
+							<option>Remove headlight holders</option>
+						<?php }
+					?>
 		 		</select>
-			</div><br><br>
+			</div>
+		<?php } ?><br>
+		<div class="form-group">
+		  <label for="comment">If you would like to specify what to do with the custom parts you have selected please mention it below:</label>
+		  <textarea class="form-control" rows="5" id="comment" name="customspecifytxtarea"></textarea>
+		</div><br><br>
 			<div class="modbtn2">
 				<button type="submit" name="btnmod2" class="btn btn-outline-danger">Next</button>
 			</div>

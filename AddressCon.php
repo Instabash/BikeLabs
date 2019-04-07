@@ -21,7 +21,7 @@
 		<div class="homepickup-pick">
 			<h4 class="p-3">Where are we picking up your motorbike from?</h4>
 			<div class="home-pick form-wrap clearfix border-new border border-dark rounded">
-				<form class="p-2" action="payment.php" method="post">
+				<form class="p-2" action="includes/addresscon.inc.php" method="post">
 					<div class="form-row p-2 pt-4 mb-3">
 						<label for="title">Title</label>
 						<div class="select-wrap ">
@@ -63,7 +63,7 @@
 					<div class="form-row p-2">
 						<label>Country/Region</label>
 						<div class="select-wrap mb-3">
-							<select class="btn" name="countryorregion" id="title">
+							<select class="btn" name="countryorregion" id="countryreg">
 								<option value="IS" selected="selected">Islamabad</option>
 								<option value="KHI">Karachi</option>
 								<option value="LH">Lahore</option>
@@ -89,7 +89,7 @@
 						</div>
 					</div>
 					<div class="addressbtn" style="float:right;padding:10px;">
-						<button type="submit" id="" name="" class="btn btn-danger" value="">Use this address</button>
+						<button type="submit" id="" name="homepickbtn" class="btn btn-danger" value="">Use this address</button>
 					</div>
 				</form>
 			</div>
