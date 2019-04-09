@@ -3,7 +3,7 @@ $(document).ready(function() {
     // 	placeholder:"Select parts or add your own parts",
     // 	tags: true
     // });
-    $('input[name="radiopkg1"]').on('change', function() {
+    $('input[name="radiopkg"]').on('change', function() {
 	  // this, in the anonymous function, refers to the changed-<input>:
 	  // select the element(s) you want to show/hide:
 	  $('.customparts')
