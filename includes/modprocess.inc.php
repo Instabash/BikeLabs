@@ -5,6 +5,7 @@ session_start();
 unset($_SESSION["pkg1"]);
 unset($_SESSION["pkg2"]);
 unset($_SESSION["pkg3"]);
+unset($_SESSION['pkg4']);
 unset($_SESSION["modspecs"]);
 
 if(isset($_POST['btnmod']))
@@ -12,63 +13,41 @@ if(isset($_POST['btnmod']))
 	$model = $_POST['modmodelselect'];
 	$year = $_POST['modyearselect'];
 	$make = $_POST['modmakeselect'];
-	// if (isset($_POST['select2'])) 
-	// {
-	// 	if (isset($_SESSION['modspecs'])) 
-	// 	{
-	// 		unset($_SESSION['modspecs']);
-	// 	}
+	$selectedpkg = $_POST['radiopkg'];
 
-	// 	$ctmpts = array();
-	// 	foreach ($_POST['select2'] as $selectedOption)
-	// 	{
-	// 		$ctmpts[] = $selectedOption;
-	// 	}
+	$_SESSION['modspecs']['model'] = $model;
+	$_SESSION['modspecs']['year'] = $year;
+	$_SESSION['modspecs']['make'] = $make;
 
-	// 	$_SESSION['modspecs']['model'] = $model;
-	// 	$_SESSION['modspecs']['year'] = $year;
-	// 	$_SESSION['modspecs']['make'] = $make;
-	// 	$_SESSION['modspecs']['custom'] = $ctmpts;
-
-	// 	// print_r($_SESSION['modspecs']);
-	// }
-	if (isset($_POST['radiopkg1'])) {
-		// $pkg1array = array(
-		// 	"Remove jump cover",
-		// 	"Remove reflectors",
-		// 	"Change body paint",
-		// 	"HID Lights"
-		// );
+	if ($selectedpkg == "pkg1") {
 		// $_SESSION['pkg1'] = $pkg1array;
 		// var_dump(count($_SESSION['pkg1']);
+		// echo "You have selected package 1";
 		header("Location: ../pages/modify/Modspecs.php?pkg=1");
 	}
-	elseif (isset($_POST['radiopkg2'])) {
-		// $pkg2array = array(
-		// 	"Remove jump cover",
-		// 	"Remove reflectors",
-		// 	"Change body paint",
-		// 	"HID Lights",
-		// 	"Remove mudguard",
-		// 	"Add theme"
-		// );
+	elseif ($selectedpkg == "pkg2") {
 		// $_SESSION['pkg2'] = $pkg2array;
 		// var_dump(count($_SESSION['pkg1']);
+		// echo "You have selected package 2";
 		header("Location: ../pages/modify/Modspecs.php?pkg=2");
 	}
-	elseif (isset($_POST['radiopkg3'])) {
-		// $pkg3array = array(
-		// 	"Remove jump cover",
-		// 	"Remove reflectors",
-		// 	"Change body paint",
-		// 	"HID Lights",
-		// 	"Remove mudguard",
-		// 	"Add theme",
-		// 	"Short meter",
-		// 	"Remove headlight holders"
-		// );
+	elseif ($selectedpkg == "pkg3") {
 		// $_SESSION['pkg3'] = $pkg3array;
 		// var_dump(count($_SESSION['pkg1']);
+		// echo $_POST['radiopkg'];
 		header("Location: ../pages/modify/Modspecs.php?pkg=3");
+	}
+	elseif ($selectedpkg == "2") {
+		$ctmpts = array();
+		foreach ($_POST['select2'] as $selectedOption)
+		{
+			$ctmpts[] = $selectedOption;
+		}
+		$_SESSION['pkg4'] = $ctmpts;
+		// foreach($_SESSION['pkg4'] as $key=>$value)
+		// {
+		// 	 echo 'The value of $_SESSION['."'".$key."'".'] is '."'".$value."'".' <br />';
+		// }
+		header("Location: ../pages/modify/Modspecs.php?pkg=custom");
 	}
 }
