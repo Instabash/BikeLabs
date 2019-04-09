@@ -51,7 +51,7 @@
 							<ul>
 								<li>Remove jump cover</li>
 								<li>Reflectors</li>
-								<li>HID Lights</li>
+								<li>Remove mudguard</li>
 								<li>Body paint (User defined)</li>
 							</ul>
 						</div>
@@ -63,7 +63,7 @@
 							</div>
 							<div class="border-new border border-dark rounded" style="background-color: #dc3545;">
 								Select
-								<input type="radio" name="radiopkg1" >
+								<input type="radio" name="radiopkg" value="pkg1">
 							</div>
 						</div>
 					</div>
@@ -87,7 +87,7 @@
 							</div>
 							<div class="border-new border border-dark rounded" style="background-color: #dc3545;">
 								Select
-								<input type="radio" name="radiopkg2" >
+								<input type="radio" name="radiopkg" value="pkg2">
 							</div>
 						</div>
 					</div>
@@ -113,7 +113,7 @@
 							</div>
 							<div class="border-new border border-dark rounded" style="background-color: #dc3545;">
 								Select
-								<input type="radio" name="radiopkg3" >
+								<input type="radio" name="radiopkg" value="pkg3">
 							</div>
 						</div>
 					</div>
@@ -122,21 +122,18 @@
 					<h3>Or</h3><br>
 					<div class="border-new border border-dark rounded" style="background-color: #dc3545;">
 						<label>Choose custom parts</label>
-						<input type="radio" name="radiopkg1" id="togglecustom" value="2">
+						<input type="radio" name="radiopkg" id="togglecustom" value="2">
 					</div><br>
 					<div class="customparts"><br>
 					  	<select style="width: 100%" class="js-example-basic-multiple js-states form-control select2-hidden-accessible" multiple="multiple"  tabindex="-1" aria-hidden="true" name="select2[]" id="selectbox">
-						    <option>Handle bar</option>
-						    <option>Air Filter</option>
-						    <option>NGK Sparkplugs</option>
-						    <option>Exhaust & Silencer</option>
-						    <option>Seat</option>
-						    <option>Paint</option>
-						    <option>Headlight</option>
-						    <option>Jumps</option>
-						    <option>Mudguard</option>
-						    <option>Chain Spocket</option>
-						    <option>Tail Light</option>
+						    <option>Remove jump cover</option>
+						    <option>Reflectors</option>
+						    <option>HID Lights</option>
+						    <option>Remove mudguard</option>
+						    <option>Short meter</option>
+						    <option>Remove headlight holders</option>
+						    <option>Body paint (User defined)</option>
+						    <option>Add theme (User defined)</option>
 						</select>
 					</div>
 				</div><br><br>
