@@ -1,5 +1,6 @@
 <?php
 session_start();
+unset($_SESSION['modaddress']);
 if (isset($_POST['homepickbtn'])) {
 	$title = $_POST['title'];
 	$fname = $_POST['fname'];
