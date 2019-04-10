@@ -12,6 +12,7 @@ if (isset($_GET['pkg'])) {
 			<div class="container">
 				<div>
 					<?php
+					
 					if($_GET['pkg'] == "1")
 						{?>
 							<h3>You have selected package 1</h3><br>
