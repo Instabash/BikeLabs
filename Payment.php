@@ -56,43 +56,113 @@ include_once 'includes/header.php';
 
 				if (isset($_SESSION['modaddress'])) {
 					?>
-					<h4>Custom Modification</h4>
+					<h4>Custom Modification</h4><br>
 					<?php
 					foreach ($_SESSION['modcart'] as $item) {
 						if ($item['selectedpkg'] == 1) {?>
-							<div class="border border-dark border-new"><h5 class="p-2">Selected package</h5><?php echo $item['selectedpkg'];?><br></div>
+							<div class="accordion-group" id="make">
+								<div class="accordion-heading">
+									<div class="border border-dark border-new accordion-toggle collapsed" data-toggle="collapse" href="#collapse_0" aria-expanded="false">
+										<h5 class="p-2">Selected package</h5><?php echo $item['selectedpkg'];?><br>
+										<a href="#">Click for package details
+											<i class="fa fa-caret-down"></i>
+										</a>
+									</div>
+								</div>
+								<div id="collapse_0" class="accordion-body in collapse" style="">
+									<ul style="list-style: none; padding: 10px;">
+										<li>Remove jump cover</li>
+										<li>Reflectors</li>
+										<li>Remove mudguard</li>
+										<li>Body paint (User defined)</li>
+									</ul>
+								</div>
+							</div>
 							<div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div>
 							<div class="border border-dark border-new"><h5 class="p-2">Custom mods (if any)</h5><?php echo $item['description'];?><br></div>
-							<div class="border border-dark border-new"><h5 class="p-2">Additional parts</h5><br></div>
-							<?php 
-							foreach ($item['ctmpts'] as $key) {
-								echo $key;?><br><?php
-							}
-							?>
-							<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><?php echo $item['price'];?><br></div><?php
+							<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><?php echo $item['price']." Rs.";?><br></div><?php
 						}
 						elseif ($item['selectedpkg'] == 2){?>
-							<div class="border border-dark border-new"><h5 class="p-2">Selected package</h5><?php echo $item['selectedpkg'];?><br></div>
+							<div class="accordion-group" id="make">
+								<div class="accordion-heading">
+									<div class="border border-dark border-new accordion-toggle collapsed" data-toggle="collapse" href="#collapse_0" aria-expanded="false">
+										<h5 class="p-2">Selected package</h5><?php echo $item['selectedpkg'];?><br>
+										<a href="#">Click for package details
+											<i class="fa fa-caret-down"></i>
+										</a>
+									</div>
+								</div>
+								<div id="collapse_0" class="accordion-body in collapse" style="">
+									<ul style="list-style: none; padding: 10px;">
+										<li>Remove jump cover</li>
+										<li>Reflectors</li>
+										<li>HID Lightsgs</li>
+										<li>Remove mudguard</li>
+										<li>Add theme (User defined)</li>
+										<li>Body paint (User defined)</li>
+									</ul>
+								</div>
+							</div>
 							<div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div>
 							<div class="border border-dark border-new"><h5 class="p-2">Theme</h5><?php echo $item['theme'];?><br></div>
 							<div class="border border-dark border-new"><h5 class="p-2">Custom mods (if any)</h5><?php echo $item['description'];?><br></div>
-							<div class="border border-dark border-new"><h5 class="p-2">Additional parts</h5>
-							<?php 
-							foreach ($item['ctmpts'] as $key) {
-								echo $key;?><br></div><?php
-							}
-							?>
-							<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><?php echo $item['price'];?><br></div><?php
+							<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><?php echo $item['price']." Rs.";?><br></div><?php
 						}
 						elseif ($item['selectedpkg'] == 3){?>
-							<img class="thumbimg"> src="images/<?php echo $item['default_img'] ?>"><br>
-							<?php 
-							echo "Selected package: " . $item['selectedpkg'];?><br><?php
-							echo "Paint: " . $item['paint'];?><br><?php
-							echo "Theme: " .$item['theme'];?><br><?php
-							echo "Custom mods (if any): " .$item['description'];?><br><?php
-							echo "Package Price: " .$item['price'];?><br><?php
-						}
+							<div class="accordion-group" id="make">
+								<div class="accordion-heading">
+									<div class="border border-dark border-new accordion-toggle collapsed" data-toggle="collapse" href="#collapse_0" aria-expanded="false">
+										<h5 class="p-2">Selected package</h5><?php echo $item['selectedpkg'];?><br>
+										<a href="#">Click for package details
+											<i class="fa fa-caret-down"></i>
+										</a>
+									</div>
+								</div>
+								<div id="collapse_0" class="accordion-body in collapse" style="">
+									<ul style="list-style: none; padding: 10px;">
+										<li>Remove jump cover</li>
+										<li>Reflectors</li>
+										<li>HID Lightsgs</li>
+										<li>Remove mudguard</li>
+										<li>Add theme (User defined)</li>
+										<li>Body paint (User defined)</li>
+									</ul>
+								</div>
+							</div>
+							<div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div>
+							<div class="border border-dark border-new"><h5 class="p-2">Theme</h5><?php echo $item['theme'];?><br></div>
+							<div class="border border-dark border-new"><h5 class="p-2">Custom mods (if any)</h5><?php echo $item['description'];?><br></div>
+							<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><?php echo $item['price']." Rs.";?><br></div>
+							
+						<?php }
+						elseif ($item['selectedpkg'] == "custom") {?>
+							<div class="accordion-group" id="make">
+								<div class="accordion-heading">
+									<div class="border border-dark border-new accordion-toggle collapsed" data-toggle="collapse" href="#collapse_0" aria-expanded="false">
+										<h5 class="p-2">Selected package</h5><?php echo $item['selectedpkg'];?><br>
+										<a href="#">Click for package details
+											<i class="fa fa-caret-down"></i>
+										</a>
+									</div>
+								</div>
+								<div id="collapse_0" class="accordion-body in collapse" style="">
+									<ul style="list-style: none; padding: 10px;">
+										<?php 
+											foreach($_SESSION['pkg4'] as $key=>$value)
+												{?>
+													 <li><?php echo $value; ?></li>
+
+												<?php }
+										?>
+									</ul>
+								</div>
+							</div>
+							<div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div>
+							<div class="border border-dark border-new"><h5 class="p-2">Theme</h5><?php echo $item['theme'];?><br></div>
+							<div class="border border-dark border-new"><h5 class="p-2">Custom mods (if any)</h5><?php echo $item['description'];?><br></div>
+							<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><?php echo $item['price']." Rs.";?><br></div>
+
+						<?php }
 					}
 				}
 				//if (isset($_SESSION['modaddress'])) {
