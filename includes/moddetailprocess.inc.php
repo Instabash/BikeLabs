@@ -8,20 +8,19 @@ if (isset($_POST['btnmod2'])) {
 	if ($selectedpkg == 1) {
 		$price = 3000;
 		$paint = $_POST['modpaintselect'];
-		if (isset($_POST['select2'])) 
-		{
-			$ctmpts = array();
-			foreach ($_POST['select2'] as $selectedOption)
-			{
-				$ctmpts[] = $selectedOption;
-			}
-		}
+		// if (isset($_POST['select2'])) 
+		// {
+		// 	$ctmpts = array();
+		// 	foreach ($_POST['select2'] as $selectedOption)
+		// 	{
+		// 		$ctmpts[] = $selectedOption;
+		// 	}
+		// }
 		$_SESSION['modcart'][] = array(
 			'selectedpkg' => $selectedpkg,
 			'paint' => $paint,
 			'description' => $specified,
-			'price' => $price,
-			'default_img' => $default_img);
+			'price' => $price);
 		
 		// print_r($_SESSION['modcart']);
 		header("Location: ../addresscon.php");
@@ -30,21 +29,41 @@ if (isset($_POST['btnmod2'])) {
 		$price = 5000;
 		$paint = $_POST['modpaintselect'];
 		$theme = $_POST['modthemeselect'];
-		if (isset($_POST['select2'])) 
-		{
-			$ctmpts = array();
-			foreach ($_POST['select2'] as $selectedOption)
-			{
-				$ctmpts[] = $selectedOption;
-			}
-		}
+		// if (isset($_POST['select2'])) 
+		// {
+		// 	$ctmpts = array();
+		// 	foreach ($_POST['select2'] as $selectedOption)
+		// 	{
+		// 		$ctmpts[] = $selectedOption;
+		// 	}
+		// }
 		$_SESSION['modcart'][] = array(
 			'selectedpkg' => $selectedpkg,
 			'paint' => $paint,
 			'theme' => $theme,
 			'description' => $specified,
-			'price' => $price,
-			'default_img' => $default_img);
+			'price' => $price);
+		
+		header("Location: ../addresscon.php");
+	}
+	if ($selectedpkg == 3) {
+		$price = 8000;
+		$paint = $_POST['modpaintselect'];
+		$theme = $_POST['modthemeselect'];
+		// if (isset($_POST['select2'])) 
+		// {
+		// 	$ctmpts = array();
+		// 	foreach ($_POST['select2'] as $selectedOption)
+		// 	{
+		// 		$ctmpts[] = $selectedOption;
+		// 	}
+		// }
+		$_SESSION['modcart'][] = array(
+			'selectedpkg' => $selectedpkg,
+			'paint' => $paint,
+			'theme' => $theme,
+			'description' => $specified,
+			'price' => $price);
 		
 		header("Location: ../addresscon.php");
 	}
@@ -98,8 +117,7 @@ if (isset($_POST['btnmod2'])) {
 			'paint' => $paint,
 			'theme' => $theme,
 			'description' => $specified,
-			'price' => $priceSum,
-			'default_img' => $default_img);
+			'price' => $priceSum);
 		header("Location: ../addresscon.php");
 	}
 }
