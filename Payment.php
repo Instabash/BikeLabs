@@ -5,20 +5,32 @@ include_once 'includes/header.php';
 <section id="payment" class="section paymentsec">
 	<div class="container">
 		<h1>Your order</h1><br>
-		<div class="order-method-div-top p-3 border-new border border-dark rounded" style="border-bottom: 0px !important;">
+		<div class="order-method-div-top p-3 border-new border border-dark rounded" <?php if(isset($_SESSION['cart'])){?>style="border-bottom: 0px !important;<?php } ?>">
 			<label>Order method:</label>
 			<!-- <?php
 				//echo POST['ORDER-METHOD'];
 			?> -->
 			<img src="">
 			<a href="addresscon.php" id="orderredirect">Change order method</a>
+			<div>
+				<p>Current address: <?php
+				foreach($_SESSION['modaddress'] as $value)
+				{
+					echo $value['modadhname'] . "," . $value['modadpcode'] . "," . $value['modadcountry'];
+				}
+				?></p>
+			</div>
 		</div>
+		<?php
+		if(isset($_SESSION['cart'])){
+		?>
 		<div class="cart-div-second p-3 border-new border border-dark border-top-0 rounded">
 			<!-- <?php
 				//echo POST['order-item(n)'];
 			?> -->
 			<a href="">Edit your shopping bag</a>
 		</div>
+	<?php } ?>
 		<div class="paymentmain" style="margin-left: 0px;margin-right: 0px">
 			<div class="p-3 mt-3 border-new border border-dark rounded paymentleft">
 				<div class="payment-method-div-third">
@@ -49,7 +61,6 @@ include_once 'includes/header.php';
 						echo $item['product_id'];?><br><?php
 						echo $item['title'];?><br><?php
 						echo $item['price'];?><br><?php
-						echo $item['default_img'];?><br><?php
 						echo $item['quantity'];?><br><?php
 					}
 				}
@@ -122,7 +133,7 @@ include_once 'includes/header.php';
 									<ul style="list-style: none; padding: 10px;">
 										<li>Remove jump cover</li>
 										<li>Reflectors</li>
-										<li>HID Lightsgs</li>
+										<li>HID Lights</li>
 										<li>Remove mudguard</li>
 										<li>Add theme (User defined)</li>
 										<li>Body paint (User defined)</li>
@@ -169,9 +180,11 @@ include_once 'includes/header.php';
 				//
 				//}
 				?>
-				<div class="payment-btn pt-4">
-					<button type="submit" id="" name="" class="btn btn-danger" value="">Place order</button>
-				</div>
+				<form action="includes/payment.inc.php" method="post">
+					<div class="payment-btn pt-4">
+						<button type="submit" name="btnplaceorder" class="btn btn-danger" value="">Place order</button>
+					</div>
+				</form>
 			</div>
 		</div>
 		
