@@ -144,7 +144,7 @@ if (isset($_GET['pkg'])) {
 							<?php 
 							foreach($_SESSION['pkg4'] as $key=>$value)
 								{?>
-									<label style="width: 200px;left: -20px;display: inline-block;vertical-align: middle;"><?php echo $value ?></label><br><br>
+									<label style="width: 200px;left: -20px;display: inline-block;vertical-align: middle;"><?php echo $value?></label><br><br>
 								<?php 
 								if ($key == "Body paint (User defined):") 
 									{
