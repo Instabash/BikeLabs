@@ -15,9 +15,13 @@ if (isset($_POST['btnplaceorder'])) {
 		$year = $_SESSION['modspecs']['year'];
 		$package = $_SESSION['packageselected'];
 		$selectedparts = "";
+		$del_method = $_SESSION['del_method'];
+		$order_summ = $ordertype . ", Package : " . $package . ",";
+		$pay_type = "cash on delivery";
 		foreach($_SESSION['modaddress'] as $value)
 		{
 			$address = $value['modadhname'] . ", " . $value['modadpcode'] . ", " . $value['modadcountry'];
+			$fullname = $value['modadfname'] . " " .  $value['modadlname'];
 		}
 		foreach ($_SESSION['modcart'] as $item) 
 		{
@@ -25,6 +29,8 @@ if (isset($_POST['btnplaceorder'])) {
 				$paint = $item['paint'];
 				$description = $item['description'];
 				$price = $item['price'];
+				$ordersumm1 = "Remove jump cover,Reflectors,Remove mudguard,Body paint (User defined)";
+				$order_summ .= $ordersumm1;
 			}
 
 			if ($package == 2) {
@@ -32,6 +38,8 @@ if (isset($_POST['btnplaceorder'])) {
 				$description = $item['description'];
 				$price = $item['price'];
 				$theme = $item['theme'];
+				$ordersumm2 = "Remove jump cover,Reflectors,HID Lights,Remove mudguard,Add theme (User defined),Body paint (User defined)";
+				$order_summ .= $ordersumm2;
 			}
 
 			if ($package == 3) {
@@ -39,6 +47,8 @@ if (isset($_POST['btnplaceorder'])) {
 				$description = $item['description'];
 				$price = $item['price'];
 				$theme = $item['theme'];
+				$ordersumm3 = "Remove jump cover,Reflectors,HID Lights,Remove mudguard,Short meter,Remove headlight holders,Body paint (User defined),Add theme (User defined)";
+				$order_summ .= $ordersumm3;
 			}
 
 			if ($package == "custom") {
@@ -51,6 +61,7 @@ if (isset($_POST['btnplaceorder'])) {
 				{
 					$selectedparts .=  $value . ", ";
 				}
+				$order_summ .= $selectedparts;
 			}
 		}
 
@@ -77,7 +88,8 @@ if (isset($_POST['btnplaceorder'])) {
 				mysqli_stmt_bind_param($stmt, "ssss", $ordertype, $orderStatus, $orderDate, $userid);
 				mysqli_stmt_execute($stmt);
 				$orderid = $conn->insert_id;
-
+				$_SESSION["order_id"] = $orderid;
+				
 				$orderitems = "INSERT INTO order_items (order_id, Order_price, Order_quantity, Order_type_ID, Order_Address) VALUES (?, ?, ?, ?, ?)";
 				if (!mysqli_stmt_prepare($stmt, $orderitems)) 
 				{
@@ -87,7 +99,18 @@ if (isset($_POST['btnplaceorder'])) {
 				{
 					mysqli_stmt_bind_param($stmt, "sssss", $orderid, $price, $orderQuantity, $modaltid, $address);
 					mysqli_stmt_execute($stmt);
-					header("Location: ../orderconfirmation.php?order=success");
+
+					$invoicesql = "INSERT INTO invoice (order_id, uidUsers, user_address, delivery_method, order_summary, payment_type, billing_address) VALUES (?, ?, ?, ?, ?, ?, ?)";
+					if (!mysqli_stmt_prepare($stmt, $invoicesql)) 
+					{
+						echo "SQL statement failed";
+					}
+					else
+					{	
+						mysqli_stmt_bind_param($stmt, "sssssss", $orderid, $fullname, $address, $del_method, $order_summ, $pay_type, $address);
+						mysqli_stmt_execute($stmt);
+						header("Location: ../orderconfirmation.php?order=success");
+					}
 				}
 			}	
 		}
