@@ -1,5 +1,13 @@
 <?php
-	include_once 'includes/header.php';
+session_start();
+if(!isset($_SESSION['userUId'])){
+	$current_page = $_SERVER['REQUEST_URI'];
+	$_SESSION['curr_page'] = $current_page;	
+	header("Location:LoginOrRegister.php");
+}
+$title = 'Order confirmation';
+include_once 'includes/header.php';
+include_once 'includes/dbh.inc.php';
 ?>
 
 <section id="" class="section orderconsec">
@@ -12,7 +20,23 @@
 			<div class="pt-2 pr-4 pl-4">
 				<b><h3>Order number</h3></b>
 				<h3><?php
-						//POST['order-number'];
+						$order_id = $_SESSION["order_id"];
+						$ordernosql = "SELECT * FROM invoice WHERE order_id = ?";
+						$stmt = mysqli_stmt_init($conn);
+
+						if (!mysqli_stmt_prepare($stmt, $ordernosql)) {
+							echo "SQL statement failed";
+						}
+						else
+						{
+							mysqli_stmt_bind_param($stmt, "s", $order_id);
+							mysqli_stmt_execute($stmt);
+							$result = mysqli_stmt_get_result($stmt);
+
+							if($row = mysqli_fetch_assoc($result))
+							{
+								echo $row['order_id'];
+							
 					?></h3>
 				<button type="submit" id="" name="" class="btn btn-danger mt-3" style="" value="">Print</button>
 			</div>
@@ -25,42 +49,61 @@
 				<b><h3>Delivery Details</h3></b>
 			</div>
 			<hr>
-			<div>
+			<div style="padding: 10px;">
 				<b>Delivery for</b>
+				<p>
 				<?php
-					//POST['username'];
+					echo $row['uidUsers'];
 				?>
+				</p>
 			</div>
-			<div>
+			<div style="padding: 10px;">
 				<b>Address</b>
+				<p>
 				<?php
-					//POST['user_address'];
+					echo $row['user_address'];
 				?>
+				</p>
 			</div>
-			<div>
+			<div style="padding: 10px;">
 				<b>Delivery method</b>
+				<p>
 				<?php
-					//POST['delivery_method'];
+					echo $row['delivery_method'];
 				?>
+				</p>
 			</div>
 			<div class="pt-5 pr-4 pl-4">
 				<b><h3>Order summary</h3></b>
-				<?php
-					//POST['order_item'];
-					//POST['order_qty'];
-					//POST['order_price'];
-				?>
 			</div>
 			<hr>
+			<div style="padding: 10px;">
+				<?php
+					$output = str_replace(',', '<br />', $row['order_summary']);
+					echo $output;
+				?>
+			</div>
 			<div class="pt-5 pr-4 pl-4">
 				<h3>Payment information</h3>
 			</div>
 			<hr>
-			<div>
+			<div style="padding: 10px;">
 				<b>Payment type</b>
+				<p>
+				<?php
+					echo $row['payment_type'];
+				?>
+				</p>
 			</div>
-			<div>
+			<div style="padding: 10px;">
 				<b>Billing address</b>
+				<p>
+				<?php
+					echo $row['billing_address'];
+				}
+			}
+			?>
+			</p>
 			</div>
 		</div>
 	</div>
