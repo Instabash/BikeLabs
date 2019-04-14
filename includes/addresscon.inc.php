@@ -9,6 +9,13 @@ if (isset($_POST['homepickbtn'])) {
 	$countryreg = $_POST['countryorregion'];
 	$hnameorno = $_POST['hnameorno'];
 	$pcode = $_POST['pcode'];
+	$del_method = $_POST['pickup-type-radio'];
+	if ($del_method == 1) {
+		$del_method_text = "Home Pickup";
+	}
+	if ($del_method == 2) {
+		$del_method_text = "Drop Off";
+	}
 	// echo $title;
 	// echo $fname;
 	// echo $lname;
@@ -16,10 +23,11 @@ if (isset($_POST['homepickbtn'])) {
 	// echo $countryreg;
 	// echo $hnameorno;
 	// echo $pcode;
+	$_SESSION['del_method'] = $del_method_text;
 	$_SESSION['modaddress'][] = array(
 			'modadtitle' => $title,
 			'modadfname' => $fname,
-			'mmodadlname' => $lname,
+			'modadlname' => $lname,
 			'modadphone' => $phone,
 			'modadcountry' => $countryreg,
 			'modadhname' => $hnameorno,
