@@ -1,27 +1,32 @@
 <?php
-	session_start();
-	$title = 'Address Confirmation';
-	include_once 'includes/header.php';
-	//$_SESSION["quant"] = $_POST["quant"];
+session_start();
+if(!isset($_SESSION['userUId'])){
+	$current_page = $_SERVER['REQUEST_URI'];
+	$_SESSION['curr_page'] = $current_page;	
+	header("Location:LoginOrRegister.php");
+}
+$title = 'Address Confirmation';
+include_once 'includes/header.php';
 ?>
 <!-- Payment/Confirmation section -->
 <section id="addresscon" class="section addressconsec">
 	<div class="container">
 		<h3>How would you like to recieve your order?</h3><br>
-		<div class="form-check-inline">
-			<div class="p-2">
-				<label>Home Pickup</label>
-				<input type="radio" name="pickup-type-radio" value="1">
+		<form class="p-2" action="includes/addresscon.inc.php" method="post">
+			<div class="form-check-inline">
+				<div class="p-2">
+					<label>Home Pickup</label>
+					<input type="radio" name="pickup-type-radio" value="1">
+				</div>
+				<div class="p-2">
+					<label>Drop off</label>
+					<input type="radio" name="pickup-type-radio" value="2">
+				</div>
 			</div>
-			<div class="p-2">
-				<label>Drop off</label>
-				<input type="radio" name="pickup-type-radio" value="2">
-			</div>
-		</div>
-		<div class="homepickup-pick">
-			<h4 class="p-3">Where are we picking up your motorbike from?</h4>
-			<div class="home-pick form-wrap clearfix border-new border border-dark rounded">
-				<form class="p-2" action="includes/addresscon.inc.php" method="post">
+			<div class="homepickup-pick">
+				<h4 class="p-3">Where are we picking up your motorbike from?</h4>
+				<div class="home-pick form-wrap clearfix border-new border border-dark rounded">
+					
 					<div class="form-row p-2 pt-4 mb-3">
 						<label for="title">Title</label>
 						<div class="select-wrap ">
@@ -123,14 +128,14 @@
 	// var quant1 = qs.quant;
 	
  //  		localStorage.setItem('quant', quant1);	
-	
+ 
 
-	
-	
-	
+ 
+ 
+ 
 	// var second = sessionStorage.getItem('quant');
 	// console.log(second);	
 </script>
 <?php
-	include_once 'includes/footer.php';
+include_once 'includes/footer.php';
 ?>
