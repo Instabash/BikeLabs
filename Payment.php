@@ -3,8 +3,10 @@ session_start();
 if(!isset($_SESSION['userUId'])){
 	$current_page = $_SERVER['REQUEST_URI'];
 	$_SESSION['curr_page'] = $current_page;	
+	
 	header("Location:LoginOrRegister.php");
 }
+$modoralt = $_SESSION['modORalt'];
 $title = 'Payment';
 include_once 'includes/header.php';
 ?>
@@ -71,7 +73,7 @@ include_once 'includes/header.php';
 					}
 				}
 
-				if (isset($_SESSION['modaddress'])) {
+				if ($modoralt == "modification") {
 					?>
 					<h4>Custom Modification</h4><br>
 					<?php
@@ -184,9 +186,91 @@ include_once 'includes/header.php';
 						<?php }
 					}
 				}
-				//if (isset($_SESSION['modaddress'])) {
-				//
-				//}
+				if ($modoralt == "alteration") {
+					?>
+					<h4>Custom Alteration</h4><br>
+					<?php
+					foreach ($_SESSION['altcart'] as $item) {
+						if ($item['selectedpkg'] == 1) {?>
+							<div class="accordion-group" id="make">
+								<div class="accordion-heading">
+									<div class="border border-dark border-new accordion-toggle collapsed" data-toggle="collapse" href="#collapse_0" aria-expanded="false">
+										<h5 class="p-2">Selected package</h5><?php echo $item['selectedpkg'];?><br>
+										<a href="#">Click for package details
+											<i class="fa fa-caret-down"></i>
+										</a>
+									</div>
+								</div>
+								<div id="collapse_0" class="accordion-body in collapse" style="">
+									<ul style="list-style: none; padding: 10px;">
+										<li>Remove jump cover</li>
+										<li>Reflectors</li>
+										<li>Remove mudguard</li>
+										<li>Body paint (User defined)</li>
+									</ul>
+								</div>
+							</div>
+							<div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div>
+							<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><?php echo $item['description'];?><br></div>
+							<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><?php echo $item['price']." Rs.";?><br></div><?php
+						}
+						elseif ($item['selectedpkg'] == 2){?>
+							<div class="accordion-group" id="make">
+								<div class="accordion-heading">
+									<div class="border border-dark border-new accordion-toggle collapsed" data-toggle="collapse" href="#collapse_0" aria-expanded="false">
+										<h5 class="p-2">Selected package</h5><?php echo $item['selectedpkg'];?><br>
+										<a href="#">Click for package details
+											<i class="fa fa-caret-down"></i>
+										</a>
+									</div>
+								</div>
+								<div id="collapse_0" class="accordion-body in collapse" style="">
+									<ul style="list-style: none; padding: 10px;">
+										<li>Remove jump cover</li>
+										<li>Reflectors</li>
+										<li>HID Lights</li>
+										<li>Remove mudguard</li>
+										<li>Add theme (User defined)</li>
+										<li>Body paint (User defined)</li>
+									</ul>
+								</div>
+							</div>
+							<div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div>
+							<div class="border border-dark border-new"><h5 class="p-2">Theme</h5><?php echo $item['theme'];?><br></div>
+							<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><?php echo $item['description'];?><br></div>
+							<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><?php echo $item['price']." Rs.";?><br></div><?php
+						}
+						elseif ($item['selectedpkg'] == 3){?>
+							<div class="accordion-group" id="make">
+								<div class="accordion-heading">
+									<div class="border border-dark border-new accordion-toggle collapsed" data-toggle="collapse" href="#collapse_0" aria-expanded="false">
+										<h5 class="p-2">Selected package</h5><?php echo $item['selectedpkg'];?><br>
+										<a href="#">Click for package details
+											<i class="fa fa-caret-down"></i>
+										</a>
+									</div>
+								</div>
+								<div id="collapse_0" class="accordion-body in collapse" style="">
+									<ul style="list-style: none; padding: 10px;">
+										<li>Remove jump cover</li>
+										<li>Reflectors</li>
+										<li>HID Lights</li>
+										<li>Remove mudguard</li>
+										<li>Short meter</li>
+										<li>Remove headlight holders</li>
+										<li>Add theme (User defined)</li>
+										<li>Body paint (User defined)</li>
+									</ul>
+								</div>
+							</div>
+							<div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div>
+							<div class="border border-dark border-new"><h5 class="p-2">Theme</h5><?php echo $item['theme'];?><br></div>
+							<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><?php echo $item['description'];?><br></div>
+							<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><?php echo $item['price']." Rs.";?><br></div>
+							
+						<?php }
+					}
+				}
 				?>
 				<form action="includes/payment.inc.php" method="post">
 					<div class="payment-btn pt-4">
