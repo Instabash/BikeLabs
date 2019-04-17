@@ -61,6 +61,7 @@ if (isset($_GET['pkg'])) {
 								<div class="">
 									<label style="width: 200px;left: -20px;display: inline-block;vertical-align: middle;"><?php echo $key?></label><br><br>
 									<?php 
+
 									if ($key == "Body paint (User defined):") {?>
 										<div class="pb-4">
 											<select class="js-example-responsive" name="modpaintselect" style="width: 50%">
@@ -151,7 +152,8 @@ if (isset($_GET['pkg'])) {
 								{?>
 									<label style="width: 200px;left: -20px;display: inline-block;vertical-align: middle;"><?php echo $value?></label><br><br>
 								<?php 
-								if ($key == "Body paint (User defined):") 
+
+								if ($value == "Body paint (User defined)") 
 									{
 										?>
 										<div class="pb-4">
@@ -168,7 +170,7 @@ if (isset($_GET['pkg'])) {
 										</div>
 									<?php 
 									}
-								if ($key == "Add theme (User defined):") 
+								if ($value == "Add theme (User defined)") 
 									{
 									?>
 										<div class="pb-4">
