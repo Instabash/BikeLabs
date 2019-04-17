@@ -15,6 +15,16 @@ if(isset($_POST['btnmod']))
 	$make = $_POST['modmakeselect'];
 	$selectedpkg = $_POST['radiopkg'];
 
+	if ($model == "" || $year == "" || $make == "") {
+		header("Location: ../modification.php?error=emptyfields");
+		exit();
+	}
+	elseif($selectedpkg == "")
+	{
+		header("Location: ../modification.php?error=nopkgselected");
+		exit();
+	}
+
 	$_SESSION['modspecs']['model'] = $model;
 	$_SESSION['modspecs']['year'] = $year;
 	$_SESSION['modspecs']['make'] = $make;
