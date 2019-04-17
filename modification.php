@@ -18,7 +18,7 @@ include_once 'includes/header.php';
 					<div class="col-3" >
 						<label style="padding: 2px;">Model</label>
 						<select class="custom-select" id="modelselect" name="modmodelselect">
-						    <option selected>Choose...</option>
+						    <option selected value="">Choose...</option>
 						    <option value="70cc">70cc</option>
 						    <option value="150cc">125cc</option>
 				    		<option value="125cc">150cc</option>
@@ -29,7 +29,7 @@ include_once 'includes/header.php';
 					<div class="col-3">
 						<label style="padding: 2px;">Year</label>
 						<select class="custom-select" id="yearselect" name="modyearselect">
-						    <option selected>Choose...</option>
+						    <option selected value="">Choose...</option>
 						    <option value="2018">2018</option>
 						    <option value="2017">2017</option>
 				    		<option value="2016">2016</option>
@@ -40,13 +40,25 @@ include_once 'includes/header.php';
 					<div class="col-3">
 						<label style="padding: 2px;">Make</label>
 						<select class="custom-select" name="modmakeselect">
-						    <option selected>Choose...</option>
+						    <option selected value="">Choose...</option>
 						    <option value="Honda">Honda</option>
 						    <option value="SuperPower">SuperPower</option>
 				    		<option value="Unique">Unique</option>
 					  	</select>
 					</div>
-				</div><br><br><br><br>
+				</div><br><br>
+				<?php
+					if (isset($_GET['error'])) {
+						if ($_GET['error'] == "emptyfields") 
+						{
+							echo '<p style="color:red;padding:5px;";>Please select all fields</p>';
+						}
+						elseif ($_GET['error'] == "nopkgselected") {
+							echo '<p style="color:red;padding:5px;";>Please select a package</p>';
+						}
+					}
+				?>
+				<br><br>
 				<h3>Step 2: Select what to Modify</h3><br>
 				<h6>We offer 3 packages of our own</h6><br>
 				<div class="row">
