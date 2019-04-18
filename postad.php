@@ -15,12 +15,12 @@ include_once 'includes/header.php';
 			<h4>What are you selling?</h4>
 			<a href="pages/postad/postadbike.php">
 				<div class="btncreative btn-1 btn-1a" >
-					Motorbikes
+					Motorbikes.
 				</div>
 			</a>
 			<a href="pages/postad/postadsp.php">
 				<div class="btncreative btn-1 btn-1a" >
-					Spare Parts
+					Spare Parts.
 				</div>
 			</a>
 		</div><br>
