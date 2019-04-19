@@ -470,10 +470,11 @@ img{
 }
 
 .packageList{
-  padding-top: 10px;
+  padding-top: 30px;
   list-style-position: inside;
   text-align: left;
 }
+
 
 .moderror{
   color : red;
@@ -1522,3 +1523,13 @@ img{ max-width:100%;}
   height: 516px;
   overflow-y: auto;
 }
+
+.show{
+  display: block !important;
+}
+
+input[type="radio"] {
+    display:none; 
+}
+
+.activeradio { background:#dc3545; }
