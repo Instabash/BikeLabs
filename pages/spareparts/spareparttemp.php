@@ -67,31 +67,47 @@ $stmt = mysqli_stmt_init($conn);
 					<div class="border-new border border-dark rounded mt-5 p-3" style="">
 						<?php
 						if($row = mysqli_fetch_assoc($result))
-						{
-							echo '
+						{?>
+							
 							<div>
-							<h3>'.$row['ad_title'].'</h3><br>
-							<p>'.$row['ad_price'].' Rs.</p>
-							<p>Poster: '.$row['idUsers'].'</p>
-							<p>You are: '.$_SESSION['userId'].'</p>
+							<h5><b><?php echo $row['ad_title']; ?></b></h5><br>
+							<p><?php echo $row['ad_price']; ?> Rs.</p>
+
+							<?php 
+								$sqladdesc = "SELECT * FROM users WHERE idUsers ={$row["idUsers"]}";
+								if(!mysqli_stmt_prepare($stmt, $sqladdesc))
+										{
+											echo "SQL statement failed";
+										}
+										else
+										{
+											mysqli_stmt_execute($stmt);
+											$result3 = mysqli_stmt_get_result($stmt);
+											while ($row3 = mysqli_fetch_assoc($result3)) 
+											{?>
+												<p>Posted by : <?php echo " " .  $row3['uidUsers']; ?></p>
+											<?php }
+										}
+							?>
+							
 							</div>
-							';
-						}
-						?>
+						<?php
+					}?>
 					</div>
 					<div class="border-new border border-dark rounded mt-5 p-3" style="">
 						<?php
 
 						echo '
 						<div>
-						<h3>Description</h3><br>	
+						<h5><b>Description</b></h5><br>	
 						<p>'.$row['ad_description'].'</p>
 						</div>
 						';
 						?>
 					</div>
+
 					<form action="" method="post">
-						<div class="border-new border border-dark rounded mt-5 p-3">
+						<!-- <div class="border-new border border-dark rounded mt-5 p-3">
 							<p>
 								Quantity
 							</p><br>
@@ -110,8 +126,8 @@ $stmt = mysqli_stmt_init($conn);
 								</span>
 							</div>
 							<p></p>
-						</div>
-						<div class="mt-3 p-3">
+						</div> -->
+						<div class="border-new border border-dark rounded mt-5 p-3">
 							<!-- <button type="submit" name="cartBtn" class="btn btn-outline-danger">Add to cart</button>
 								<button type="submit" name="buyBtn" class="btn btn-outline-danger">Buy now</button> -->
 								<?php 
@@ -123,19 +139,50 @@ $stmt = mysqli_stmt_init($conn);
 									<?php 
 									}
 									else
-									{?>
-										<p>Contact this user at :</p>
+									{
+										$sqladdesc = "SELECT * FROM users WHERE idUsers ={$row["idUsers"]}";
+										if(!mysqli_stmt_prepare($stmt, $sqladdesc))
+										{
+											echo "SQL statement failed";
+										}
+										else
+										{
+											mysqli_stmt_execute($stmt);
+											$result2 = mysqli_stmt_get_result($stmt);
+											while ($row2 = mysqli_fetch_assoc($result2)) 
+												{?>
+										<p>Contact this user at : <?php echo $row2['emailUsers'];?></p>
 										<p>Or</p>
-										<p>at: </p>
-									<?php 
+										<p>at : <?php echo $row2['User_Contact'];?></p>
+									<?php
+											}
+										} 
 									}
 								}
 								else
-								{?>
-									<p>Contact this user at :</p>
-									<p>Or</p>
-									<p>at: </p>
-								<?php
+								{
+									$sqladdesc = "SELECT * FROM users WHERE idUsers ={$row["idUsers"]}";
+									if(!mysqli_stmt_prepare($stmt, $sqladdesc))
+									{
+										echo "SQL statement failed";
+									}
+									else
+									{
+										mysqli_stmt_execute($stmt);
+										$result2 = mysqli_stmt_get_result($stmt);
+										while ($row2 = mysqli_fetch_assoc($result2)) 
+											{?>
+									
+										<h5><b>User Contact</b></h5><br>
+										<p><b>Email:</b></p>
+										<p><?php echo $row2['emailUsers'];?></p>
+										<p>Or</p>
+										<p><b>Phone:</b></p>
+										<p>at : <?php echo $row2['User_Contact'];?></p>
+
+									<?php
+										}
+									} 
 								}
 								?>
 							</div>
@@ -143,7 +190,7 @@ $stmt = mysqli_stmt_init($conn);
 					</div>
 				</div>
 			</div>
-		</section>
+</section>
 <script type="text/javascript" src="../../script/getparameters.js"></script>
 <script>
 	var slideIndex = 1;
