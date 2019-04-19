@@ -17,12 +17,11 @@ if (isset($_GET['pkg'])) {
 			<div class="container">
 				<div>
 					<?php
-					
 					if($_GET['pkg'] == "1")
 						{?>
 							<h3>You have selected package 1</h3><br>
-							<h5>Please specify any further modification you would like to implement from the package you have selected.</h5><br>
-							<div class="border-dark border border-new">
+							<h6>Please specify any further modification you would like to implement from the package you have selected.</h6><br>
+							<div class="border-dark border border-new" style="padding: 10px;">
 							<?php
 							$pkg1 = array(
 								"Remove jump cover","Reflectors","Remove mudguard","Body paint (User defined):"
@@ -51,8 +50,8 @@ if (isset($_GET['pkg'])) {
 					elseif($_GET['pkg'] == "2")
 						{?>
 							<h3>You have selected package 2</h3><br>
-							<h5>Please specify what modification you would like to implement from the package you have selected.</h5><br>
-							<div class="border-dark border border-new">
+							<h6>Please specify what modification you would like to implement from the package you have selected.</h6><br>
+							<div class="border-dark border border-new" style="padding: 10px;">
 							<?php
 							$pkg2 = array(
 								"Remove jump cover","Reflectors","HID Lights","Remove mudguard","Add theme (User defined):","Body paint (User defined):"
@@ -94,8 +93,8 @@ if (isset($_GET['pkg'])) {
 					{
 						?>
 						<h3>You have selected package 3</h3><br>
-						<h5>Please specify what modification you would like to implement from the package you have selected.</h5><br>
-						<div class="border-dark border border-new">
+						<h6>Please specify what modification you would like to implement from the package you have selected.</h6><br>
+						<div class="border-dark border border-new" style="padding: 10px;">
 						<?php
 						$pkg3 = array(
 							"Remove jump cover","Reflectors","HID Lights","Remove mudguard","Short meter","Remove headlight holders","Body paint (User defined):","Add theme (User defined):"
@@ -146,7 +145,7 @@ if (isset($_GET['pkg'])) {
 						{?>
 							<h3>You have selected a custom package</h3><br>
 							<h5>Please specify what modification you would like to implement from the package you have selected.</h5><br>
-						<div class="border-dark border border-new">
+						<div class="border-dark border border-new" style="padding: 10px;">
 							<?php 
 							foreach($_SESSION['pkg4'] as $key=>$value)
 								{?>
