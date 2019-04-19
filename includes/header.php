@@ -176,8 +176,8 @@ if(!isset($_SESSION))
 						$userId = $_SESSION["userUId"];
 						?>
 						<p style="margin:5px;color:black;">Logged in as : <a href="/../BikeLabs/pages/panels/userdash.php"> <?php echo $userId ?> </a></p>
-						<form class="form-inline" action="/BikeLabs/includes/logout.inc.php" style="margin-left: 10px;" method="post">
-							<button type="submit" class="btn btn-default" name="logout-submit">Logout</button>
+						<form class="" action="/BikeLabs/includes/logout.inc.php" style="margin-left: 10px;" method="post">
+							<button type="submit" class="btn btn-outline-danger" name="logout-submit">Logout</button>
 						</form>
 						<?php
 					}
