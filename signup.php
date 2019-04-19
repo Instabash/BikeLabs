@@ -50,6 +50,11 @@
 			</div><br>
 			<div class="form-row modmarginleft">
 				<div class="col-3" >
+					<input class="form-control" type="text" name="phone" placeholder="Phone">
+				</div>
+			</div><br>
+			<div class="form-row modmarginleft">
+				<div class="col-3" >
 					<input class="form-control" type="password" name="pwd" placeholder="Password">
 				</div>
 			</div><br>
