@@ -1,16 +1,12 @@
 <?php
-	session_start();
-	if(!isset($_SESSION['userUId'])){
-		$current_page = $_SERVER['REQUEST_URI'];
-		$_SESSION['curr_page'] = $current_page;
-		header("Location:LoginOrRegister.php");
-	}
-	$title = 'Used motorbikes';
-	include_once 'includes/header.php';
-	include_once 'includes/dbh.inc.php';
+session_start();
 
-	$spaartsql = "SELECT * FROM post_ad WHERE ad_type = 'bike' ORDER BY `ad_date` DESC";;
-	$stmt = mysqli_stmt_init($conn);
+$title = 'Used motorbikes';
+include_once 'includes/header.php';
+include_once 'includes/dbh.inc.php';
+
+$spaartsql = "SELECT * FROM post_ad WHERE ad_type = 'bike' ORDER BY `ad_date` DESC";;
+$stmt = mysqli_stmt_init($conn);
 ?>
 <!-- New Bikes -->
 <section id="spparts" class="section sppartsection">
