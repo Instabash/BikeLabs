@@ -12,32 +12,46 @@ if (isset($_SESSION['modcart'])) {
 		$countryreg = $_POST['countryorregion'];
 		$hnameorno = $_POST['hnameorno'];
 		$pcode = $_POST['pcode'];
-		$del_method = $_POST['pickup-type-radio'];
-		if ($del_method == 1) {
-			$del_method_text = "Home Pickup";
+		$del_method = 1;
+		if(empty($title) || empty($fname) || empty($lname) || empty($phone) || empty($countryreg) || empty($hnameorno) || empty($pcode) || empty($del_method))
+		{
+			header("Location: ../AddressCon.php?error=emptyfields&title=".$title."&fname=".$fname."&lname=".$lname."&countryreg=".$countryreg."&hnameorno=".$hnameorno."&pcode=".$pcode."&del_method=".$del_method."&phone=".$phone);
+			exit();
 		}
-		if ($del_method == 2) {
-			$del_method_text = "Drop Off";
+		elseif (!preg_match("/^[a-zA-Z]*$/", $fname) || !preg_match("/^[a-zA-Z]*$/", $lname)) 
+		{
+			header("Location: ../AddressCon.php?error=invalidchar");
+			exit();
 		}
-	// echo $title;
-	// echo $fname;
-	// echo $lname;
-	// echo $phone;
-	// echo $countryreg;
-	// echo $hnameorno;
-	// echo $pcode;
-		$_SESSION['del_method'] = $del_method_text;
-		$_SESSION['modaddress'][] = array(
-			'modadtitle' => $title,
-			'modadfname' => $fname,
-			'modadlname' => $lname,
-			'modadphone' => $phone,
-			'modadcountry' => $countryreg,
-			'modadhname' => $hnameorno,
-			'modadpcode' => $pcode
-		);
-		$_SESSION['modORalt'] = "modification";
-		header("Location: ../payment.php");
+		elseif (!preg_match("/^((\+92)|(0092))-{0,1}\d{3}-{0,1}\d{7}$|^\d{11}$|^\d{4}-\d{7}$/", $phone)) {
+			header("Location: ../AddressCon.php?error=invalidphone");
+			exit();
+		}
+		elseif (!preg_match("/^\\d{5}$/", $pcode)) {
+			header("Location: ../AddressCon.php?error=invalidpcode");
+			exit();
+		}
+		else{
+			if ($del_method == 1) {
+				$del_method_text = "Home Pickup";
+			}
+			if ($del_method == 2) {
+				$del_method_text = "Drop Off";
+			}
+
+			$_SESSION['del_method'] = $del_method_text;
+			$_SESSION['modaddress'][] = array(
+				'modadtitle' => $title,
+				'modadfname' => $fname,
+				'modadlname' => $lname,
+				'modadphone' => $phone,
+				'modadcountry' => $countryreg,
+				'modadhname' => $hnameorno,
+				'modadpcode' => $pcode
+			);
+			$_SESSION['modORalt'] = "modification";
+			header("Location: ../payment.php");
+		}
 	}
 }
 if (isset($_SESSION['altcart'])) {
