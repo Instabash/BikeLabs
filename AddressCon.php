@@ -14,19 +14,33 @@ include_once 'includes/header.php';
 		<h3>How would you like to recieve your order?</h3><br>
 		<form class="p-2" action="includes/addresscon.inc.php" method="post">
 			<div class="form-check-inline">
-				<div class="p-2">
+				<div class="btncreative btn-1 btn-1a" onclick="switch_div(1)">
 					<label>Home Pickup</label>
-					<input type="radio" name="pickup-type-radio" value="1">
 				</div>
-				<div class="p-2">
+				<div class="btncreative btn-1 btn-1a" onclick="switch_div(2)" >
 					<label>Drop off</label>
-					<input type="radio" name="pickup-type-radio" value="2">
 				</div>
 			</div>
-			<div class="homepickup-pick">
+			<div class="homepickup-pick hide <?php if (isset($_GET['error'])) {echo 'show';} ?>" id="show_1">
 				<h4 class="p-3">Where are we picking up your motorbike from?</h4>
 				<div class="home-pick form-wrap clearfix border-new border border-dark rounded">
-					
+					<?php
+					if (isset($_GET['error'])) {
+						if ($_GET['error'] == "emptyfields") 
+						{
+							echo '<p style="color:red;padding:5px;";>Please fill in all fields</p>';
+						}
+						elseif ($_GET['error'] == "invalidchar") {
+							echo '<p style="color:red;padding:5px;";>Please enter valid characters</p>';
+						}
+						elseif ($_GET['error'] == "invalidphone") {
+							echo '<p style="color:red;padding:5px;";>Please enter a valid phone number</p>';
+						}
+						elseif ($_GET['error'] == "invalidpcode") {
+							echo '<p style="color:red;padding:5px;";>Please enter a valid postal code</p>';
+						}
+					}
+					?>
 					<div class="form-row p-2 pt-4 mb-3">
 						<label for="title">Title</label>
 						<div class="select-wrap ">
@@ -94,14 +108,12 @@ include_once 'includes/header.php';
 						</div>
 					</div>
 					<div class="addressbtn" style="float:right;padding:10px;">
-						<button type="submit" id="" name="homepickbtn" class="btn btn-danger" value="">Use this address</button>
+						<button type="submit" id="" name="homepickbtn" class="btn btn-outline-danger" value="">Use this address</button>
 					</div>
-				</form>
+				</div>
 			</div>
-		</div>
-		<div class="dropoff-pick form-wrap clearfix">
-			<h4 class="p-3">Which store would you like to drop off your motorbike?</h4>
-			<form class="p-2 border-new border border-dark rounded">
+			<div class="dropoff-pick form-wrap clearfix hide border-new border border-dark rounded" id="show_2">
+				<h4 class="p-3">Which store would you like to drop off your motorbike?</h4>
 				<p class="text-left p-3">Find your nearest store</p>
 				<div class="form-row pl-3">
 					<div class="select-wrap">
@@ -110,11 +122,11 @@ include_once 'includes/header.php';
 						</div>
 					</div>
 					<div class="addressbtn pl-4">
-						<button type="submit" id="" name="" class="btn btn-danger" value="">Find stores</button>
+						<button type="submit" id="" name="" class="btn btn-outline-danger" value="">Find stores</button>
 					</div>
 				</div>
-			</form>
-		</div>
+			</div>
+		</form>
 	</div>
 </section>
 <script type="text/javascript" src="script/getparameters.js"></script>
