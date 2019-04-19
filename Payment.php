@@ -14,17 +14,17 @@ include_once 'includes/header.php';
 	<div class="container">
 		<h1>Your order</h1><br>
 		<div class="order-method-div-top p-3 border-new border border-dark rounded" <?php if(isset($_SESSION['cart'])){?>style="border-bottom: 0px !important;<?php } ?>">
-			<label>Order method:</label>
+			<b>Order method:</b>
 			<!-- <?php
 				//echo POST['ORDER-METHOD'];
 			?> -->
 			<img src="">
-			<a href="addresscon.php" id="orderredirect">Change order method</a>
+			<a href="addresscon.php" id="orderredirect">Change order method</a><br><br>
 			<div>
-				<p>Current address: <?php
+				<p><b>Current address:</b> <?php
 				foreach($_SESSION['modaddress'] as $value)
 				{
-					echo $value['modadhname'] . "," . $value['modadpcode'] . "," . $value['modadcountry'];
+					echo $value['modadhname'] . ", " . $value['modadpcode'] . ", " . $value['modadcountry'];
 				}
 				?></p>
 			</div>
@@ -43,7 +43,7 @@ include_once 'includes/header.php';
 			<div class="p-3 mt-3 border-new border border-dark rounded paymentleft">
 				<div class="payment-method-div-third">
 					<div style="width: 98%;">
-						<h5>Pay using Cash on delivery</h5><br>
+						<h5><b>Pay using Cash on delivery</b></h5><br>
 						<p>Depending on your chosen order method above, your payment will be made using cash on delivery</p>
 						<?php
 		 					//if ($ordermethod == "pickup") {
@@ -75,14 +75,14 @@ include_once 'includes/header.php';
 
 				if ($modoralt == "modification") {
 					?>
-					<h4>Custom Modification</h4><br>
+					<h4><b>Custom Modification</b></h4><br>
 					<?php
 					foreach ($_SESSION['modcart'] as $item) {
 						if ($item['selectedpkg'] == 1) {?>
 							<div class="accordion-group" id="make">
 								<div class="accordion-heading">
 									<div class="border border-dark border-new accordion-toggle collapsed" data-toggle="collapse" href="#collapse_0" aria-expanded="false">
-										<h5 class="p-2">Selected package</h5><?php echo $item['selectedpkg'];?><br>
+										<b><h5 class="p-2">Selected package</h5><?php echo $item['selectedpkg'];?><br></b>
 										<a href="#">Click for package details
 											<i class="fa fa-caret-down"></i>
 										</a>
@@ -274,7 +274,7 @@ include_once 'includes/header.php';
 				?>
 				<form action="includes/payment.inc.php" method="post">
 					<div class="payment-btn pt-4">
-						<button type="submit" name="btnplaceorder" class="btn btn-danger" value="">Place order</button>
+						<button type="submit" name="btnplaceorder" class="btn btn-outline-danger" value="">Place order</button>
 					</div>
 				</form>
 			</div>
