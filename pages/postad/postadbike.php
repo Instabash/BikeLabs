@@ -27,7 +27,7 @@ include_once '../../includes/header.php';
 			<h4 class="p-3">Please add the following details to submit your advert</h4>
 			<div class="advertpick form-wrap clearfix border-new border border-dark rounded">
 				<form class="p-2" action="includes/postadbike.inc.php" method="post" enctype="multipart/form-data" id="bkform">
-					<div class="form-row p-2 pt-4 mb-3">
+					<div class="form-row formrowad p-2 pt-4 mb-3">
 						<label for="title">Title</label>
 						<div>
 							<div class="input-group">
@@ -35,20 +35,20 @@ include_once '../../includes/header.php';
 							</div>
 						</div>
 					</div>
-					<div class="form-row p-2">
+					<div class="form-row formrowad p-2">
 						<label>Condition</label>
 						<div class="select-wrap mb-2">
-							<select class="btn" name="bkcondition" id="title">
+							<select class="custom-select" name="bkcondition" id="title">
 								<option value="" disabled selected>Select</option>
 								<option value="New">New</option>
 								<option value="Used">Used</option>
 							</select>
 						</div>
 					</div>
-					<div class="form-row p-2">
+					<div class="form-row formrowad p-2">
 						<label>Make</label>
 						<div class="select-wrap mb-2">
-							<select class="btn" name="bkmake" id="title">
+							<select class="custom-select" name="bkmake" id="title">
 								<option value="" disabled selected>Select</option>
 								<option value="Honda">Honda</option>
 								<option value="SuperPower">SuperPower</option>
@@ -56,7 +56,7 @@ include_once '../../includes/header.php';
 							</select>
 						</div>
 					</div>
-					<div class="form-row p-2 pt-4 mb-3">
+					<div class="form-row formrowad p-2 pt-4 mb-3">
 						<label for="title">Year</label>
 						<div>
 							<div class="input-group">
@@ -64,7 +64,7 @@ include_once '../../includes/header.php';
 							</div>
 						</div>
 					</div>
-					<div class="form-row p-2">
+					<div class="form-row formrowad p-2">
 						<label>Description</label>
 						<div>
 							<div class="input-group mb-3">
@@ -72,7 +72,7 @@ include_once '../../includes/header.php';
 							</div>
 						</div>
 					</div>
-					<div class="form-row pl-2 pr-2 pt-2">
+					<div class="form-row formrowad pl-2 pr-2 pt-2">
 						<label>Price</label>
 						<div>
 							<div class="input-group mb-3">
@@ -80,7 +80,7 @@ include_once '../../includes/header.php';
 							</div>
 						</div>
 					</div>
-					<div class="form-row p-2">
+					<div class="form-row formrowad p-2">
 						<label>House name/Number</label>
 						<div class="">
 							<div class="input-group mb-3">
@@ -88,7 +88,7 @@ include_once '../../includes/header.php';
 							</div>
 						</div>
 					</div>
-					<div class="form-row p-2">
+					<div class="form-row formrowad p-2">
 						<label>Postcode</label>
 						<div class="">
 							<div class="input-group mb-3">
@@ -96,10 +96,10 @@ include_once '../../includes/header.php';
 							</div>
 						</div>
 					</div>
-					<div class="form-row p-2">
+					<div class="form-row formrowad p-2">
 						<label>Country/Region</label>
 						<div class="select-wrap mb-3">
-							<select class="btn" name="bkcountryregion" id="title">
+							<select class="custom-select" name="bkcountryregion" id="title">
 								<option value="IS" selected="selected">Islamabad</option>
 								<option value="KHI">Karachi</option>
 								<option value="LH">Lahore</option>
@@ -108,7 +108,7 @@ include_once '../../includes/header.php';
 							</select>
 						</div>
 					</div>
-					<div class="form-row p-2">
+					<div class="form-row formrowad p-2">
 						<label>Phone Number</label>
 						<div>
 							<div class="input-group mb-3">
@@ -116,7 +116,7 @@ include_once '../../includes/header.php';
 							</div>
 						</div>
 					</div>
-					<div class="form-row pl-2 pr-2 pb-3 field" align="left">
+					<div class="form-row formrowad p-2 imageupload" align="left">
 						<label>Attachment Instructions</label>
 						<ul style="list-style: none;">
 							<li>
@@ -132,9 +132,15 @@ include_once '../../includes/header.php';
 								<span class=" fileinput-button">
 									<br>
 									<span>Select Attachment</span>
-									<input type="file" name="files[]" id="files" multiple accept="image/jpeg, image/png, image/gif,"><br />
+									<input type="file" name="files[]" style="display: none !important;" id="files" multiple accept="image/jpeg, image/png, image/gif,"><br />
+									<input type="button" class="btn btn-outline-danger" value="Browse..." onclick="document.getElementById('files').click();" />
 								</span>
+							</li>
+							<li>
 								<output id="Filelist" style="max-width: 630px;"></output>
+							</li>
+							<li>
+								<span id="error" style="color: white;"></span>
 							</li>
 						</ul>
 					</div>
@@ -247,14 +253,15 @@ include_once '../../includes/header.php';
         {
             //To check file type according to upload conditions
             if (CheckFileType(readerEvt.type) == false) {
-            	alert("The file (" + readerEvt.name + ") does not match the upload conditions, You can only upload jpg/png/gif files");
+            	document.getElementById("error").innerHTML = "The file (" + readerEvt.name + ") does not match the upload conditions, You can only upload jpg/png/gif files";
             	e.preventDefault();
             	return;
             }
 
             //To check file Size according to upload conditions
             if (CheckFileSize(readerEvt.size) == false) {
-            	alert("The file (" + readerEvt.name + ") does not match the upload conditions, The maximum file size for uploads should not exceed 300 KB");
+            	// alert("The file (" + readerEvt.name + ") does not match the upload conditions, The maximum file size for uploads should not exceed 300 KB");
+            	document.getElementById("error").innerHTML = "The file("+ readerEvt.name + ") does not match the upload conditions,<br> The maximum file size for uploads should not exceed 300 KB)";
             	e.preventDefault();
             	return;
             }
@@ -263,10 +270,14 @@ include_once '../../includes/header.php';
             if (CheckFilesCount(AttachmentArray) == false) {
             	if (!filesCounterAlertStatus) {
             		filesCounterAlertStatus = true;
-            		alert("You have added more than 10 files. According to upload conditions you can upload 10 files maximum");
+            		document.getElementById("error").innerHTML = "You have added more than 10 files. According to upload conditions you can upload 10 files maximum";
             	}
             	e.preventDefault();
             	return;
+            }
+            else
+            {
+            	document.getElementById("error").innerHTML = " ";
             }
         }
 
