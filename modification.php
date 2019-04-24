@@ -15,7 +15,7 @@ include_once 'includes/header.php';
 			<h3>Step 1: Select your motorbike</h3><br>
 			<h6>Choose the Model, Year, and Make of your Motorbike</h6><br>
 			<div class="form-row modmarginleft">
-				<div class="col-3" >
+				<div class="col-4 select-small" >
 					<label style="padding: 2px;">Model</label>
 					<select class="custom-select" id="modelselect" name="modmodelselect">
 						<option selected value="">Choose...</option>
@@ -26,7 +26,7 @@ include_once 'includes/header.php';
 				</div>
 			</div><br>
 			<div class="form-row modmarginleft">
-				<div class="col-3">
+				<div class="col-4 select-small">
 					<label style="padding: 2px;">Year</label>
 					<select class="custom-select" id="yearselect" name="modyearselect">
 						<option selected value="">Choose...</option>
@@ -37,7 +37,7 @@ include_once 'includes/header.php';
 				</div>
 			</div><br>
 			<div class="form-row modmarginleft">
-				<div class="col-3">
+				<div class="col-4 select-small">
 					<label style="padding: 2px;">Make</label>
 					<select class="custom-select" name="modmakeselect">
 						<option selected value="">Choose...</option>
@@ -47,6 +47,7 @@ include_once 'includes/header.php';
 					</select>
 				</div>
 			</div><br><br>
+
 			<?php
 			if (isset($_GET['error'])) {
 				if ($_GET['error'] == "emptyfields") 

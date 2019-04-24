@@ -4,7 +4,7 @@
 ?>
 <!-- New Bikes -->
 <section id="spparts" class="section sppartsection">
-	<div class="container" style="max-width: 1410px; min-width: 1017px !important;">
+	<div class="container">
 		<h3>New Spareparts</h3> <br>
 		<div class="search-page-new">
 			<div class="row">
@@ -149,7 +149,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-10 search-listing pull-right">
+				<!-- <div class="col-md-10 search-listing pull-right">
 					<div class="results" id="myUL">
 						<div class="all honda 70cc filterDiv  m-3 border-new border border-dark rounded">
 							<a href="">
@@ -261,7 +261,7 @@
 								</div>
 							</a>
 						</div>
-						<!-- <div class="
+						<div class="
 							<?php 
 								// POST[''] 
 							?> 
@@ -274,9 +274,9 @@
 									<label class="price">3235</label>
 								</div>
 							</a>
-						</div> -->
+						</div> 
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>	

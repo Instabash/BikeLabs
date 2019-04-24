@@ -1,10 +1,10 @@
 <?php
-	$title = 'New motorbikes';
-	include_once 'includes/header.php';
+$title = 'New motorbikes';
+include_once 'includes/header.php';
 ?>
 <!-- New Bikes -->
 <section id="spparts" class="section sppartsection">
-	<div class="container" style="max-width: 1410px; min-width: 1017px !important;">
+	<div class="container">
 		<h3>New motorbikes</h3> <br>
 		<div class="search-page-new">
 			<div class="row">
@@ -24,31 +24,31 @@
 											<li>
 												<label class="filter-check clearfix">
 													<input type="checkbox" rel="honda" id="honda" />
-        											<label for="honda">Honda</label>
+													<label for="honda">Honda</label>
 												</label>
 											</li>
 											<li>
 												<label class="filter-check clearfix">
 													<input type="checkbox" rel="superstar" id="superstar" />
-        											<label for="superstar">Superstar</label>
+													<label for="superstar">Superstar</label>
 												</label>
 											</li>
 											<li>
 												<label class="filter-check clearfix">
 													<input type="checkbox" rel="superpower" id="superpower" />
-        											<label for="superpower">Superpower</label>
+													<label for="superpower">Superpower</label>
 												</label>
 											</li>
 											<li>
 												<label class="filter-check clearfix">
 													<input type="checkbox" rel="unique" id="unique" />
-        											<label for="unique">Unique</label>
+													<label for="unique">Unique</label>
 												</label>
 											</li>
 											<li>
 												<label class="filter-check clearfix">
 													<input type="checkbox" rel="yamaha" id="yamaha" />
-        											<label for="yamaha">Yamaha</label>
+													<label for="yamaha">Yamaha</label>
 												</label>
 											</li>
 										</ul>
@@ -68,19 +68,19 @@
 											<li>
 												<label class="filter-check clearfix">
 													<input type="checkbox" rel="70cc" id="70cc" />
-        											<label for="70cc">70cc</label>
+													<label for="70cc">70cc</label>
 												</label>
 											</li>
 											<li>
 												<label class="filter-check clearfix">
 													<input type="checkbox" rel="125cc" id="125cc" />
-        											<label for="125cc">125cc</label>
+													<label for="125cc">125cc</label>
 												</label>
 											</li>
 											<li>
 												<label class="filter-check clearfix">
 													<input type="checkbox" rel="150cc" id="150cc" />
-        											<label for="150cc">150cc</label>
+													<label for="150cc">150cc</label>
 												</label>
 											</li>
 										</ul>
@@ -149,7 +149,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-10 search-listing pull-right">
+				<!-- <div class="col-md-10 search-listing pull-right">
 					<div class="results" id="myUL">
 						<div class="all honda 70cc filterDiv  m-3 border-new border border-dark rounded">
 							<a href="">
@@ -261,7 +261,7 @@
 								</div>
 							</a>
 						</div>
-						<!-- <div class="
+						 <div class="
 							<?php 
 								// POST[''] 
 							?> 
@@ -274,24 +274,24 @@
 									<label class="price">3235</label>
 								</div>
 							</a>
-						</div> -->
+						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>	
 </section>
 <script type="text/javascript">
-    	$('div.tags').find('input:checkbox').on('click', function() {
-		    let
-		    els = $('.results > div').hide(),
-		    checked = $('div.tags').find('input:checked').each(function() {
-		        els.filter('.'+$(this).attr('rel')).show();
-		    });
-		    if (!checked.length) els.show();
+	$('div.tags').find('input:checkbox').on('click', function() {
+		let
+		els = $('.results > div').hide(),
+		checked = $('div.tags').find('input:checked').each(function() {
+			els.filter('.'+$(this).attr('rel')).show();
 		});
+		if (!checked.length) els.show();
+	});
 </script>
 
 <?php
-	include_once 'includes/footer.php';
+include_once 'includes/footer.php';
 ?>

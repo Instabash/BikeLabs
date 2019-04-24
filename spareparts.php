@@ -3,18 +3,11 @@ session_start();
 $title = 'Spare Parts';
 include_once 'includes/header.php';
 include_once 'includes/dbh.inc.php';
-
 $spaartsql = "SELECT * FROM post_ad WHERE ad_type = 'sparepart' ORDER BY `ad_date` DESC";;
 $stmt = mysqli_stmt_init($conn);
 ?>
-<!-- spare parts -->
-<style>
-	body{
-
-	}
-</style>
 <section id="spparts" class="section sppartsection">
-	<div class="container" style="max-width: 1410px; min-width: 1017px !important;">
+	<div class="container">
 		<h2>Spare parts</h2> <br>
 		<div class="row" >
 			<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search.." style="max-width: 100% !important;">
@@ -158,8 +151,8 @@ $stmt = mysqli_stmt_init($conn);
 					</div>
 				</div>
 			</div>
-			<div class="col-md-10 search-listing pull-right">
-				<div class="results" id="myUL">
+			<div class="col-md-10">
+				<div class="row">
 					<?php 
 					if(!mysqli_stmt_prepare($stmt, $spaartsql))
 					{
@@ -188,15 +181,17 @@ $stmt = mysqli_stmt_init($conn);
 									//echo $row['ad_image_name'];
 									
 									?>
-									<div class="all honda 70cc filterDiv m-3 border-new border border-dark rounded">
-										<a href="pages/spareparts/spareparttemp.php?partid=<?php echo $row['ad_id'] ?>">
-											<img src="images/sparepartimg/<?php echo $row1['ad_image_name'] ?>">
-											<div>
-												<label class="productName"><?php echo $row['ad_title'] ?></label><br>
-												<label>Price:</label>
-												<label class="price"><?php echo $row['ad_price'] ?></label>
-											</div>
-										</a>
+									<div class="col-md-4">
+										<div class="product-item">
+											<a href="pages/spareparts/spareparttemp.php?partid=<?php echo $row['ad_id'] ?>">
+												<img src="images/sparepartimg/<?php echo $row1['ad_image_name'] ?>">
+												<div>
+													<label class="productName"><?php echo $row['ad_title'] ?></label><br>
+													<label>Price:</label>
+													<label class="price"><?php echo $row['ad_price'] ?></label>
+												</div>
+											</a>
+										</div>
 									</div>
 									<?php 
 								}			

@@ -1,5 +1,5 @@
 <?php
-	include_once 'includes/header.php';
+include_once 'includes/header.php';
 ?>
 <!-- Index section -->
 <div id="showcase">
@@ -24,10 +24,23 @@
 		</h2>
 		<p class="lead">Modify your motorbike according to your specific preferences.</br> Add or remove parts from and to your motorbike, change the chassis, or alter the engine.</p>
 		<a href="modification.php" class="btn btn-outline-danger mb mt">Start Modifying Now</a>
-		<div class='slider border-new border border-dark rounded'>
+		<!-- <div class='slider border-new border border-dark rounded'>
 		  <div class='slide1'></div>
 		  <div class='slide2'></div>
 		  <div class='slide3'></div>
+		</div> -->
+		<div id="carouselExampleInterval" class="carousel slide" data-ride="carousel" data-interval="1000">
+			<div class="carousel-inner" >
+				<div class="carousel-item active" data-interval="3000">
+					<img src="images/modify.jpg" class="d-block w-100" alt="...">
+				</div>
+				<div class="carousel-item" data-interval="3000">
+					<img src="images/modify2.jpg" class="d-block w-100" alt="...">
+				</div>
+				<div class="carousel-item" data-interval="3000">
+					<img src="images/modify3.jpg" class="d-block w-100" alt="...">
+				</div>
+			</div>
 		</div>
 	</div>
 </section>
@@ -42,10 +55,23 @@
 		</h2>
 		<p class="lead">Modify your motorbike according to your specific preferences.</br> Add or remove parts from and to your motorbike, change the chassis, or alter the engine.</p>
 		<a href="alteration.php" class="btn btn-outline-danger mb mt">Start Alteration Now</a>
-		<div class='slider border-new border border-dark rounded'>
+		<!-- <div class='slider border-new border border-dark rounded'>
 		  <div class='slide1'></div>
 		  <div class='slide2'></div>
 		  <div class='slide3'></div>
+		</div> -->
+		<div id="carouselExampleInterval" class="carousel slide" data-ride="carousel" data-interval="1000">
+			<div class="carousel-inner" >
+				<div class="carousel-item active" data-interval="3000">
+					<img src="images/modify.jpg" class="d-block w-100" alt="...">
+				</div>
+				<div class="carousel-item" data-interval="3000">
+					<img src="images/modify2.jpg" class="d-block w-100" alt="...">
+				</div>
+				<div class="carousel-item" data-interval="3000">
+					<img src="images/modify3.jpg" class="d-block w-100" alt="...">
+				</div>
+			</div>
 		</div>
 	</div>
 </section>
@@ -61,10 +87,23 @@
 		<p class="lead">Purchase new motorbikes, or spare parts that your bike needs.</p>
 		<p class="lead">Choose from a variety of different vendors and retailers.</p>
 		<a href="spparts.php" class="btn btn-outline-danger mb mt">Purchase</a>
-		<div class='slider border-new border border-dark rounded'>
+		<!-- <div class='slider border-new border border-dark rounded'>
 		  <div class='slide4'></div>
 		  <div class='slide5'></div>
 		  <div class='slide6'></div>
+		</div> -->
+		<div id="carouselExampleInterval" class="carousel slide" data-ride="carousel" data-interval="1000">
+			<div class="carousel-inner" >
+				<div class="carousel-item active" data-interval="3000">
+					<img src="images/modify.jpg" class="d-block w-100" alt="...">
+				</div>
+				<div class="carousel-item" data-interval="3000">
+					<img src="images/modify2.jpg" class="d-block w-100" alt="...">
+				</div>
+				<div class="carousel-item" data-interval="3000">
+					<img src="images/modify3.jpg" class="d-block w-100" alt="...">
+				</div>
+			</div>
 		</div>
 	</div>
 </section>
@@ -80,14 +119,27 @@
 		<p class="lead">Sell your motorbike or motorbike parts.</p>
 		<p class="lead">Choose from a variety of different vendors and retailers.</p>
 		<a href="postad.php" class="btn btn-outline-danger mb mt">Post An Ad.</a>
-		<div class='slider border-new border border-dark rounded'>
+		<!-- <div class='slider border-new border border-dark rounded'>
 		  <div class='slide7'></div>
 		  <div class='slide8'></div>
 		  <div class='slide9'></div>
+		</div> -->
+		<div id="carouselExampleInterval" class="carousel slide" data-ride="carousel" data-interval="1000">
+			<div class="carousel-inner" >
+				<div class="carousel-item active" data-interval="3000">
+					<img src="images/modify.jpg" class="d-block w-100" alt="...">
+				</div>
+				<div class="carousel-item" data-interval="3000">
+					<img src="images/modify2.jpg" class="d-block w-100" alt="...">
+				</div>
+				<div class="carousel-item" data-interval="3000">
+					<img src="images/modify3.jpg" class="d-block w-100" alt="...">
+				</div>
+			</div>
 		</div>
 	</div>
 </section>
 
 <?php
-	include_once 'includes/footer.php';
+include_once 'includes/footer.php';
 ?>
