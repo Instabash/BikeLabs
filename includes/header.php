@@ -8,7 +8,7 @@ if(!isset($_SESSION))
 <html>
 <head>
 	<!-- meta tag -->
-	<meta name="viewport" content="width=device-width, maximum-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- title -->
 	<title><?php if (isset($title)) {echo $title;}else {echo "BikeLabs";} ?></title>
@@ -40,6 +40,7 @@ if(!isset($_SESSION))
 	<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" /> -->
 	<link rel="stylesheet" type="text/css" href="/BikeLabs/css/select2.min.css">
 	<link rel="stylesheet" type="text/css" href="/BikeLabs/css/dropzone.css">
+	<link href="/BikeLabs/css/simple-sidebar.css" rel="stylesheet">
 
 	<!---------------------------------CSS end---------------------------------->
 
@@ -155,7 +156,7 @@ if(!isset($_SESSION))
 					if (isset($_SESSION['userId'])) {?>
 						<div id="cartIcon" style="margin-right: 20px;">
 							<a href="/BikeLabs/cart.php">
-								<img id="image" style="width: 40px;margin-right: 20px;" src="/BikeLabs/images/cart3.svg">
+								<img id="image" style="width: 30px;margin-right: 20px;" src="/BikeLabs/images/cart3.svg">
 								<div id="text" style = "color: #dc3545;">
 									<span class="day"><?php
 									if (isset($_SESSION['cart'])) {
@@ -182,12 +183,9 @@ if(!isset($_SESSION))
 						<?php
 					}
 					?>
-
-
-
 					<form id="demo-2" style="margin-left: 10px;" >
 						<input type="search" placeholder="Search">
 					</form>
-				</div>	
-			</nav>
-		</header>
+			</div>	
+		</nav>
+	</header>
