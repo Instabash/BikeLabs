@@ -1685,3 +1685,8 @@ input[type="radio"] {
     align-items: stretch;
   }
 }
+
+.newbtn{
+  background-color: white !important;
+  border: none !important;
+}
