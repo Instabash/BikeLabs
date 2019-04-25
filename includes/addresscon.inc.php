@@ -2,6 +2,7 @@
 session_start();
 unset($_SESSION['modaddress']);
 unset($_SESSION['altaddress']);
+unset($_SESSION['modORalt']);
 
 if (isset($_SESSION['modcart'])) {
 	if (isset($_POST['homepickbtn'])) {
@@ -54,7 +55,7 @@ if (isset($_SESSION['modcart'])) {
 		}
 	}
 }
-if (isset($_SESSION['altcart'])) {
+elseif (isset($_SESSION['altcart'])) {
 	if (isset($_POST['homepickbtn'])) {
 		$title = $_POST['title'];
 		$fname = $_POST['fname'];
@@ -63,7 +64,7 @@ if (isset($_SESSION['altcart'])) {
 		$countryreg = $_POST['countryorregion'];
 		$hnameorno = $_POST['hnameorno'];
 		$pcode = $_POST['pcode'];
-		$del_method = $_POST['pickup-type-radio'];
+		$del_method = 1;
 		if ($del_method == 1) {
 			$del_method_text = "Home Pickup";
 		}
@@ -81,6 +82,7 @@ if (isset($_SESSION['altcart'])) {
 			'altadpcode' => $pcode
 		);
 		$_SESSION['modORalt'] = "alteration";
+		// echo $_SESSION['modORalt'];;
 		header("Location: ../payment.php");
 	}
 }

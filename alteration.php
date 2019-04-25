@@ -83,7 +83,7 @@ include_once 'includes/header.php';
 							</div>
 							<label class="btncreative btn-1 btn-1a packageradio">
 								Select
-								<input type="radio" name="radiopkg" value="pkg1">
+								<input type="radio" name="altradiopkg" value="pkg1">
 							</label>
 						</div>
 					</div>
@@ -117,7 +117,7 @@ include_once 'includes/header.php';
 							</div>
 							<label class="btncreative btn-1 btn-1a packageradio">
 								Select
-								<input type="radio" name="radiopkg" value="pkg1">
+								<input type="radio" name="altradiopkg" value="pkg2">
 							</label>
 						</div>
 					</div>

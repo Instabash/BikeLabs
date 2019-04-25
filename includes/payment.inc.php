@@ -1,6 +1,7 @@
 <?php
 session_start();
 $modoralt = $_SESSION['modORalt'];
+
 if (isset($_POST['btnplaceorder'])) {
 	if ($modoralt == "modification") {
 		include_once 'dbh.inc.php';
@@ -110,6 +111,7 @@ if (isset($_POST['btnplaceorder'])) {
 					{	
 						mysqli_stmt_bind_param($stmt, "sssssss", $orderid, $fullname, $address, $del_method, $order_summ, $pay_type, $address);
 						mysqli_stmt_execute($stmt);
+						unset($_SESSION['modcart']);
 						header("Location: ../orderconfirmation.php?order=success");
 					}
 				}
@@ -132,7 +134,7 @@ if (isset($_POST['btnplaceorder'])) {
 		// echo "selectedparts: " . $selectedparts; echo "<br>";
 		// echo "address: " .$address;
 	}
-	if ($modoralt == "alteration") {
+	elseif ($modoralt == "alteration") {
 		include_once 'dbh.inc.php';
 
 		$ordertype = "Alteration";
@@ -225,6 +227,7 @@ if (isset($_POST['btnplaceorder'])) {
 					}
 					else
 					{	
+						// echo $orderid . $fullname . $address . $del_method . $order_summ . $pay_type . $address;
 						mysqli_stmt_bind_param($stmt, "sssssss", $orderid, $fullname, $address, $del_method, $order_summ, $pay_type, $address);
 						mysqli_stmt_execute($stmt);
 						header("Location: ../orderconfirmation.php?order=success");

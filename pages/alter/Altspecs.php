@@ -25,7 +25,7 @@ if (isset($_GET['pkg'])) {
 							<div class="border-dark border border-new">
 							<?php
 							$pkg1 = array(
-								"Remove jump cover","Reflectors","Remove mudguard","Body paint (User defined):"
+								"Chain spocket","Silencer","125cc Carburetor","Remove filter"
 							);
 							foreach ($pkg1 as $key) {?>
 								<div>
@@ -55,7 +55,7 @@ if (isset($_GET['pkg'])) {
 							<div class="border-dark border border-new">
 							<?php
 							$pkg2 = array(
-								"Remove jump cover","Reflectors","HID Lights","Remove mudguard","Add theme (User defined):","Body paint (User defined):"
+								"Piston (0, 50, 90)","Weights","Head removal","Cylinder removal"
 							);
 							foreach ($pkg2 as $key) {?>
 								<div class="">
@@ -97,7 +97,7 @@ if (isset($_GET['pkg'])) {
 						<div class="border-dark border border-new">
 						<?php
 						$pkg3 = array(
-							"Remove jump cover","Reflectors","HID Lights","Remove mudguard","Short meter","Remove headlight holders","Body paint (User defined):","Add theme (User defined):"
+							"Genuine 70cc Carburetor","Genuine Piston","Genuine head cylinder","Genuine chain spocket","Genuine silencer","Genuine pipes"
 						);
 						foreach ($pkg3 as $key) 
 						{
