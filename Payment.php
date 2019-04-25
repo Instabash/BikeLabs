@@ -21,12 +21,27 @@ include_once 'includes/header.php';
 			<img src="">
 			<a href="addresscon.php" id="orderredirect">Change order method</a><br><br>
 			<div>
+				<?php
+					if ($modoralt == "modification") 
+					{
+					?>
 				<p><b>Current address:</b> <?php
 				foreach($_SESSION['modaddress'] as $value)
 				{
 					echo $value['modadhname'] . ", " . $value['modadpcode'] . ", " . $value['modadcountry'];
 				}
-				?></p>
+				?></p><?php 
+				}
+				if ($modoralt == "alteration") 
+					{
+				?>
+				<p><b>Current address:</b> <?php
+				foreach($_SESSION['altaddress'] as $value)
+				{
+					echo $value['altadhname'] . ", " . $value['altadpcode'] . ", " . $value['altadcountry'];
+				}
+				?></p><?php 
+				}?>
 			</div>
 		</div>
 		<?php
@@ -97,7 +112,7 @@ include_once 'includes/header.php';
 									</ul>
 								</div>
 							</div>
-							<div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div>
+							<!-- <div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div> -->
 							<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><?php echo $item['description'];?><br></div>
 							<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><?php echo $item['price']." Rs.";?><br></div><?php
 						}
@@ -122,8 +137,8 @@ include_once 'includes/header.php';
 									</ul>
 								</div>
 							</div>
-							<div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div>
-							<div class="border border-dark border-new"><h5 class="p-2">Theme</h5><?php echo $item['theme'];?><br></div>
+							<!-- <div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div>
+							<div class="border border-dark border-new"><h5 class="p-2">Theme</h5><?php echo $item['theme'];?><br></div> -->
 							<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><?php echo $item['description'];?><br></div>
 							<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><?php echo $item['price']." Rs.";?><br></div><?php
 						}
@@ -150,8 +165,8 @@ include_once 'includes/header.php';
 									</ul>
 								</div>
 							</div>
-							<div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div>
-							<div class="border border-dark border-new"><h5 class="p-2">Theme</h5><?php echo $item['theme'];?><br></div>
+							<!-- <div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div>
+							<div class="border border-dark border-new"><h5 class="p-2">Theme</h5><?php echo $item['theme'];?><br></div> -->
 							<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><?php echo $item['description'];?><br></div>
 							<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><?php echo $item['price']." Rs.";?><br></div>
 							
@@ -178,15 +193,15 @@ include_once 'includes/header.php';
 									</ul>
 								</div>
 							</div>
-							<div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div>
-							<div class="border border-dark border-new"><h5 class="p-2">Theme</h5><?php echo $item['theme'];?><br></div>
+							<!-- <div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div>
+							<div class="border border-dark border-new"><h5 class="p-2">Theme</h5><?php echo $item['theme'];?><br></div> -->
 							<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><?php echo $item['description'];?><br></div>
 							<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><?php echo $item['price']." Rs.";?><br></div>
 
 						<?php }
 					}
 				}
-				if ($modoralt == "alteration") {
+				elseif ($modoralt == "alteration") {
 					?>
 					<h4>Custom Alteration</h4><br>
 					<?php
@@ -203,10 +218,10 @@ include_once 'includes/header.php';
 								</div>
 								<div id="collapse_0" class="accordion-body in collapse" style="">
 									<ul style="list-style: none; padding: 10px;">
-										<li>Remove jump cover</li>
-										<li>Reflectors</li>
-										<li>Remove mudguard</li>
-										<li>Body paint (User defined)</li>
+										<li>Chain spocket</li>
+										<li>Silencer</li>
+										<li>125cc Carburetor</li>
+										<li>Remove filter</li>
 									</ul>
 								</div>
 							</div>
@@ -226,12 +241,10 @@ include_once 'includes/header.php';
 								</div>
 								<div id="collapse_0" class="accordion-body in collapse" style="">
 									<ul style="list-style: none; padding: 10px;">
-										<li>Remove jump cover</li>
-										<li>Reflectors</li>
-										<li>HID Lights</li>
-										<li>Remove mudguard</li>
-										<li>Add theme (User defined)</li>
-										<li>Body paint (User defined)</li>
+										<li>Piston (0, 50, 90)</li>
+										<li>Weights</li>
+										<li>Head removal</li>
+										<li>Cylinder removal</li>
 									</ul>
 								</div>
 							</div>
@@ -252,19 +265,17 @@ include_once 'includes/header.php';
 								</div>
 								<div id="collapse_0" class="accordion-body in collapse" style="">
 									<ul style="list-style: none; padding: 10px;">
-										<li>Remove jump cover</li>
-										<li>Reflectors</li>
-										<li>HID Lights</li>
-										<li>Remove mudguard</li>
-										<li>Short meter</li>
-										<li>Remove headlight holders</li>
-										<li>Add theme (User defined)</li>
-										<li>Body paint (User defined)</li>
+										<li>Genuine 70cc Carburetor</li>
+										<li>Genuine Piston</li>
+										<li>Genuine head cylinder</li>
+										<li>Genuine chain spocket</li>
+										<li>Genuine silencer</li>
+										<li>Genuine pipes</li>
 									</ul>
 								</div>
 							</div>
-							<div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div>
-							<div class="border border-dark border-new"><h5 class="p-2">Theme</h5><?php echo $item['theme'];?><br></div>
+							<!-- <div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div>
+							<div class="border border-dark border-new"><h5 class="p-2">Theme</h5><?php echo $item['theme'];?><br></div> -->
 							<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><?php echo $item['description'];?><br></div>
 							<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><?php echo $item['price']." Rs.";?><br></div>
 							
