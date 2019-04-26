@@ -1019,7 +1019,7 @@ input::-webkit-input-placeholder {
 .form-inline input {
   vertical-align: middle;
   margin: 5px 10px 5px 0;
-  padding: 10px;
+  /*padding: 10px;*/
   background-color: #fff;
   border: 1px solid #ddd;
 }
@@ -1694,4 +1694,96 @@ h1, h2, h3, h4, h5, h6, label, li, p{
 .btn-1{
   border:3px solid black !important;
   color: black !important;
+}
+.pagination>li {
+    display: inline;
+}
+div.dataTables_wrapper div.dataTables_paginate {
+    margin: 0;
+    /* white-space: nowrap; */
+    text-align: right;
+}
+.pagination>li:first-child>a, .pagination>li:first-child>span {
+    margin-left: 0;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.pagination>.disabled>a, .pagination>.disabled>a:focus, .pagination>.disabled>a:hover, .pagination>.disabled>span, .pagination>.disabled>span:focus, .pagination>.disabled>span:hover {
+    color: #777;
+    cursor: not-allowed;
+    background-color: #fff;
+    border-color: #ddd;
+}
+.pagination>li>a {
+    background: #fafafa;
+    color: #666;
+}
+.pagination>li>a, .pagination>li>span {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #337ab7;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    z-index: 3;
+    color: #fff;
+    cursor: default;
+    background-color: #337ab7;
+    border-color: #337ab7;
+}
+
+div.dataTables_wrapper .row
+{
+  width: 100%;
+}
+
+div.dataTables_wrapper .row .col-sm-6 label 
+{
+  height:35.75px; 
+}
+
+div.dataTables_wrapper .row .col-sm-6 .form-control 
+{
+  height:auto; 
+}
+
+div.dataTables_wrapper .row .col-sm-6 select
+{
+  margin:0 5px 0 5px;
+}
+
+.content2 {
+    min-height: 250px;
+    padding: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.box-header {
+    color: #444;
+    display: block;
+    padding: 10px;
+    position: relative;
+}
+.box-title {
+    display: inline-block;
+    font-size: 18px;
+    margin: 0;
+    line-height: 1;
+}
+
+@font-face{
+  font-family: Glyphicons Halflings;
+  src:url(glyphicons-halflings-regular.ttf);
+}
+
+table.dataTable thead .sorting_asc:after {
+    content: "fas fa-sort-up";
 }
