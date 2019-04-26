@@ -40,8 +40,12 @@ if(!isset($_SESSION))
 	<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" /> -->
 	<link rel="stylesheet" type="text/css" href="/BikeLabs/css/select2.min.css">
 	<link rel="stylesheet" type="text/css" href="/BikeLabs/css/dropzone.css">
+
+	<!-- sidebar js -->
 	<link href="/BikeLabs/css/simple-sidebar.css" rel="stylesheet">
 
+	<!-- datatables css -->
+	<link href="/BikeLabs/css/dataTables.bootstrap.min.css" rel="stylesheet">
 	<!---------------------------------CSS end---------------------------------->
 
 	<!---------------------------------Scripts---------------------------------->
@@ -63,16 +67,19 @@ if(!isset($_SESSION))
 	<script src="/BikeLabs/script/select2.min.js"></script>
 
 	<!--custom js-->
-	
 	<script src="/BikeLabs/script/main.js"></script>
 	<script src="/BikeLabs/script/imageupload.js"></script>
 	<script src="/BikeLabs/script/getparameters.js"></script>
+
 	<!-- isotope script  -->
 	<script src="/BikeLabs/script/isotope.pkgd.min.js"></script>
 
 	<!-- dropzone js -->
 	<script src="/BikeLabs/script/dropzone.js"></script>
-	
+
+	<!-- Datatables js -->
+	<script src="/BikeLabs/script/jquery.dataTables.min.js"></script>
+	<script src="/BikeLabs/script/dataTables.bootstrap.js"></script>
 	<!---------------------------------Scripts end---------------------------------->
 
 </head>
