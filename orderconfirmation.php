@@ -10,7 +10,7 @@ include_once 'includes/header.php';
 include_once 'includes/dbh.inc.php';
 ?>
 
-<section id="" class="section orderconsec">
+<section id="" class="section orderconsec content">
 	<div class="container">
 		<div class="pb-4">
 			<h3>Thank you for your order</h3>

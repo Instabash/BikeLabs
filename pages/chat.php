@@ -14,7 +14,7 @@
 // }
 
 ?>
-<section id="biketemplate" class="section biketemplatesec">
+<section id="biketemplate" class="section biketemplatesec content">
 	<div class="container">
 		<div class="messaging">
 			<div class="inbox_msg">

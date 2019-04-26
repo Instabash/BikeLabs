@@ -9,16 +9,17 @@ $title = 'Modification';
 include_once 'includes/header.php';
 ?>
 <!-- Modify section -->
-<section id="modify" class="section modsection">
+<section id="modify" class="section modsection content">
 	<form id="modform1" action = "includes/modprocess.inc.php" method = "post" autocomplete="off"> 
 		<div class="container">
 			<h3>Step 1: Select your motorbike</h3><br>
 			<h6>Choose the Model, Year, and Make of your Motorbike</h6><br>
 			<div class="form-row modmarginleft">
-				<div class="col-4 select-small" >
-					<label style="padding: 2px;">Model</label>
-					<select class="custom-select" id="modelselect" name="modmodelselect">
-						<option selected value="">Choose...</option>
+				<div class="col-4 select-small pb-4 pt-4">
+					<!-- <label style="padding: 2px;">Model</label> -->
+					<label class="pr-2">Model</label>
+					<select class="custom-select js-example-responsive model" id="modelselect" name="modmodelselect">
+						<option selected value="">Model</option>
 						<option value="70cc">70cc</option>
 						<option value="150cc">125cc</option>
 						<option value="125cc">150cc</option>
@@ -26,10 +27,10 @@ include_once 'includes/header.php';
 				</div>
 			</div><br>
 			<div class="form-row modmarginleft">
-				<div class="col-4 select-small">
-					<label style="padding: 2px;">Year</label>
-					<select class="custom-select" id="yearselect" name="modyearselect">
-						<option selected value="">Choose...</option>
+				<div class="col-4 select-small pb-4">
+					<label class="pr-2">Year</label>
+					<select class="custom-select js-example-responsive make" id="yearselect" name="modyearselect">
+						<option selected value="">Year</option>
 						<option value="2018">2018</option>
 						<option value="2017">2017</option>
 						<option value="2016">2016</option>
@@ -37,10 +38,10 @@ include_once 'includes/header.php';
 				</div>
 			</div><br>
 			<div class="form-row modmarginleft">
-				<div class="col-4 select-small">
-					<label style="padding: 2px;">Make</label>
-					<select class="custom-select" name="modmakeselect">
-						<option selected value="">Choose...</option>
+				<div class="col-4 select-small pb-4">
+					<label class="pr-2">Make</label>
+					<select class="custom-select js-example-responsive year" name="modmakeselect">
+						<option selected value="">Make</option>
 						<option value="Honda">Honda</option>
 						<option value="SuperPower">SuperPower</option>
 						<option value="Unique">Unique</option>
@@ -52,10 +53,10 @@ include_once 'includes/header.php';
 			if (isset($_GET['error'])) {
 				if ($_GET['error'] == "emptyfields") 
 				{
-					echo '<p style="color:red;padding:5px;";>Please select all fields</p>';
+					echo '<p style="color:red !important ;padding:5px;";>Please select all fields</p>';
 				}
 				elseif ($_GET['error'] == "nopkgselected") {
-					echo '<p style="color:red;padding:5px;";>Please select a package</p>';
+					echo '<p style="color:red !important ;padding:5px;";>Please select a package</p>';
 				}
 			}
 			?>
@@ -176,6 +177,14 @@ include_once 'includes/header.php';
 		$('.packageradio').removeClass('activeradio');
 		$(this).addClass('activeradio');
 	});
+</script>
+<script>
+	$(".js-example-responsive").select2({
+		minimumResultsForSearch: -1,
+		placeholder: "Select..",
+    	width: 'resolve' // need to override the changed default
+	});
+	
 </script>
 <!-- Footer -->
 <?php

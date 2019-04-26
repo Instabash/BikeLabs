@@ -3,7 +3,7 @@
 	include_once 'includes/header.php';
 ?>
 <!-- New Bikes -->
-<section id="spparts" class="section sppartsection">
+<section id="spparts" class="section sppartsection content">
 	<div class="container">
 		<h3>New Spareparts</h3> <br>
 		<div class="search-page-new">

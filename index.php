@@ -17,7 +17,7 @@ include_once 'includes/header.php';
 	</div>
 </div>
 <!-- Modify section -->
-<section id="modify" class="section">
+<section id="modify" class="section content">
 	<div class="container">
 		<h2 class="section-head">
 			<i class="fas fa-cogs"></i> <h1 class="unselectable">Body Modification</h1>

@@ -10,7 +10,7 @@ $modoralt = $_SESSION['modORalt'];
 $title = 'Payment';
 include_once 'includes/header.php';
 ?>
-<section id="payment" class="section paymentsec">
+<section id="payment" class="section paymentsec content">
 	<div class="container">
 		<h1>Your order</h1><br>
 		<div class="order-method-div-top p-3 border-new border border-dark rounded" <?php if(isset($_SESSION['cart'])){?>style="border-bottom: 0px !important;<?php } ?>">

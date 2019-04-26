@@ -2,7 +2,7 @@
 include_once 'includes/header.php';
 ?>
 
-<section id="signup" class="section fontsec">
+<section id="signup" class="section fontsec content">
 	<div class="container">
 		<h3 class="p-4">Login</h3>
 		<div class="border border-dark border-new rounded pt-5">

@@ -6,7 +6,7 @@ include_once 'includes/dbh.inc.php';
 $spaartsql = "SELECT * FROM post_ad WHERE ad_type = 'bike' ORDER BY `ad_date` DESC";;
 $stmt = mysqli_stmt_init($conn);
 ?>
-<section id="spparts" class="section sppartsection">
+<section id="spparts" class="section sppartsection content">
 	<div class="container">
 		<h2>Used motorbikes</h2> <br>
 		<div class="row">

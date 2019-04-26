@@ -12,7 +12,7 @@ include_once '../../includes/header.php';
 if (isset($_GET['pkg'])) {
 	$_SESSION['packageselected'] = $_GET['pkg'];
 	?>
-	<section id="modspecs" class="section fontsec">
+	<section id="modspecs" class="section fontsec content">
 		<form action="../../includes/moddetailprocess.inc.php" method="post">
 			<div class="container">
 				<div>

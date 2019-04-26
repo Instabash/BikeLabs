@@ -8,7 +8,7 @@ if(!isset($_SESSION['userUId'])){
 $title = 'Post an advert';
 include_once '../../includes/header.php';
 ?>
-<section id="postad" class="section postadsection">
+<section id="postad" class="section postadsection content">
 	<div class="container">
 		<div>
 			<h4>What are you selling?</h4>

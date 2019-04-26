@@ -4,7 +4,7 @@ include_once 'includes/dbh.inc.php';
 include_once 'includes/header.php';
 	// $part_id = $_GET["partid"];
 ?>
-<section id="cart" class="section fontsec">
+<section id="cart" class="section fontsec content">
 	<div class="container">
 		<div class="paymentmain" style="margin-left: 0px;margin-right: 0px">
 			<div class="paymentleft">

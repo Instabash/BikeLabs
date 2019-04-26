@@ -9,7 +9,7 @@ $title = 'Address Confirmation';
 include_once 'includes/header.php';
 ?>
 <!-- Payment/Confirmation section -->
-<section id="addresscon" class="section addressconsec">
+<section id="addresscon" class="section addressconsec content">
 	<div class="container">
 		<h3>How would you like to recieve your order?</h3><br>
 		<form class="p-2" action="includes/addresscon.inc.php" method="post">

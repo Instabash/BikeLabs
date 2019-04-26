@@ -5,16 +5,16 @@ logged_in();
 $title = 'Alteration';
 include_once 'includes/header.php';
 ?>
-<section id="alter" class="section modsection">
+<section id="alter" class="section modsection content">
 	<form id="modform1" action = "includes/altprocess.inc.php" method = "post" autocomplete="off">
 		<div class="container">
 			<h3>Step 1: Select your motorbike</h3><br>
 			<h6>Choose the Model, Year, and Make of your Motorbike</h6><br>
 			<div class="form-row modmarginleft">
 				<div class="col-4 select-small" >
-					<label style="padding: 2px;">Model</label>
-					<select class="custom-select" id="modelselect" name="altmodelselect">
-						<option selected>Choose...</option>
+					<label class="pr-2">Model</label>
+					<select class="custom-select js-example-responsive" id="modelselect" name="altmodelselect">
+						<option selected value="">Model</option>
 						<option value="70cc">70cc</option>
 						<option value="150cc">125cc</option>
 						<option value="125cc">150cc</option>
@@ -23,9 +23,9 @@ include_once 'includes/header.php';
 			</div><br>
 			<div class="form-row modmarginleft">
 				<div class="col-4 select-small">
-					<label style="padding: 2px;">Year</label>
-					<select class="custom-select" id="yearselect" name="altyearselect">
-						<option selected>Choose...</option>
+					<label class="pr-2">Year</label>
+					<select class="custom-select js-example-responsive" id="yearselect" name="altyearselect">
+						<option selected value="">Year</option>
 						<option value="2018">2018</option>
 						<option value="2017">2017</option>
 						<option value="2016">2016</option>
@@ -34,9 +34,9 @@ include_once 'includes/header.php';
 			</div><br>
 			<div class="form-row modmarginleft">
 				<div class="col-4 select-small">
-					<label style="padding: 2px;">Make</label>
-					<select class="custom-select" id="yearselect" name="altmakeselect">
-						<option selected>Choose...</option>
+					<label class="pr-2">Make</label>
+					<select class="custom-select js-example-responsive" id="makeselect" name="altmakeselect">
+						<option selected value="">Make</option>
 						<option value="Honda">Honda</option>
 						<option value="SuperPower">SuperPower</option>
 						<option value="Unique">Unique</option>
@@ -166,6 +166,14 @@ include_once 'includes/header.php';
 		$('.packageradio').removeClass('activeradio');
 		$(this).addClass('activeradio');
 	});
+</script>
+<script>
+	$(".js-example-responsive").select2({
+		minimumResultsForSearch: -1,
+		placeholder: "Select..",
+    	width: 'resolve' // need to override the changed default
+	});
+	
 </script>
 <?php
 include_once 'includes/footer.php';
