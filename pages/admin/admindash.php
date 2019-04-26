@@ -5,16 +5,16 @@ admin_protect();
 include '../../includes/header.php';
 ?>
 <!-- Sidebar -->
-
+<label href="#" class="list-group-item" style="width: auto;">Admin Panel
+	<button class="btn" id="menu-toggle"><i class="fas fa-bars"></i></button>
+</label>
 <div class="d-flex" id="wrapper">
 	<div class="bg-light border-right" id="sidebar-wrapper">
 		<div class="list-group list-group-flush">
 			<a href="/BikeLabs/pages/admin/admindash.php" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-			<a href="/BikeLabs/pages/admin/.php#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
-			<a href="/BikeLabs/pages/admin/.php#" class="list-group-item list-group-item-action bg-light">Overview</a>
-			<a href="/BikeLabs/pages/admin/.php#" class="list-group-item list-group-item-action bg-light">Events</a>
-			<a href="/BikeLabs/pages/admin/.php#" class="list-group-item list-group-item-action bg-light">Profile</a>
-			<a href="/BikeLabs/pages/admin/.php#" class="list-group-item list-group-item-action bg-light">Status</a>
+			<a href="/BikeLabs/pages/admin/admin-vendor.php" class="list-group-item list-group-item-action bg-light">Vendor management</a>
+			<a href="/BikeLabs/pages/admin/admin-user.php" class="list-group-item list-group-item-action bg-light">User management</a>
+			<a href="/BikeLabs/pages/admin/admin-sales.php" class="list-group-item list-group-item-action bg-light">Sales</a>
 		</div>
 	</div>
 	<section id="modify" class="section modsection content">
