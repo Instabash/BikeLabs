@@ -26,7 +26,6 @@ vertical-align:baseline;
 background:transparent;
 }
 
-
 footer{
   color:#ccc;
 }
@@ -187,7 +186,7 @@ vertical-align:middle;
 }
 
 body{
-  background-color: #252529;
+  background-color: white;
   color: #fff;
   margin: 0;
   line-height: 1.6;
@@ -1557,9 +1556,6 @@ input[type="radio"] {
     }
 }
 
-
-
-
 .product-item {
     padding: 15px;
     background: #fff;
@@ -1689,4 +1685,13 @@ input[type="radio"] {
 .newbtn{
   background-color: white !important;
   border: none !important;
+}
+
+h1, h2, h3, h4, h5, h6, label, li, p{
+  color: black !important;
+}
+
+.btn-1{
+  border:3px solid black !important;
+  color: black !important;
 }
