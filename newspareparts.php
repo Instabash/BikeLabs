@@ -1,6 +1,9 @@
 <?php
 	$title = 'New Spareparts';
 	include_once 'includes/header.php';
+	include_once 'includes/dbh.inc.php';
+	$spaartsql = "SELECT * FROM spare_parts";
+	$stmt = mysqli_stmt_init($conn);
 ?>
 <!-- New Bikes -->
 <section id="spparts" class="section sppartsection content">
@@ -147,6 +150,56 @@
 								</div>
 							</div>
 						</div>
+					</div>
+				</div>
+				<div class="col-md-10">
+					<div class="row">
+						<?php 
+						if(!mysqli_stmt_prepare($stmt, $spaartsql))
+						{
+							echo "SQL statement failed";
+						}
+						else
+						{
+							mysqli_stmt_execute($stmt);
+							$result = mysqli_stmt_get_result($stmt);
+
+
+							while ($row = mysqli_fetch_assoc($result)) {
+								$imgnamesql = "SELECT part_image_name FROM spare_part_images WHERE part_id = {$row['part_id']} AND part_image_thumb = '0';";
+
+								if(!mysqli_stmt_prepare($stmt, $imgnamesql))
+								{
+									echo "SQL statement failed";
+								}
+								else
+								{
+									mysqli_stmt_execute($stmt);
+									$result1 = mysqli_stmt_get_result($stmt);
+
+									while ($row1 = mysqli_fetch_assoc($result1)) 
+									{
+									//echo $row['ad_image_name'];
+
+										?>
+										<div class="col-md-4">
+											<div class="product-item">
+												<a href="pages/spareparts/spareparttemp.php?partid=<?php echo $row['part_id'] ?>">
+													<img src="images/sparepartimg/<?php echo $row1['part_image_name'] ?>">
+													<div>
+														<label class="productName"><?php echo $row['part_name'] ?></label><br>
+														<label>Price:</label>
+														<label class="price"><?php echo $row['part_price'] ?></label>
+													</div>
+												</a>
+											</div>
+										</div>
+										<?php 
+									}			
+								}
+							}	
+						}
+						?>
 					</div>
 				</div>
 				<!-- <div class="col-md-10 search-listing pull-right">
