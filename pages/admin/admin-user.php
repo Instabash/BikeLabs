@@ -20,9 +20,23 @@ include '../../includes/header.php';
 			<a href="/BikeLabs/pages/admin/admin-parts.php" class="list-group-item list-group-item-action bg-light">Add new Parts</a>
 		</div>
 	</div>
-	<section id="modify" class="section modsection content">
+	<section id="modify" class="section modsection content content2">
 		<div class="container">
-			<p>sggs</p>
+			<div class="row">
+				<div class="col-xs-12">
+					<!-- /.box -->
+					<div class="box">
+						<div class="box-header">
+							<h3 class="box-title">User management</h3>
+						</div>
+						<!-- /.box-header -->
+						
+						<!-- /.box-body -->
+					</div>
+					<!-- /.box -->
+				</div>
+				<!-- /.col -->
+			</div>
 		</div>
 	</section>
 </div>
