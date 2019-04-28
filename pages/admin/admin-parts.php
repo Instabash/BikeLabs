@@ -30,7 +30,7 @@ include '../../includes/dbh.inc.php';
 					<!-- /.box -->
 					<div class="box">
 						<div class="box-header">
-							<h3 class="box-title">Vendor management</h3>
+							<h3 class="box-title">Add new parts</h3>
 						</div>
 						<!-- /.box-header -->
 						
