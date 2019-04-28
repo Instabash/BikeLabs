@@ -332,6 +332,15 @@ img{
   padding-left: 10px;
 }
 
+.admin-dash-left {
+  flex: 70%;
+}
+
+.admin-dash-right {
+  flex: 30%;
+}
+
+
 .modright{
   flex: 50%;
   padding-left: 10px;
@@ -1786,4 +1795,86 @@ div.dataTables_wrapper .row .col-sm-6 select
 
 table.dataTable thead .sorting_asc:after {
     content: "fas fa-sort-up";
+}
+
+.info-box {
+    display: block;
+    min-height: 90px;
+    background: #fff;
+    width: 100%;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    border-radius: 2px;
+    margin-bottom: 15px;
+}
+
+.bg-aqua, .callout.callout-info, .alert-info, .label-info, .modal-info .modal-body {
+    background-color: #00c0ef !important;
+}
+
+.info-box-content {
+    padding: 5px 10px;
+    margin-left: 90px;
+}
+.info-box-icon {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 2px;
+    display: block;
+    float: left;
+    height: 90px;
+    width: 90px;
+    text-align: center;
+    font-size: 45px;
+    line-height: 90px;
+    background: rgba(0,0,0,0.2);
+}
+
+.info-box-text {
+    text-transform: uppercase;
+    color: black;
+}
+.progress-description, .info-box-text {
+    display: block;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.info-box-number {
+    display: block;
+    font-weight: bold;
+    font-size: 18px;
+    color: black;
+}
+.info-box small {
+    font-size: 14px;
+}
+
+@media (max-width: 767px){
+  #sidebar-wrapper{
+      -webkit-transform: translate(-230px, 0);
+      -ms-transform: translate(-230px, 0);
+      -o-transform: translate(-230px, 0);
+      transform: translate(-230px, 0);
+  }
+}
+@media (max-width: 767px){
+.content-wrapper{
+    float: left;
+}
+}
+@media (max-width: 767px){
+.section {
+   -webkit-transform: translate(-100px, 0);
+   transform: translate(-100px, 0);
+}
+}
+
+@media (min-width: 768px)
+{
+.col-sm-6 {
+    width: 50%;
+}
 }
