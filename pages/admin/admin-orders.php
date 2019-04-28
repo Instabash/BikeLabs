@@ -34,7 +34,7 @@ include '../../includes/dbh.inc.php';
 						<form action="/BikeLabs/includes/admin-orders.inc.php" method="post">
 							<div class="pb-3">
 								<label>Select Vendor</label>
-								<select class="custom-select" style="width: 15%;">
+								<select class="custom-select" name="vendor-select" style="width: 15%;">
 									<option value="" disabled selected>Select</option>
 									<?php
 
@@ -52,7 +52,7 @@ include '../../includes/dbh.inc.php';
 										while($row3 = mysqli_fetch_assoc($result3))
 										{
 											?>
-											<option><?php echo $row3['uidUsers']; ?></option>
+											<option value="<?php echo $row3['idUsers'] ?>"><?php echo $row3['uidUsers']; ?></option>
 											<?php
 										}	
 									}
@@ -60,6 +60,19 @@ include '../../includes/dbh.inc.php';
 								</select>
 								<input class="btn btn-primary" type="submit" name="submit-job" value="Assign job">
 							</div>
+							<?php
+							if (isset($_GET['error'])) 
+							{
+								if ($_GET['error'] == "order") 
+								{
+									echo '<p style="color:red;padding:5px;";>Select a order to assign!</p>';
+								}
+								elseif ($_GET['error'] == "vendor") 
+								{
+									echo '<p style="color:red;padding:5px;";>Select a vendor!</p>';
+								}
+							}
+							?>
 							<div class="box-body">
 								<table id="example1" class="table table-bordered table-striped">
 									<thead>
@@ -107,7 +120,7 @@ include '../../includes/dbh.inc.php';
 													{
 														?>
 														<tr>
-															<td><input type="checkbox" name="appr-order-check[]" value="<?php echo $row['order_id']; ?>"></td>
+															<td><input type="checkbox" name="order-check[]" value="<?php echo $row['order_id']; ?>"></td>
 															<td><?php echo $row['order_id']; ?></td>
 															<td><?php echo $row['order_type']; ?></td>
 															<td><?php echo $row['order_status']; ?></td>
