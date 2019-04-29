@@ -44,8 +44,16 @@ include_once 'includes/header.php';
 												<td align="center" valign="middle">
 													<p><?php echo $item['price'];?></p>
 												</td>
-												<td > 
-													<p><?php echo $item['quantity'];?></p>
+												<td align="center" valign="middle">
+												<?php 
+													if (!isset($item['quantity'])) {
+												?>
+													<p>1</p>
+													<?php 
+														}
+														else{
+													?>
+													<p><?php echo $item['quantity']; }?></p>
 												</td>
 											</tr>
 										</form>
@@ -62,24 +70,29 @@ include_once 'includes/header.php';
 					</div>
 				</div>
 			</div>
+			<?php
+			if (!empty($_SESSION["cart"])) 
+				{
+			?>
 			<div class="p-3 mt-3 border-new border-0 border-dark rounded paymentright">
 				<h4 class="pb-3">Your cart:</h4>
-				<div class="row">
-					<div class="payment-total-left">
-						<p class="border border-dark border-left-0">Item #1:</p>
-						<p class="border-bottom border-right border-dark">Item #2:</p>
-						<p class="border-bottom border-right border-dark">Item #3:</p>
-						<p class="border-bottom border-right border-dark">Item #4:</p>
-						<p class="border-bottom border-right border-dark">Item #5:</p>
-					</div>
-					<div class="payment-total-right">
-						<p class="border-top border-bottom border-dark">4231rs</p>
-						<p class="border-bottom border-dark">141rs</p>
-						<p class="border-bottom border-dark">14141414rs</p>
-						<p class="border-bottom border-dark">1414rs</p>
-						<p class="border-bottom border-dark">111rs</p>
-					</div>
-				</div>
+				<?php
+					$total_price = 0;
+					foreach($_SESSION['cart'] as $item)
+					{
+						?>
+						<div class="row">
+							<div class="payment-total-left">
+								<p class="border border-dark border-left-0"><?php echo $item['title'];?></p>
+							</div>
+							<div class="payment-total-right">
+								<p class="border-top border-bottom border-dark"><?php echo $item['price'];?></p>
+							</div>
+						</div>
+						<?php
+						$total_price += $item['price'];
+					}?>
+				}
 				<div class="row mt-5">
 					<div class="payment-total-left">
 						<p class="border border-dark border-left-0">Tax:</p>
@@ -89,7 +102,7 @@ include_once 'includes/header.php';
 					<div class="payment-total-right">
 						<p class="border-top border-bottom border-dark">41414rs</p>
 						<p class="border-bottom border-dark">1414141rs</p>
-						<p class="border-bottom border-dark">14141414rs</p>
+						<p class="border-bottom border-dark"><?php echo $total_price; ?></p>
 					</div>
 				</div>
 
@@ -97,6 +110,7 @@ include_once 'includes/header.php';
 					<button type="submit" id="" name="" class="btn btn-danger" value="">Place order</button>
 				</div>
 			</div>
+		<?php } ?>
 		</div>
 	</div>
 </section>
