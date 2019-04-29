@@ -184,7 +184,7 @@
 										?>
 										<div class="col-md-4">
 											<div class="product-item">
-												<a href="pages/spareparts/spareparttemp.php?partid=<?php echo $row['part_id'] ?>">
+												<a href="pages/new-parts/new-parts.php?partid=<?php echo $row['part_id'] ?>">
 													<img src="images/sparepartimg/<?php echo $row1['part_image_name'] ?>">
 													<div>
 														<label class="productName"><?php echo $row['part_name'] ?></label><br>
@@ -202,134 +202,6 @@
 						?>
 					</div>
 				</div>
-				<!-- <div class="col-md-10 search-listing pull-right">
-					<div class="results" id="myUL">
-						<div class="all honda 70cc filterDiv  m-3 border-new border border-dark rounded">
-							<a href="">
-								<img src="images/1.jpg">
-								<div>
-									<label class="productName">Motor</label><br>
-									<label>Price:</label>
-									<label class="price">10000</label>
-								</div>
-							</a>
-						</div>
-						<div class="all honda 125cc filterDiv  m-3  border-new border border-dark rounded">
-							<a href="">
-								<img src="images/a_dvert1.jpg">
-								<div>
-									<label class="productName">chain</label><br>
-									<label>Price:</label>
-									<label class="price">20000</label>
-								</div>
-							</a>							
-						</div>
-						<div class="all superstar 70cc filterDiv  m-3  border-new border border-dark rounded">
-							<a href="">
-								<img src="images/a_dvert2.jpg">
-								<div>
-									<label class="productName">crankshaft</label><br>
-									<label>Price:</label>
-									<label class="price">10023</label>
-								</div>
-							</a>
-						</div>
-						<div class="all superstar 125cc filterDiv  m-3  border-new border border-dark rounded">
-							<a href="">
-								<img src="images/modify.jpg">
-								<div>
-									<label class="productName">piston</label><br>
-									<label>Price:</label>
-									<label class="price">17000</label>
-								</div>
-							</a>
-						</div>
-						<div class="all superpower 125cc filterDiv  m-3  border-new border border-dark rounded">
-							<a href="">
-								<img src="images/modify2.jpg">
-								<div>
-									<label class="productName">taillight</label><br>
-									<label>Price:</label>
-									<label class="price">39000</label>
-								</div>
-							</a>
-						</div>
-						<div class="all yamaha 70cc filterDiv  m-3  border-new border border-dark rounded">
-							<a href="">
-								<img src="images/modify3.jpg">
-								<div>
-									<label class="productName">chain spocket</label><br>
-									<label>Price:</label>
-									<label class="price">33000</label>
-								</div>
-							</a>
-						</div>
-						<div class="all honda 150cc filterDiv  m-3  border-new border border-dark rounded">
-							<a href="">
-								<img src="images/purchase1.jpg">
-								<div>
-									<label class="productName">Handle bar</label><br>
-									<label>Price:</label>
-									<label class="price">60000</label>
-								</div>
-							</a>
-						</div>
-						<div class="all unique 150cc filterDiv  m-3  border-new border border-dark rounded">
-							<a href="">
-								<img src="images/purchase2.jpg">
-								<div>
-									<label class="productName">Air Filter</label><br>
-									<label>Price:</label>
-									<label class="price">14000</label>
-								</div>
-							</a>
-						</div>
-						<div class="all honda 125cc filterDiv  m-3  border-new border border-dark rounded">
-							<a href="">
-								<img src="images/purchase2.jpg">
-								<div>
-									<label class="productName">NGK Sparkplugs</label><br>
-									<label>Price:</label>
-									<label class="price">16000</label>
-								</div>
-							</a>
-						</div>
-						<div class="all superpower 70cc filterDiv  m-3  border-new border border-dark rounded">
-							<a href="">
-								<img src="images/purchase2.jpg">
-								<div>
-									<label class="productName">Exhaust</label><br>
-									<label>Price:</label>
-									<label class="price">22000</label>
-								</div>
-							</a>
-						</div>
-						<div class="all unique 150cc filterDiv  m-3  border-new border border-dark rounded">
-							<a href="">
-								<img src="images/modify2.jpg">
-								<div>
-									<label class="productName">Silencer</label><br>
-									<label>Price:</label>
-									<label class="price">20000</label>
-								</div>
-							</a>
-						</div>
-						<div class="
-							<?php 
-								// POST[''] 
-							?> 
-							filterDiv  m-3  border-new border border-dark rounded">
-							<a href="">
-								<img src="images/modify2.jpg">
-								<div>
-									<label class="productName">Silencer</label><br>
-									<label>Price:</label>
-									<label class="price">3235</label>
-								</div>
-							</a>
-						</div> 
-					</div>
-				</div> -->
 			</div>
 		</div>
 	</div>	
