@@ -48,6 +48,9 @@ if (isset($_POST['login-submit']))
 				    	if ($row['User_type'] == 1) {
 							header("Location: /BikeLabs/pages/admin/admindash.php");
 						}
+						elseif ($row['User_type'] == 2) {
+							header("Location: /BikeLabs/pages/vendor/vendordash.php");
+						}
 						else{
 				    		 header("Location: ". $_SESSION['current_page']. "?usertype=".$row['User_type']);
 				    	}
