@@ -184,17 +184,22 @@ if(!isset($_SESSION))
 						$userId = $_SESSION["userUId"];
 						?>
 						<?php
-							if ($_SESSION['usertype'] == "1") {
-								
-						?>
-						<p style="margin:5px;color:black;">Logged in as : <a href="/../BikeLabs/pages/admin/admindash.php"> <?php echo $userId ?> </a></p>
-					<?php 
-				}
-					else{
-					?>
-					<p style="margin:5px;color:black;">Logged in as : <a href="/../BikeLabs/pages/user/userdash.php"> <?php echo $userId ?> </a></p>
-					<?php 
-				}?>
+						if ($_SESSION['usertype'] == "1") {
+
+							?>
+							<p style="margin:5px;color:black;">Logged in as : <a href="/../BikeLabs/pages/admin/admindash.php"> <?php echo $userId ?> </a></p>
+							<?php 
+						}
+						elseif ($_SESSION['usertype'] == "2") {
+							?>
+							<p style="margin:5px;color:black;">Logged in as : <a href="/../BikeLabs/pages/vendor/vendordash.php"> <?php echo $userId ?> </a></p>
+							<?php 
+						}
+						else{
+							?>
+							<p style="margin:5px;color:black;">Logged in as : <a href="/../BikeLabs/pages/user/userdash.php"> <?php echo $userId ?> </a></p>
+							<?php 
+						}?>
 						<form class="" action="/BikeLabs/includes/logout.inc.php" style="margin-left: 10px;" method="post">
 							<button type="submit" class="btn btn-outline-danger" name="logout-submit">Logout</button>
 						</form>
@@ -204,6 +209,6 @@ if(!isset($_SESSION))
 					<form id="demo-2" style="margin-left: 10px;" >
 						<input type="search" placeholder="Search">
 					</form>
-			</div>	
-		</nav>
-	</header>
+				</div>	
+			</nav>
+		</header>
