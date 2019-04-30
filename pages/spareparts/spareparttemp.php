@@ -10,7 +10,7 @@ $result = mysqli_query($conn, $sql);
 $stmt = mysqli_stmt_init($conn);
 ?>
 <section id="biketemplate" class="section biketemplatesec content">
-	<div class="container" >
+	<div class="container max-w">
 		<div class="paymentmain" style="margin-left: 0px;margin-right: 0px">
 			<div class="paymentleft border-new border border-dark rounded mt-5 " style="">
 				<div class="w3-content w3-display-container">
