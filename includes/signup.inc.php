@@ -92,6 +92,7 @@ elseif(isset($_POST['signup-vendor']))
 	$phone = $_POST['phone'];
 	$password = $_POST['pwd'];
 	$passwordRepeat = $_POST['pwd-repeat'];
+	$address = $_POST['address'];
 	$usertype = 2;
 	if(empty($username) || empty($email) || empty($password) || empty($passwordRepeat))
 	{
@@ -134,7 +135,7 @@ elseif(isset($_POST['signup-vendor']))
 			}
 			else
 			{
-				$sql = "INSERT INTO users (uidUsers, emailUsers, pwdUsers, User_Contact, User_type) VALUES (?, ?, ?, ?, ?)";
+				$sql = "INSERT INTO users (uidUsers, emailUsers, pwdUsers, User_Address, User_Contact, User_type) VALUES (?, ?, ?, ?, ?, ?)";
 				$stmt = mysqli_stmt_init($conn);
 				if (!mysqli_stmt_prepare($stmt, $sql)) 
 				{
@@ -145,7 +146,7 @@ elseif(isset($_POST['signup-vendor']))
 				{
 					$hashedPwd = password_hash($password, PASSWORD_DEFAULT);
 
-					mysqli_stmt_bind_param($stmt, "sssss", $username, $email, $hashedPwd, $phone, $usertype);
+					mysqli_stmt_bind_param($stmt, "ssssss", $username, $email, $hashedPwd, $address, $phone, $usertype);
 					mysqli_stmt_execute($stmt);
 					header("Location: /BikeLabs/pages/admin/admin-vendor.php?signup=success");
 					exit();
