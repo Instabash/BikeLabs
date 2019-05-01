@@ -2,8 +2,7 @@
 include_once 'dbh.inc.php';
 session_start();
 
-if(isset($_POST['cartBtn-bikes']))
-{
+if(isset($_POST['cartBtn-bikes'])){
 	$bike_id = $_GET["bikeid"];
 
 	// echo $bike_id;
@@ -84,15 +83,14 @@ elseif (isset($_POST['buyBtn-bikes'])) {
 	}
 }
 
-elseif(isset($_POST['cartBtn-parts']))
-{
+elseif(isset($_POST['cartBtn-parts'])){
 	if(!empty($_POST["quant"])) {
 		$quantity = $_POST["quant"];
 		$part_id = $_GET["partid"];
-		$sql = "SELECT * FROM post_ad WHERE ad_id='$part_id'";
+		$sql = "SELECT * FROM spare_parts WHERE part_id='$part_id'";
 		$result = mysqli_query($conn, $sql);
 		$stmt = mysqli_stmt_init($conn);
-		$imgnamesql = "SELECT ad_image_name FROM post_ad_images WHERE ad_id = {$_GET["partid"]} AND ad_image_thumb = '0';";
+		$imgnamesql = "SELECT part_image_name FROM spare_part_images WHERE part_id = {$_GET["partid"]} AND part_image_thumb = '0';";
 
 		if(!mysqli_stmt_prepare($stmt, $imgnamesql))
 		{
@@ -105,14 +103,14 @@ elseif(isset($_POST['cartBtn-parts']))
 
 			while ($row1 = mysqli_fetch_assoc($result1)) 
 			{
-				$default_img = $row1['ad_image_name'];
+				$default_img = $row1['part_image_name'];
 			}			
 		}
 
 		if($row = mysqli_fetch_assoc($result))
 		{
-			$title = $row['ad_title'];
-			$price = $row['ad_price'];
+			$title = $row['part_name'];
+			$price = $row['part_price'];
 		}
 
 		$_SESSION['cart'][] = array(
@@ -130,10 +128,10 @@ elseif (isset($_POST['buyBtn-parts'])) {
 	if(!empty($_POST["quant"])) {
 		$quantity = $_POST["quant"];
 		$part_id = $_GET["partid"];
-		$sql = "SELECT * FROM post_ad WHERE ad_id='$part_id'";
+		$sql = "SELECT * FROM spare_parts WHERE part_id='$part_id'";
 		$result = mysqli_query($conn, $sql);
 		$stmt = mysqli_stmt_init($conn);
-		$imgnamesql = "SELECT ad_image_name FROM post_ad_images WHERE ad_id = {$_GET["partid"]} AND ad_image_thumb = '0';";
+		$imgnamesql = "SELECT part_image_name FROM spare_part_images WHERE part_id = {$_GET["partid"]} AND part_image_thumb = '0';";
 
 		if(!mysqli_stmt_prepare($stmt, $imgnamesql))
 		{
@@ -146,14 +144,14 @@ elseif (isset($_POST['buyBtn-parts'])) {
 
 			while ($row1 = mysqli_fetch_assoc($result1)) 
 			{
-				$default_img = $row1['ad_image_name'];
+				$default_img = $row1['part_image_name'];
 			}			
 		}
 
 		if($row = mysqli_fetch_assoc($result))
 		{
-			$title = $row['ad_title'];
-			$price = $row['ad_price'];
+			$title = $row['part_name'];
+			$price = $row['part_price'];
 		}
 
 		$_SESSION['cart'][] = array(
@@ -162,7 +160,7 @@ elseif (isset($_POST['buyBtn-parts'])) {
 			'price' => $price,
 			'default_img' => $default_img,
 			'quantity' => $quantity);
-
+		
 		header("Location: ../addresscon.php?partid=$part_id");
 	}
 }
