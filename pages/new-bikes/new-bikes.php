@@ -116,7 +116,6 @@ $stmt = mysqli_stmt_init($conn);
 				</div>
 				<form action="/BikeLabs/includes/cartprocess.inc.php?bikeid=<?php echo $_GET["bikeid"] ?>" method="post">
 					<div class="border-new border border-dark rounded mt-5 p-3">
-						<button type="submit" name="cartBtn-bikes" class="btn btn-outline-danger">Add to cart</button>
 						<button type="submit" name="buyBtn-bikes" class="btn btn-outline-danger">Buy now</button>
 					</div>
 				</form>

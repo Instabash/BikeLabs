@@ -114,7 +114,7 @@ $stmt = mysqli_stmt_init($conn);
 					';
 					?>
 				</div>
-				<form action="/BikeLabs/includes/cartprocess.inc.php" method="post">
+				<form action="/BikeLabs/includes/cartprocess.inc.php?partid=<?php echo $part_id;  ?>" method="post">
 					<div class="border-new border border-dark rounded mt-5 p-3">
 						<p>
 							Quantity
