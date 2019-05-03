@@ -117,3 +117,9 @@ function is_vendor($user_id)
 		}
 	}
 }
+
+function redirect()
+{
+	$current_page = $_SERVER['REQUEST_URI'];
+	$_SESSION['curr_page'] = $current_page;	
+}
