@@ -266,39 +266,38 @@ if (isset($_POST['btnplaceorder'])) {
 		}
 		
 		$del_method = $_SESSION['del_method'];
-		$order_summ = $ordertype . ", Package : " . $package . ",";
 		$pay_type = "cash on delivery";
-		foreach($_SESSION['altaddress'] as $value)
+		foreach($_SESSION['new_b_p_address'] as $value)
 		{
-			$address = $value['altadhname'] . ", " . $value['altadpcode'] . ", " . $value['altadcountry'];
-			$fullname = $value['altadfname'] . " " .  $value['altadlname'];
+			$address = $value['new_b_p_hname'] . ", " . $value['new_b_p_pcode'] . ", " . $value['new_b_p_country'];
+			$fullname = $value['new_b_p_fname'] . " " .  $value['new_b_p_lname'];
 		}
 
-		$modaltsql = "INSERT INTO modalt (modalttype, modaltmake, modaltbikemodel, modaltbikeyear, modaltpkg, modaltselectedpts, modaltselectedtheme, modaltselectedpaint, modaltdescription, modaltprice, userId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
+		foreach ($_SESSION['cart'] as $item) 
+		{
+			
+			
+		}
+		
+		$ordertablesql = "INSERT INTO order_table (order_type, order_status, order_date, idUsers) VALUES (?, ?, ?, ?)";
 		$stmt = mysqli_stmt_init($conn);
-		if (!mysqli_stmt_prepare($stmt, $modaltsql)) 
+		if (!mysqli_stmt_prepare($stmt, $ordertablesql)) 
 		{
 			echo "SQL statement failed";
-		}	
+		}
 		else
 		{
-			//mysqli_stmt_bind_param($stmt, "sssssssssss",$ordertype, $make, $model, $year, $package, $selectedparts, $theme, $paint, $description, $price, $userid);
-			//mysqli_stmt_execute($stmt);
-			//$modaltid = $conn->insert_id;
+			mysqli_stmt_bind_param($stmt, "ssss", $ordertype, $orderStatus, $orderDate, $userid);
+			mysqli_stmt_execute($stmt);
+			$orderid = $conn->insert_id;
+			$_SESSION["order_id"] = $orderid;
 
-			$ordertablesql = "INSERT INTO order_table (order_type, order_status, order_date, idUsers) VALUES (?, ?, ?, ?)";
-			if (!mysqli_stmt_prepare($stmt, $ordertablesql)) 
+			foreach ($_SESSION['cart'] as $item) 
 			{
-				echo "SQL statement failed";
-			}
-			else
-			{
-				mysqli_stmt_bind_param($stmt, "ssss", $ordertype, $orderStatus, $orderDate, $userid);
-				mysqli_stmt_execute($stmt);
-				$orderid = $conn->insert_id;
-				$_SESSION["order_id"] = $orderid;
-
+				$title = $item['title'];
+				$price = $item['price'];
+				$order_summ = $title . ", " . $price . " Rs.";
+				$part_bike_id = $item['product_id'];
 				$orderitems = "INSERT INTO order_items (order_id, Order_price, Order_quantity, Order_type_ID, Order_Address) VALUES (?, ?, ?, ?, ?)";
 				if (!mysqli_stmt_prepare($stmt, $orderitems)) 
 				{
@@ -306,23 +305,24 @@ if (isset($_POST['btnplaceorder'])) {
 				}
 				else
 				{
-					mysqli_stmt_bind_param($stmt, "sssss", $orderid, $price, $orderQuantity, $modaltid, $address);
+					mysqli_stmt_bind_param($stmt, "sssss", $orderid, $total_price, $orderQuantity, $part_bike_id, $address);
 					mysqli_stmt_execute($stmt);
-
-					$invoicesql = "INSERT INTO invoice (order_id, uidUsers, user_address, delivery_method, order_summary, payment_type, billing_address) VALUES (?, ?, ?, ?, ?, ?, ?)";
-					if (!mysqli_stmt_prepare($stmt, $invoicesql)) 
-					{
-						echo "SQL statement failed";
-					}
-					else
-					{	
-						// echo $orderid . $fullname . $address . $del_method . $order_summ . $pay_type . $address;
-						mysqli_stmt_bind_param($stmt, "sssssss", $orderid, $fullname, $address, $del_method, $order_summ, $pay_type, $address);
-						mysqli_stmt_execute($stmt);
-						header("Location: ../orderconfirmation.php?order=success");
-					}
 				}
-			}	
-		}
+				$total_order_summ .= $order_summ;
+			}
+			$invoicesql = "INSERT INTO invoice (order_id, uidUsers, user_address, delivery_method, order_summary, payment_type, billing_address) VALUES (?, ?, ?, ?, ?, ?, ?)";
+			if (!mysqli_stmt_prepare($stmt, $invoicesql)) 
+			{
+				echo "SQL statement failed";
+			}
+			else
+			{	
+						// echo $orderid . $fullname . $address . $del_method . $order_summ . $pay_type . $address;
+				mysqli_stmt_bind_param($stmt, "sssssss", $orderid, $fullname, $address, $del_method, $total_order_summ, $pay_type, $address);
+				mysqli_stmt_execute($stmt);
+				unset($_SESSION['cart']);
+				header("Location: ../orderconfirmation.php?order=success");
+			}
+		}	
 	}
 }
