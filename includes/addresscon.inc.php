@@ -41,14 +41,14 @@ if (isset($_SESSION['cart'])) {
 			}
 
 			$_SESSION['del_method'] = $del_method_text;
-			$_SESSION['modaddress'][] = array(
-				'modadtitle' => $title,
-				'modadfname' => $fname,
-				'modadlname' => $lname,
-				'modadphone' => $phone,
-				'modadcountry' => $countryreg,
-				'modadhname' => $hnameorno,
-				'modadpcode' => $pcode
+			$_SESSION['new_b_p_address'][] = array(
+				'new_b_p_title' => $title,
+				'new_b_p_fname' => $fname,
+				'new_b_p_lname' => $lname,
+				'new_b_p_phone' => $phone,
+				'new_b_p_country' => $countryreg,
+				'new_b_p_hname' => $hnameorno,
+				'new_b_p_pcode' => $pcode
 			);
 			header("Location: ../payment.php");
 		}
