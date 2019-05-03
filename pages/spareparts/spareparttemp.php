@@ -1,7 +1,8 @@
 <?php
-
 include_once '../../includes/header.php';
 include_once '../../includes/dbh.inc.php';
+include_once '../../includes/restrictions.inc.php';
+redirect();
 $part_id = $_GET["partid"];
 
 $sql = "SELECT * FROM post_ad WHERE ad_id='$part_id'";
