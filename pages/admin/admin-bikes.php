@@ -386,7 +386,6 @@ include '../../includes/dbh.inc.php';
 				     // invalid file format.
 				     $("#err").html("Invalid File !").fadeIn();
 				 }
-
 				 else
 				 {
 				     // view uploaded file.
