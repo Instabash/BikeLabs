@@ -1,11 +1,7 @@
 <?php
 session_start();
-if(!isset($_SESSION['userUId'])){
-	$current_page = $_SERVER['REQUEST_URI'];
-	$_SESSION['curr_page'] = $current_page;	
-	
-	header("Location:LoginOrRegister.php");
-}
+include 'includes/restrictions.inc.php';
+logged_in();
 if (isset($_SESSION['modORalt'])) {
 	$modoralt = $_SESSION['modORalt'];
 }
@@ -120,8 +116,8 @@ include_once 'includes/header.php';
 								</div>
 							</div>
 							<!-- <div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div> -->
-							<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><?php echo $item['description'];?><br></div>
-							<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><?php echo $item['price']." Rs.";?><br></div><?php
+							<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><label><?php echo $item['description'];?></label><br></div>
+							<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><label><?php echo $item['price']." Rs.";?></label><br></div><?php
 						}
 						elseif ($item['selectedpkg'] == 2){?>
 							<div class="accordion-group" id="make">
@@ -146,8 +142,8 @@ include_once 'includes/header.php';
 							</div>
 							<!-- <div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div>
 								<div class="border border-dark border-new"><h5 class="p-2">Theme</h5><?php echo $item['theme'];?><br></div> -->
-								<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><?php echo $item['description'];?><br></div>
-								<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><?php echo $item['price']." Rs.";?><br></div><?php
+								<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><label><?php echo $item['description'];?></label><br></div>
+								<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><label><?php echo $item['price']." Rs.";?></label><br></div><?php
 							}
 							elseif ($item['selectedpkg'] == 3){?>
 								<div class="accordion-group" id="make">
@@ -174,8 +170,8 @@ include_once 'includes/header.php';
 								</div>
 							<!-- <div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div>
 								<div class="border border-dark border-new"><h5 class="p-2">Theme</h5><?php echo $item['theme'];?><br></div> -->
-								<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><?php echo $item['description'];?><br></div>
-								<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><?php echo $item['price']." Rs.";?><br></div>
+								<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><label><?php echo $item['description'];?></label><br></div>
+								<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><label><?php echo $item['price']." Rs.";?></label><br></div>
 
 							<?php }
 							elseif ($item['selectedpkg'] == "custom") {?>
@@ -202,8 +198,8 @@ include_once 'includes/header.php';
 									</div>
 							<!-- <div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div>
 								<div class="border border-dark border-new"><h5 class="p-2">Theme</h5><?php echo $item['theme'];?><br></div> -->
-								<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><?php echo $item['description'];?><br></div>
-								<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><?php echo $item['price']." Rs.";?><br></div>
+								<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><label><?php echo $item['description'];?></label><br></div>
+								<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><label><?php echo $item['price']." Rs.";?></label><br></div>
 
 							<?php }
 						}
@@ -233,8 +229,8 @@ include_once 'includes/header.php';
 									</div>
 								</div>
 								<div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div>
-								<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><?php echo $item['description'];?><br></div>
-								<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><?php echo $item['price']." Rs.";?><br></div><?php
+								<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><label><?php echo $item['description'];?></label><br></div>
+								<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><label><?php echo $item['price']." Rs.";?></label><br></div><?php
 							}
 							elseif ($item['selectedpkg'] == 2){?>
 								<div class="accordion-group" id="make">
@@ -257,8 +253,8 @@ include_once 'includes/header.php';
 								</div>
 								<div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div>
 								<div class="border border-dark border-new"><h5 class="p-2">Theme</h5><?php echo $item['theme'];?><br></div>
-								<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><?php echo $item['description'];?><br></div>
-								<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><?php echo $item['price']." Rs.";?><br></div><?php
+								<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><label><?php echo $item['description'];?></label><br></div>
+								<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><label><?php echo $item['price']." Rs.";?></label><br></div><?php
 							}
 							elseif ($item['selectedpkg'] == 3){?>
 								<div class="accordion-group" id="make">
@@ -283,8 +279,8 @@ include_once 'includes/header.php';
 								</div>
 							<!-- <div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div>
 								<div class="border border-dark border-new"><h5 class="p-2">Theme</h5><?php echo $item['theme'];?><br></div> -->
-								<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><?php echo $item['description'];?><br></div>
-								<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><?php echo $item['price']." Rs.";?><br></div>
+								<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><label><?php echo $item['description'];?></label><br></div>
+								<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><label><?php echo $item['price']." Rs.";?></label><br></div>
 
 							<?php }
 						}

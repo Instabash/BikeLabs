@@ -1,5 +1,7 @@
 <?php
 include_once 'includes/header.php';
+include_once 'includes/restrictions.inc.php';
+redirect();
 ?>
 <!-- Index section -->
 <div id="showcase">

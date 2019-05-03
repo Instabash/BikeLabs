@@ -3,6 +3,8 @@ session_start();
 $title = 'Used motorbikes';
 include_once 'includes/header.php';
 include_once 'includes/dbh.inc.php';
+include_once 'includes/restrictions.inc.php';
+redirect();
 $spaartsql = "SELECT * FROM post_ad WHERE ad_type = 'bike' ORDER BY `ad_date` DESC";;
 $stmt = mysqli_stmt_init($conn);
 ?>

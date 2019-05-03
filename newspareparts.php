@@ -2,6 +2,8 @@
 	$title = 'New Spareparts';
 	include_once 'includes/header.php';
 	include_once 'includes/dbh.inc.php';
+	include_once 'includes/restrictions.inc.php';
+	redirect();
 	$spaartsql = "SELECT * FROM spare_parts";
 	$stmt = mysqli_stmt_init($conn);
 ?>

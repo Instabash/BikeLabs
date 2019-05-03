@@ -1,10 +1,7 @@
 <?php
 session_start();
-if(!isset($_SESSION['userUId'])){
-	$current_page = $_SERVER['REQUEST_URI'];
-	$_SESSION['curr_page'] = $current_page;	
-	header("Location:LoginOrRegister.php");
-}
+include 'includes/restrictions.inc.php';
+logged_in();
 $title = 'Order confirmation';
 include_once 'includes/header.php';
 include_once 'includes/dbh.inc.php';
@@ -50,7 +47,7 @@ include_once 'includes/dbh.inc.php';
 			</div>
 			<hr>
 			<div style="padding: 10px;">
-				<b>Delivery for</b>
+				<p><b>Delivery for</b></p>
 				<p>
 				<?php
 					echo $row['uidUsers'];
@@ -58,7 +55,7 @@ include_once 'includes/dbh.inc.php';
 				</p>
 			</div>
 			<div style="padding: 10px;">
-				<b>Address</b>
+				<p><b>Address</b></p>
 				<p>
 				<?php
 					echo $row['user_address'];
@@ -66,7 +63,7 @@ include_once 'includes/dbh.inc.php';
 				</p>
 			</div>
 			<div style="padding: 10px;">
-				<b>Delivery method</b>
+				<p><b>Delivery method</b></p>
 				<p>
 				<?php
 					echo $row['delivery_method'];
@@ -78,17 +75,19 @@ include_once 'includes/dbh.inc.php';
 			</div>
 			<hr>
 			<div style="padding: 10px;">
+				<p>
 				<?php
 					$output = str_replace(',', '<br />', $row['order_summary']);
 					echo $output;
 				?>
+				</p>
 			</div>
 			<div class="pt-5 pr-4 pl-4">
 				<h3>Payment information</h3>
 			</div>
 			<hr>
 			<div style="padding: 10px;">
-				<b>Payment type</b>
+				<p><b>Payment type</b></p>
 				<p>
 				<?php
 					echo $row['payment_type'];
@@ -96,7 +95,7 @@ include_once 'includes/dbh.inc.php';
 				</p>
 			</div>
 			<div style="padding: 10px;">
-				<b>Billing address</b>
+				<p><b>Billing address</b></p>
 				<p>
 				<?php
 					echo $row['billing_address'];

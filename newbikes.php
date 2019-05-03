@@ -3,6 +3,8 @@ session_start();
 $title = 'New motorbikes';
 include_once 'includes/header.php';
 include_once 'includes/dbh.inc.php';
+include_once 'includes/restrictions.inc.php';
+redirect();
 $spaartsql = "SELECT * FROM bikes";
 $stmt = mysqli_stmt_init($conn);
 ?>
