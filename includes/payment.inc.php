@@ -253,7 +253,6 @@ if (isset($_POST['btnplaceorder'])) {
 	else{
 		$ordertype = "parts or bikes";
 
-		$orderQuantity = 1;
 		$orderStatus = "Pending approval";
 		$orderDate = date("Y-m-d h:i:sa");
 		$userid = $_SESSION['userId'];
@@ -261,8 +260,7 @@ if (isset($_POST['btnplaceorder'])) {
 		$total_price = 0;
 		foreach($_SESSION['cart'] as $item)
 		{
-			$total_price+=$item['price'];
-			$orderQuantity = $item['quantity'];
+			
 		}
 		
 		$del_method = $_SESSION['del_method'];
@@ -273,12 +271,12 @@ if (isset($_POST['btnplaceorder'])) {
 			$fullname = $value['new_b_p_fname'] . " " .  $value['new_b_p_lname'];
 		}
 
-		foreach ($_SESSION['cart'] as $item) 
-		{
-			
-			
+		foreach ($_SESSION['cart'] as $item) {
+			$price = $item['price'];
+			$orderQuantity = $item['quantity'];
+			$multipliedprice = $price*$orderQuantity;
+			$total_price+=$multipliedprice;
 		}
-		
 		$ordertablesql = "INSERT INTO order_table (order_type, order_status, order_date, idUsers) VALUES (?, ?, ?, ?)";
 		$stmt = mysqli_stmt_init($conn);
 		if (!mysqli_stmt_prepare($stmt, $ordertablesql)) 
@@ -292,20 +290,25 @@ if (isset($_POST['btnplaceorder'])) {
 			$orderid = $conn->insert_id;
 			$_SESSION["order_id"] = $orderid;
 
+
 			foreach ($_SESSION['cart'] as $item) 
 			{
 				$title = $item['title'];
 				$price = $item['price'];
 				$order_summ = $title . ", " . $price . " Rs.";
 				$part_bike_id = $item['product_id'];
-				$orderitems = "INSERT INTO order_items (order_id, Order_price, Order_quantity, Order_type_ID, Order_Address) VALUES (?, ?, ?, ?, ?)";
+				$orderQuantity = $item['quantity'];
+				$multipliedprice = $price*$orderQuantity;
+				echo "multiplied price".$multipliedprice . " " . "total price" . $total_price;
+
+				$orderitems = "INSERT INTO order_items (order_id, Order_price, Order_total_price, Order_quantity, Order_type_ID, Order_Address) VALUES (?, ?, ?, ?, ?, ?)";
 				if (!mysqli_stmt_prepare($stmt, $orderitems)) 
 				{
 					echo "SQL statement failed";
 				}
 				else
 				{
-					mysqli_stmt_bind_param($stmt, "sssss", $orderid, $total_price, $orderQuantity, $part_bike_id, $address);
+					mysqli_stmt_bind_param($stmt, "ssssss", $orderid, $multipliedprice, $total_price, $orderQuantity, $part_bike_id, $address);
 					mysqli_stmt_execute($stmt);
 				}
 				$total_order_summ .= $order_summ;
