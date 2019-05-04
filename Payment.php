@@ -76,19 +76,39 @@ include_once 'includes/header.php';
 		</div>
 
 		<div class="p-3 mt-3 border-new border-0 border-dark rounded paymentright">
-			<h4 class="pb-3">Your cart</h4>
+			<h4 class="pb-3">Your cart</h4><hr>
 			<?php
 			if(isset($_SESSION['cart']))
 			{
+				$total_price = 0;
 				foreach($_SESSION['cart'] as $item)
-					{?>
-						<label>Product Name:</label>
+					{
+						$priceind = $item['price'];
+						$pricetotal = $priceind*$item['quantity'];
+						$total_price += $pricetotal;
+						?>
+						
+						<label><b>Product Name: </b></label>
 						<label><?php echo $item['title'];?></label><br>
-						<label>Product Price</label>
-						<label><?php echo $item['price'];?></label><br>
-						<label>Product quantity</label>
-						<label><?php echo $item['quantity'];?></label><br>
-					<?php }
+						<label><b>Product Price: </b></label>
+						<label><?php echo $item['price'];?> Rs.</label><br>
+						<label><b>Product quantity: </b></label>
+						<?php
+						if (isset($item['quantity'])) {
+							?>
+							<label><?php echo $item['quantity'];?></label><br>
+							<?php
+						}
+						else{
+							?>
+							<label><?php echo "1"; ?></label>
+							<?php
+						}
+						?><hr>
+						<?php 
+					}
+					echo "<label><b>Total Price</label></b><br>";
+					echo "<label>$total_price Rs.</label>";
 				}
 
 				if ($modoralt == "modification") {
