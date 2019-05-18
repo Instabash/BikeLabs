@@ -36,7 +36,7 @@ include_once '../../includes/header.php';
 						<label>Condition</label>
 						<div class="select-wrap mb-2">
 							<select class="custom-select" name="bkcondition" id="title">
-								<option value="" disabled selected>Select</option>
+								<option value="" hidden="" selected>Select</option>
 								<option value="New">New</option>
 								<option value="Used">Used</option>
 							</select>
@@ -46,7 +46,7 @@ include_once '../../includes/header.php';
 						<label>Make</label>
 						<div class="select-wrap mb-2">
 							<select class="custom-select" name="bkmake" id="title">
-								<option value="" disabled selected>Select</option>
+								<option value="" hidden="" selected>Select</option>
 								<option value="Honda">Honda</option>
 								<option value="SuperPower">SuperPower</option>
 								<option value="Unique">Unique</option>
@@ -57,7 +57,7 @@ include_once '../../includes/header.php';
 						<label for="title">Year</label>
 						<div>
 							<div class="input-group">
-								<input type="text" class="form-control" name="bkyear" placeholder="Year" aria-label="Year" aria-describedby="basic-addon1">
+								<input type="number" class="form-control" name="bkyear" placeholder="Year" aria-label="Year" aria-describedby="basic-addon1">
 							</div>
 						</div>
 					</div>
@@ -73,7 +73,7 @@ include_once '../../includes/header.php';
 						<label>Price</label>
 						<div>
 							<div class="input-group mb-3">
-								<input type="text" class="form-control" name="bkprice" placeholder="Price" aria-label="Price" aria-describedby="basic-addon1">
+								<input type="number" class="form-control" name="bkprice" placeholder="Price" aria-label="Price" aria-describedby="basic-addon1">
 							</div>
 						</div>
 					</div>
@@ -382,18 +382,20 @@ include_once '../../includes/header.php';
 				},
 				success: function(data)
 				{
-					if(data=='invalid')
+					if(data == 0)
 					{
-				     // invalid file format.
-				     $("#err").html("Invalid File !").fadeIn();
-				 }
-				 else
-				 {
-				     // view uploaded file.
-				     //$("#preview").html(data).fadeIn();
-				     //$("#form")[0].reset(); 
-				     location.href = "../../usedbikes.php"
-				 }
+						location.href = "../../pages/postad/postadbike.php?error=emptyfields";
+					}
+					else
+					if (data == 1) 
+					{
+						location.href = "../../pages/postad/postadbike.php?error=invalidyear";
+					}
+					else
+					{
+						location.href = "../../usedbikes.php"
+					}
+					// alert(data);
 				},
 				error: function(e) 
 				{
@@ -401,46 +403,7 @@ include_once '../../includes/header.php';
 				}          
 			});
 				}));
-        	$("#spform").on('submit',(function(e) {
-        		e.preventDefault();
-				  //AttachmentArray
-				  var formData = new FormData(this);
-				  formData.append('images', JSON.stringify(AttachmentArray));
-				  //return;
-				  $.ajax({
-				  	url: "../../includes/postadsp.inc.php",
-				  	type: "POST",
-				  	data:  formData,
-				  	contentType: false,
-				  	cache: false,
-				  	processData:false,
-				  	beforeSend : function()
-				  	{
-				    //$("#preview").fadeOut();
-				    //$("#err").fadeOut();
-				},
-				success: function(data)
-				{
-					if(data=='invalid')
-					{
-				     // invalid file format.
-				     $("#err").html("Invalid File !").fadeIn();
-				 }
-
-				 else
-				 {
-				     // view uploaded file.
-				     //$("#preview").html(data).fadeIn();
-				     //$("#form")[0].reset(); 
-				     location.href = "../../spareparts.php"
-				 }
-				},
-				error: function(e) 
-				{
-					$("#err").html(e).fadeIn();
-				}          
-			});
-				}));
+        	
         });
     </script>
     <?php
