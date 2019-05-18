@@ -1882,3 +1882,9 @@ table.dataTable thead .sorting_asc:after {
 .max-w{
   max-width: 1140px;
 }
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
