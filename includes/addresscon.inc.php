@@ -4,7 +4,7 @@ unset($_SESSION['modaddress']);
 unset($_SESSION['altaddress']);
 unset($_SESSION['modORalt']);
 
-if (isset($_SESSION['cart'])) {
+if (isset($_SESSION['cart']) || isset($_SESSION['bikecart'])) {
 	if (isset($_POST['homepickbtn'])) {
 		$title = $_POST['title'];
 		$fname = $_POST['fname'];
@@ -54,6 +54,7 @@ if (isset($_SESSION['cart'])) {
 		}
 	}
 }
+
 
 elseif (isset($_SESSION['modcart'])) {
 	if (isset($_POST['homepickbtn'])) {
