@@ -190,7 +190,7 @@ $stmt = mysqli_stmt_init($conn);
 											<a href="pages/new-bikes/new-bikes.php?bikeid=<?php echo $row['bike_id'] ?>">
 												<img src="images/sparepartimg/<?php echo $row1['bike_image_name'] ?>">
 												<div>
-													<label class="productName"><?php echo $row['bike_name'] ?></label><br>
+													<label class="productName"><?php echo $row['bike_brand'] . " " . $row['bike_model'] . " " . $row['bikeyear']; ?></label><br>
 													<label>Price:</label>
 													<label class="price"><?php echo $row['bike_price'] ?></label>
 												</div>
