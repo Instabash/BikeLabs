@@ -82,84 +82,117 @@ include_once 'includes/header.php';
 			{
 				$total_price = 0;
 				foreach($_SESSION['cart'] as $item)
-					{
-						$priceind = $item['price'];
-						$pricetotal = $priceind*$item['quantity'];
-						$total_price += $pricetotal;
-						?>
-						
-						<label><b>Product Name: </b></label>
-						<label><?php echo $item['title'];?></label><br>
-						<label><b>Product Price: </b></label>
-						<label><?php echo $item['price'];?> Rs.</label><br>
-						<label><b>Product quantity: </b></label>
-						<?php
-						if (isset($item['quantity'])) {
-							?>
-							<label><?php echo $item['quantity'];?></label><br>
-							<?php
-						}
-						else{
-							?>
-							<label><?php echo "1"; ?></label>
-							<?php
-						}
-						?><hr>
-						<?php 
-					}
-					echo "<label><b>Total Price</label></b><br>";
-					echo "<label>$total_price Rs.</label>";
-				}
-
-				if ($modoralt == "modification") {
+				{
+					$priceind = $item['price'];
+					$pricetotal = $priceind*$item['quantity'];
+					$total_price += $pricetotal;
 					?>
-					<h4><b>Custom Modification</b></h4><br>
+
+					<label><b>Product Name: </b></label>
+					<label><?php echo $item['title'];?></label><br>
+					<label><b>Product Price: </b></label>
+					<label><?php echo $item['price'];?> Rs.</label><br>
+					<label><b>Product quantity: </b></label>
 					<?php
-					foreach ($_SESSION['modcart'] as $item) {
-						if ($item['selectedpkg'] == 1) {?>
-							<div class="accordion-group" id="make">
-								<div class="accordion-heading">
-									<div class="border border-dark border-new accordion-toggle collapsed" data-toggle="collapse" href="#collapse_0" aria-expanded="false">
-										<b><h5 class="p-2">Selected package</h5><?php echo $item['selectedpkg'];?><br></b>
-										<a href="#">Click for package details
-											<i class="fa fa-caret-down"></i>
-										</a>
-									</div>
-								</div>
-								<div id="collapse_0" class="accordion-body in collapse" style="">
-									<ul style="list-style: none; padding: 10px;">
-										<li>Remove jump cover</li>
-										<li>Reflectors</li>
-										<li>Remove mudguard</li>
-										<li>Body paint (User defined)</li>
-									</ul>
+					if (isset($item['quantity'])) {
+						?>
+						<label><?php echo $item['quantity'];?></label><br>
+						<?php
+					}
+					else{
+						?>
+						<label><?php echo "1"; ?></label>
+						<?php
+					}
+					?><hr>
+					<?php 
+				}
+				echo "<label><b>Total Price</label></b><br>";
+				echo "<label>$total_price Rs.</label>";
+			}
+
+			if (isset($_SESSION['bikecart'])) {
+				$total_price = 0;
+				foreach($_SESSION['bikecart'] as $item)
+				{
+					$priceind = $item['price'];
+					$pricetotal = $priceind*$item['quantity'];
+					$total_price += $pricetotal;
+					?>
+
+					<label><b>Product Name: </b></label>
+					<label><?php echo $item['title'];?></label><br>
+					<label><b>Product Price: </b></label>
+					<label><?php echo $item['price'];?> Rs.</label><br>
+					<label><b>Product quantity: </b></label>
+					<?php
+					if (isset($item['quantity'])) {
+						?>
+						<label><?php echo $item['quantity'];?></label><br>
+						<?php
+					}
+					else{
+						?>
+						<label><?php echo "1"; ?></label>
+						<?php
+					}
+					?><hr>
+					<?php 
+				}
+				echo "<label><b>Total Price</label></b><br>";
+				echo "<label>$total_price Rs.</label>";
+			}
+
+			if ($modoralt == "modification") 
+			{
+				?>
+				<h4><b>Custom Modification</b></h4><br>
+				<?php
+				foreach ($_SESSION['modcart'] as $item) {
+					if ($item['selectedpkg'] == 1) {?>
+						<div class="accordion-group" id="make">
+							<div class="accordion-heading">
+								<div class="border border-dark border-new accordion-toggle collapsed" data-toggle="collapse" href="#collapse_0" aria-expanded="false">
+									<b><h5 class="p-2">Selected package</h5><?php echo $item['selectedpkg'];?><br></b>
+									<a href="#">Click for package details
+										<i class="fa fa-caret-down"></i>
+									</a>
 								</div>
 							</div>
-							<!-- <div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div> -->
-							<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><label><?php echo $item['description'];?></label><br></div>
-							<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><label><?php echo $item['price']." Rs.";?></label><br></div><?php
-						}
-						elseif ($item['selectedpkg'] == 2){?>
-							<div class="accordion-group" id="make">
-								<div class="accordion-heading">
-									<div class="border border-dark border-new accordion-toggle collapsed" data-toggle="collapse" href="#collapse_0" aria-expanded="false">
-										<h5 class="p-2">Selected package</h5><?php echo $item['selectedpkg'];?><br>
-										<a href="#">Click for package details
-											<i class="fa fa-caret-down"></i>
-										</a>
-									</div>
-								</div>
-								<div id="collapse_0" class="accordion-body in collapse" style="">
-									<ul style="list-style: none; padding: 10px;">
-										<li>Remove jump cover</li>
-										<li>Reflectors</li>
-										<li>HID Lights</li>
-										<li>Remove mudguard</li>
-										<li>Add theme (User defined)</li>
-										<li>Body paint (User defined)</li>
-									</ul>
+							<div id="collapse_0" class="accordion-body in collapse" style="">
+								<ul style="list-style: none; padding: 10px;">
+									<li>Remove jump cover</li>
+									<li>Reflectors</li>
+									<li>Remove mudguard</li>
+									<li>Body paint (User defined)</li>
+								</ul>
+							</div>
+						</div>
+						<!-- <div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div> -->
+						<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><label><?php echo $item['description'];?></label><br></div>
+						<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><label><?php echo $item['price']." Rs.";?></label><br></div><?php
+					}
+					elseif ($item['selectedpkg'] == 2){?>
+						<div class="accordion-group" id="make">
+							<div class="accordion-heading">
+								<div class="border border-dark border-new accordion-toggle collapsed" data-toggle="collapse" href="#collapse_0" aria-expanded="false">
+									<h5 class="p-2">Selected package</h5><?php echo $item['selectedpkg'];?><br>
+									<a href="#">Click for package details
+										<i class="fa fa-caret-down"></i>
+									</a>
 								</div>
 							</div>
+							<div id="collapse_0" class="accordion-body in collapse" style="">
+								<ul style="list-style: none; padding: 10px;">
+									<li>Remove jump cover</li>
+									<li>Reflectors</li>
+									<li>HID Lights</li>
+									<li>Remove mudguard</li>
+									<li>Add theme (User defined)</li>
+									<li>Body paint (User defined)</li>
+								</ul>
+							</div>
+						</div>
 							<!-- <div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div>
 								<div class="border border-dark border-new"><h5 class="p-2">Theme</h5><?php echo $item['theme'];?><br></div> -->
 								<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><label><?php echo $item['description'];?></label><br></div>
