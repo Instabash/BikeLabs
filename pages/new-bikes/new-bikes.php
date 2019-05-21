@@ -70,7 +70,7 @@ $stmt = mysqli_stmt_init($conn);
 					{
 						?>
 						<div>
-							<h5><b><?php echo $row['bike_name']; ?></b></h5><br>
+							<h5><b><?php echo $row['bike_brand'] . " " . $row['bike_model'] . " " . $row['bikeyear'];  ?></b></h5><br>
 							<p><?php echo $row['bike_price']; ?> Rs.</p>
 
 							<?php 
