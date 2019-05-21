@@ -32,7 +32,7 @@ if (isset($_POST['buyBtn-bikes'])) {
 		$price = $row['bike_price'];
 	}
 
-	$_SESSION['cart'][] = array(
+	$_SESSION['bikecart']['product_id'] = array(
 		'product_id' => $bike_id,
 		'title' => $title,
 		'price' => $price,
