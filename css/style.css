@@ -205,6 +205,10 @@ img{
   width: 100%;
 }
 
+h1, h2, h3{
+  font-weight: 100;
+}
+
 .head-container{
   padding-top:15px;
   padding-bottom:15px;
@@ -1372,12 +1376,16 @@ input[type="file"] {
 }
 
 table, th, td {
-  border-bottom: 2px solid #dc3545;
+  /*border-bottom: 2px solid #dc3545;*/
   border-collapse: collapse;
 }
 th, td {
   padding: 5px;
   text-align: left;    
+}
+
+#imgtable{
+  border-bottom: 0px !important; 
 }
 
 #cartIcon
