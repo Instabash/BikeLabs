@@ -107,36 +107,15 @@ $stmt = mysqli_stmt_init($conn);
 						?>
 					</div>
 
-					<form action="" method="post">
-						<!-- <div class="border-new border border-dark rounded mt-5 p-3">
-							<p>
-								Quantity
-							</p><br>
-							<div class="input-group" style="padding-left: 100px;padding-right: 100px;">
-								<span class="input-group-btn">
-									<button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant">
-										<span class="fas fa-minus-square"></span>
-									</button>
-								</span>
-								<input type="text" name="quant" class="form-control input-number" value="1" min="1" max="10">
-								<span class="input-group-btn">
-
-									<button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant">
-										<span class="fas fa-plus-square"></span>
-									</button>
-								</span>
-							</div>
-							<p></p>
-						</div> -->
+					<form action="../../includes/markadsold.inc.php?partid=$part_id" method="post">
+						
 						<div class="border-new border border-dark rounded mt-5 p-3">
-							<!-- <button type="submit" name="cartBtn" class="btn btn-outline-danger">Add to cart</button>
-								<button type="submit" name="buyBtn" class="btn btn-outline-danger">Buy now</button> -->
 								<?php 
 								if(isset($_SESSION['userId']))
 								{
 									if (($row['idUsers'] == $_SESSION['userId'])) 
 									{?>
-										<button type="button" name="" class="btn btn-outline-danger">Mark Ad. as sold</button>
+										<button type="button" name="mksold" class="btn btn-outline-danger">Mark Ad. as sold</button>
 									<?php 
 									}
 									else
