@@ -97,69 +97,57 @@ include '../../includes/dbh.inc.php';
 							<table class="table no-margin">
 								<thead>
 									<tr>
-										<th>Order ID</th>
-										<th>Item</th>
-										<th>Status</th>
-										<th>Popularity</th>
+										<th>Order id</th>
+										<th>Order type</th>
+										<th>Order status</th>
+										<th>Order date</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td><a href="pages/examples/invoice.html">OR9842</a></td>
-										<td>Call of Duty IV</td>
-										<td><span class="label label-success">Shipped</span></td>
-										<td>
-											<div class="sparkbar" data-color="#00a65a" data-height="20"><canvas width="34" height="20" style="display: inline-block; width: 34px; height: 20px; vertical-align: top;"></canvas></div>
-										</td>
-									</tr>
-									<tr>
-										<td><a href="pages/examples/invoice.html">OR1848</a></td>
-										<td>Samsung Smart TV</td>
-										<td><span class="label label-warning">Pending</span></td>
-										<td>
-											<div class="sparkbar" data-color="#f39c12" data-height="20"><canvas width="34" height="20" style="display: inline-block; width: 34px; height: 20px; vertical-align: top;"></canvas></div>
-										</td>
-									</tr>
-									<tr>
-										<td><a href="pages/examples/invoice.html">OR7429</a></td>
-										<td>iPhone 6 Plus</td>
-										<td><span class="label label-danger">Delivered</span></td>
-										<td>
-											<div class="sparkbar" data-color="#f56954" data-height="20"><canvas width="34" height="20" style="display: inline-block; width: 34px; height: 20px; vertical-align: top;"></canvas></div>
-										</td>
-									</tr>
-									<tr>
-										<td><a href="pages/examples/invoice.html">OR7429</a></td>
-										<td>Samsung Smart TV</td>
-										<td><span class="label label-info">Processing</span></td>
-										<td>
-											<div class="sparkbar" data-color="#00c0ef" data-height="20"><canvas width="34" height="20" style="display: inline-block; width: 34px; height: 20px; vertical-align: top;"></canvas></div>
-										</td>
-									</tr>
-									<tr>
-										<td><a href="pages/examples/invoice.html">OR1848</a></td>
-										<td>Samsung Smart TV</td>
-										<td><span class="label label-warning">Pending</span></td>
-										<td>
-											<div class="sparkbar" data-color="#f39c12" data-height="20"><canvas width="34" height="20" style="display: inline-block; width: 34px; height: 20px; vertical-align: top;"></canvas></div>
-										</td>
-									</tr>
-									<tr>
-										<td><a href="pages/examples/invoice.html">OR7429</a></td>
-										<td>iPhone 6 Plus</td>
-										<td><span class="label label-danger">Delivered</span></td>
-										<td>
-											<div class="sparkbar" data-color="#f56954" data-height="20"><canvas width="34" height="20" style="display: inline-block; width: 34px; height: 20px; vertical-align: top;"></canvas></div>
-										</td>
-									</tr>
-									<tr>
-										<td><a href="pages/examples/invoice.html">OR9842</a></td>
-										<td>Call of Duty IV</td>
-										<td><span class="label label-success">Shipped</span></td>
-										<td>
-											<div class="sparkbar" data-color="#00a65a" data-height="20"><canvas width="34" height="20" style="display: inline-block; width: 34px; height: 20px; vertical-align: top;"></canvas></div>
-										</td>
-									</tr>
+									<?php
+									$vendor_name = $_SESSION['userId'];
+									$sql = "SELECT * FROM order_table WHERE order_status = 'Approved' AND assigned_vendor = ? LIMIT 5 ;";
+									$stmt = mysqli_stmt_init($conn);
+									if (!mysqli_stmt_prepare($stmt, $sql)) 
+									{
+										header("Location: ../index.php?error=sqlerror");
+										exit();
+									}
+									else
+									{
+										mysqli_stmt_bind_param($stmt, "s", $vendor_name);
+										mysqli_stmt_execute($stmt);
+										$result = mysqli_stmt_get_result($stmt);
+										while($row = mysqli_fetch_assoc($result))
+										{
+											$orderid = $row['order_id'];
+											$sql2 = "SELECT * FROM order_items WHERE order_id = ?;";
+											$stmt2 = mysqli_stmt_init($conn);
+											if (!mysqli_stmt_prepare($stmt2, $sql2)) 
+											{
+												header("Location: ../index.php?error=sqlerror");
+												exit();
+											}
+											else
+											{
+												mysqli_stmt_bind_param($stmt2, "s", $orderid);
+												mysqli_stmt_execute($stmt2);
+												$result2 = mysqli_stmt_get_result($stmt2);
+												while($row2 = mysqli_fetch_assoc($result2))
+												{
+													?>
+													<tr>
+														<td><a href="pages/examples/invoice.html"><?php echo $row['order_id']; ?></a></td>
+														<td><?php echo $row['order_type']; ?></td>
+														<td><span class="label label-success"><?php echo $row['order_status']; ?></span></td>
+														<td><?php echo $row['order_date']; ?></td>
+													</tr>
+													<?php
+												}
+											}
+										}
+									}
+									?>
 								</tbody>
 							</table>
 						</div>
@@ -173,12 +161,12 @@ include '../../includes/dbh.inc.php';
 				</div>
 				<!-- /.box -->
 			</div>
-			<div class="col-sm-6 ">
+			<!-- <div class="col-sm-6 ">
 				<div class="box box-info">
 					<div class="box-header with-border">
 						<h3 class="box-title">Latest members</h3>
 					</div>
-					<!-- /.box-header -->
+					
 					<div class="box-body">
 						<div class="table-responsive">
 							<table class="table no-margin">
@@ -250,14 +238,14 @@ include '../../includes/dbh.inc.php';
 								</tbody>
 							</table>
 						</div>
-						<!-- /.table-responsive -->
+						
 					</div>
-					<!-- /.box-body -->
+					
 					<div class="box-footer clearfix">
 						<a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a>
 					</div>
-					<!-- /.box-footer -->
-				</div>
+					
+				</div> -->
 				<!-- /.box -->
 			</div>
 			<!-- /.col -->
