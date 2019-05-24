@@ -7,7 +7,7 @@ if (isset($_POST['btnplaceorder'])) {
 		if ($modoralt == "modification") {
 			$ordertype = "Modification";
 			$orderQuantity = 1;
-			$orderStatus = "Pending approval";
+			$orderStatus = "Open";
 			$orderDate = date("Y-m-d h:i:sa");
 			$userid = $_SESSION['userId'];
 			$type = "Modification";
@@ -136,7 +136,7 @@ if (isset($_POST['btnplaceorder'])) {
 		elseif ($modoralt == "alteration") {
 			$ordertype = "Alteration";
 			$orderQuantity = 1;
-			$orderStatus = "Pending approval";
+			$orderStatus = "Open";
 			$orderDate = date("Y-m-d h:i:sa");
 			$userid = $_SESSION['userId'];
 			$type = "Alteration";
@@ -253,7 +253,7 @@ if (isset($_POST['btnplaceorder'])) {
 	elseif (isset($_SESSION['bikecart'])) {
 		$ordertype = "bike";
 
-		$orderStatus = "Pending approval";
+		$orderStatus = "Processing";
 		$orderDate = date("Y-m-d h:i:sa");
 		$userid = $_SESSION['userId'];
 
@@ -277,7 +277,24 @@ if (isset($_POST['btnplaceorder'])) {
 			$multipliedprice = $price*$orderQuantity;
 			$total_price+=$multipliedprice;
 		}
-		$ordertablesql = "INSERT INTO order_table (order_type, order_status, order_date, idUsers) VALUES (?, ?, ?, ?)";
+		$assigned = "";
+		$idvendor = "";
+		$vendoridsql = "SELECT * FROM bikes WHERE part_id = ?";
+		$stmt = mysqli_stmt_init($conn);
+		if (!mysqli_stmt_prepare($stmt, $vendoridsql)) 
+		{
+			echo "SQL statement failed";
+		}
+		else
+		{
+			mysqli_stmt_bind_param($stmt, "s", $part_bike_id_assign);
+			mysqli_stmt_execute($stmt);
+			$result3 = mysqli_stmt_get_result($stmt);
+			while ($row = mysqli_fetch_assoc($result3)) {
+				$assigned = $row['idUsers'];
+			}
+		}
+		$ordertablesql = "INSERT INTO order_table (order_type, order_status, order_date, idUsers, assigned_vendor) VALUES (?, ?, ?, ?, ?)";
 		$stmt = mysqli_stmt_init($conn);
 		if (!mysqli_stmt_prepare($stmt, $ordertablesql)) 
 		{
@@ -285,7 +302,7 @@ if (isset($_POST['btnplaceorder'])) {
 		}
 		else
 		{
-			mysqli_stmt_bind_param($stmt, "ssss", $ordertype, $orderStatus, $orderDate, $userid);
+			mysqli_stmt_bind_param($stmt, "sssss", $ordertype, $orderStatus, $orderDate, $userid, $assigned);
 			mysqli_stmt_execute($stmt);
 			$orderid = $conn->insert_id;
 			$_SESSION["order_id"] = $orderid;
@@ -328,7 +345,7 @@ if (isset($_POST['btnplaceorder'])) {
 	else{
 		$ordertype = "parts";
 
-		$orderStatus = "Pending approval";
+		$orderStatus = "Processing";
 		$orderDate = date("Y-m-d h:i:sa");
 		$userid = $_SESSION['userId'];
 
@@ -352,7 +369,28 @@ if (isset($_POST['btnplaceorder'])) {
 			$multipliedprice = $price*$orderQuantity;
 			$total_price+=$multipliedprice;
 		}
-		$ordertablesql = "INSERT INTO order_table (order_type, order_status, order_date, idUsers) VALUES (?, ?, ?, ?)";
+		foreach ($_SESSION['cart'] as $item) 
+		{
+			$part_bike_id_assign = $item['product_id'];
+		}
+		$assigned = "";
+		$idvendor = "";
+		$vendoridsql = "SELECT * FROM spare_parts WHERE part_id = ?";
+		$stmt = mysqli_stmt_init($conn);
+		if (!mysqli_stmt_prepare($stmt, $vendoridsql)) 
+		{
+			echo "SQL statement failed";
+		}
+		else
+		{
+			mysqli_stmt_bind_param($stmt, "s", $part_bike_id_assign);
+			mysqli_stmt_execute($stmt);
+			$result3 = mysqli_stmt_get_result($stmt);
+			while ($row = mysqli_fetch_assoc($result3)) {
+				$assigned = $row['idUsers'];
+			}
+		}
+		$ordertablesql = "INSERT INTO order_table (order_type, order_status, order_date, idUsers, assigned_vendor) VALUES (?, ?, ?, ?, ?)";
 		$stmt = mysqli_stmt_init($conn);
 		if (!mysqli_stmt_prepare($stmt, $ordertablesql)) 
 		{
@@ -360,7 +398,7 @@ if (isset($_POST['btnplaceorder'])) {
 		}
 		else
 		{
-			mysqli_stmt_bind_param($stmt, "ssss", $ordertype, $orderStatus, $orderDate, $userid);
+			mysqli_stmt_bind_param($stmt, "sssss", $ordertype, $orderStatus, $orderDate, $userid, $assigned);
 			mysqli_stmt_execute($stmt);
 			$orderid = $conn->insert_id;
 			$_SESSION["order_id"] = $orderid;
