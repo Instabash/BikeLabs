@@ -13,7 +13,8 @@ include '../../includes/dbh.inc.php';
 	<div class="bg-light border-right" id="sidebar-wrapper">
 		<div class="list-group list-group-flush">
 			<a href="/BikeLabs/pages/admin/admindash.php" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-			<a href="/BikeLabs/pages/admin/admin-orders.php" class="list-group-item list-group-item-action bg-light">Pending Orders</a>
+			<a href="/BikeLabs/pages/admin/admin-jobs.php" class="list-group-item list-group-item-action bg-light">Pending Jobs</a>
+            <a href="/BikeLabs/pages/admin/admin-orders.php" class="list-group-item list-group-item-action bg-light">Pending Orders</a>
 			<a href="/BikeLabs/pages/admin/admin-vendor.php" class="list-group-item list-group-item-action bg-light">Vendor management</a>
 			<a href="/BikeLabs/pages/admin/admin-user.php" class="list-group-item list-group-item-action bg-light">User management</a>
 			<a href="/BikeLabs/pages/admin/admin-sales.php" class="list-group-item list-group-item-action bg-light">Sales</a>
@@ -209,7 +210,7 @@ include '../../includes/dbh.inc.php';
                                             <output id="Filelist" class="imgoutput" style="max-width: 630px;"></output>
                                         </li>
                                         <li>
-                                            <span id="error" style="color: white;"></span>
+                                            <span id="error" style="color: red;"></span>
                                         </li>
                                     </ul>
                                 </div>
@@ -254,6 +255,8 @@ include '../../includes/dbh.inc.php';
         ul.className = ("thumb-Images");
         ul.id = "imgList";
 
+        var validated = true;
+
         function init() {
             //add javascript handlers for the file upload event
             document.querySelector('#files').addEventListener('change', handleFileSelect, false);
@@ -278,14 +281,25 @@ include '../../includes/dbh.inc.php';
                 fileReader.onload = (function (readerEvt) {
                 	return function (e) {
 
-                        //Apply the validation rules for attachments upload
-                        ApplyFileValidationRules(readerEvt)
+                        
+/*
+                        if (dimensionValidation(e)) {
 
-                        //Render attachments thumbnails.
-                        RenderThumbnail(e, readerEvt);
+                           
+                        }  */
+                        dimensionValidation(e).then(function () {
+                            console.log('in promise')
+                            if (validated) {
+                                //Apply the validation rules for attachments upload
+                                ApplyFileValidationRules(readerEvt)
+                             //Render attachments thumbnails.
+                                RenderThumbnail(e, readerEvt);
 
-                        //Fill the array of attachment
-                        FillAttachmentArray(e, readerEvt)
+                                //Fill the array of attachment
+                                FillAttachmentArray(e, readerEvt)                      
+                            }
+                        });
+
                     };
                 })(f);
 
@@ -295,6 +309,45 @@ include '../../includes/dbh.inc.php';
                 fileReader.readAsDataURL(f);
             }
             document.getElementById('files').addEventListener('change', handleFileSelect, false);
+            
+        }
+
+        function dimensionValidation(e) {
+
+                var dfrd1 = $.Deferred();
+                
+                var image = new Image();
+
+                //Set the Base64 string return from FileReader as source.
+                image.src = e.target.result;
+
+                //Validate the File Height and Width.
+                image.onload = function () {
+                  var height = this.height;
+                  var width = this.width;
+                  console.log('h', height)
+                  console.log('w', width)
+                  if (height < 300 || width < 300) {
+                    console.log('v1', validated);
+                    validated = false;
+                    // alert("Height and Width must not exceed 100px.");
+                    console.log('v2', validated);
+                    e.preventDefault();
+
+                    dfrd1.resolve();
+                  } else {
+
+                  validated = true;
+                  // alert("Uploaded image has valid Height and Width.");
+                  e.preventDefault();
+
+                   dfrd1.resolve();
+                  }
+                };
+
+                return $.when(dfrd1).done(function(){
+                    
+                }).promise();
             
         }
 
@@ -333,6 +386,7 @@ include '../../includes/dbh.inc.php';
         //Apply the validation rules for attachments upload
         function ApplyFileValidationRules(readerEvt)
         {
+            console.log(readerEvt);
             //To check file type according to upload conditions
             if (CheckFileType(readerEvt.type) == false) {
             	document.getElementById("error").innerHTML = "The file (" + readerEvt.name + ") does not match the upload conditions, You can only upload jpg/png/gif files";
@@ -414,6 +468,10 @@ include '../../includes/dbh.inc.php';
         //Render attachments thumbnails.
         function RenderThumbnail(e, readerEvt)
         {
+            console.log(validated);
+            if (!validated) {
+                return;
+            }
         	var li = document.createElement('li');
         	li.style.cssFloat = "left";
         	ul.appendChild(li);
@@ -432,6 +490,9 @@ include '../../includes/dbh.inc.php';
         //Fill the array of attachment
         function FillAttachmentArray(e, readerEvt)
         {
+            if (!validated) {
+                return;
+            }
         	AttachmentArray[arrCounter] =
         	{
         		AttachmentType: 1,
