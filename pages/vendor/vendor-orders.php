@@ -88,7 +88,7 @@ include '../../includes/dbh.inc.php';
 									<tbody>
 										<?php
 										$vendor_name = $_SESSION['userId'];
-										$sql = "SELECT * FROM order_table WHERE order_status = 'Approved' AND assigned_vendor = ?;";
+										$sql = "SELECT * FROM order_table WHERE assigned_vendor = ?;";
 										$stmt = mysqli_stmt_init($conn);
 										if (!mysqli_stmt_prepare($stmt, $sql)) 
 										{
