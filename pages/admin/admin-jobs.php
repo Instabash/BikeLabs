@@ -29,26 +29,69 @@ include '../../includes/dbh.inc.php';
 					<!-- /.box -->
 					<div class="box">
 						<div class="box-header">
-							<h3 class="box-title">Sales</h3>
+							<h3 class="box-title">Pending Jobs</h3>
 						</div>
 						<!-- /.box-header -->
-						<div class="box-body">
-							<table id="example1" class="table table-bordered table-striped">
-								<thead>
-									<tr>
-										<th>Order id</th>
-										<th>Order type</th>
-										<th>Order status</th>
-										<th>Order date</th>
-										<th>User id</th>
-										<th>Order price</th>
-										<th>Order quantity</th>
-										<th>Order address</th>
-									</tr>
-								</thead>
-								<tbody>
+						<form action="/BikeLabs/includes/admin-orders.inc.php" method="post">
+							<div class="pb-3">
+								<label>Select Vendor</label>
+								<select class="custom-select" name="vendor-select" style="width: 15%;">
+									<option value="" disabled selected>Select</option>
+									<?php
+
+									$sql3 = "SELECT * FROM users WHERE User_type = '2';";
+									$stmt3 = mysqli_stmt_init($conn);
+									if (!mysqli_stmt_prepare($stmt3, $sql3)) 
+									{
+										header("Location: ../index.php?error=sqlerror");
+										exit();
+									}
+									else
+									{
+										mysqli_stmt_execute($stmt3);
+										$result3 = mysqli_stmt_get_result($stmt3);
+										while($row3 = mysqli_fetch_assoc($result3))
+										{
+											?>
+											<option value="<?php echo $row3['idUsers'] ?>"><?php echo $row3['uidUsers']; ?></option>
+											<?php
+										}	
+									}
+									?>
+								</select>
+								<input class="btn btn-primary" type="submit" name="submit-job" value="Assign job">
+							</div>
+							<?php
+							if (isset($_GET['error'])) 
+							{
+								if ($_GET['error'] == "order") 
+								{
+									echo '<p style="color:red;padding:5px;";>Select a order to assign!</p>';
+								}
+								elseif ($_GET['error'] == "vendor") 
+								{
+									echo '<p style="color:red;padding:5px;";>Select a vendor!</p>';
+								}
+							}
+							?>
+							<div class="box-body">
+								<table id="example1" class="table table-bordered table-striped">
+									<thead>
+										<tr>
+											<th>Select</th>
+											<th>Order id</th>
+											<th>Order type</th>
+											<th>Order status</th>
+											<th>Order date</th>
+											<th>User id</th>
+											<th>Order price</th>
+											<th>Order quantity</th>
+										</tr>
+									</thead>
+									<tbody>
 										<?php
-										$sql = "SELECT * FROM order_table WHERE order_status = 'Shipped';";
+
+										$sql = "SELECT * FROM order_table WHERE order_status = 'Open';";
 										$stmt = mysqli_stmt_init($conn);
 										if (!mysqli_stmt_prepare($stmt, $sql)) 
 										{
@@ -78,6 +121,7 @@ include '../../includes/dbh.inc.php';
 													{
 														?>
 														<tr>
+															<td><input type="checkbox" name="order-check[]" value="<?php echo $row['order_id']; ?>"></td>
 															<td><?php echo $row['order_id']; ?></td>
 															<td><?php echo $row['order_type']; ?></td>
 															<td><?php echo $row['order_status']; ?></td>
@@ -85,7 +129,6 @@ include '../../includes/dbh.inc.php';
 															<td><?php echo $row['idUsers']; ?></td>
 															<td><?php echo $row2['Order_price']; ?></td>
 															<td><?php echo $row2['Order_quantity']; ?></td>
-															<td><?php echo $row2['Order_Address']; ?></td>
 														</tr>
 														<?php
 													}
@@ -94,20 +137,21 @@ include '../../includes/dbh.inc.php';
 										}
 										?>
 									</tbody>
-								<tfoot>
-									<tr>
-										<th>Order id</th>
-										<th>Order type</th>
-										<th>Order status</th>
-										<th>Order date</th>
-										<th>User id</th>
-										<th>Order price</th>
-										<th>Order quantity</th>
-										<th>Order address</th>
-									</tr>
-								</tfoot>
-							</table>
-						</div>
+									<tfoot>
+										<tr>
+											<th>Select</th>
+											<th>Order id</th>
+											<th>Order type</th>
+											<th>Order status</th>
+											<th>Order date</th>
+											<th>User id</th>
+											<th>Order price</th>
+											<th>Order quantity</th>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</form>
 						<!-- /.box-body -->
 					</div>
 					<!-- /.box -->
