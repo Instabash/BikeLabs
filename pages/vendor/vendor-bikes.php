@@ -17,127 +17,215 @@ include '../../includes/dbh.inc.php';
             <a href="/BikeLabs/pages/vendor/vendor-sales.php" class="list-group-item list-group-item-action bg-light">Sales</a>
             <a href="/BikeLabs/pages/vendor/vendor-bikes.php" class="list-group-item list-group-item-action bg-light">Add new Bikes</a>
             <a href="/BikeLabs/pages/vendor/vendor-parts.php" class="list-group-item list-group-item-action bg-light">Add new Parts</a>
-		</div>
-	</div>
-	<section id="modify" class="section modsection content content2">
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-12">
-					<!-- /.box -->
-					<div class="box">
-						<div class="box-header">
-							<h3 class="box-title">Add new bikes</h3>
-						</div>
-						<!-- /.box-header -->
-						
-						<div class="advertpick clearfix ">
-							<form class="p-2" action="/BikeLabs/includes/new-bikes.inc.php" method="post" enctype="multipart/form-data" id="bkform">
-								<div class="form-row p-2 pt-4 mb-3 formrowad">
-									<label for="title">Title</label>
-									<div>
-										<div class="input-group">
-											<input type="text" class="form-control" name="bktitle" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1">
-										</div>
-									</div>
-								</div>
-								<!-- <div class="form-row formrowad p-2">
-									<label>Brand name</label>
-									<div class="select-wrap mb-2">
-										<select class="custom-select" name="spcondition" id="title">
-											<option value="" disabled selected>Select</option>
-											<option value="New">Honda</option>
-											<option value="Used">Super</option>
-										</select>
-									</div>
-								</div> -->
-								<div class="form-row formrowad p-2">
-									<label>Brand</label>
-									<div class="select-wrap mb-2">
-										<select class="custom-select" name="bkbrand" id="title">
-											<option value="" disabled selected>Select</option>
-											<option value="Honda">Honda</option>
-											<option value="SuperPower">SuperPower</option>
-											<option value="Unique">Unique</option>
-										</select>
-									</div>
-								</div>
-								<div class="form-row formrowad p-2">
-									<label>Model</label>
-									<div class="select-wrap mb-2">
-										<select class="custom-select" name="bkmodel" id="title">
-											<option value="" disabled selected>Select</option>
-											<option value="70cc">70cc</option>
-											<option value="150cc">125cc</option>
-											<option value="125cc">150cc</option>
-										</select>
-									</div>
-								</div>
-								<div class="form-row formrowad p-2 pt-4 mb-3">
-									<label>Year</label>
-									<div>
-										<div class="input-group">
-											<input type="text" class="form-control" name="bkyear" placeholder="Year" aria-label="Year" aria-describedby="basic-addon1">
-										</div>
-									</div>
-								</div>
-								<div class="form-row formrowad p-2">
-									<label>Description</label>
-									<div>
-										<div class="input-group mb-3">
-											<textarea class="form-control" rows="5" cols="50" id="description" name="bkdescription" style="resize: none;"></textarea>
-										</div>
-									</div>
-								</div>
-								<div class="form-row formrowad pl-2 pr-2 pt-2">
-									<label>Price</label>
-									<div>
-										<div class="input-group mb-3">
-											<input type="text" class="form-control" name="bkprice" placeholder="Price" aria-label="Price" aria-describedby="basic-addon1">
-										</div>
-									</div>
-								</div>
-								<div class="form-row formrowad p-2 imageupload" align="left">
-									<label>Attachment Instructions</label>
-									<ul class="imagelist" style="list-style: none;">
-										<li>
-											Allowed only files with extension (jpg, png, gif)
-										</li>
-										<li>
-											Maximum number of allowed files 10 with 300 KB for each
-										</li>
-										<li>
-											you can select files from different folders
-										</li>
-										<li>
-											<span class=" fileinput-button">
-												<br>
-												<span>Select Attachment</span>
-												<input type="file" name="files[]" id="files" style="display: none !important;" multiple accept="image/jpeg, image/png, image/gif,"><br />
-												<input type="button" class="btn btn-outline-danger" value="Browse..." onclick="document.getElementById('files').click();" />
-											</span>
-										</li>
-										<li>
-											<output id="Filelist" class="imgoutput" style="max-width: 630px;"></output>
-										</li>
-										<li>
-											<span id="error" style="color: white;"></span>
-										</li>
-									</ul>
-								</div>
-								<div class="addressbtn">
-									<button type="submit" name="bksubmit" class="btn btn-primary">Post the advert</button>
-								</div>
-							</form>
-						</div> 
+        </div>
+    </div>
+    <section id="modify" class="section modsection content content2">
+      <div class="container">
+       <div class="row">
+        <div class="col-xs-12">
+         <!-- /.box -->
+         <div class="box">
+          <div class="box-header">
+           <h3 class="box-title">Add new bikes</h3>
+       </div>
+       <!-- /.box-header -->
 
-						<!-- /.box-body -->
-					</div>
-					<!-- /.box -->
-				</div>
-				<!-- /.col -->
-			</div>
-		</div>
-	</section>
+       <div class="advertpick clearfix ">
+           <form class="p-2" action="/BikeLabs/includes/new-bikes.inc.php" method="post" enctype="multipart/form-data" id="bkform">
+            <hr>
+            <h5>Specifications</h5>
+            <hr>
+            <div class="form-row formrowad p-2">
+                <label>Brand</label>
+                <div class="select-wrap mb-2">
+                    <select class="custom-select" name="bkbrand" id="title">
+                        <option value="" disabled selected>Select</option>
+                        <option value="Honda">Honda</option>
+                        <option value="SuperPower">SuperPower</option>
+                        <option value="Unique">Unique</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row formrowad p-2 pt-4">
+                <label>Model</label>
+                <div class="select-wrap mb-2">
+                    <select class="custom-select" name="bkmodel" id="title">
+                        <option value="" disabled selected>Select</option>
+                        <option value="70cc">70cc</option>
+                        <option value="125cc">125cc</option>
+                        <option value="150cc">150cc</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row formrowad p-2 pt-4 mb-3">
+                <label>Year</label>
+                <div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="bkyear" placeholder="Year" aria-label="Year" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+            </div>
+            <div class="form-row p-2 pt-4 mb-3 formrowad">
+                <label for="bkengine">Engine Type</label>
+                <div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="bkengine" placeholder="Engine type" aria-label="Engine type" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row p-2 pt-4 mb-3 formrowad">
+                <label for="bkborestroke">Bore and Stroke</label>
+                <div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="bkborestroke" placeholder="Clutch" aria-label="Clutch" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+            </div>
+            <div class="form-row p-2 pt-4 mb-3 formrowad">
+                <label for="bktrans">Transmission</label>
+                <div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="bktrans" placeholder="Transmission" aria-label="Transmission" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+            </div>
+            <div class="form-row p-2 pt-4 mb-3 formrowad">
+                <label for="bkstart">Starting</label>
+                <div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="bkstart" placeholder="Starting" aria-label="Starting" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+            </div>
+            <div class="form-row p-2 pt-4 mb-3 formrowad">
+                <label for="bkframe">Frame</label>
+                <div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="bkframe" placeholder="Frame" aria-label="Frame" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+            </div>
+            <div class="form-row p-2 pt-4 mb-3 formrowad">
+                <label for="bkdim">Dimensions</label>
+                <div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="bkdim" placeholder="Dimensions" aria-label="Dimensions" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+            </div>
+            <div class="form-row p-2 pt-4 mb-3 formrowad">
+                <label for="bkpetcap">Petrol Capacity</label>
+                <div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="bkpetcap" placeholder="Petrol Capacity" aria-label="Petrol Capacity" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+            </div>
+            <div class="form-row p-2 pt-4 mb-3 formrowad">
+                <label for="bkftyre">Tyre at front</label>
+                <div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="bkftyre" placeholder="Tyre at front" aria-label="Tyre at front" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+            </div>
+            <div class="form-row p-2 pt-4 mb-3 formrowad">
+                <label for="bkbtyre">Tyre at back</label>
+                <div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="bkbtyre" placeholder="Tyre at back" aria-label="Tyre at back" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+            </div>
+            <div class="form-row p-2 pt-4 mb-3 formrowad">
+                <label for="bkdweight">Dry weight</label>
+                <div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="bkdweight" placeholder="Dry Weight" aria-label="Dry Weight" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+            </div>
+                                <!-- <div class="form-row p-2 pt-4 mb-3 formrowad">
+                                    <label for="title">Title</label>
+                                    <div>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="bktitle" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1">
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <!-- <div class="form-row formrowad p-2">
+                                    <label>Brand name</label>
+                                    <div class="select-wrap mb-2">
+                                        <select class="custom-select" name="spcondition" id="title">
+                                            <option value="" disabled selected>Select</option>
+                                            <option value="New">Honda</option>
+                                            <option value="Used">Super</option>
+                                        </select>
+                                    </div>
+                                </div> -->
+                                <hr>
+                                <h5>General information</h5>
+                                <hr>
+                                <div class="form-row formrowad p-2 pt-4">
+                                    <label>Description</label>
+                                    <div>
+                                        <div class="input-group mb-3">
+                                            <textarea class="form-control" rows="5" cols="50" id="description" name="bkdescription" style="resize: none;"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row formrowad pl-2 pr-2 pt-2">
+                                    <label>Price</label>
+                                    <div>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" name="bkprice" placeholder="Price" aria-label="Price" aria-describedby="basic-addon1">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row formrowad p-2 imageupload" align="left">
+                                    <label>Attachment Instructions</label>
+                                    <ul class="imagelist" style="list-style: none;">
+                                        <li>
+                                            Allowed only files with extension (jpg, png, gif)
+                                        </li>
+                                        <li>
+                                            Maximum number of allowed files 10 with 300 KB for each
+                                        </li>
+                                        <li>
+                                            you can select files from different folders
+                                        </li>
+                                        <li>
+                                            <span class=" fileinput-button">
+                                                <br>
+                                                <span>Select Attachment</span>
+                                                <input type="file" name="files[]" id="files" style="display: none !important;" multiple accept="image/jpeg, image/png, image/gif,"><br />
+                                                <input type="button" class="btn btn-outline-danger" value="Browse..." onclick="document.getElementById('files').click();" />
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <output id="Filelist" class="imgoutput" style="max-width: 630px;"></output>
+                                        </li>
+                                        <li>
+                                            <span id="error" style="color: white;"></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="addressbtn">
+                                    <button type="submit" name="bksubmit" class="btn btn-primary">Post the advert</button>
+                                </div>
+                            </form>
+                        </div> 
+
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+            </div>
+        </div>
+    </section>
 </div>
 
 <script>
@@ -323,6 +411,7 @@ include '../../includes/dbh.inc.php';
             }
         }
 
+
         //Render attachments thumbnails.
         function RenderThumbnail(e, readerEvt)
         {
@@ -379,32 +468,24 @@ include '../../includes/dbh.inc.php';
 				},
 				success: function(data)
 				{
-					if(data=='invalid')
-					{
-				     // invalid file format.
-				     $("#err").html("Invalid File !").fadeIn();
-				 }
+					if(data == 0)
+                    {
+                        location.href = "/BikeLabs/pages/vendor/vendor-bikes.php?error=fieldsnotfilled"
+                    }
+                    // if (data == 1) 
+                    // {
 
-				 else
-				 {
-				     // view uploaded file.
-				     //$("#preview").html(data).fadeIn();
-				     //$("#form")[0].reset();
-                     var usertype = "<?php echo $_SESSION['usertype']; ?>"; 
-                     if (usertype == 1) {
-                        location.href = "/BikeLabs/pages/admin/admin-bikes.php?success"
-                     }
-                     else
-                        if (usertype == 2) {
-                            location.href = "/BikeLabs/pages/vendor/vendor-bikes.php?success"
-                        }
-				 }
-				},
-				error: function(e) 
-				{
-					$("#err").html(e).fadeIn();
-				}          
-			});
+                    // }
+                    else
+                    {
+                        location.href = "/BikeLabs/pages/vendor/vendor-bikes.php?success"
+                    }
+                },
+                error: function(e) 
+                {
+                 $("#err").html(e).fadeIn();
+             }          
+         });
 				}));
         });
     </script>
