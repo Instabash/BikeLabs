@@ -4,6 +4,7 @@ include '../../includes/restrictions.inc.php';
 vendor_protect();
 include '../../includes/header.php';
 include '../../includes/dbh.inc.php';
+$vendor_name = $_SESSION['userId'];
 ?>
 <!-- Sidebar -->
 <label href="#" class="list-group-item" style="width: auto;">Vendor Panel
@@ -14,6 +15,8 @@ include '../../includes/dbh.inc.php';
 		<div class="list-group list-group-flush">
 			<a href="/BikeLabs/pages/vendor/vendordash.php" class="list-group-item list-group-item-action bg-light">Dashboard</a>
 			<a href="/BikeLabs/pages/vendor/vendor-orders.php" class="list-group-item list-group-item-action bg-light">Pending Orders</a>
+			<a href="/BikeLabs/pages/vendor/vendor-modalt.php" class="list-group-item list-group-item-action bg-light">Pending Mod/Alt Orders</a>
+			<a href="/BikeLabs/pages/vendor/vendor-modaltprocessed.php" class="list-group-item list-group-item-action bg-light">Processed Mod/Alt Orders</a>
 			<a href="/BikeLabs/pages/vendor/vendor-sales.php" class="list-group-item list-group-item-action bg-light">Sales</a>
 			<a href="/BikeLabs/pages/vendor/vendor-bikes.php" class="list-group-item list-group-item-action bg-light">Add new Bikes</a>
 			<a href="/BikeLabs/pages/vendor/vendor-parts.php" class="list-group-item list-group-item-action bg-light">Add new Parts</a>
@@ -30,47 +33,9 @@ include '../../includes/dbh.inc.php';
 						</div>
 						<!-- /.box-header -->
 						<form action="/BikeLabs/includes/admin-orders.inc.php" method="post">
-							<!-- <div class="pb-3">
-								<label>Select Vendor</label>
-								<select class="custom-select" name="vendor-select" style="width: 15%;">
-									<option value="" disabled selected>Select</option>
-									<?php
-
-									$sql3 = "SELECT * FROM users WHERE User_type = '2';";
-									$stmt3 = mysqli_stmt_init($conn);
-									if (!mysqli_stmt_prepare($stmt3, $sql3)) 
-									{
-										header("Location: ../index.php?error=sqlerror");
-										exit();
-									}
-									else
-									{
-										mysqli_stmt_execute($stmt3);
-										$result3 = mysqli_stmt_get_result($stmt3);
-										while($row3 = mysqli_fetch_assoc($result3))
-										{
-											?>
-											<option value="<?php echo $row3['idUsers'] ?>"><?php echo $row3['uidUsers']; ?></option>
-											<?php
-										}	
-									}
-									?>
-								</select>
-								 <input class="btn btn-primary" type="submit" name="submit-job" value="Assign job"> -->
-							<!-- </div> -->
-							<?php
-							if (isset($_GET['error'])) 
-							{
-								if ($_GET['error'] == "order") 
-								{
-									echo '<p style="color:red;padding:5px;";>Select a order to assign!</p>';
-								}
-								elseif ($_GET['error'] == "vendor") 
-								{
-									echo '<p style="color:red;padding:5px;";>Select a vendor!</p>';
-								}
-							}
-							?>
+							<div class="pb-3">
+								<input class="btn btn-primary" type="submit" name="vendor-appr-order" value="Approve Order">
+							</div>
 							<div class="box-body">
 								<table id="example1" class="table table-bordered table-striped">
 									<thead>
@@ -87,8 +52,7 @@ include '../../includes/dbh.inc.php';
 									</thead>
 									<tbody>
 										<?php
-										$vendor_name = $_SESSION['userId'];
-										$sql = "SELECT * FROM order_table WHERE assigned_vendor = ?;";
+										$sql = "SELECT * FROM order_table WHERE order_status = 'Processing' AND assigned_vendor = ? AND NOT Order_type = 'Modification' AND NOT Order_type = 'Alteration';";
 										$stmt = mysqli_stmt_init($conn);
 										if (!mysqli_stmt_prepare($stmt, $sql)) 
 										{
@@ -119,7 +83,7 @@ include '../../includes/dbh.inc.php';
 													{
 														?>
 														<tr>
-															<td><input type="checkbox" name="order-check[]" value="<?php echo $row['order_id']; ?>"></td>
+															<td><input type="checkbox" name="vendor-appr-check[]" value="<?php echo $row['order_id']; ?>"></td>
 															<td><?php echo $row['order_id']; ?></td>
 															<td><?php echo $row['order_type']; ?></td>
 															<td><?php echo $row['order_status']; ?></td>
@@ -150,6 +114,194 @@ include '../../includes/dbh.inc.php';
 								</table>
 							</div>
 						</form>
+						<div>
+							<!-- <div class="box-body">
+								<div class="pb-3">
+								<input class="btn btn-primary" type="submit" name="admin-sold-order" value="Mark Order As Sold">
+							</div> -->
+							<div class="box-header">
+								<h3 class="box-title">Order details</h3>
+							</div><hr style="color: black;">
+							<div class="row pt-5 ">
+								<div class="col-sm-6 ">
+									<div class="box-header">
+										<h3 class="box-title">Bike Order Detail</h3>
+									</div>
+									<table id="example3" class="table table-bordered table-striped">
+										<thead>
+											<tr>
+												<th>Order id</th>
+												<!-- 	<th>Order price</th> -->
+												<th>Bike Brand</th>
+												<th>Bike Model</th>
+												<th>Bike Year</th>
+												<th>Bike Description</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php
+
+											$sql = "SELECT * FROM order_table WHERE order_status = 'Processing' AND assigned_vendor = ?;";
+											$stmt = mysqli_stmt_init($conn);
+											if (!mysqli_stmt_prepare($stmt, $sql)) 
+											{
+												header("Location: ../index.php?error=sqlerror");
+												exit();
+											}
+											else
+											{
+												mysqli_stmt_bind_param($stmt, "s", $vendor_name);
+												mysqli_stmt_execute($stmt);
+												$result = mysqli_stmt_get_result($stmt);
+												while($row = mysqli_fetch_assoc($result))
+												{
+													$orderid = $row['order_id'];
+													$sql2 = "SELECT * FROM order_items WHERE order_id = ?;";
+													$stmt2 = mysqli_stmt_init($conn);
+													if (!mysqli_stmt_prepare($stmt2, $sql2)) 
+													{
+														header("Location: ../index.php?error=sqlerror");
+														exit();
+													}
+													else
+													{
+														mysqli_stmt_bind_param($stmt2, "s", $orderid);
+														mysqli_stmt_execute($stmt2);
+														$result2 = mysqli_stmt_get_result($stmt2);
+														while($row2 = mysqli_fetch_assoc($result2))
+														{
+															$bike_id = $row2['Order_type_ID'];
+															$sql3 = "SELECT * FROM bikes WHERE bike_id = ?;";
+															$stmt3 = mysqli_stmt_init($conn);
+															if (!mysqli_stmt_prepare($stmt3, $sql3)) 
+															{
+																header("Location: ../index.php?error=sqlerror");
+																exit();
+															}
+															else
+															{
+																mysqli_stmt_bind_param($stmt3, "s", $bike_id);
+																mysqli_stmt_execute($stmt3);
+																$result3 = mysqli_stmt_get_result($stmt3);
+																while ($row3 = mysqli_fetch_assoc($result3)) 
+																{
+																	?>
+																	<tr>
+																		<td><?php echo $row['order_id']; ?></td>
+																		<!-- <td><?php echo $row2['Order_price']; ?></td> -->
+																		<td><?php echo $row3['bike_brand']; ?></td>
+																		<td><?php echo $row3['bike_model']; ?></td>
+																		<td><?php echo $row3['bikeyear']; ?></td>
+																		<td><?php echo $row3['bike_desc']; ?></td>
+																	</tr>
+																	<?php
+																}
+															}
+														}
+													}
+												}
+											}
+											?>
+										</tbody>
+										<tfoot>
+											<tr>
+												<th>Order id</th>
+												<!-- 	<th>Order price</th> -->
+												<th>Bike Brand</th>
+												<th>Bike Model</th>
+												<th>Bike Year</th>
+												<th>Bike Description</th>
+											</tr>
+										</tfoot>
+									</table>
+								</div>
+								<div class="col-sm-6 ">
+									<div class="box-header">
+										<h3 class="box-title">Part Order Detail</h3>
+									</div>
+									<table id="example4" class="table table-bordered table-striped">
+										<thead>
+											<tr>
+												<th>Order id</th>
+												<th>Order price</th>
+												<th>Part Name</th>
+												<th>Part Description</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php
+											$sql = "SELECT * FROM order_table WHERE order_status = 'Processing' AND assigned_vendor = ?;";
+											$stmt = mysqli_stmt_init($conn);
+											if (!mysqli_stmt_prepare($stmt, $sql)) 
+											{
+												header("Location: ../index.php?error=sqlerror");
+												exit();
+											}
+											else
+											{
+												mysqli_stmt_bind_param($stmt, "s", $vendor_name);
+												mysqli_stmt_execute($stmt);
+												$result = mysqli_stmt_get_result($stmt);
+												while($row = mysqli_fetch_assoc($result))
+												{
+													$orderid = $row['order_id'];
+													$sql2 = "SELECT * FROM order_items WHERE order_id = ?;";
+													$stmt2 = mysqli_stmt_init($conn);
+													if (!mysqli_stmt_prepare($stmt2, $sql2)) 
+													{
+														header("Location: ../index.php?error=sqlerror");
+														exit();
+													}
+													else
+													{
+														mysqli_stmt_bind_param($stmt2, "s", $orderid);
+														mysqli_stmt_execute($stmt2);
+														$result2 = mysqli_stmt_get_result($stmt2);
+														while($row2 = mysqli_fetch_assoc($result2))
+														{
+															$part_id = $row2['Order_type_ID'];
+															$sql3 = "SELECT * FROM spare_parts WHERE part_id = ?;";
+															$stmt3 = mysqli_stmt_init($conn);
+															if (!mysqli_stmt_prepare($stmt3, $sql3)) 
+															{
+																header("Location: ../index.php?error=sqlerror");
+																exit();
+															}
+															else
+															{
+																mysqli_stmt_bind_param($stmt3, "s", $part_id);
+																mysqli_stmt_execute($stmt3);
+																$result3 = mysqli_stmt_get_result($stmt3);
+																while ($row3 = mysqli_fetch_assoc($result3)) 
+																{
+																	?>
+																	<tr>
+																		<td><?php echo $row['order_id']; ?></td>
+																		<td><?php echo $row2['Order_price']; ?></td>
+																		<td><?php echo $row3['part_name']; ?></td>
+																		<td><?php echo $row3['part_description']; ?></td>
+																	</tr>
+																	<?php
+																}
+															}
+														}
+													}
+												}
+											}
+											?>
+										</tbody>
+										<tfoot>
+											<tr>
+												<th>Order id</th>
+												<th>Order price</th>
+												<th>Part Name</th>
+												<th>Part Description</th>
+											</tr>
+										</tfoot>
+									</table>
+								</div>
+							</div>
+						</div>
 						<!-- /.box-body -->
 					</div>
 					<!-- /.box -->
