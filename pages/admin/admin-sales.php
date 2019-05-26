@@ -48,7 +48,7 @@ include '../../includes/dbh.inc.php';
 								</thead>
 								<tbody>
 										<?php
-										$sql = "SELECT * FROM order_table WHERE order_status = 'Shipped';";
+										$sql = "SELECT * FROM order_table WHERE order_status = 'Shipped' AND assigned_vendor = '12';";
 										$stmt = mysqli_stmt_init($conn);
 										if (!mysqli_stmt_prepare($stmt, $sql)) 
 										{
