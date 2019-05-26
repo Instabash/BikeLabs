@@ -4,6 +4,7 @@ include '../../includes/restrictions.inc.php';
 vendor_protect();
 include '../../includes/header.php';
 include '../../includes/dbh.inc.php';
+$vendor_name = $_SESSION['userId'];
 ?>
 <!-- Sidebar -->
 <label href="#" class="list-group-item" style="width: auto;">Vendor Panel
@@ -14,6 +15,8 @@ include '../../includes/dbh.inc.php';
 		<div class="list-group list-group-flush">
 			<a href="/BikeLabs/pages/vendor/vendordash.php" class="list-group-item list-group-item-action bg-light">Dashboard</a>
 			<a href="/BikeLabs/pages/vendor/vendor-orders.php" class="list-group-item list-group-item-action bg-light">Pending Orders</a>
+			<a href="/BikeLabs/pages/vendor/vendor-modalt.php" class="list-group-item list-group-item-action bg-light">Pending Mod/Alt Orders</a>
+			<a href="/BikeLabs/pages/vendor/vendor-modaltprocessed.php" class="list-group-item list-group-item-action bg-light">Processed Mod/Alt Orders</a>
 			<a href="/BikeLabs/pages/vendor/vendor-sales.php" class="list-group-item list-group-item-action bg-light">Sales</a>
 			<a href="/BikeLabs/pages/vendor/vendor-bikes.php" class="list-group-item list-group-item-action bg-light">Add new Bikes</a>
 			<a href="/BikeLabs/pages/vendor/vendor-parts.php" class="list-group-item list-group-item-action bg-light">Add new Parts</a>
@@ -45,7 +48,7 @@ include '../../includes/dbh.inc.php';
 								</thead>
 								<tbody>
 										<?php
-										$sql = "SELECT * FROM order_table WHERE order_status = 'Shipped';";
+										$sql = "SELECT * FROM order_table WHERE order_status = 'Shipped' AND assigned_vendor = ?;";
 										$stmt = mysqli_stmt_init($conn);
 										if (!mysqli_stmt_prepare($stmt, $sql)) 
 										{
@@ -54,6 +57,7 @@ include '../../includes/dbh.inc.php';
 										}
 										else
 										{
+											mysqli_stmt_bind_param($stmt, "s", $vendor_name);
 											mysqli_stmt_execute($stmt);
 											$result = mysqli_stmt_get_result($stmt);
 											while($row = mysqli_fetch_assoc($result))
