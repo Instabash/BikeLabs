@@ -255,10 +255,7 @@ include '../../includes/dbh.inc.php';
 
 			<!-- /.col -->
 		</div>
-		
-
-	</section>
-	
+	</section>	
 </div>
 <script>
 	$(function () {
