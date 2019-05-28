@@ -120,7 +120,7 @@ else
 				</tr>
 			</table>
 		</div>
-		<table class="table" style="width:100%">
+		<table class="table table-bordered table-striped" style="width:100%">
 			<col style="width:20%" span="4" />
 			<tr>
 				<th>Engine Type</th>
