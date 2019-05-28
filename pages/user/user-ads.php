@@ -69,7 +69,7 @@ $stmt = mysqli_stmt_init($conn);
 						}
 						$isOdd = ! $isOdd;
 						?>">
-						<form action="#" method="post">
+						
 							<div class="row">
 								<div style="flex:10%;" class="pl-3">
 									<img class="thumbimg rounded" src="../../images/sparepartimg/<?php echo $row1['ad_image_name'] ?>" style="border:3px solid black;">
@@ -83,13 +83,19 @@ $stmt = mysqli_stmt_init($conn);
 								<div style="flex: 20%;margin: auto; width: 50%;">
 									<p><?php echo $row['ad_price'] ?> Rs.</p>
 								</div>
-								<div style="flex: 10%;margin: auto; width: 50%;">
-									<a href="#" class="p-1 rounded border border-new border-dark">Mark as sold</a>
-									<a href="#" class="p-1 rounded border border-new border-dark">Edit ad.</a>
+								<div style="flex: 5%;margin: auto; width: 50%;">
+									<form action="" method="post">
+										<input class="btn-outline-danger btn" type="submit" name="mksold" value="Mark as sold">
+									</form>
+								</div>
+								<div style="flex: 5%;margin: auto; width: 50%;" class="ml-1">
+									<form action="../postad/editad.php?adid=<?php echo $row['ad_id']; ?>" method="post">
+										<input class="btn-outline-danger btn" type="submit" name="editad" value="Edit ad.">
+									</form>
 								</div>
 							</div>
 
-						</form>
+						
 					</div>
 					<?php 
 				}			
