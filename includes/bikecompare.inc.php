@@ -24,11 +24,7 @@ if (isset($_POST['cmpsubmit'])) {
 		while($row = mysqli_fetch_assoc($result)) {
 			$bike_id = $row['bike_id'];
 			$results[] = $row['bike_id'];
-			// $bike_id = $row['bike_id'];
-			// $arraybike = array();
-			// array_push($arraybike, $bike_id);
 			$arraystring = "bike1=" . $results[0] . "&bike2=" . $results[1];
-			// print_r($arraybike);
 			header("Location: ../pages/new-bikes/bikecompare/comparetemp.php?$arraystring");			
 		}
 	}	
