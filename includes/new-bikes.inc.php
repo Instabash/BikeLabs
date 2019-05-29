@@ -9,6 +9,13 @@ if (isset($_POST['images']))
 	$Model = $_POST['bkmodel'];
 	$Year = $_POST['bkyear'];
 
+	if ($Brand == "0") {
+		$Brand = "";
+	}
+	elseif ($Model == "0") {
+		$Model = "";
+	}
+
 	$EngineType = $_POST['bkengine'];
 	$BoreStroke = $_POST['bkborestroke'];
 	$Transmission = $_POST['bktrans'];
@@ -24,8 +31,26 @@ if (isset($_POST['images']))
 	$Price = $_POST['bkprice'];
 	$user = $_SESSION['userId'];
 	
-	if (empty($EngineType) || empty($BoreStroke) || empty($Transmission) || empty($Starting) || empty($Frame) || empty($Dimensions) || empty($PetrolCap) || empty($TyreFront) || empty($TyreBack) || empty($DryWeight)) {
+
+	if (empty($Brand) || empty($Model) || empty($Year) || empty($EngineType) || empty($BoreStroke) || empty($Transmission) || empty($Starting) || empty($Frame) || empty($Dimensions) || empty($PetrolCap) || empty($TyreFront) || empty($TyreBack) || empty($DryWeight) || empty($Description) || empty($Price)) 
+	{
 		echo json_encode(0);
+		exit();
+	}
+	elseif($Year < 1900 || $Year > date("Y"))
+	{
+		echo json_encode(1);
+		exit();
+	}
+	elseif (strlen($Description)<20) 
+	{
+		echo json_encode(2);
+		exit();
+	}
+	elseif ($Price > 5000000 || $Price < 5000) 
+	{
+		echo json_encode(3);
+		exit();
 	}
 	else
 	{
@@ -56,28 +81,15 @@ if (isset($_POST['images']))
 			$j = json_decode($_POST['images']);
 
 			$fileName = $j[$i]->FileName;
-		//$fileTmpName = $_FILES["files"]["tmp_name"][$i];
 			$fileSize =  $j[$i]->FileSizeInBytes;
-		//$fileError = $_FILES["files"]['error'][$i];
-		//$fileType = $_FILES["files"]['type'][$i];
 
 			$fileExt = explode('.', $fileName);
 			$fileActualExt = strtolower(end($fileExt));
 			$allowed = array('jpg', 'jpeg', 'png');	
 
 			$thumbnail = $i;
-
-		// if (empty($Title) || empty($Condition) || empty($Description) || empty($Price) || empty($HomeName) || empty($PostCode) || empty($CountryReg) || empty($Phone))
-		// {
-		// 	header("Location: ../postad.php?error=empty");
-		// 	exit();
-		// }
-		// else
-		// {
 			if (in_array($fileActualExt, $allowed)) 
 			{
-				// if ($fileError === 0) 
-				// {
 				if ($fileSize < 5000000) 
 				{
 					$fileNameNew = uniqid('', true).'.'.$fileActualExt;
@@ -105,9 +117,6 @@ if (isset($_POST['images']))
 							mysqli_stmt_bind_param($stmt, "sss", $bk_id, $fileNameNew, $thumbnail);
 							mysqli_stmt_execute($stmt);
 							file_put_contents($fileDestination, base64_decode($j[$i]->Content));
-								// move_uploaded_file($fileTmpName, $fileDestination);
-						//header("Location: /BikeLabs/pages/admin/admin-bikes.php?success");
-										// print_r($ad_date);	
 						}
 					}
 				}
@@ -115,19 +124,15 @@ if (isset($_POST['images']))
 				{
 					echo "Your file is too big";
 				}
-				// }
-				// else 
-				// {
-				// 	echo "There was an error uploading your file";
-				// }
 			}
 			else
 			{
 				echo "You cannot upload files of this type";
 
 			}
-		// }
 		}
-}
+		echo json_encode(4);
+		exit();
+	}
 }
 ?>
