@@ -104,16 +104,6 @@ $stmt = mysqli_stmt_init($conn);
 					}
 					?>
 				</div>
-				<div class="border-new border border-dark rounded mt-5 p-3" style="">
-					<?php
-					echo '
-					<div>
-					<h5><b>Description</b></h5><br>	
-					<p>'.$row['part_description'].'</p>
-					</div>
-					';
-					?>
-				</div>
 				<form action="/BikeLabs/includes/cartprocess.inc.php?partid=<?php echo $part_id;  ?>" method="post">
 					<div class="border-new border border-dark rounded mt-5 p-3">
 						<p>
@@ -140,6 +130,18 @@ $stmt = mysqli_stmt_init($conn);
 					</div>
 				</form>
 			</div>
+		</div>
+		<div class="paymentmain" style="margin-left: 0px;margin-right: 0px">
+			<div class="paymentleft">
+				<div class="border-new border border-dark rounded mt-5 p-3" style="">
+					<div>
+					<h5><b>Description</b></h5><br>	
+					<p><?php echo $row['part_description']; ?></p>
+					</div>
+					
+				</div>
+			</div>
+			
 		</div>
 	</div>
 </section>
