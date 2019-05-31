@@ -75,7 +75,7 @@ include '../../includes/dbh.inc.php';
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="form-row p-2 pt-4 mb-3 formrowad">
                             <label for="bkborestroke">Bore and Stroke</label>
                             <div>
@@ -163,7 +163,7 @@ include '../../includes/dbh.inc.php';
                             <label>Price</label>
                             <div>
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" name="bkprice" placeholder="Price" aria-label="Price" aria-describedby="basic-addon1">
+                                    <input type="number" class="form-control" name="bkprice" placeholder="Price" aria-label="Price" aria-describedby="basic-addon1">
                                 </div>
                             </div>
                         </div>
@@ -266,13 +266,6 @@ include '../../includes/dbh.inc.php';
                 // Closure to capture the file information and apply validation.
                 fileReader.onload = (function (readerEvt) {
                 	return function (e) {
-
-                        
-/*
-                        if (dimensionValidation(e)) {
-
-                           
-                        }  */
                         dimensionValidation(e).then(function () {
                             console.log('in promise')
                             if (validated) {
@@ -289,13 +282,9 @@ include '../../includes/dbh.inc.php';
                     };
                 })(f);
 
-                // Read in the image file as a data URL.
-                // readAsDataURL: The result property will contain the file/blob's data encoded as a data URL.
-                // More info about Data URI scheme https://en.wikipedia.org/wiki/Data_URI_scheme
                 fileReader.readAsDataURL(f);
             }
             document.getElementById('files').addEventListener('change', handleFileSelect, false);
-            
         }
 
         function dimensionValidation(e) {
@@ -332,7 +321,7 @@ include '../../includes/dbh.inc.php';
           };
 
           return $.when(dfrd1).done(function(){
-            
+
           }).promise();
           
       }
@@ -514,34 +503,35 @@ include '../../includes/dbh.inc.php';
 				},
 				success: function(data)
 				{
-                    if (data == 0) 
+                    alert(data);
+                    // if (data == 0) 
+                    // {
+                    //     document.getElementById("empty").innerHTML = "Fill in all the fields";
+                    // }else
+                    // if (data == 1) 
+                    // {
+                    //     document.getElementById("empty").innerHTML = "You have entered an invalid year, please enter a year between 1990 and current year";
+                    // }else
+                    // if (data == 2) 
+                    // {
+                    //     document.getElementById("empty").innerHTML = "Please enter more than 20 characters for your description.";
+                    // }else
+                    // if (data == 3) 
+                    // {
+                    //     document.getElementById("empty").innerHTML = "Please enter a price between the ranges of 5000 to 50,000 Rs.";
+                    // }
+                    // else
+                    //     if (data == 4) 
+                    //     {
+                    //         // alert('success');
+                    //         location.href = "/BikeLabs/pages/admin/admin-bikes.php?success"
+                    //     }
+                    },
+                    error: function(e) 
                     {
-                        document.getElementById("empty").innerHTML = "Fill in all the fields";
-                    }else
-                    if (data == 1) 
-                    {
-                        document.getElementById("empty").innerHTML = "You have entered an invalid year, please enter a year between 1990 and current year";
-                    }else
-                    if (data == 2) 
-                    {
-                        document.getElementById("empty").innerHTML = "Please enter more than 20 characters for your ad. description.";
-                    }else
-                    if (data == 3) 
-                    {
-                        document.getElementById("empty").innerHTML = "Please enter a price between the ranges of 5000 to 50,000 Rs.";
-                    }
-                    else
-                        if (data == 4) 
-                        {
-                            // alert('success');
-                        location.href = "/BikeLabs/pages/admin/admin-bikes.php?success"
-                    }
-                },
-                error: function(e) 
-                {
-                   $("#err").html(e).fadeIn();
-               }          
-           });
+                       $("#err").html(e).fadeIn();
+                   }          
+               });
 				}));
    });
 </script>
