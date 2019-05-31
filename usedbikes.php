@@ -165,7 +165,7 @@ $stmt = mysqli_stmt_init($conn);
 
 
 						while ($row = mysqli_fetch_assoc($result)) {
-							$imgnamesql = "SELECT ad_image_name FROM post_ad_images WHERE ad_id = {$row['ad_id']} AND ad_image_thumb = '0';";
+							$imgnamesql = "SELECT ad_image_name, MIN(ad_image_thumb) FROM post_ad_images WHERE ad_id = {$row['ad_id']} GROUP BY ad_id;";
 
 							if(!mysqli_stmt_prepare($stmt, $imgnamesql))
 							{
@@ -201,55 +201,6 @@ $stmt = mysqli_stmt_init($conn);
 					?>
 				</div>
 			</div>
-
-			<!-- <div class="col-md-10 search-listing pull-right">
-				<div class="results" id="myUL">
-					<?php 
-					if(!mysqli_stmt_prepare($stmt, $spaartsql))
-					{
-						echo "SQL statement failed";
-					}
-					else
-					{
-						mysqli_stmt_execute($stmt);
-						$result = mysqli_stmt_get_result($stmt);
-
-
-						while ($row = mysqli_fetch_assoc($result)) {
-							$imgnamesql = "SELECT ad_image_name FROM post_ad_images WHERE ad_id = {$row['ad_id']} AND ad_image_thumb = '0';";
-
-							if(!mysqli_stmt_prepare($stmt, $imgnamesql))
-							{
-								echo "SQL statement failed";
-							}
-							else
-							{
-								mysqli_stmt_execute($stmt);
-								$result1 = mysqli_stmt_get_result($stmt);
-
-								while ($row1 = mysqli_fetch_assoc($result1)) 
-								{
-									//echo $row['ad_image_name'];
-									
-									?>
-									<div class="all honda 70cc filterDiv m-3 border-new border border-dark rounded">
-										<a href="pages/spareparts/spareparttemp.php?partid=<?php echo $row['ad_id'] ?>">
-											<img src="images/sparepartimg/<?php echo $row1['ad_image_name'] ?>">
-											<div>
-												<label class="productName"><?php echo $row['ad_title'] ?></label><br>
-												<label>Price:</label>
-												<label class="price"><?php echo $row['ad_price'] ?></label>
-											</div>
-										</a>
-									</div>
-									<?php 
-								}			
-							}
-						}	
-					}
-					?>
-				</div>
-			</div> -->
 		</div>
 	</div>	
 </section>

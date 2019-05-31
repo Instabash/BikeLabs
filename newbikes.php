@@ -169,7 +169,7 @@ $stmt = mysqli_stmt_init($conn);
 
 
 						while ($row = mysqli_fetch_assoc($result)) {
-							$imgnamesql = "SELECT bike_image_name FROM b_images WHERE bike_id = {$row['bike_id']} AND bike_image_thumb = '0';";
+							$imgnamesql = "SELECT bike_image_name, MIN(bike_image_thumb) FROM b_images WHERE bike_id = {$row['bike_id']} GROUP BY bike_id;";
 
 							if(!mysqli_stmt_prepare($stmt, $imgnamesql))
 							{
