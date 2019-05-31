@@ -4,26 +4,52 @@ session_start();
 include_once 'dbh.inc.php';
 if (isset($_POST['images'])) 
 {
-	$Title = $_POST['bktitle'];
 	$Condition = $_POST['bkcondition'];
 	$Make = $_POST['bkmake'];
+	$CountryReg = $_POST['bkcountryregion'];
+
+	if ($Condition == "0") {
+		$Condition = "";
+	}
+	if ($Make == "0") {
+		$Make = "";
+	}
+	if ($CountryReg == "0") {
+		$CountryReg = "";
+	}
+
+	$Title = $_POST['bktitle'];
 	$Year = $_POST['bkyear'];
 	$Description = $_POST['bkdescription'];
 	$Price = $_POST['bkprice'];
 	$HomeName = $_POST['bkhomename'];
 	$PostCode = $_POST['bkpcode'];
-	$CountryReg = $_POST['bkcountryregion'];
 	$Phone = $_POST['bkphone'];
+
 	$ad_type = "bike";
 	$ad_date = date('Y-m-d H:i:s');
 	$user = $_SESSION['userId'];
 	
+
 	if (empty($Title) || empty($Condition) || empty($Description) || empty($Price) || empty($HomeName) || empty($PostCode) || empty($CountryReg) || empty($Phone) || empty($Make) || empty($Year))
 	{
 		echo json_encode(0);
+		exit();
 	}
-	elseif ($Year < 1990 || $Year > date("Y")) {
+	elseif($Year < 1900 || $Year > date("Y"))
+	{
 		echo json_encode(1);
+		exit();
+	}
+	elseif (strlen($Description)<20) 
+	{
+		echo json_encode(2);
+		exit();
+	}
+	elseif ($Price > 5000000 || $Price < 5000) 
+	{
+		echo json_encode(3);
+		exit();
 	}
 	else
 	{
@@ -41,24 +67,16 @@ if (isset($_POST['images']))
 		}
 
 		for($i=0;$i<count(json_decode($_POST['images']));$i++){
-			$j = json_decode($_POST['images']);
-			$fileName = $j[$i]->FileName;
-		//$fileTmpName = $_FILES["files"]["tmp_name"][$i];
-			$fileSize =  $j[$i]->FileSizeInBytes;
-		//$fileError = $_FILES["files"]['error'][$i];
-		//$fileType = $_FILES["files"]['type'][$i];
-
+			$j = json_decode($_POST['images'], true);
+			$fileName = $j[$i]['FileName'];
+			$fileSize =  $j[$i]['FileSizeInBytes'];
 			$fileExt = explode('.', $fileName);
 			$fileActualExt = strtolower(end($fileExt));
 			$allowed = array('jpg', 'jpeg', 'png');	
 
 			$thumbnail = $i;
-
-
 			if (in_array($fileActualExt, $allowed)) 
 			{
-				//if ($fileError === 0) 
-				//{
 				if ($fileSize < 5000000) 
 				{
 					$fileNameNew = uniqid('', true).'.'.$fileActualExt;
@@ -83,33 +101,25 @@ if (isset($_POST['images']))
 						}	
 						else
 						{
+							// echo json_encode($fileSize);
 							mysqli_stmt_bind_param($stmt, "sss", $ad_id, $fileNameNew, $thumbnail);
 							mysqli_stmt_execute($stmt);
-							file_put_contents($fileDestination, base64_decode($j[$i]->Content));
-								//move_uploaded_file($fileTmpName, $fileDestination);
-							header("Location: ../postad.php?uploadsuccess");
-										// print_r($ad_date);	
-
+							file_put_contents($fileDestination, base64_decode($j[$i]['Content']));
 						}
 					}
 				}
 				else
 				{
-					echo "Your file is too big";
+					continue;
 				}
-				//}
-				// else 
-				// {
-				// 	echo "There was an error uploading your file";
-				// }
 			}
 			else
 			{
-				echo "You cannot upload files of this type";
-
+				continue;
 			}
-
 		}
+		echo json_encode(4);
+		exit();
 	}
 }
 ?>
