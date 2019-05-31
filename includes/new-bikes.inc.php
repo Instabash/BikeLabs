@@ -12,7 +12,7 @@ if (isset($_POST['images']))
 	if ($Brand == "0") {
 		$Brand = "";
 	}
-	elseif ($Model == "0") {
+	if ($Model == "0") {
 		$Model = "";
 	}
 
