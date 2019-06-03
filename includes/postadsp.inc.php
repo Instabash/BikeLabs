@@ -4,57 +4,85 @@ session_start();
 include_once 'dbh.inc.php';
 if (isset($_POST['images'])) 
 {
-	$Title = $_POST['sptitle'];
 	$Condition = $_POST['spcondition'];
+	$CountryReg = $_POST['spcountryregion'];
+
+	if ($Condition == "0") {
+		$Condition = "";
+	}
+	if ($CountryReg == "0") {
+		$CountryReg = "";
+	}
+
+	$Title = $_POST['sptitle'];
+	
 	$Description = $_POST['spdescription'];
 	$Price = $_POST['spprice'];
 	$HomeName = $_POST['sphomename'];
 	$PostCode = $_POST['sppcode'];
-	$CountryReg = $_POST['spcountryregion'];
 	$Phone = $_POST['spphone'];
+
 	$ad_type = "sparepart";
 	$ad_date = date('Y-m-d H:i:s');
 	$user = $_SESSION['userId'];
 	
-	$sql = "INSERT INTO post_ad (ad_title, ad_type, ad_date, ad_price, ad_description, idUsers, ad_condition, ad_user_hname, ad_user_pcode, ad_user_country, ad_user_phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-	$stmt = mysqli_stmt_init($conn);
-	if (!mysqli_stmt_prepare($stmt, $sql)) 
+	if (empty($Title) || empty($Condition) || empty($Description) || empty($Price) || empty($HomeName) || empty($PostCode) || empty($CountryReg) || empty($Phone))
 	{
-		echo "SQL statement failed";
-	}	
+		echo json_encode(0);
+		exit();
+	}
+	elseif (strlen($Description) < 20) 
+	{
+		echo json_encode(1);
+		exit();
+	}
+	elseif ($Price > 1000000 || $Price < 50) 
+	{
+		echo json_encode(2);
+		exit();
+	}
+	elseif (!preg_match("/^((\+92)|(0092))-{0,1}\d{3}-{0,1}\d{7}$|^\d{11}$|^\d{4}-\d{7}$/", $Phone)) {
+		echo json_encode(3);
+		exit();
+	}
+	elseif (!preg_match("/^\\d{5}$/", $PostCode)) {
+		echo json_encode(4);
+		exit();
+	}
 	else
 	{
-		mysqli_stmt_bind_param($stmt, "sssssssssss", $Title, $ad_type, $ad_date, $Price, $Description, $user, $Condition, $HomeName, $PostCode, $CountryReg, $Phone);
-		mysqli_stmt_execute($stmt);
-		$ad_id = $conn->insert_id;
-	}
-
-	for($i=0;$i<count(json_decode($_POST['images']));$i++){
-		$j = json_decode($_POST['images']);
-
-		$fileName = $j[$i]->FileName;
-		//$fileTmpName = $_FILES["files"]["tmp_name"][$i];
-		$fileSize =  $j[$i]->FileSizeInBytes;
-		//$fileError = $_FILES["files"]['error'][$i];
-		//$fileType = $_FILES["files"]['type'][$i];
-
-		$fileExt = explode('.', $fileName);
-		$fileActualExt = strtolower(end($fileExt));
-		$allowed = array('jpg', 'jpeg', 'png');	
-
-		$thumbnail = $i;
-
-		// if (empty($Title) || empty($Condition) || empty($Description) || empty($Price) || empty($HomeName) || empty($PostCode) || empty($CountryReg) || empty($Phone))
-		// {
-		// 	header("Location: ../postad.php?error=empty");
-		// 	exit();
-		// }
-		// else
-		// {
-			if (in_array($fileActualExt, $allowed)) 
+		$sql = "INSERT INTO post_ad (ad_title, ad_type, ad_date, ad_price, ad_description, idUsers, ad_condition, ad_user_hname, ad_user_pcode, ad_user_country, ad_user_phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+		$stmt = mysqli_stmt_init($conn);
+		if (!mysqli_stmt_prepare($stmt, $sql)) 
+		{
+			echo "SQL statement failed";
+			exit();
+		}	
+		else
+		{
+			mysqli_stmt_bind_param($stmt, "sssssssssss", $Title, $ad_type, $ad_date, $Price, $Description, $user, $Condition, $HomeName, $PostCode, $CountryReg, $Phone);
+			mysqli_stmt_execute($stmt);
+			$ad_id = $conn->insert_id;
+		}
+		if (empty(json_decode($_POST['images']))) 
+		{
+			echo json_encode(5);
+			exit();
+		}
+		else
+		{
+			for($i=0;$i<count(json_decode($_POST['images']));$i++)
 			{
-				// if ($fileError === 0) 
-				// {
+				$j = json_decode($_POST['images'], true);
+				$fileName = $j[$i]['FileName'];
+				$fileSize =  $j[$i]['FileSizeInBytes'];
+				$fileExt = explode('.', $fileName);
+				$fileActualExt = strtolower(end($fileExt));
+				$allowed = array('jpg', 'jpeg', 'png');	
+
+				$thumbnail = $i;
+				if (in_array($fileActualExt, $allowed)) 
+				{
 					if ($fileSize < 5000000) 
 					{
 						$fileNameNew = uniqid('', true).'.'.$fileActualExt;
@@ -64,6 +92,7 @@ if (isset($_POST['images']))
 
 						if (!mysqli_stmt_prepare($stmt, $sql)) {
 							echo "SQL statement failed";
+							exit();
 						}
 						else
 						{
@@ -76,34 +105,29 @@ if (isset($_POST['images']))
 							if (!mysqli_stmt_prepare($stmt, $sqlimage)) 
 							{
 								echo "SQL statement failed";
+								exit();
 							}	
 							else
 							{
 								mysqli_stmt_bind_param($stmt, "sss", $ad_id, $fileNameNew, $thumbnail);
 								mysqli_stmt_execute($stmt);
-								file_put_contents($fileDestination, base64_decode($j[$i]->Content));
-								// move_uploaded_file($fileTmpName, $fileDestination);
-								header("Location: ../postad.php?uploadsuccess");
-										// print_r($ad_date);	
+								file_put_contents($fileDestination, base64_decode($j[$i]['Content']));
 							}
 						}
 					}
 					else
 					{
-						echo "Your file is too big";
+						continue;
 					}
-				// }
-				// else 
-				// {
-				// 	echo "There was an error uploading your file";
-				// }
+				}
+				else
+				{
+					continue;
+				}
 			}
-			else
-			{
-				echo "You cannot upload files of this type";
-
-			}
-		// }
+		}
+		echo json_encode(6);
+		exit();
 	}
 }
 ?>

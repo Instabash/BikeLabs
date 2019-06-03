@@ -54,7 +54,7 @@ include_once '../../includes/header.php';
 						<label>Price</label>
 						<div>
 							<div class="input-group mb-3">
-								<input type="text" class="form-control" name="spprice" placeholder="Price" aria-label="Price" aria-describedby="basic-addon1">
+								<input type="number" class="form-control" name="spprice" placeholder="Price" aria-label="Price" aria-describedby="basic-addon1">
 							</div>
 						</div>
 					</div>
@@ -70,7 +70,7 @@ include_once '../../includes/header.php';
 						<label>Postcode</label>
 						<div class="">
 							<div class="input-group mb-3">
-								<input type="text" class="form-control" name="sppcode" placeholder="Postcode" aria-label="Postcode" aria-describedby="basic-addon1">
+								<input type="number" class="form-control" name="sppcode" placeholder="Postcode" aria-label="Postcode" aria-describedby="basic-addon1">
 							</div>
 						</div>
 					</div>
@@ -90,7 +90,7 @@ include_once '../../includes/header.php';
 						<label>Phone Number</label>
 						<div>
 							<div class="input-group mb-3">
-								<input type="text" class="form-control" name="spphone" placeholder="Phone number" aria-label="Phone number" aria-describedby="basic-addon1">
+								<input type="number" class="form-control" name="spphone" placeholder="Phone number" aria-label="Phone number" aria-describedby="basic-addon1">
 							</div>
 						</div>
 					</div>
@@ -110,7 +110,7 @@ include_once '../../includes/header.php';
 								<span class=" fileinput-button">
 									<br>
 									<span>Select Attachment</span>
-									<input type="file" name="files[]" id="files" style="display: none !important;" multiple accept="image/jpeg, image/png, image/gif,"><br />
+									<input type="file" name="files[]" style="display: none !important;" id="files" multiple accept="image/jpeg, image/png, image/gif,"><br />
 									<input type="button" class="btn btn-outline-danger" value="Browse..." onclick="document.getElementById('files').click();" />
 								</span>
 							</li>
@@ -118,10 +118,14 @@ include_once '../../includes/header.php';
 								<output id="Filelist" class="imgoutput" style="max-width: 630px;"></output>
 							</li>
 							<li>
-								<span id="error" style="color: white;"></span>
+								<span id="error" style="color: red;"></span>
 							</li>
 						</ul>
 					</div>
+					<div class="pb-4">
+			            <p id="empty" style="color: red !important;"></p>
+			            <p id="year" style="color: red !important;"></p>
+			        </div>
 					<div class="addressbtn" style="float:right;padding:10px;">
 						<button type="submit" name="spsubmit" class="btn btn-outline-danger">Post the advert</button>
 					</div>
@@ -150,10 +154,11 @@ include_once '../../includes/header.php';
         ul.className = ("thumb-Images");
         ul.id = "imgList";
 
+        var validated = true;
+
         function init() {
             //add javascript handlers for the file upload event
-            document.querySelector('#files').addEventListener('change', handleFileSelect, false);
-            
+            document.querySelector('#files').addEventListener('change', handleFileSelect, false); 
         }
 
         //the handler for file upload event
@@ -172,37 +177,75 @@ include_once '../../includes/header.php';
 
                 // Closure to capture the file information and apply validation.
                 fileReader.onload = (function (readerEvt) {
-                	return function (e) {
+                    return function (e) {
+                        dimensionValidation(e).then(function () {
+                            console.log('in promise')
+                            if (validated) {
+                                //Apply the validation rules for attachments upload
+                                ApplyFileValidationRules(readerEvt)
+                             //Render attachments thumbnails.
+                             RenderThumbnail(e, readerEvt);
 
-                        //Apply the validation rules for attachments upload
-                        ApplyFileValidationRules(readerEvt)
+                                //Fill the array of attachment
+                                FillAttachmentArray(e, readerEvt)                      
+                            }
+                        });
 
-                        //Render attachments thumbnails.
-                        RenderThumbnail(e, readerEvt);
-
-                        //Fill the array of attachment
-                        FillAttachmentArray(e, readerEvt)
                     };
                 })(f);
 
-                // Read in the image file as a data URL.
-                // readAsDataURL: The result property will contain the file/blob's data encoded as a data URL.
-                // More info about Data URI scheme https://en.wikipedia.org/wiki/Data_URI_scheme
                 fileReader.readAsDataURL(f);
             }
             document.getElementById('files').addEventListener('change', handleFileSelect, false);
-            
         }
+
+        function dimensionValidation(e) {
+
+            var dfrd1 = $.Deferred();
+            
+            var image = new Image();
+
+                //Set the Base64 string return from FileReader as source.
+                image.src = e.target.result;
+
+                //Validate the File Height and Width.
+                image.onload = function () {
+                  var height = this.height;
+                  var width = this.width;
+                  console.log('h', height)
+                  console.log('w', width)
+                  if (height < 300 || width < 300) {
+                    console.log('v1', validated);
+                    validated = false;
+                    // alert("Height and Width must not exceed 100px.");
+                    console.log('v2', validated);
+                    e.preventDefault();
+
+                    dfrd1.resolve();
+                } else {
+
+                  validated = true;
+                  // alert("Uploaded image has valid Height and Width.");
+                  e.preventDefault();
+
+                  dfrd1.resolve();
+              }
+          };
+
+          return $.when(dfrd1).done(function(){
+
+          }).promise();
+      	}
 
         //To remove attachment once user click on x button
         jQuery(function ($) {
-        	$('div').on('click', '.img-wrap .close', function () {
-        		var id = $(this).closest('.img-wrap').find('img').data('id');
+            $('div').on('click', '.img-wrap .close', function () {
+                var id = $(this).closest('.img-wrap').find('img').data('id');
 
                 //to remove the deleted item from array
                 var elementPos = AttachmentArray.map(function (x) { return x.FileName; }).indexOf(id);
                 if (elementPos !== -1) {
-                	AttachmentArray.splice(elementPos, 1);
+                    AttachmentArray.splice(elementPos, 1);
                 }
 
                 //to remove image tag
@@ -217,74 +260,74 @@ include_once '../../includes/header.php';
                 //to remove li tag
                 var lis = document.querySelectorAll('#imgList li');
                 for (var i = 0; li = lis[i]; i++) {
-                	if (li.innerHTML == "") {
-                		li.parentNode.removeChild(li);
-                	}
+                    if (li.innerHTML == "") {
+                        li.parentNode.removeChild(li);
+                    }
                 }
 
             });
-        }
+        	}
         )
 
         //Apply the validation rules for attachments upload
-        function ApplyFileValidationRules(readerEvt)
-        {
+        function ApplyFileValidationRules(readerEvt){
+            console.log(readerEvt);
             //To check file type according to upload conditions
             if (CheckFileType(readerEvt.type) == false) {
-            	document.getElementById("error").innerHTML = "The file (" + readerEvt.name + ") does not match the upload conditions, You can only upload jpg/png/gif files";
-            	e.preventDefault();
-            	return;
+                document.getElementById("error").innerHTML = "The file (" + readerEvt.name + ") does not match the upload conditions, You can only upload jpg/png/gif files";
+                e.preventDefault();
+                return;
             }
 
             //To check file Size according to upload conditions
             if (CheckFileSize(readerEvt.size) == false) {
-            	// alert("The file (" + readerEvt.name + ") does not match the upload conditions, The maximum file size for uploads should not exceed 300 KB");
-            	document.getElementById("error").innerHTML = "The file("+ readerEvt.name + ") does not match the upload conditions,<br> The maximum file size for uploads should not exceed 300 KB)";
-            	e.preventDefault();
-            	return;
+                // alert("The file (" + readerEvt.name + ") does not match the upload conditions, The maximum file size for uploads should not exceed 300 KB");
+                document.getElementById("error").innerHTML = "The file("+ readerEvt.name + ") does not match the upload conditions,<br> The maximum file size for uploads should not exceed 300 KB)";
+                e.preventDefault();
+                return;
             }
 
             //To check files count according to upload conditions
             if (CheckFilesCount(AttachmentArray) == false) {
-            	if (!filesCounterAlertStatus) {
-            		filesCounterAlertStatus = true;
-            		document.getElementById("error").innerHTML = "You have added more than 10 files. According to upload conditions you can upload 10 files maximum";
-            	}
-            	e.preventDefault();
-            	return;
+                if (!filesCounterAlertStatus) {
+                    filesCounterAlertStatus = true;
+                    document.getElementById("error").innerHTML = "You have added more than 10 files. According to upload conditions you can upload 10 files maximum";
+                }
+                e.preventDefault();
+                return;
             }
             else
             {
-            	document.getElementById("error").innerHTML = " ";
+                document.getElementById("error").innerHTML = " ";
             }
         }
 
         //To check file type according to upload conditions
         function CheckFileType(fileType) {
-        	if (fileType == "image/jpeg") {
-        		return true;
-        	}
-        	else if (fileType == "image/png") {
-        		return true;
-        	}
-        	else if (fileType == "image/gif") {
-        		return true;
-        	}
-        	else {
-        		return false;
-        	}
-        	return true;
+            if (fileType == "image/jpeg") {
+                return true;
+            }
+            else if (fileType == "image/png") {
+                return true;
+            }
+            else if (fileType == "image/gif") {
+                return true;
+            }
+            else {
+                return false;
+            }
+            return true;
         }
 
         //To check file Size according to upload conditions
         function CheckFileSize(fileSize) {
-        	if (fileSize < 300000) {
-        		return true;
-        	}
-        	else {
-        		return false;
-        	}
-        	return true;
+            if (fileSize < 300000) {
+                return true;
+            }
+            else {
+                return false;
+            }
+            return true;
         }
 
         //To check files count according to upload conditions
@@ -293,97 +336,62 @@ include_once '../../includes/header.php';
             //I have used the loop to get the real length
             var len = 0;
             for (var i = 0; i < AttachmentArray.length; i++) {
-            	if (AttachmentArray[i] !== undefined) {
-            		len++;
-            	}
+                if (AttachmentArray[i] !== undefined) {
+                    len++;
+                }
             }
             //To check the length does not exceed 10 files maximum
             if (len > 9) {
-            	return false;
+                return false;
             }
             else
             {
-            	return true;
+                return true;
             }
         }
 
         //Render attachments thumbnails.
-        function RenderThumbnail(e, readerEvt)
-        {
-        	var li = document.createElement('li');
-        	li.style.cssFloat = "left";
-        	ul.appendChild(li);
-        	li.innerHTML = ['<div class="img-wrap pip"> <span class="close">&times;</span>' +
-        	'<img class="thumb imageThumb" src="', e.target.result, '" title="', escape(readerEvt.name), '" data-id="',
-        	readerEvt.name, '"/>' + '</div>'].join('');
+        function RenderThumbnail(e, readerEvt){
+            console.log(validated);
+            if (!validated) {
+                return;
+            }
+            var li = document.createElement('li');
+            li.style.cssFloat = "left";
+            ul.appendChild(li);
+            li.innerHTML = ['<div class="img-wrap pip"> <span class="close">&times;</span>' +
+            '<img class="thumb imageThumb" src="', e.target.result, '" title="', escape(readerEvt.name), '" data-id="',
+            readerEvt.name, '"/>' + '</div>'].join('');
 
-        	var div = document.createElement('div');
-        	div.className = "FileNameCaptionStyle";
-        	li.appendChild(div);
-        	div.innerHTML = [readerEvt.name].join('');
-        	document.getElementById('Filelist').insertBefore(ul, null);
-        	
+            var div = document.createElement('div');
+            div.className = "FileNameCaptionStyle";
+            li.appendChild(div);
+            div.innerHTML = [readerEvt.name].join('');
+            document.getElementById('Filelist').insertBefore(ul, null);   
         }
 
         //Fill the array of attachment
-        function FillAttachmentArray(e, readerEvt)
-        {
-        	AttachmentArray[arrCounter] =
-        	{
-        		AttachmentType: 1,
-        		ObjectType: 1,
-        		FileName: readerEvt.name,
-        		FileDescription: "Attachment",
-        		NoteText: "",
-        		MimeType: readerEvt.type,
-        		Content: e.target.result.split("base64,")[1],
-        		FileSizeInBytes: readerEvt.size,
-        	};
-        	arrCounter = arrCounter + 1;
+        function FillAttachmentArray(e, readerEvt){
+            if (!validated) {
+                return;
+            }
+            AttachmentArray[arrCounter] =
+            {
+              AttachmentType: 1,
+              ObjectType: 1,
+              FileName: readerEvt.name,
+              FileDescription: "Attachment",
+              NoteText: "",
+              MimeType: readerEvt.type,
+              Content: e.target.result.split("base64,")[1],
+              FileSizeInBytes: readerEvt.size,
+          };
+          arrCounter = arrCounter + 1;
         }
 
-        $(document).ready(function (e) {
-        	$("#bkform").on('submit',(function(e) {
-        		e.preventDefault();
-				  //AttachmentArray
-				  var formData = new FormData(this);
-				  formData.append('images', JSON.stringify(AttachmentArray));
-				  //return;
-				  $.ajax({
-				  	url: "../../includes/postadbike.inc.php",
-				  	type: "POST",
-				  	data:  formData,
-				  	contentType: false,
-				  	cache: false,
-				  	processData:false,
-				  	beforeSend : function()
-				  	{
-				    //$("#preview").fadeOut();
-				    //$("#err").fadeOut();
-				},
-				success: function(data)
-				{
-					if(data=='invalid')
-					{
-				     // invalid file format.
-				     $("#err").html("Invalid File !").fadeIn();
-				 }
-				 else
-				 {
-				     // view uploaded file.
-				     //$("#preview").html(data).fadeIn();
-				     //$("#form")[0].reset(); 
-				     location.href = "../../usedbikes.php"
-				 }
-				},
-				error: function(e) 
-				{
-					$("#err").html(e).fadeIn();
-				}          
-			});
-				}));
-        	$("#spform").on('submit',(function(e) {
-        		e.preventDefault();
+      $(document).ready(function (e) {
+       $("#spform").on('submit',(function(e) {
+          e.preventDefault();
 				  //AttachmentArray
 				  var formData = new FormData(this);
 				  formData.append('images', JSON.stringify(AttachmentArray));
@@ -397,33 +405,51 @@ include_once '../../includes/header.php';
 				  	processData:false,
 				  	beforeSend : function()
 				  	{
-				    //$("#preview").fadeOut();
-				    //$("#err").fadeOut();
 				},
 				success: function(data)
 				{
-					if(data=='invalid')
-					{
-				     // invalid file format.
-				     $("#err").html("Invalid File !").fadeIn();
-				 }
-
-				 else
-				 {
-				     // view uploaded file.
-				     //$("#preview").html(data).fadeIn();
-				     //$("#form")[0].reset(); 
-				     location.href = "../../spareparts.php"
-				 }
-				},
-				error: function(e) 
-				{
-					$("#err").html(e).fadeIn();
-				}          
-			});
+                    // alert(data);
+                    if (data == 0) 
+                    {
+                        document.getElementById("empty").innerHTML = "Fill in all the fields";
+                    }else
+                    if (data == 1) 
+                    {
+                        document.getElementById("empty").innerHTML = "Please enter more than 20 characters for your description.";
+                    }else
+                    if (data == 2) 
+                    {
+                        document.getElementById("empty").innerHTML = "Please enter a price between the ranges of 5000 to 1000000 Rs.";
+                    }else
+                    if (data == 3) 
+                    {
+                        document.getElementById("empty").innerHTML = "Please enter a valid pakistani phone number.";
+                    }else
+                    if (data == 4) 
+                    {
+                        document.getElementById("empty").innerHTML = "Please enter a valid post code";
+                    }else
+                    if (data == 5) 
+                    {
+                        document.getElementById("empty").innerHTML = "Please select images";
+                    }
+                    else
+                        if (data == 6) 
+                        {
+                            // alert('success');
+                            location.href = "/BikeLabs/spareparts.php";
+                        }
+                    },
+                    error: function(e) 
+                    {
+                       $("#err").html(e).fadeIn();
+                   }          
+               });
 				}));
-        });
-    </script>
-    <?php
-    include_once '../../includes/footer.php';
-    ?>
+
+   });
+</script>
+
+<?php
+include_once '../../includes/footer.php';
+?>

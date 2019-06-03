@@ -5,15 +5,20 @@ admin_protect();
 include '../../includes/header.php';
 include '../../includes/dbh.inc.php';
 ?>
+<script>
+
+    $(":input").inputmask();
+    $(":input").inputmask();
+</script>
 <!-- Sidebar -->
 <label href="#" class="list-group-item" style="width: auto;">Admin Panel
 	<button class="btn" id="menu-toggle"><i class="fas fa-bars"></i></button>
 </label>
 <div class="d-flex" id="wrapper">
 	<div class="bg-light border-right" id="sidebar-wrapper">
-		<div class="list-group list-group-flush">
-			<a href="/BikeLabs/pages/admin/admindash.php" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-			<a href="/BikeLabs/pages/admin/admin-jobs.php" class="list-group-item list-group-item-action bg-light">Pending Jobs</a>
+        <div class="list-group list-group-flush">
+            <a href="/BikeLabs/pages/admin/admindash.php" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+            <a href="/BikeLabs/pages/admin/admin-jobs.php" class="list-group-item list-group-item-action bg-light">Pending Jobs</a>
             <a href="/BikeLabs/pages/admin/admin-orders.php" class="list-group-item list-group-item-action bg-light">Pending Orders</a>
             <a href="/BikeLabs/pages/admin/admin-vendor.php" class="list-group-item list-group-item-action bg-light">Vendor management</a>
             <a href="/BikeLabs/pages/admin/admin-user.php" class="list-group-item list-group-item-action bg-light">User management</a>
@@ -23,7 +28,7 @@ include '../../includes/dbh.inc.php';
         </div>
     </div>
     <section id="modify" class="section modsection content content2">
-      <div class="container">
+        <div class="container">
          <div class="row">
             <div class="col-xs-12">
                <!-- /.box -->
@@ -72,6 +77,7 @@ include '../../includes/dbh.inc.php';
                             <div>
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="bkengine" placeholder="Engine type" aria-label="Engine type" aria-describedby="basic-addon1">
+                                    <small style="color: black" class="p-2 pl-5"><i>Eg. 4-stroke Single cylinder</i></small>
                                 </div>
                             </div>
                         </div>
@@ -80,7 +86,8 @@ include '../../includes/dbh.inc.php';
                             <label for="bkborestroke">Bore and Stroke</label>
                             <div>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="bkborestroke" placeholder="Bore and Stroke" aria-label="Bore and Stroke" aria-describedby="basic-addon1">
+                                    <input type="text" class="form-control" name="bkborestroke" placeholder="Bore and Stroke" aria-label="Bore and Stroke" aria-describedby="basic-addon1" data-inputmask="'mask': '99.9 - 99.9 mm'">
+                                    <small style="color: black" class="p-2 pl-5"><i>Eg. 56.6-49.4</i></small>
                                 </div>
                             </div>
                         </div>
@@ -88,7 +95,8 @@ include '../../includes/dbh.inc.php';
                             <label for="bktrans">Transmission</label>
                             <div>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="bktrans" placeholder="Transmission" aria-label="Transmission" aria-describedby="basic-addon1">
+                                    <input type="text" class="form-control" name="bktrans" placeholder="Transmission" aria-label="Transmission" aria-describedby="basic-addon1" data-inputmask="'mask': '9 - speed'">
+                                    <small style="color: black" class="p-2 pl-5"><i>Eg. 4 speed</i></small>
                                 </div>
                             </div>
                         </div>
@@ -97,6 +105,7 @@ include '../../includes/dbh.inc.php';
                             <div>
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="bkstart" placeholder="Starting" aria-label="Starting" aria-describedby="basic-addon1">
+                                    <small style="color: black" class="p-2 pl-5"><i>Eg. Kick start</i></small>
                                 </div>
                             </div>
                         </div>
@@ -105,6 +114,7 @@ include '../../includes/dbh.inc.php';
                             <div>
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="bkframe" placeholder="Frame" aria-label="Frame" aria-describedby="basic-addon1">
+                                    <small style="color: black" class="p-2 pl-5"><i>Eg. Backbone type</i></small>
                                 </div>
                             </div>
                         </div>
@@ -112,7 +122,8 @@ include '../../includes/dbh.inc.php';
                             <label for="bkdim">Dimensions</label>
                             <div>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="bkdim" placeholder="Dimensions" aria-label="Dimensions" aria-describedby="basic-addon1">
+                                    <input type="number" class="form-control" name="bkdim" placeholder="Dimensions" aria-label="Dimensions" aria-describedby="basic-addon1">
+                                    <small style="color: black" class="p-2 pl-5"><i>(Lxwxh)</i></small>
                                 </div>
                             </div>
                         </div>
@@ -120,7 +131,8 @@ include '../../includes/dbh.inc.php';
                             <label for="bkpetcap">Petrol Capacity</label>
                             <div>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="bkpetcap" placeholder="Petrol Capacity" aria-label="Petrol Capacity" aria-describedby="basic-addon1">
+                                    <input type="number" class="form-control" name="bkpetcap" placeholder="Petrol Capacity" aria-label="Petrol Capacity" aria-describedby="basic-addon1">
+                                    <small style="color: black" class="p-2 pl-5"><i>In litres</i></small>
                                 </div>
                             </div>
                         </div>
@@ -128,7 +140,8 @@ include '../../includes/dbh.inc.php';
                             <label for="bkftyre">Tyre at front</label>
                             <div>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="bkftyre" placeholder="Tyre at front" aria-label="Tyre at front" aria-describedby="basic-addon1">
+                                    <input type="text" class="form-control" name="bkftyre" placeholder="Tyre at front" aria-label="Tyre at front" aria-describedby="basic-addon1" data-inputmask="'mask': '99.99 - 99.99'">
+                                    <small style="color: black" class="p-2 pl-5"><i>Eg. 90 - 104</i></small>
                                 </div>
                             </div>
                         </div>
@@ -136,7 +149,7 @@ include '../../includes/dbh.inc.php';
                             <label for="bkbtyre">Tyre at back</label>
                             <div>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="bkbtyre" placeholder="Tyre at back" aria-label="Tyre at back" aria-describedby="basic-addon1">
+                                    <input type="text" class="form-control" name="bkbtyre" placeholder="Tyre at back" aria-label="Tyre at back" aria-describedby="basic-addon1" data-inputmask="'mask': '99.99 - 99.99'">
                                 </div>
                             </div>
                         </div>
@@ -144,7 +157,8 @@ include '../../includes/dbh.inc.php';
                             <label for="bkdweight">Dry weight</label>
                             <div>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="bkdweight" placeholder="Dry Weight" aria-label="Dry Weight" aria-describedby="basic-addon1">
+                                    <input type="number" class="form-control" name="bkdweight" placeholder="Dry Weight" aria-label="Dry Weight" aria-describedby="basic-addon1">
+                                    <small style="color: black" class="p-2 pl-5"><i>In Kilograms</i></small>
                                 </div>
                             </div>
                         </div>
@@ -208,11 +222,8 @@ include '../../includes/dbh.inc.php';
                <!-- /.box-body -->
            </div>
            <!-- /.box -->
-       </div>
-       <!-- /.col -->
-   </div>
-</div>
-</section>
+        </div>
+    </section>
 </div>
 
 <script>
@@ -265,7 +276,7 @@ include '../../includes/dbh.inc.php';
 
                 // Closure to capture the file information and apply validation.
                 fileReader.onload = (function (readerEvt) {
-                	return function (e) {
+                    return function (e) {
                         dimensionValidation(e).then(function () {
                             console.log('in promise')
                             if (validated) {
@@ -328,13 +339,13 @@ include '../../includes/dbh.inc.php';
 
         //To remove attachment once user click on x button
         jQuery(function ($) {
-        	$('div').on('click', '.img-wrap .close', function () {
-        		var id = $(this).closest('.img-wrap').find('img').data('id');
+            $('div').on('click', '.img-wrap .close', function () {
+                var id = $(this).closest('.img-wrap').find('img').data('id');
 
                 //to remove the deleted item from array
                 var elementPos = AttachmentArray.map(function (x) { return x.FileName; }).indexOf(id);
                 if (elementPos !== -1) {
-                	AttachmentArray.splice(elementPos, 1);
+                    AttachmentArray.splice(elementPos, 1);
                 }
 
                 //to remove image tag
@@ -349,9 +360,9 @@ include '../../includes/dbh.inc.php';
                 //to remove li tag
                 var lis = document.querySelectorAll('#imgList li');
                 for (var i = 0; li = lis[i]; i++) {
-                	if (li.innerHTML == "") {
-                		li.parentNode.removeChild(li);
-                	}
+                    if (li.innerHTML == "") {
+                        li.parentNode.removeChild(li);
+                    }
                 }
 
             });
@@ -364,60 +375,60 @@ include '../../includes/dbh.inc.php';
             console.log(readerEvt);
             //To check file type according to upload conditions
             if (CheckFileType(readerEvt.type) == false) {
-            	document.getElementById("error").innerHTML = "The file (" + readerEvt.name + ") does not match the upload conditions, You can only upload jpg/png/gif files";
-            	e.preventDefault();
-            	return;
+                document.getElementById("error").innerHTML = "The file (" + readerEvt.name + ") does not match the upload conditions, You can only upload jpg/png/gif files";
+                e.preventDefault();
+                return;
             }
 
             //To check file Size according to upload conditions
             if (CheckFileSize(readerEvt.size) == false) {
-            	// alert("The file (" + readerEvt.name + ") does not match the upload conditions, The maximum file size for uploads should not exceed 300 KB");
-            	document.getElementById("error").innerHTML = "The file("+ readerEvt.name + ") does not match the upload conditions,<br> The maximum file size for uploads should not exceed 300 KB)";
-            	e.preventDefault();
-            	return;
+                // alert("The file (" + readerEvt.name + ") does not match the upload conditions, The maximum file size for uploads should not exceed 300 KB");
+                document.getElementById("error").innerHTML = "The file("+ readerEvt.name + ") does not match the upload conditions,<br> The maximum file size for uploads should not exceed 300 KB)";
+                e.preventDefault();
+                return;
             }
 
             //To check files count according to upload conditions
             if (CheckFilesCount(AttachmentArray) == false) {
-            	if (!filesCounterAlertStatus) {
-            		filesCounterAlertStatus = true;
-            		document.getElementById("error").innerHTML = "You have added more than 10 files. According to upload conditions you can upload 10 files maximum";
-            	}
-            	e.preventDefault();
-            	return;
+                if (!filesCounterAlertStatus) {
+                    filesCounterAlertStatus = true;
+                    document.getElementById("error").innerHTML = "You have added more than 10 files. According to upload conditions you can upload 10 files maximum";
+                }
+                e.preventDefault();
+                return;
             }
             else
             {
-            	document.getElementById("error").innerHTML = " ";
+                document.getElementById("error").innerHTML = " ";
             }
         }
 
         //To check file type according to upload conditions
         function CheckFileType(fileType) {
-        	if (fileType == "image/jpeg") {
-        		return true;
-        	}
-        	else if (fileType == "image/png") {
-        		return true;
-        	}
-        	else if (fileType == "image/gif") {
-        		return true;
-        	}
-        	else {
-        		return false;
-        	}
-        	return true;
+            if (fileType == "image/jpeg") {
+                return true;
+            }
+            else if (fileType == "image/png") {
+                return true;
+            }
+            else if (fileType == "image/gif") {
+                return true;
+            }
+            else {
+                return false;
+            }
+            return true;
         }
 
         //To check file Size according to upload conditions
         function CheckFileSize(fileSize) {
-        	if (fileSize < 300000) {
-        		return true;
-        	}
-        	else {
-        		return false;
-        	}
-        	return true;
+            if (fileSize < 300000) {
+                return true;
+            }
+            else {
+                return false;
+            }
+            return true;
         }
 
         //To check files count according to upload conditions
@@ -426,23 +437,22 @@ include '../../includes/dbh.inc.php';
             //I have used the loop to get the real length
             var len = 0;
             for (var i = 0; i < AttachmentArray.length; i++) {
-            	if (AttachmentArray[i] !== undefined) {
-            		len++;
-            	}
+                if (AttachmentArray[i] !== undefined) {
+                    len++;
+                }
             }
             //To check the length does not exceed 10 files maximum
             if (len > 9) {
-            	return false;
+                return false;
             }
             else
             {
-            	return true;
+                return true;
             }
         }
 
         //Render attachments thumbnails.
-        function RenderThumbnail(e, readerEvt)
-        {
+        function RenderThumbnail(e, readerEvt){
             console.log(validated);
             if (!validated) {
                 return;
@@ -458,13 +468,11 @@ include '../../includes/dbh.inc.php';
             div.className = "FileNameCaptionStyle";
             li.appendChild(div);
             div.innerHTML = [readerEvt.name].join('');
-            document.getElementById('Filelist').insertBefore(ul, null);
-            
+            document.getElementById('Filelist').insertBefore(ul, null);   
         }
 
         //Fill the array of attachment
-        function FillAttachmentArray(e, readerEvt)
-        {
+        function FillAttachmentArray(e, readerEvt){
             if (!validated) {
                 return;
             }
@@ -480,59 +488,62 @@ include '../../includes/dbh.inc.php';
               FileSizeInBytes: readerEvt.size,
           };
           arrCounter = arrCounter + 1;
-      }
+        }
 
       $(document).ready(function (e) {
        $("#bkform").on('submit',(function(e) {
           e.preventDefault();
-				  //AttachmentArray
-				  var formData = new FormData(this);
-				  formData.append('images', JSON.stringify(AttachmentArray));
-				  //return;
-				  $.ajax({
-				  	url: "/BikeLabs/includes/new-bikes.inc.php",
-				  	type: "POST",
-				  	data:  formData,
-				  	contentType: false,
-				  	cache: false,
-				  	processData:false,
-				  	beforeSend : function()
-				  	{
-				    //$("#preview").fadeOut();
-				    //$("#err").fadeOut();
-				},
-				success: function(data)
-				{
-                    alert(data);
-                    // if (data == 0) 
-                    // {
-                    //     document.getElementById("empty").innerHTML = "Fill in all the fields";
-                    // }else
-                    // if (data == 1) 
-                    // {
-                    //     document.getElementById("empty").innerHTML = "You have entered an invalid year, please enter a year between 1990 and current year";
-                    // }else
-                    // if (data == 2) 
-                    // {
-                    //     document.getElementById("empty").innerHTML = "Please enter more than 20 characters for your description.";
-                    // }else
-                    // if (data == 3) 
-                    // {
-                    //     document.getElementById("empty").innerHTML = "Please enter a price between the ranges of 5000 to 50,000 Rs.";
-                    // }
-                    // else
-                    //     if (data == 4) 
-                    //     {
-                    //         // alert('success');
-                    //         location.href = "/BikeLabs/pages/admin/admin-bikes.php?success"
-                    //     }
+                  //AttachmentArray
+                  var formData = new FormData(this);
+                  formData.append('images', JSON.stringify(AttachmentArray));
+                  //return;
+                  $.ajax({
+                    url: "../../includes/new-bikes.inc.php",
+                    type: "POST",
+                    data:  formData,
+                    contentType: false,
+                    cache: false,
+                    processData:false,
+                    beforeSend : function()
+                    {
+                },
+                success: function(data)
+                {
+                    // alert(data);
+                    if (data == 0) 
+                    {
+                        document.getElementById("empty").innerHTML = "Fill in all the fields";
+                    }else
+                    if (data == 1) 
+                    {
+                        document.getElementById("empty").innerHTML = "You have entered an invalid year, please enter a year between 1990 and current year";
+                    }else
+                    if (data == 2) 
+                    {
+                        document.getElementById("empty").innerHTML = "Please enter more than 20 characters for your description.";
+                    }else
+                    if (data == 3) 
+                    {
+                        document.getElementById("empty").innerHTML = "Please enter a price between the ranges of 5000 to 5000000 Rs.";
+                    }else
+                    if (data == 4) 
+                    {
+                        document.getElementById("empty").innerHTML = "Please select images";
+                    }
+                    else
+                        if (data == 5) 
+                        {
+                            // alert('success');
+                            location.href = "/BikeLabs/newbikes.php";
+                        }
                     },
                     error: function(e) 
                     {
                        $("#err").html(e).fadeIn();
                    }          
                });
-				}));
+                }));
+
    });
 </script>
 <?php

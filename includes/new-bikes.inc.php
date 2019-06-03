@@ -7,7 +7,6 @@ if (isset($_POST['images']))
 	// $Title = $_POST['bktitle'];
 	$Brand = $_POST['bkbrand'];
 	$Model = $_POST['bkmodel'];
-	$Year = $_POST['bkyear'];
 
 	if ($Brand == "0") {
 		$Brand = "";
@@ -16,6 +15,7 @@ if (isset($_POST['images']))
 		$Model = "";
 	}
 
+	$Year = $_POST['bkyear'];
 	$EngineType = $_POST['bkengine'];
 	$BoreStroke = $_POST['bkborestroke'];
 	$Transmission = $_POST['bktrans'];
@@ -76,62 +76,67 @@ if (isset($_POST['images']))
 				mysqli_stmt_execute($stmt);
 			}
 		}
+		if (empty(json_decode($_POST['images']))) {
+			echo json_encode(4);
+			exit();
+		}
+		else
+		{
+			for($i=0;$i<count(json_decode($_POST['images']));$i++){
+				$j = json_decode($_POST['images'], true);
 
-		for($i=0;$i<count(json_decode($_POST['images']));$i++){
-			$j = json_decode($_POST['images']);
+				$fileName = $j[$i]['FileName'];
+				$fileSize =  $j[$i]['FileSizeInBytes'];
 
-			$fileName = $j[$i]->FileName;
-			$fileSize =  $j[$i]->FileSizeInBytes;
+				$fileExt = explode('.', $fileName);
+				$fileActualExt = strtolower(end($fileExt));
+				$allowed = array('jpg', 'jpeg', 'png');	
 
-			$fileExt = explode('.', $fileName);
-			$fileActualExt = strtolower(end($fileExt));
-			$allowed = array('jpg', 'jpeg', 'png');	
-
-			$thumbnail = $i;
-			if (in_array($fileActualExt, $allowed)) 
-			{
-				if ($fileSize < 5000000) 
+				$thumbnail = $i;
+				if (in_array($fileActualExt, $allowed)) 
 				{
-					$fileNameNew = uniqid('', true).'.'.$fileActualExt;
-					$fileDestination = '../images/sparepartimg/' . $fileNameNew;
+					if ($fileSize < 5000000) 
+					{
+						$fileNameNew = uniqid('', true).'.'.$fileActualExt;
+						$fileDestination = '../images/sparepartimg/' . $fileNameNew;
 
-					$sql = "SELECT * FROM spare_parts";
+						$sql = "SELECT * FROM spare_parts";
 
-					if (!mysqli_stmt_prepare($stmt, $sql)) {
-						echo "SQL statement failed";
+						if (!mysqli_stmt_prepare($stmt, $sql)) {
+							echo "SQL statement failed";
+						}
+						else
+						{
+							mysqli_stmt_execute($stmt);
+							$result = mysqli_stmt_get_result($stmt);
+							$rowCount = mysqli_num_rows($result);
+							$setImageOrder = $rowCount + 1;
+
+							$sqlimage = "INSERT INTO b_images (bike_id, bike_image_name, bike_image_thumb) VALUES (?, ?, ?)";
+							if (!mysqli_stmt_prepare($stmt, $sqlimage)) 
+							{
+								echo "SQL statement failed";
+							}	
+							else
+							{
+								mysqli_stmt_bind_param($stmt, "sss", $bk_id, $fileNameNew, $thumbnail);
+								mysqli_stmt_execute($stmt);
+								file_put_contents($fileDestination, base64_decode($j[$i]['Content']));
+							}
+						}
 					}
 					else
 					{
-						mysqli_stmt_execute($stmt);
-						$result = mysqli_stmt_get_result($stmt);
-						$rowCount = mysqli_num_rows($result);
-						$setImageOrder = $rowCount + 1;
-
-						$sqlimage = "INSERT INTO b_images (bike_id, bike_image_name, bike_image_thumb) VALUES (?, ?, ?)";
-						if (!mysqli_stmt_prepare($stmt, $sqlimage)) 
-						{
-							echo "SQL statement failed";
-						}	
-						else
-						{
-							mysqli_stmt_bind_param($stmt, "sss", $bk_id, $fileNameNew, $thumbnail);
-							mysqli_stmt_execute($stmt);
-							file_put_contents($fileDestination, base64_decode($j[$i]->Content));
-						}
+						continue;
 					}
 				}
 				else
 				{
-					echo "Your file is too big";
+					continue;
 				}
 			}
-			else
-			{
-				echo "You cannot upload files of this type";
-
-			}
 		}
-		echo json_encode(4);
+		echo json_encode(5);
 		exit();
 	}
 }

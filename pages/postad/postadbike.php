@@ -89,7 +89,7 @@ include_once '../../includes/header.php';
 						<label>Postcode</label>
 						<div class="">
 							<div class="input-group mb-3">
-								<input type="text" class="form-control" name="bkpcode" placeholder="Postcode" aria-label="Postcode" aria-describedby="basic-addon1">
+								<input type="number" class="form-control" name="bkpcode" placeholder="Postcode" aria-label="Postcode" aria-describedby="basic-addon1">
 							</div>
 						</div>
 					</div>
@@ -107,52 +107,52 @@ include_once '../../includes/header.php';
                         </div>
                     </div>
                     <div class="form-row formrowad p-2">
-                      <label>Phone Number</label>
-                      <div>
-                       <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="bkphone" placeholder="Phone number" aria-label="Phone number" aria-describedby="basic-addon1">
+                        <label>Phone Number</label>
+                        <div>
+                            <div class="input-group mb-3">
+                                <input type="number" class="form-control" name="bkphone" placeholder="Phone number" aria-label="Phone number" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
                     </div>
-                </div>
+                    <div class="form-row formrowad p-2 imageupload" align="left">
+                        <label>Attachment Instructions</label>
+                        <ul class="imagelist" style="list-style: none;">
+                            <li>
+                                Allowed only files with extension (jpg, png, gif)
+                            </li>
+                            <li>
+                                Maximum number of allowed files 10 with 300 KB for each
+                            </li>
+                            <li>
+                                you can select files from different folders
+                            </li>
+                            <li>
+                                <span class=" fileinput-button">
+                                    <br>
+                                    <span>Select Attachment</span>
+                                    <input type="file" name="files[]" style="display: none !important;" id="files" multiple accept="image/jpeg, image/png, image/gif,"><br />
+                                    <input type="button" class="btn btn-outline-danger" value="Browse..." onclick="document.getElementById('files').click();" />
+                                </span>
+                            </li>
+                            <li>
+                                <output id="Filelist" class="imgoutput" style="max-width: 630px;"></output>
+                            </li>
+                            <li>
+                                <span id="error" style="color: red;"></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pb-4">
+                        <p id="empty" style="color: red !important;"></p>
+                        <p id="year" style="color: red !important;"></p>
+                    </div>
+                    <div class="addressbtn" style="float:right;padding:10px;">
+                        <button type="submit" name="bksubmit" class="btn btn-outline-danger">Post the advert</button>
+                    </div>
+                </form>
             </div>
-            <div class="form-row formrowad p-2 imageupload" align="left">
-              <label>Attachment Instructions</label>
-              <ul style="list-style: none;">
-               <li>
-                Allowed only files with extension (jpg, png, gif)
-            </li>
-            <li>
-                Maximum number of allowed files 10 with 300 KB for each
-            </li>
-            <li>
-                you can select files from different folders
-            </li>
-            <li>
-                <span class=" fileinput-button">
-                 <br>
-                 <span>Select Attachment</span>
-                 <input type="file" name="files[]" style="display: none !important;" id="files" multiple accept="image/jpeg, image/png, image/gif,"><br />
-                 <input type="button" class="btn btn-outline-danger" value="Browse..." onclick="document.getElementById('files').click();" />
-             </span>
-         </li>
-         <li>
-            <output id="Filelist" style="max-width: 630px;"></output>
-        </li>
-        <li>
-            <span id="error" style="color: red;"></span>
-        </li>
-    </ul>
-</div>
-<div class="pb-4">
-    <p id="empty" style="color: red !important;"></p>
-    <p id="year" style="color: red !important;"></p>
-</div>
-<div class="addressbtn" style="float:right;padding:10px;">
-  <button type="submit" name="bksubmit" class="btn btn-outline-danger">Post the advert</button>
-</div>
-</form>
-</div>
-</div>
-</div>
+        </div>
+    </div>
 </section>
 <script type="text/javascript">
 
@@ -374,8 +374,7 @@ include_once '../../includes/header.php';
         }
 
         //Render attachments thumbnails.
-        function RenderThumbnail(e, readerEvt)
-        {
+        function RenderThumbnail(e, readerEvt){
             console.log(validated);
             if (!validated) {
                 return;
@@ -391,13 +390,11 @@ include_once '../../includes/header.php';
             div.className = "FileNameCaptionStyle";
             li.appendChild(div);
             div.innerHTML = [readerEvt.name].join('');
-            document.getElementById('Filelist').insertBefore(ul, null);
-            
+            document.getElementById('Filelist').insertBefore(ul, null);   
         }
 
         //Fill the array of attachment
-        function FillAttachmentArray(e, readerEvt)
-        {
+        function FillAttachmentArray(e, readerEvt){
             if (!validated) {
                 return;
             }
@@ -413,7 +410,7 @@ include_once '../../includes/header.php';
               FileSizeInBytes: readerEvt.size,
           };
           arrCounter = arrCounter + 1;
-      }
+        }
 
       $(document).ready(function (e) {
        $("#bkform").on('submit',(function(e) {
@@ -431,13 +428,11 @@ include_once '../../includes/header.php';
 				  	processData:false,
 				  	beforeSend : function()
 				  	{
-				    //$("#preview").fadeOut();
-				    //$("#err").fadeOut();
 				},
 				success: function(data)
 				{
                     // alert(data);
-					if (data == 0) 
+                    if (data == 0) 
                     {
                         document.getElementById("empty").innerHTML = "Fill in all the fields";
                     }else
@@ -451,10 +446,22 @@ include_once '../../includes/header.php';
                     }else
                     if (data == 3) 
                     {
-                        document.getElementById("empty").innerHTML = "Please enter a price between the ranges of 5000 to 50,000 Rs.";
+                        document.getElementById("empty").innerHTML = "Please enter a price between the ranges of 5000 to 5000000 Rs.";
+                    }else
+                    if (data == 4) 
+                    {
+                        document.getElementById("empty").innerHTML = "Please enter a valid pakistani phone number.";
+                    }else
+                    if (data == 5) 
+                    {
+                        document.getElementById("empty").innerHTML = "Please enter a valid post code";
+                    }else
+                    if (data == 6) 
+                    {
+                        document.getElementById("empty").innerHTML = "Please select images";
                     }
                     else
-                        if (data == 4) 
+                        if (data == 7) 
                         {
                             // alert('success');
                             location.href = "/BikeLabs/usedbikes.php";
