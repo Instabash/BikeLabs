@@ -182,16 +182,16 @@ $stmt = mysqli_stmt_init($conn);
 
 									?>
 									<div class="col-md-4">
-										<div class="product-item">
-											<a href="pages/spareparts/spareparttemp.php?partid=<?php echo $row['ad_id'] ?>">
-												<img src="images/sparepartimg/<?php echo $row1['ad_image_name'] ?>">
+										<a href="pages/spareparts/spareparttemp.php?partid=<?php echo $row['ad_id'] ?>">
+											<div class="product-item">
+												<img src="images/sparepartimg/<?php echo $row1['ad_image_name'] ?>" style="height: 200px !important;width: 100% !important;">
 												<div>
 													<label class="productName"><?php echo $row['ad_title'] ?></label><br>
 													<label>Price:</label>
 													<label class="price"><?php echo $row['ad_price'] ?></label>
 												</div>
-											</a>
-										</div>
+											</div>
+										</a>
 									</div>
 									<?php 
 								}			

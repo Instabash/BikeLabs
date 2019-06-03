@@ -156,55 +156,56 @@ $stmt = mysqli_stmt_init($conn);
 					</div>
 				</div>
 				<div class="col-md-10">
-				<div class="row">
-					<?php 
-					if(!mysqli_stmt_prepare($stmt, $spaartsql))
-					{
-						echo "SQL statement failed";
-					}
-					else
-					{
-						mysqli_stmt_execute($stmt);
-						$result = mysqli_stmt_get_result($stmt);
+					<div class="row">
+						<?php 
+						if(!mysqli_stmt_prepare($stmt, $spaartsql))
+						{
+							echo "SQL statement failed";
+						}
+						else
+						{
+							mysqli_stmt_execute($stmt);
+							$result = mysqli_stmt_get_result($stmt);
 
 
-						while ($row = mysqli_fetch_assoc($result)) {
-							$imgnamesql = "SELECT bike_image_name, MIN(bike_image_thumb) FROM b_images WHERE bike_id = {$row['bike_id']} GROUP BY bike_id;";
+							while ($row = mysqli_fetch_assoc($result)) {
+								$imgnamesql = "SELECT bike_image_name, MIN(bike_image_thumb) FROM b_images WHERE bike_id = {$row['bike_id']} GROUP BY bike_id;";
 
-							if(!mysqli_stmt_prepare($stmt, $imgnamesql))
-							{
-								echo "SQL statement failed";
-							}
-							else
-							{
-								mysqli_stmt_execute($stmt);
-								$result1 = mysqli_stmt_get_result($stmt);
-
-								while ($row1 = mysqli_fetch_assoc($result1)) 
+								if(!mysqli_stmt_prepare($stmt, $imgnamesql))
 								{
+									echo "SQL statement failed";
+								}
+								else
+								{
+									mysqli_stmt_execute($stmt);
+									$result1 = mysqli_stmt_get_result($stmt);
+
+									while ($row1 = mysqli_fetch_assoc($result1)) 
+									{
 									//echo $row['ad_image_name'];
 
-									?>
-									<div class="col-md-4">
-										<div class="product-item">
+										?>
+										<div class="col-md-4" >
 											<a href="pages/new-bikes/new-bikes.php?bikeid=<?php echo $row['bike_id'] ?>">
-												<img src="images/sparepartimg/<?php echo $row1['bike_image_name'] ?>">
-												<div>
-													<label class="productName"><?php echo $row['bike_brand'] . " " . $row['bike_model'] . " " . $row['bikeyear']; ?></label><br>
-													<label>Price:</label>
-													<label class="price"><?php echo $row['bike_price'] ?></label>
+												<div class="product-item" >
+													<img src="images/sparepartimg/<?php echo $row1['bike_image_name'] ?>"  style="height: 200px !important;width: 100% !important;">
+													<div>
+														<label class="productName"><?php echo $row['bike_brand'] . " " . $row['bike_model'] . " " . $row['bikeyear']; ?></label><br>
+														<label>Price:</label>
+														<label class="price"><?php echo $row['bike_price'] ?></label>
+													</div>
+													
 												</div>
 											</a>
 										</div>
-									</div>
-									<?php 
-								}			
-							}
-						}	
-					}
-					?>
+										<?php 
+									}			
+								}
+							}	
+						}
+						?>
+					</div>
 				</div>
-			</div>
 			</div>
 		</div>
 	</div>	
