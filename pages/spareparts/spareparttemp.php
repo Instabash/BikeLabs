@@ -14,7 +14,7 @@ $stmt = mysqli_stmt_init($conn);
 	<div class="container max-w">
 		<div class="paymentmain" style="margin-left: 0px;margin-right: 0px">
 			<div class="paymentleft border-new border border-dark rounded mt-5 " style="">
-				<div class="w3-content w3-display-container">
+				<div class="w3-content w3-display-container ">
 
 					<?php
 					$imgnamesql = "SELECT ad_image_name FROM post_ad_images WHERE ad_id = {$_GET["partid"]};";
@@ -30,15 +30,19 @@ $stmt = mysqli_stmt_init($conn);
 						while ($row1 = mysqli_fetch_assoc($result1)) 
 						{
 							?>
-							<img class="mySlides" src="../../images/sparepartimg/<?php echo $row1['ad_image_name'] ?>" style="width:100%">
+							<img class="mySlides p-5" src="../../images/sparepartimg/<?php echo $row1['ad_image_name'] ?>" style="width:100%;height: 500px !important;">
 							<?php 
 						}			
 					}
 					?>
-					<button class="w3-button w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
-					<button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
+					<div>
+						<button class="w3-button w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
+					</div>
+					<div>
+						<button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
+					</div>
 				</div>
-				<div class=" w3-row-padding w3-section">
+				<div class=" w3-row-padding w3-section" style="margin-left: 5%;">
 					<?php
 					$imgnamesql = "SELECT ad_image_name FROM post_ad_images WHERE ad_id = {$_GET["partid"]};";
 					if(!mysqli_stmt_prepare($stmt, $imgnamesql))
@@ -54,8 +58,8 @@ $stmt = mysqli_stmt_init($conn);
 						{ 
 							$i++;
 							?>
-							<div class="w3-col s4">
-								<img class="demo w3-opacity w3-hover-opacity-off border-new border border-dark rounded " src="../../images/sparepartimg/<?php echo $row1['ad_image_name'] ?>" style="width:100px;cursor:pointer" onclick="currentDiv(<?php echo $i ?>)">
+							<div class="w3-col s4" style="width: auto;">
+								<img class="demo w3-opacity w3-hover-opacity-off border-new border border-dark rounded " src="../../images/sparepartimg/<?php echo $row1['ad_image_name'] ?>" style="width:100px;height:75.47px !important;cursor:pointer" onclick="currentDiv(<?php echo $i ?>)">
 							</div>
 
 							<?php 
@@ -97,6 +101,21 @@ $stmt = mysqli_stmt_init($conn);
 						}
 					}
 					?>
+				</div>
+				
+				<div class="border-new border border-dark rounded mt-2 p-3">
+					<h5><b>Ad. Location</b></h5><br>
+					<p>
+					<?php
+						echo $row['ad_user_hname'] . ", " . $row['ad_user_pcode'] . ", " . $row['ad_user_country'] ;
+					?></p>
+				</div>
+				<div class="border-new border border-dark rounded mt-2 p-3">
+					<h5><b>Date Posted</b></h5><br>
+					<p>
+					<?php
+						echo $row['ad_date'];
+					?></p>
 				</div>
 				<form action="../../includes/markadsold.inc.php?partid=$part_id" method="post">
 					<div class="border-new border border-dark rounded mt-2 p-3">
@@ -161,28 +180,46 @@ $stmt = mysqli_stmt_init($conn);
 						?>
 					</div>
 				</form>
-				<div class="border-new border border-dark rounded mt-2 p-3">
-					<h5><b>Ad. Location</b></h5><br>
-					<p>
-					<?php
-						echo $row['ad_user_hname'] . ", " . $row['ad_user_pcode'] . ", " . $row['ad_user_country'] ;
-					?></p>
-				</div>
-				<div class="border-new border border-dark rounded mt-2 p-3">
-					<h5><b>Date Posted</b></h5><br>
-					<p>
-					<?php
-						echo $row['ad_date'];
-					?></p>
-				</div>
 			</div>
 		</div>
 		<div class="paymentmain" style="margin-left: 0px;margin-right: 0px">
 			<div class="paymentleft" >
-				<div class="border-new border border-dark rounded mt-5 p-3">
-					<h4><b>Description</b></h4><br>	
-					<p><?php echo $row['ad_description']; ?></p>
+				<div class="border-new border border-dark rounded mt-5 p-3" style="text-align: left;">
+					<h4><b>Details</b></h4><br>	
+					<div class="row pl-3">
+						<?php
+							if ($row['ad_type'] == 'bike') {
+						?>
+						<div class="modleft1">
+							<label><b>Make</b></label><p><?php echo $row['bike_make']; ?></p>
+						</div>
+						<div class="modmiddle1">
+							<label><b>Year</b></label><p><?php echo $row['bike_year']; ?></p>
+						</div>
+						<?php
+							}
+						?>
+						<div class="modright1">
+							<label><b>Condition</b></label><p><?php echo $row['ad_condition']; ?></p>
+						</div>
+					</div>
+					
+					
 				</div>
+			</div>
+			<div class="paymentright">
+				
+			</div>
+		</div>
+		<div class="paymentmain" style="margin-left: 0px;margin-right: 0px">
+			<div class="paymentleft" >
+				<div class="border-new border border-dark rounded mt-5 p-3" style="text-align: left;">
+					<h4><b>Description</b></h4><br>	
+					<p style="word-break: break-all;"><?php echo $row['ad_description']; ?></p>
+				</div>
+			</div>
+			<div class="paymentright">
+				
 			</div>
 		</div>
 	</div>

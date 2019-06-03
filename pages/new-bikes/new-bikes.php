@@ -29,7 +29,7 @@ $stmt = mysqli_stmt_init($conn);
 						while ($row1 = mysqli_fetch_assoc($result1)) 
 						{
 							?>
-							<img class="mySlides" src="../../images/sparepartimg/<?php echo $row1['bike_image_name'] ?>" style="width:100%">
+							<img class="mySlides" src="../../images/sparepartimg/<?php echo $row1['bike_image_name'] ?>" style="width:100%;height: 500px !important;">
 							<?php 
 						}			
 					}
@@ -54,7 +54,7 @@ $stmt = mysqli_stmt_init($conn);
 							$i++;
 							?>
 							<div class="w3-col s4">
-								<img class="demo w3-opacity w3-hover-opacity-off border-new border border-dark rounded " src="../../images/sparepartimg/<?php echo $row1['bike_image_name'] ?>" style="width:100px;cursor:pointer" onclick="currentDiv(<?php echo $i ?>)">
+								<img class="demo w3-opacity w3-hover-opacity-off border-new border border-dark rounded " src="../../images/sparepartimg/<?php echo $row1['bike_image_name'] ?>" style="width:100px;height:75.47px !important;cursor:pointer" onclick="currentDiv(<?php echo $i ?>)">
 							</div>
 							<?php 
 						}
