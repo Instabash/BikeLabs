@@ -5,8 +5,7 @@ include_once 'includes/header.php';
 include_once 'includes/dbh.inc.php';
 include_once 'includes/restrictions.inc.php';
 redirect();
-$spaartsql = "SELECT * FROM bikes";
-$stmt = mysqli_stmt_init($conn);
+
 ?>
 <!-- New Bikes -->
 <section id="spparts" class="section sppartsection content">
@@ -14,8 +13,9 @@ $stmt = mysqli_stmt_init($conn);
 		<h3>New motorbikes</h3> <br>
 		<div class="search-page-new">
 			<div class="row">
-				<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search.." style="max-width: 100% !important;">
-				<div class="mt-3 col-md-2 used-car-refine-search">
+				
+				
+				<div class="mt-4 col-md-2 used-car-refine-search">
 					<div class="sidebar-filters border-new">
 						<div class="filter-panel-new box">
 							<div class="accordion-group" id="make">
@@ -102,8 +102,8 @@ $stmt = mysqli_stmt_init($conn);
 								</div>
 								<div id="collapse_2" class="accordion-body collapse in">
 									<div class="accordion-inner">
-										<form action="#" method="post" onsubmit="return false">
-											<select id="fromInput" style="width: 100%;" class="nomargin">
+										<form action="includes/search.inc.php" method="post">
+											<select id="fromInput" style="width: 100%;" class="nomargin" name="fromval">
 												<option value="">Price From</option>
 												<option value="10000">10,000</option>
 												<option value="20000">20,000</option>
@@ -125,7 +125,7 @@ $stmt = mysqli_stmt_init($conn);
 											</select>
 											<div class="mb10">
 											</div>
-											<select id="toInput" class="nomargin" style="width: 100%;" >
+											<select id="toInput" class="nomargin" style="width: 100%;" name="toval">
 												<option value="" selected="selected">Price To</option>
 												<option value="20000">20,000</option>
 												<option value="30000">30,000</option>
@@ -144,7 +144,7 @@ $stmt = mysqli_stmt_init($conn);
 												<option value="1000000">1,000,000</option>
 												<option value="2000000">2,000,000</option>
 											</select>
-											<input type="submit" class="btn btn-primary btn-block" id="btngo" value="Go" onclick="priceRange()">
+											<input type="submit" class="btn btn-primary btn-block" id="btngo" name="search-sub" value="Go">
 											<div id="clear-selection">
 												
 											</div>
@@ -157,7 +157,24 @@ $stmt = mysqli_stmt_init($conn);
 				</div>
 				<div class="col-md-10">
 					<div class="row">
+						<?php
+						if (isset($_GET['pageno'])) {
+							$pageno = $_GET['pageno'];
+						} else {
+							$pageno = 1;
+						}
+						$no_of_records_per_page = 12;
+						$offset = ($pageno-1) * $no_of_records_per_page;
+
+						$total_pages_sql = "SELECT COUNT(*) FROM bikes";
+						$result = mysqli_query($conn,$total_pages_sql);	
+
+						$total_rows = mysqli_fetch_array($result)[0];
+						$total_pages = ceil($total_rows / $no_of_records_per_page);		
+						?>
 						<?php 
+						$spaartsql = "SELECT * FROM bikes LIMIT {$offset}, {$no_of_records_per_page};";
+						$stmt = mysqli_stmt_init($conn);
 						if(!mysqli_stmt_prepare($stmt, $spaartsql))
 						{
 							echo "SQL statement failed";
@@ -166,7 +183,6 @@ $stmt = mysqli_stmt_init($conn);
 						{
 							mysqli_stmt_execute($stmt);
 							$result = mysqli_stmt_get_result($stmt);
-
 
 							while ($row = mysqli_fetch_assoc($result)) {
 								$imgnamesql = "SELECT bike_image_name, MIN(bike_image_thumb) FROM b_images WHERE bike_id = {$row['bike_id']} GROUP BY bike_id;";
@@ -183,44 +199,127 @@ $stmt = mysqli_stmt_init($conn);
 									while ($row1 = mysqli_fetch_assoc($result1)) 
 									{
 									//echo $row['ad_image_name'];
+										if (isset($_GET['pricefrom'])||isset($_GET['priceto'])) {
+											
+											$pricefrom = $_GET['pricefrom'];
+											$priceto = $_GET['priceto'];
+											
+											if (isset($pricefrom)||isset($priceto)) 
+											{
+												$pricesql = "SELECT * FROM bikes WHERE bike_price >= {$pricefrom} AND bike_price <= {$priceto};";
+												$stmt = mysqli_stmt_init($conn);
+												if(!mysqli_stmt_prepare($stmt, $pricesql))
+												{
+													echo "SQL statement failed";
+												}
+												else
+												{
+													mysqli_stmt_execute($stmt);
+													$result = mysqli_stmt_get_result($stmt);
 
-										?>
-										<div class="col-md-4" >
-											<a href="pages/new-bikes/new-bikes.php?bikeid=<?php echo $row['bike_id'] ?>">
-												<div class="product-item" >
-													<img src="images/sparepartimg/<?php echo $row1['bike_image_name'] ?>"  style="height: 200px !important;width: 100% !important;">
-													<div>
-														<label class="productName"><?php echo $row['bike_brand'] . " " . $row['bike_model'] . " " . $row['bikeyear']; ?></label><br>
-														<label>Price:</label>
-														<label class="price"><?php echo $row['bike_price'] ?></label>
-													</div>
-													
+													while ($row = mysqli_fetch_assoc($result)) {
+														$imgnamesqlprice = "SELECT bike_image_name, MIN(bike_image_thumb) FROM b_images WHERE bike_id = {$row['bike_id']} GROUP BY bike_id;";
+
+														if(!mysqli_stmt_prepare($stmt, $imgnamesqlprice))
+														{
+															echo "SQL statement failed";
+														}
+														else
+														{
+															mysqli_stmt_execute($stmt);
+															$result1 = mysqli_stmt_get_result($stmt);
+
+															while ($row1 = mysqli_fetch_assoc($result1)) 
+																{?>
+																	<div class="col-md-4" id="myUL">
+																		<a href="pages/new-bikes/new-bikes.php?bikeid=<?php echo $row['bike_id'] ?>">
+																			<div class="product-item">
+																				<img src="images/sparepartimg/<?php echo $row1['bike_image_name'] ?>"  style="height: 200px !important;width: 100% !important;">
+																				<div class="nigger">
+																					<label class="productName"><?php echo $row['bike_brand'] . " " . $row['bike_model'] . " " . $row['bikeyear']; ?></label><br>
+																					<label>Price:</label>
+																					<label class="price"><?php echo $row['bike_price'] ?></label>
+																				</div>
+																			</div>
+																		</a>
+																	</div>
+																	<?php
+																}
+															}
+														}
+
+													}
+												}
+											}
+											else
+											{
+												?>
+
+												<div class="col-md-4" id="myUL">
+													<a href="pages/new-bikes/new-bikes.php?bikeid=<?php echo $row['bike_id'] ?>">
+														<div class="product-item">
+															<img src="images/sparepartimg/<?php echo $row1['bike_image_name'] ?>"  style="height: 200px !important;width: 100% !important;">
+															<div class="nigger">
+																<label class="productName"><?php echo $row['bike_brand'] . " " . $row['bike_model'] . " " . $row['bikeyear']; ?></label><br>
+																<label>Price:</label>
+																<label class="price"><?php echo $row['bike_price'] ?></label>
+															</div>
+														</div>
+													</a>
 												</div>
-											</a>
-										</div>
-										<?php 
-									}			
+												<?php 
+											}
+										}			
+									}
 								}
-							}	
-						}
-						?>
+								?>
+								<div class="container pt-5">
+									<ul class="pagination" style="margin-left: 35%;">
+										<li><a href="?pageno=1">First</a></li>
+										<li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
+											<a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
+										</li>
+										<li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
+											<a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
+										</li>
+										<li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
+									</ul>
+								</div>
+								<script>
+									$('#search').click(function(){
+										$('.contact-name').hide();
+										var txt = $('#search-criteria').val();
+										$('.contact-name').each(function(){
+											if($(this).text().toUpperCase().indexOf(txt.toUpperCase()) != -1){
+												$(this).show();
+											}
+										});
+									});
+								</script>
+
+								<?php	
+							}
+							?>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>	
-</section>
-<script type="text/javascript">
-	$('div.tags').find('input:checkbox').on('click', function() {
-		let
-		els = $('.results > div').hide(),
-		checked = $('div.tags').find('input:checked').each(function() {
-			els.filter('.'+$(this).attr('rel')).show();
+		</div>	
+	</section>
+	<script type="text/javascript">
+		$('div.tags').find('input:checkbox').on('click', function() {
+			let
+			els = $('.results > div').hide(),
+			checked = $('div.tags').find('input:checked').each(function() {
+				els.filter('.'+$(this).attr('rel')).show();
+			});
+			if (!checked.length) els.show();
 		});
-		if (!checked.length) els.show();
-	});
-</script>
+	</script>
+	<script type="text/javascript">
 
-<?php
-include_once 'includes/footer.php';
-?>
+	</script>
+
+	<?php
+	include_once 'includes/footer.php';
+	?>
