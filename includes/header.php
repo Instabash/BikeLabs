@@ -99,7 +99,7 @@ if(!isset($_SESSION))
 			<div class="head-container collapse navbar-collapse" id="navbarSupportedContent" >
 				<ul class="navbar-nav mr-auto">
 					<h2 class="unselectable" style="color: #dc3545;padding-right: 30px;">BikeLabs</h2>
-					<li class="nav-item active header-padding" style="color: #dc3545;">
+					<li class="nav-item header-padding" style="color: #dc3545;">
 						<a class="nav-link" href="/BikeLabs/index.php">Home <span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item dropdown header-padding" style="color: #dc3545;">
@@ -126,11 +126,11 @@ if(!isset($_SESSION))
 						<a class="nav-link" href="/BikeLabs/postad.php">Post An Advertisement</a>
 					</li>
 				</ul>
-				<ul class="navbar-nav">
+				<ul class="nav navbar-nav navbar-right">
 					<?php
 					if(!isset($_SESSION['userId']))
 						{?>
-							<li class="nav-item header-padding" style="color: #dc3545;">
+							<li class="dropdown">
 								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Login </a>
 								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 									<form class="px-4 py-3" action="/BikeLabs/includes/login.inc.php" method="post">
@@ -160,57 +160,67 @@ if(!isset($_SESSION))
 							<?php 
 						}
 						?>
-					</ul>
-					<?php
-					if (isset($_SESSION['userId'])) {?>
-						<div id="cartIcon" style="margin-right: 20px;">
-							<a href="/BikeLabs/cart.php">
-								<img id="image" style="width: 30px;margin-right: 20px;" src="/BikeLabs/images/cart3.svg">
-								<div id="text" style = "color: #dc3545;">
-									<span class="day"><?php
-									if (isset($_SESSION['cart'])) {
-										if (!count($_SESSION['cart']) == 0) {
-											echo count($_SESSION['cart']);
-										}
-									} 	
-								}
-								?></span>
+				</ul>
+				<?php
+				if (isset($_SESSION['userId'])) 
+				{
+					?>
+					<div id="cartIcon" style="margin-right: 20px;">
+						<a href="/BikeLabs/cart.php">
+							<img id="image" style="width: 30px;margin-right: 20px;" src="/BikeLabs/images/cart3.svg">
+							<div id="text" style = "color: #dc3545;">
+								<span class="day">
+									<?php
+								if (isset($_SESSION['cart'])) 
+								{
+									if (!count($_SESSION['cart']) == 0) 
+									{
+										echo count($_SESSION['cart']);
+									}
+								} 	
+							}
+							?>
+								</span>
 							</div>
 						</a>
 					</div>
-
-
-					<?php
-					if(isset($_SESSION['userId']))
-					{
-						$userId = $_SESSION["userUId"];
-						?>
-						<?php
-						if ($_SESSION['usertype'] == "1") {
-
-							?>
-							<p style="margin:5px;color:black;">Logged in as : <a href="/../BikeLabs/pages/admin/admindash.php"> <?php echo $userId ?> </a></p>
-							<?php 
-						}
-						elseif ($_SESSION['usertype'] == "2") {
-							?>
-							<p style="margin:5px;color:black;">Logged in as : <a href="/../BikeLabs/pages/vendor/vendordash.php"> <?php echo $userId ?> </a></p>
-							<?php 
-						}
-						else{
-							?>
-							<p style="margin:5px;color:black;">Logged in as : <a href="/../BikeLabs/pages/user/userdash.php"> <?php echo $userId ?> </a></p>
-							<?php 
-						}?>
-						<form class="" action="/BikeLabs/includes/logout.inc.php" style="margin-left: 10px;" method="post">
-							<button type="submit" class="btn btn-outline-danger" name="logout-submit">Logout</button>
-						</form>
-						<?php
-					}
+				<?php
+				if(isset($_SESSION['userId']))
+				{
+					$userId = $_SESSION["userUId"];
 					?>
-					<form id="demo-2" style="margin-left: 10px;" >
-						<input type="search" placeholder="Search">
+					<?php
+					if ($_SESSION['usertype'] == "1") {
+
+						?>
+						<p style="margin:5px;color:black;">Logged in as : <a href="/../BikeLabs/pages/admin/admindash.php"> <?php echo $userId ?> </a></p>
+						<?php 
+					}
+					elseif ($_SESSION['usertype'] == "2") {
+						?>
+						<p style="margin:5px;color:black;">Logged in as : <a href="/../BikeLabs/pages/vendor/vendordash.php"> <?php echo $userId ?> </a></p>
+						<?php 
+					}
+					else{
+						?>
+						<p style="margin:5px;color:black;">Logged in as : <a href="/../BikeLabs/pages/user/userdash.php"> <?php echo $userId ?> </a></p>
+						<?php 
+					}?>
+					<form class="" action="/BikeLabs/includes/logout.inc.php" style="margin-left: 10px;" method="post">
+						<button type="submit" class="btn btn-outline-danger" name="logout-submit">Logout</button>
 					</form>
-				</div>	
-			</nav>
-		</header>
+					<?php
+				}
+				?>
+				<form id="demo-2" style="margin-left: 10px;" >
+					<input type="search" placeholder="Search">
+				</form>
+			</div>	
+		</nav>
+	</header>
+<script>
+$(document).ready(function() {
+  $('a.active').removeClass('active');
+  $('a[href="' + location.pathname + '"]').closest('a').addClass('active'); 
+});
+</script>
