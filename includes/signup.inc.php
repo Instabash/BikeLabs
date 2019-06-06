@@ -6,13 +6,20 @@ if(isset($_POST['signup-submit']))
 
 	$username = $_POST['uid'];
 	$email = $_POST['mail'];
-	$phone = $_POST['phone'];
+	// $phone = $_POST['phone'];
+	$fname = $_POST['fname'];
+	$lname = $_POST['lname'];
 	$password = $_POST['pwd'];
 	$passwordRepeat = $_POST['pwd-repeat'];
 	$usertype = 0;
-	if(empty($username) || empty($email) || empty($password) || empty($passwordRepeat))
+
+	$uppercase = preg_match('@[A-Z]@', $password);
+	$lowercase = preg_match('@[a-z]@', $password);
+	$number    = preg_match('@[0-9]@', $password);
+
+	if(empty($username) || empty($email) || empty($password) || empty($passwordRepeat) || empty($fname) || empty($lname))
 	{
-		header("Location: ../signup.php?error=emptyfields&uid=".$username."&mail=".$email);
+		header("Location: ../signup.php?error=emptyfields&uid=".$username."&mail=".$email."&fname=".$fname."&lname=".$lname);
 		exit();
 	}
 	elseif (!filter_var($email,FILTER_VALIDATE_EMAIL) && !preg_match("/^[a-zA-Z0-9]*$/", $username)) 
@@ -25,14 +32,19 @@ if(isset($_POST['signup-submit']))
 		header("Location: ../signup.php?error=invalidmail&uid=".$username);
 		exit();
 	}
-	elseif (!preg_match("/^((\+92)|(0092))-{0,1}\d{3}-{0,1}\d{7}$|^\d{11}$|^\d{4}-\d{7}$/", $phone)) 
-	{
-		header("Location: ../signup.php?error=invalidphone");
-		exit();
-	}
+	// elseif (!preg_match("/^((\+92)|(0092))-{0,1}\d{3}-{0,1}\d{7}$|^\d{11}$|^\d{4}-\d{7}$/", $phone)) 
+	// {
+	// 	header("Location: ../signup.php?error=invalidphone");
+	// 	exit();
+	// }
 	elseif (!preg_match("/^[a-zA-Z0-9]*$/", $username)) 
 	{
 		header("Location: ../signup.php?error=invaliduid&mail=".$email);
+		exit();
+	}
+	elseif(!$uppercase || !$lowercase || !$number || strlen($password) < 7)
+	{
+		header("Location: ../signup.php?error=pwdstr&uid=".$username."&mail=".$email."&fname=".$fname."&lname=".$lname);
 		exit();
 	}
 	elseif ($password !== $passwordRepeat) {
@@ -61,7 +73,7 @@ if(isset($_POST['signup-submit']))
 			}
 			else
 			{
-				$sql = "INSERT INTO users (uidUsers, emailUsers, pwdUsers, User_Contact, User_type) VALUES (?, ?, ?, ?, ?)";
+				$sql = "INSERT INTO users (uidUsers, emailUsers, pwdUsers, User_fname, User_lname, User_type) VALUES (?, ?, ?, ?, ?, ?)";
 				$stmt = mysqli_stmt_init($conn);
 				if (!mysqli_stmt_prepare($stmt, $sql)) 
 				{
@@ -72,7 +84,7 @@ if(isset($_POST['signup-submit']))
 				{
 					$hashedPwd = password_hash($password, PASSWORD_DEFAULT);
 
-					mysqli_stmt_bind_param($stmt, "sssss", $username, $email, $hashedPwd, $phone, $usertype);
+					mysqli_stmt_bind_param($stmt, "ssssss", $username, $email, $hashedPwd, $fname, $lname, $usertype);
 					mysqli_stmt_execute($stmt);
 					header("Location: ../signup.php?signup=success");
 					exit();
