@@ -1567,7 +1567,7 @@ input[type="radio"] {
 
 }
 .content{
-  min-height: calc(100vh - 143px);
+  min-height: calc(100vh - 138px);
 }
 
 @media only screen and (max-width: 760px), (min-width: 768px) and (max-width: 1024px) {
@@ -1715,7 +1715,7 @@ input[type="radio"] {
   border: none !important;
 }
 
-h1, h2, h3, h4, h5, h6, label, li, p, a, th{
+h1, h2, h3, h4, h5, h6, label, li, p, th{
   color: black !important;
 }
 
@@ -1931,4 +1931,61 @@ input[type=number]::-webkit-outer-spin-button {
   white-space: nowrap;
   overflow: hidden; 
   
+}
+
+.loginbtn{
+      padding: .5rem 2.5rem;
+    font-size: .95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #fff;
+    background: #111;
+    border-radius: 2.1875rem;
+    display: inline-block;
+        line-height: 1.5;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    touch-action: manipulation;
+    user-select: none;
+    border: .0625rem solid transparent;
+}
+
+.logintext{
+      width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #55595c;
+    background-color: #fff;
+    background-image: none;
+    border: .0625rem solid #ccc;
+    border-radius: .25rem;
+    background-color: transparent;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    border-radius: 0;
+}
+
+.nav-item>.active{
+  background-color: #000000ba;
+  border-radius: 10px;
+  color: white !important;
+}
+
+nav a:hover {
+    background-color:#ccc ;
+    border-radius: 10px;
+}
+
+.list-group-item.active {
+  border-color: black;
+  background-color: #000000ba !important;
+  }
+
+.dropdown-item.active{
+  background-color: #000000ba;
+  color: white !important;
+  border-radius: 10px;
 }
