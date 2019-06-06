@@ -109,53 +109,9 @@ for (var i = 0; i < btns.length; i++) {
 }
 
 //-----------------------javascript for spareparts filter for search bar
-function myFunction() {
-  // Declare variables
-  var input, filter, ul, li, a, i, txtValue;
-  input = document.getElementById('myInput');
-  filter = input.value.toUpperCase();
-  ul = document.getElementById("myUL");
-  li = ul.getElementsByClassName('filterDiv');
 
-  // Loop through all list items, and hide those who don't match the search query
-  for (i = 0; i < li.length; i++) {
-    a = li[i].getElementsByClassName("productName")[0];
-    txtValue = a.textContent || a.innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      li[i].style.display = "";
-    } else {
-      li[i].style.display = "none";
-    }
-  }
-}
 //-----------------------javascript for spareparts filter for price range
-function priceRange() {
-  // Declare variables
-  var input, filter, ul, li, a, i, txtValue;
-  fromInput = +document.getElementById('fromInput').value;
-  toInput = +document.getElementById('toInput').value;
-  ul = document.getElementById("myUL");
-  li = ul.getElementsByClassName('filterDiv');
 
-  // Loop through all list items, and hide those who don't match the search query
-  for (i = 0; i < li.length; i++) {
-    a = li[i].getElementsByClassName("price")[0];
-    var result;
-    result = a.innerHTML;
-    if (fromInput == "" && toInput == "") {
-      toInput = 9999999;
-      li[i].style.display = "";
-    } 
-    if (result >= fromInput && result <= toInput){
-      li[i].style.display = "";
-    } else {
-      li[i].style.display = "none";
-    }
-    if (!(fromInput == "0" && !toInput == "0")) {
-        document.getElementById('clear-selection').innerHTML = '<a href="#" id="clrlink">Clear selection</a>';
-    }
-  }
-}
 
 function switch_div(show) {  
   document.getElementById("show_"+show).style.display = "block";
