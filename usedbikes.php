@@ -187,8 +187,8 @@ $stmt = mysqli_stmt_init($conn);
 												<img src="images/sparepartimg/<?php echo $row1['ad_image_name'] ?>" style="height: 200px !important;width: 100% !important;">
 												<div>
 													<label class="productName"><?php echo $row['ad_title'] ?></label><br>
-													<label>Price:</label>
-													<label class="price"><?php echo $row['ad_price'] ?></label>
+													<label><b>Price:</b></label>
+													<label class="price"><?php echo $row['ad_price'] ?> Rs.</label>
 												</div>
 											</div>
 										</a>
