@@ -13,6 +13,14 @@ $stmt = mysqli_stmt_init($conn);
 <section id="biketemplate" class="section biketemplatesec content">
 	<div class="container max-w">
 		<div class="paymentmain" style="margin-left: 0px;margin-right: 0px">
+			<div class="paymentleft" style="text-align: left;height: ">
+				
+			</div>
+			<div class="paymentright">
+				
+			</div>
+		</div>
+		<div class="paymentmain" style="margin-left: 0px;margin-right: 0px">
 			<div class="paymentleft border-new border border-dark rounded mt-5 " style="">
 				<div class="w3-content w3-display-container ">
 
@@ -77,7 +85,8 @@ $stmt = mysqli_stmt_init($conn);
 						?>
 						<div>
 							<!-- <h4><?php echo $row['ad_title']; ?></b></h4> -->
-							<h3><b><?php echo $row['ad_price']; ?></b> Rs.</h3>
+							<h3><b><?php echo $row['ad_price']; ?></b> Rs.</h3><br>
+							<h5 class=""><?php echo $row['ad_title']; ?></h5>
 						</div>
 						<?php
 					}?>
