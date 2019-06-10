@@ -28,31 +28,31 @@ redirect();
 											<ul class="list-unstyled filterSection">
 												<li>
 													<label class="filter-check clearfix">
-														<input type="checkbox" rel="honda" id="honda" />
+														<input type="checkbox" rel="honda" id="honda" class="makecheck" name="makecheck[]" value="Honda" />
 														<label for="honda">Honda</label>
 													</label>
 												</li>
 												<li>
 													<label class="filter-check clearfix">
-														<input type="checkbox" rel="superstar" id="superstar" />
+														<input type="checkbox" rel="superstar" id="superstar" class="makecheck" name="makecheck[]" value="Superstar"/>
 														<label for="superstar">Superstar</label>
 													</label>
 												</li>
 												<li>
 													<label class="filter-check clearfix">
-														<input type="checkbox" rel="superpower" id="superpower" />
+														<input type="checkbox" rel="superpower" id="superpower" class="makecheck" name="makecheck[]" value="Superpower"/>
 														<label for="superpower">Superpower</label>
 													</label>
 												</li>
 												<li>
 													<label class="filter-check clearfix">
-														<input type="checkbox" rel="unique" id="unique" />
+														<input type="checkbox" rel="unique" id="unique" class="makecheck" name="makecheck[]" value="Unique"/>
 														<label for="unique">Unique</label>
 													</label>
 												</li>
 												<li>
 													<label class="filter-check clearfix">
-														<input type="checkbox" rel="yamaha" id="yamaha" />
+														<input type="checkbox" rel="yamaha" id="yamaha" class="makecheck" name="makecheck[]" value="Yamaha"/>
 														<label for="yamaha">Yamaha</label>
 													</label>
 												</li>
@@ -199,14 +199,18 @@ redirect();
 									while ($row1 = mysqli_fetch_assoc($result1)) 
 									{
 									//echo $row['ad_image_name'];
-										if (isset($_GET['pricefrom']) || isset($_GET['priceto']) || isset($_GET['model'])) 
+										if (isset($_GET['pricefrom']) || isset($_GET['priceto']) || isset($_GET['model']) || isset($_GET['make'])) 
 										{
 											$pricefrom = 0;
 											$priceto = 0;
 											$modelarr = 0;
+											$makearr = 0;
 											$modelStr = 0;
+											$makeStr = 0;
 											$priceflag = 0;
 											$modelflag = 0;
+											$makeflag = 0;
+
 											if (isset($_GET['pricefrom']) || isset($_GET['priceto'])) {
 												$pricefrom = $_GET['pricefrom'];
 												$priceto = $_GET['priceto'];
@@ -217,12 +221,18 @@ redirect();
 												$modelStr = implode("', '", $modelarr);
 												$modelflag = 1;
 											}
-											if ($priceflag = 1 && $modelflag == 1) {
-												if (!$pricefrom == "" || !$priceto == "" || !$modelarr == "") 
+											if (isset($_GET['make'])) {
+												$makearr = $_GET['make'];
+												$makeStr = implode("', '", $makearr);
+												$makeflag = 1;
+											}
+											
+											if ($priceflag == 1 && $modelflag == 1 && $makeflag == 1) {
+												if (!$pricefrom == "" || !$priceto == "" || !$modelarr == "" || !$makearr == "") 
 												{
 													if (!$pricefrom == "" || !$priceto == "") 
 													{
-														$pricesql = "SELECT * FROM bikes WHERE bike_price >= {$pricefrom} AND bike_price <= {$priceto} AND bike_model in ('$modelStr');";
+														$pricesql = "SELECT * FROM bikes WHERE bike_price >= {$pricefrom} AND bike_price <= {$priceto} AND bike_model in ('$modelStr') AND bike_brand in ('$makeStr');";
 														$stmt = mysqli_stmt_init($conn);
 														if(!mysqli_stmt_prepare($stmt, $pricesql))
 														{
@@ -275,70 +285,15 @@ redirect();
 															}
 														}
 													}
-
 												}
-												elseif ($priceflag = 1) {
-													if (!$pricefrom == "" || !$priceto == "") 
+												elseif ($priceflag == 1 && $modelflag == 1) {
+													if (!$pricefrom == "" || !$priceto == "" || !$modelarr == "") 
 													{
-														$pricesql = "SELECT * FROM bikes WHERE bike_price >= {$pricefrom} AND bike_price <= {$priceto};";
-														$stmt = mysqli_stmt_init($conn);
-														if(!mysqli_stmt_prepare($stmt, $pricesql))
+														if (!$pricefrom == "" || !$priceto == "") 
 														{
-															echo "SQL statement failed";
-														}
-														else
-														{
-															mysqli_stmt_execute($stmt);
-															$result = mysqli_stmt_get_result($stmt);
-															if (mysqli_num_rows($result) == 0) { ?>
-																<div class="pt-5 pl-5" id="noresult">
-																	<label>Nothing matched your query</label>
-																</div>
-																<?php 
-															} 
-															else 
-															{ 
-																while ($row = mysqli_fetch_assoc($result)) {
-																	$imgnamesqlprice = "SELECT bike_image_name, MIN(bike_image_thumb) FROM b_images WHERE bike_id = {$row['bike_id']} GROUP BY bike_id;";
-
-																	if(!mysqli_stmt_prepare($stmt, $imgnamesqlprice))
-																	{
-																		echo "SQL statement failed";
-																	}
-																	else
-																	{
-																		mysqli_stmt_execute($stmt);
-																		$result1 = mysqli_stmt_get_result($stmt);
-
-																		while ($row1 = mysqli_fetch_assoc($result1)) 
-																			{?>
-																				<div class="col-md-4" id="myUL">
-																					<a href="pages/new-bikes/new-bikes.php?bikeid=<?php echo $row['bike_id'] ?>">
-																						<div class="product-item">
-																							<img src="images/sparepartimg/<?php echo $row1['bike_image_name'] ?>"  style="height: 200px !important;width: 100% !important;">
-																							<div class="nigger">
-																								<label class="productName"><?php echo $row['bike_brand'] . " " . $row['bike_model'] . " " . $row['bikeyear']; ?></label><br>
-																								<label>Price:</label>
-																								<label class="price"><?php echo $row['bike_price'] ?></label>
-																							</div>
-																						</div>
-																					</a>
-																				</div>
-																				<?php
-																			}
-																		}
-																	}
-																}
-															}
-														}
-													}
-													elseif ($modelflag == 1) {
-														$modelsql = "SELECT * FROM bikes WHERE bike_model in ('$modelStr');";
-														if (!$modelStr == "") 
-														{
-															$modelsql = "SELECT * FROM bikes WHERE bike_model in ('$modelStr');";
+															$pricesql = "SELECT * FROM bikes WHERE bike_price >= {$pricefrom} AND bike_price <= {$priceto} AND bike_model in ('$modelStr');";
 															$stmt = mysqli_stmt_init($conn);
-															if(!mysqli_stmt_prepare($stmt, $modelsql))
+															if(!mysqli_stmt_prepare($stmt, $pricesql))
 															{
 																echo "SQL statement failed";
 															}
@@ -350,11 +305,11 @@ redirect();
 																	<div class="pt-5 pl-5" id="noresult">
 																		<label>Nothing matched your query</label>
 																	</div>
-																	
-																	<?php 
+																	<?php
 																} 
 																else 
 																{ 
+
 																	while ($row = mysqli_fetch_assoc($result)) {
 																		$imgnamesqlprice = "SELECT bike_image_name, MIN(bike_image_thumb) FROM b_images WHERE bike_id = {$row['bike_id']} GROUP BY bike_id;";
 
@@ -381,62 +336,335 @@ redirect();
 																							</div>
 																						</a>
 																					</div>
-																					<?php								
+																					<?php
 																				}
 																			}
 																		}
 																	}
 																}
 															}
-														} 
+														}
 													}
-													else
-													{
-														?>
-														<div class="col-md-4" id="myUL">
-															<a href="pages/new-bikes/new-bikes.php?bikeid=<?php echo $row['bike_id'] ?>">
-																<div class="product-item">
-																	<img src="images/sparepartimg/<?php echo $row1['bike_image_name'] ?>"  style="height: 200px !important;width: 100% !important;">
-																	<div class="nigger">
-																		<label class="productName"><?php echo $row['bike_brand'] . " " . $row['bike_model'] . " " . $row['bikeyear']; ?></label><br>
-																		<label><b>Price:</b></label>
-																		<label class="price"><?php echo $row['bike_price'] ?> Rs.</label>
+													elseif ($modelflag == 1 && $makeflag == 1) {
+														if (!$modelflag == "" || !$makeflag == "") 
+														{
+															$makemodelsql = "SELECT * FROM bikes WHERE bike_model in ('$modelStr') AND bike_brand in ('$makeStr');";
+															$stmt = mysqli_stmt_init($conn);
+															if(!mysqli_stmt_prepare($stmt, $makemodelsql))
+															{
+																echo "SQL statement failed";
+															}
+															else
+															{
+																mysqli_stmt_execute($stmt);
+																$result = mysqli_stmt_get_result($stmt);
+																if (mysqli_num_rows($result) == 0) { ?>
+																	<div class="pt-5 pl-5" id="noresult">
+																		<label>Nothing matched your query</label>
 																	</div>
-																</div>
-															</a>
+																	<?php
+																} 
+																else 
+																{ 
+
+																	while ($row = mysqli_fetch_assoc($result)) {
+																		$imgnamesqlprice = "SELECT bike_image_name, MIN(bike_image_thumb) FROM b_images WHERE bike_id = {$row['bike_id']} GROUP BY bike_id;";
+
+																		if(!mysqli_stmt_prepare($stmt, $imgnamesqlprice))
+																		{
+																			echo "SQL statement failed";
+																		}
+																		else
+																		{
+																			mysqli_stmt_execute($stmt);
+																			$result1 = mysqli_stmt_get_result($stmt);
+
+																			while ($row1 = mysqli_fetch_assoc($result1)) 
+																				{?>
+																					<div class="col-md-4" id="myUL">
+																						<a href="pages/new-bikes/new-bikes.php?bikeid=<?php echo $row['bike_id'] ?>">
+																							<div class="product-item">
+																								<img src="images/sparepartimg/<?php echo $row1['bike_image_name'] ?>"  style="height: 200px !important;width: 100% !important;">
+																								<div class="nigger">
+																									<label class="productName"><?php echo $row['bike_brand'] . " " . $row['bike_model'] . " " . $row['bikeyear']; ?></label><br>
+																									<label>Price:</label>
+																									<label class="price"><?php echo $row['bike_price'] ?></label>
+																								</div>
+																							</div>
+																						</a>
+																					</div>
+																					<?php
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+														elseif ($priceflag == 1 && $makeflag == 1) {
+															if (!$pricefrom == "" || !$priceto == "" || !$makeflag == "") 
+															{
+																if (!$pricefrom == "" || !$priceto == "") 
+																{
+																	$pricemakesql = "SELECT * FROM bikes WHERE bike_price >= {$pricefrom} AND bike_price <= {$priceto} AND bike_brand in ('$makeStr');";
+																	$stmt = mysqli_stmt_init($conn);
+																	if(!mysqli_stmt_prepare($stmt, $pricemakesql))
+																	{
+																		echo "SQL statement failed";
+																	}
+																	else
+																	{
+																		mysqli_stmt_execute($stmt);
+																		$result = mysqli_stmt_get_result($stmt);
+																		echo mysqli_num_rows($result);
+																		if (mysqli_num_rows($result) == 0) { ?>
+																			<div class="pt-5 pl-5" id="noresult">
+																				<label>Nothing matched your query</label>
+																			</div>
+																			<?php
+																		} 
+																		else 
+																		{ 
+
+																			while ($row = mysqli_fetch_assoc($result)) {
+																				$imgnamesqlprice = "SELECT bike_image_name, MIN(bike_image_thumb) FROM b_images WHERE bike_id = {$row['bike_id']} GROUP BY bike_id;";
+
+																				if(!mysqli_stmt_prepare($stmt, $imgnamesqlprice))
+																				{
+																					echo "SQL statement failed";
+																				}
+																				else
+																				{
+																					mysqli_stmt_execute($stmt);
+																					$result1 = mysqli_stmt_get_result($stmt);
+
+																					while ($row1 = mysqli_fetch_assoc($result1)) 
+																						{?>
+																							<div class="col-md-4" id="myUL">
+																								<a href="pages/new-bikes/new-bikes.php?bikeid=<?php echo $row['bike_id'] ?>">
+																									<div class="product-item">
+																										<img src="images/sparepartimg/<?php echo $row1['bike_image_name'] ?>"  style="height: 200px !important;width: 100% !important;">
+																										<div class="nigger">
+																											<label class="productName"><?php echo $row['bike_brand'] . " " . $row['bike_model'] . " " . $row['bikeyear']; ?></label><br>
+																											<label>Price:</label>
+																											<label class="price"><?php echo $row['bike_price'] ?></label>
+																										</div>
+																									</div>
+																								</a>
+																							</div>
+																							<?php
+																						}
+																					}
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+															elseif ($priceflag == 1) {
+																if (!$pricefrom == "" || !$priceto == "") 
+																{
+																	$pricesql = "SELECT * FROM bikes WHERE bike_price >= {$pricefrom} AND bike_price <= {$priceto};";
+																	$stmt = mysqli_stmt_init($conn);
+																	if(!mysqli_stmt_prepare($stmt, $pricesql))
+																	{
+																		echo "SQL statement failed";
+																	}
+																	else
+																	{
+																		mysqli_stmt_execute($stmt);
+																		$result = mysqli_stmt_get_result($stmt);
+																		if (mysqli_num_rows($result) == 0) { ?>
+																			<div class="pt-5 pl-5" id="noresult">
+																				<label>Nothing matched your query</label>
+																			</div>
+																			<?php 
+																		} 
+																		else 
+																		{ 
+																			while ($row = mysqli_fetch_assoc($result)) {
+																				$imgnamesqlprice = "SELECT bike_image_name, MIN(bike_image_thumb) FROM b_images WHERE bike_id = {$row['bike_id']} GROUP BY bike_id;";
+
+																				if(!mysqli_stmt_prepare($stmt, $imgnamesqlprice))
+																				{
+																					echo "SQL statement failed";
+																				}
+																				else
+																				{
+																					mysqli_stmt_execute($stmt);
+																					$result1 = mysqli_stmt_get_result($stmt);
+
+																					while ($row1 = mysqli_fetch_assoc($result1)) 
+																						{?>
+																							<div class="col-md-4" id="myUL">
+																								<a href="pages/new-bikes/new-bikes.php?bikeid=<?php echo $row['bike_id'] ?>">
+																									<div class="product-item">
+																										<img src="images/sparepartimg/<?php echo $row1['bike_image_name'] ?>"  style="height: 200px !important;width: 100% !important;">
+																										<div class="nigger">
+																											<label class="productName"><?php echo $row['bike_brand'] . " " . $row['bike_model'] . " " . $row['bikeyear']; ?></label><br>
+																											<label>Price:</label>
+																											<label class="price"><?php echo $row['bike_price'] ?></label>
+																										</div>
+																									</div>
+																								</a>
+																							</div>
+																							<?php
+																						}
+																					}
+																				}
+																			}
+																		}
+																	}
+																}
+																elseif ($modelflag == 1) {
+																	if (!$modelStr == "") 
+																	{
+																		$modelsql = "SELECT * FROM bikes WHERE bike_model in ('$modelStr');";
+																		$stmt = mysqli_stmt_init($conn);
+																		if(!mysqli_stmt_prepare($stmt, $modelsql))
+																		{
+																			echo "SQL statement failed";
+																		}
+																		else
+																		{
+																			mysqli_stmt_execute($stmt);
+																			$result = mysqli_stmt_get_result($stmt);
+																			if (mysqli_num_rows($result) == 0) { ?>
+																				<div class="pt-5 pl-5" id="noresult">
+																					<label>Nothing matched your query</label>
+																				</div>
+
+																				<?php 
+																			} 
+																			else 
+																			{ 
+																				while ($row = mysqli_fetch_assoc($result)) {
+																					$imgnamesqlprice = "SELECT bike_image_name, MIN(bike_image_thumb) FROM b_images WHERE bike_id = {$row['bike_id']} GROUP BY bike_id;";
+
+																					if(!mysqli_stmt_prepare($stmt, $imgnamesqlprice))
+																					{
+																						echo "SQL statement failed";
+																					}
+																					else
+																					{
+																						mysqli_stmt_execute($stmt);
+																						$result1 = mysqli_stmt_get_result($stmt);
+
+																						while ($row1 = mysqli_fetch_assoc($result1)) 
+																							{?>
+																								<div class="col-md-4" id="myUL">
+																									<a href="pages/new-bikes/new-bikes.php?bikeid=<?php echo $row['bike_id'] ?>">
+																										<div class="product-item">
+																											<img src="images/sparepartimg/<?php echo $row1['bike_image_name'] ?>"  style="height: 200px !important;width: 100% !important;">
+																											<div class="nigger">
+																												<label class="productName"><?php echo $row['bike_brand'] . " " . $row['bike_model'] . " " . $row['bikeyear']; ?></label><br>
+																												<label>Price:</label>
+																												<label class="price"><?php echo $row['bike_price'] ?></label>
+																											</div>
+																										</div>
+																									</a>
+																								</div>
+																								<?php								
+																							}
+																						}
+																					}
+																				}
+																			}
+																		}
+																	} 
+																	elseif ($makeflag == 1) {
+																		if (!$makeStr == "") 
+																		{
+																			$makesql = "SELECT * FROM bikes WHERE bike_brand in ('$makeStr');";
+																			$stmt = mysqli_stmt_init($conn);
+																			if(!mysqli_stmt_prepare($stmt, $makesql))
+																			{
+																				echo "SQL statement failed";
+																			}
+																			else
+																			{
+																				mysqli_stmt_execute($stmt);
+																				$result = mysqli_stmt_get_result($stmt);
+																				if (mysqli_num_rows($result) == 0) { ?>
+																					<div class="pt-5 pl-5" id="noresult">
+																						<label>Nothing matched your query</label>
+																					</div>
+
+																					<?php 
+																				} 
+																				else 
+																				{ 
+																					while ($row = mysqli_fetch_assoc($result)) {
+																						$imgnamesqlprice = "SELECT bike_image_name, MIN(bike_image_thumb) FROM b_images WHERE bike_id = {$row['bike_id']} GROUP BY bike_id;";
+
+																						if(!mysqli_stmt_prepare($stmt, $imgnamesqlprice))
+																						{
+																							echo "SQL statement failed";
+																						}
+																						else
+																						{
+																							mysqli_stmt_execute($stmt);
+																							$result1 = mysqli_stmt_get_result($stmt);
+
+																							while ($row1 = mysqli_fetch_assoc($result1)) 
+																								{?>
+																									<div class="col-md-4" id="myUL">
+																										<a href="pages/new-bikes/new-bikes.php?bikeid=<?php echo $row['bike_id'] ?>">
+																											<div class="product-item">
+																												<img src="images/sparepartimg/<?php echo $row1['bike_image_name'] ?>"  style="height: 200px !important;width: 100% !important;">
+																												<div class="nigger">
+																													<label class="productName"><?php echo $row['bike_brand'] . " " . $row['bike_model'] . " " . $row['bikeyear']; ?></label><br>
+																													<label>Price:</label>
+																													<label class="price"><?php echo $row['bike_price'] ?></label>
+																												</div>
+																											</div>
+																										</a>
+																									</div>
+																									<?php								
+																								}
+																							}
+																						}
+																					}
+																				}
+																			}
+																		} 
+																	}
+																	else
+																	{
+																		?>
+																		<div class="col-md-4" id="myUL">
+																			<a href="pages/new-bikes/new-bikes.php?bikeid=<?php echo $row['bike_id'] ?>">
+																				<div class="product-item">
+																					<img src="images/sparepartimg/<?php echo $row1['bike_image_name'] ?>"  style="height: 200px !important;width: 100% !important;">
+																					<div class="nigger">
+																						<label class="productName"><?php echo $row['bike_brand'] . " " . $row['bike_model'] . " " . $row['bikeyear']; ?></label><br>
+																						<label><b>Price:</b></label>
+																						<label class="price"><?php echo $row['bike_price'] ?> Rs.</label>
+																					</div>
+																				</div>
+																			</a>
+																		</div>
+																		<?php 
+																	}
+																}			
+															}
+														}
+														?>
+														<div class="container pt-5">
+															<ul class="pagination" style="margin-left: 35%;">
+																<li><a href="?pageno=1">First</a></li>
+																<li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
+																	<a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
+																</li>
+																<li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
+																	<a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
+																</li>
+																<li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
+															</ul>
 														</div>
-														<?php 
-													}
-												}			
-											}
-										}
-										?>
-										<div class="container pt-5">
-											<ul class="pagination" style="margin-left: 35%;">
-												<li><a href="?pageno=1">First</a></li>
-												<li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
-													<a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
-												</li>
-												<li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
-													<a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
-												</li>
-												<li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
-											</ul>
-										</div>
-									<!-- <script>
-										$('#search').click(function(){
-											$('.contact-name').hide();
-											var txt = $('#search-criteria').val();
-											$('.contact-name').each(function(){
-												if($(this).text().toUpperCase().indexOf(txt.toUpperCase()) != -1){
-													$(this).show();
+													<?php	
 												}
-											});
-										});
-									</script> -->
-								<?php	
-							}
-						?>
+											?>
 					</div>
 				</div>
 			</div>
@@ -473,21 +701,30 @@ redirect();
 				$('#btngo').removeAttr('disabled');
 			}
 		});
+
 		var checkboxes = $(".modelcheck"),
 		submitButt = $("#btngo");
 
 		checkboxes.click(function() {
 			submitButt.attr("disabled", !checkboxes.is(":checked"));
 		});
+
+		var checkboxes2 = $(".makecheck"),
+		submitButt2 = $("#btngo");
+
+		checkboxes2.click(function() {
+			submitButt2.attr("disabled", !checkboxes2.is(":checked"));
+		});
 	});
 </script>
 <script type="text/javascript">
 	var $noresult = $('#noresult');
 	var $pagination = $('.pagination');
- 	if($noresult) 
- 		{
- 			$pagination.html('');
- 		}
+
+	if(!$('#noresult').length == 0 || window.location.href.indexOf("pricefrom") > -1 || window.location.href.indexOf("priceto") > -1 || window.location.href.indexOf("model") > -1) 
+	{
+		$pagination.html('');
+	}
 </script>
 
 <?php
