@@ -3,11 +3,11 @@ session_start();
 include 'includes/restrictions.inc.php';
 logged_in();
 $title = 'Order confirmation';
-include_once 'includes/header.php';
+require_once 'includes/header.php';
 include_once 'includes/dbh.inc.php';
 ?>
 
-<section id="" class="section orderconsec content">
+<div id="" class="section orderconsec content">
 	<div class="container">
 		<div class="pb-4">
 			<h3>Thank you for your order</h3>
@@ -35,7 +35,9 @@ include_once 'includes/dbh.inc.php';
 								echo $row['order_id'];
 							
 					?></h3>
-				<button type="submit" id="" name="" class="btn btn-danger mt-3" style="" value="">Print</button>
+					<form method="post" action="includes/printpdf.inc.php">
+						<button type="submit" name="print-vouchers" class="btn btn-danger mt-3 print-remove">Print</button>
+					</form>
 			</div>
 			<hr>
 			<div>
@@ -106,7 +108,7 @@ include_once 'includes/dbh.inc.php';
 			</div>
 		</div>
 	</div>
-</section>
+</div>
 
 <?php
 	include_once 'includes/footer.php';
