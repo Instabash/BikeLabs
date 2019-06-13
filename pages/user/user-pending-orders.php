@@ -5,7 +5,7 @@ user_protect();
 include '../../includes/header.php';
 include '../../includes/dbh.inc.php';
 $user_id = $_SESSION['userId'];
-$spaartsql = "SELECT * FROM order_table WHERE idUsers = {$user_id} AND order_status = 'Processing';";
+$spaartsql = "SELECT * FROM order_table WHERE idUsers = {$user_id} AND order_status = 'Processing' OR order_status = 'Open';";
 $stmt = mysqli_stmt_init($conn);
 ?>
 <label href="#" class="list-group-item" style="width: auto;">User Panel
