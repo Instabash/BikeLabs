@@ -19,7 +19,27 @@ include_once 'includes/header.php';
 				</div>
 				<button type="submit" class="loginbtn" name="login-submit">Login</button>
 			</form>
-			<p class="p-4">Or <a href="signup.php">register</a> if you are a new user.</p>
+			<p class="pt-4 pl-4 pr-4">Or <a href="signup.php">register</a> if you are a new user.</p>
+			<p class="pt-3"><a href="reset-password.php">Forgot your password?</a></p>
+		</div>
+		<div class="pt-4">	
+			<?php
+			if (isset($_GET['error'])) 
+			{
+				if ($_GET['error'] == "emptyfields") 
+				{
+					echo '<p style="color:red !important;padding:5px;";>Fill in all the fields above</p>';
+				}
+				elseif ($_GET['error'] == "wrongpwd2") 
+				{
+					echo '<p style="color:red !important;padding:5px;";>You have entered an incorrect Username or Password!</p>';
+				}
+				elseif ($_GET['error'] == "nouser") 
+				{
+					echo '<p style="color:red !important;padding:5px;";>There is no account with that E-mail or Username!</p>';
+				}
+			}
+			?>
 		</div>
 	</div>
 </section>
