@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 if (isset($_POST['login-submit'])) 
 {
 	require 'dbh.inc.php';
@@ -9,8 +9,14 @@ if (isset($_POST['login-submit']))
 
 	if (empty($mailuid) || empty($password)) 
 	{
-		header("Location: ../index.php?error=emptyfields");
-		exit();
+		if (!isset($_SESSION['current_page1'])) {
+			$_SESSION['current_page1'] = $_SERVER['HTTP_REFERER'];
+			header("Location: ". $_SESSION['current_page1']."?error=emptyfields");
+			exit();	
+		}
+		else{
+			header("Location: ".$_SESSION['current_page1']."?error=emptyfields");
+		}
 	}
 	else
 	{
@@ -31,42 +37,60 @@ if (isset($_POST['login-submit']))
 				$pwdCheck = password_verify($password, $row['pwdUsers']);
 				if ($pwdCheck == false) 
 				{
-					header("Location: ../index.php?error=wrongpwd2");
-					exit();
+					if (!isset($_SESSION['current_page1'])) {
+						$_SESSION['current_page1'] = $_SERVER['HTTP_REFERER'];
+						header("Location: ". $_SESSION['current_page1']."?error=wrongpwd2");
+						exit();	
+					}
+					else{
+						header("Location: ".$_SESSION['current_page1']."?error=wrongpwd2");
+					}
 				}
 				elseif ($pwdCheck == true) 
 				{
-					session_start();
+					
 					$_SESSION['userId'] = $row['idUsers'];
 					$_SESSION['userUId'] = $row['uidUsers'];
 					$_SESSION['usertype'] = $row['User_type'];
 					if (isset($_SESSION['curr_page'])) {
 						header("Location: ../..".$_SESSION['curr_page']);
-				    }
-				    else{
-				    	$_SESSION['current_page'] = $_SERVER['HTTP_REFERER'];
-				    	if ($row['User_type'] == 1) {
+					}
+					else{
+						$_SESSION['current_page'] = $_SERVER['HTTP_REFERER'];
+						if ($row['User_type'] == 1) {
 							header("Location: /BikeLabs/pages/admin/admindash.php");
 						}
 						elseif ($row['User_type'] == 2) {
 							header("Location: /BikeLabs/pages/vendor/vendordash.php");
 						}
 						else{
-				    		 header("Location: ". $_SESSION['current_page']. "?usertype=".$row['User_type']);
-				    	}
-				    }
+							header("Location: ". $_SESSION['current_page']. "?usertype=".$row['User_type']);
+						}
+					}
 					exit();
 				}
 				else
 				{
-					header("Location: ../index.php?error=wrongpwd");
-					exit();
+					if (!isset($_SESSION['current_page1'])) {
+						$_SESSION['current_page1'] = $_SERVER['HTTP_REFERER'];
+						header("Location: ". $_SESSION['current_page1']."?error=wrongpwd");
+						exit();	
+					}
+					else{
+						header("Location: ".$_SESSION['current_page1']."?error=wrongpwd");
+					}
 				}
 			}
 			else
 			{
-				header("Location: ../index.php?error=nouser");
-				exit();
+				if (!isset($_SESSION['current_page1'])) {
+					$_SESSION['current_page1'] = $_SERVER['HTTP_REFERER'];
+					header("Location: ". $_SESSION['current_page1']."?error=nouser");
+					exit();	
+				}
+				else{
+					header("Location: ".$_SESSION['current_page1']."?error=nouser");
+				}
 			}
 		}
 	}
