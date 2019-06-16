@@ -1886,8 +1886,8 @@ table.dataTable thead .sorting_asc:after {
 }
 @media (max-width: 767px){
   .section {
-   -webkit-transform: translate(-100px, 0);
-   transform: translate(-100px, 0);
+   /*-webkit-transform: translate(-100px, 0);
+   transform: translate(-100px, 0);*/
  }
 }
 
