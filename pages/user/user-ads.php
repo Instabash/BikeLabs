@@ -18,6 +18,7 @@ $stmt = mysqli_stmt_init($conn);
 			<a href="/BikeLabs/pages/user/user-ads.php" class="list-group-item list-group-item-action bg-light">Posted Adverts.</a>
 			<a href="/BikeLabs/pages/user/user-purchases.php" class="list-group-item list-group-item-action bg-light">Past Purchases</a>
 			<a href="/BikeLabs/pages/user/user-pending-orders.php" class="list-group-item list-group-item-action bg-light">Pending Orders</a>
+			
 		</div>
 	</div>
 
@@ -45,7 +46,7 @@ $stmt = mysqli_stmt_init($conn);
 			$result = mysqli_stmt_get_result($stmt);
 			$isOdd = true;
 			while ($row = mysqli_fetch_assoc($result)) {
-				$imgnamesql = "SELECT ad_image_name FROM post_ad_images WHERE ad_id = {$row['ad_id']} AND ad_image_thumb = '0';";
+				$imgnamesql = "SELECT ad_image_name, MIN(ad_image_thumb) FROM post_ad_images WHERE ad_id = {$row['ad_id']} GROUP BY ad_id;";
 
 				if(!mysqli_stmt_prepare($stmt, $imgnamesql))
 				{
