@@ -1,16 +1,17 @@
- <!-- <?php 
-// session_start();
-// include_once 'dbh.inc.php';
+<?php 
+session_start();
+include_once 'dbh.inc.php';
 
-// $user = $_SESSION['userId'];
-// $currtime = $timestamp = date('Y-m-d G:i:s');
-// if (isset($_POST['chatbtn'])) {
-// 	$userid = $_GET['userid'];//user that posted the ad
-// 	$partid = $_GET['partid'];//ad part id
-// 	$_SESSION['chatuser'] = $userid;
-// 	$_SESSION['chatpart'] = $partid;
-// 	header("Location: ../pages/chat.php?usertoid=$userid&partid=$partid");
-// }
+$user = $_SESSION['userId'];
+$currtime = $timestamp = date('Y-m-d G:i:s');
+if (isset($_POST['chat-btn'])) {
+	
+	$vendor = $_POST['vendor-id'];
+	
+	
+	echo $vendor;
+	// header("Location: ../pages/chat.php?usertoid=$userid&partid=$partid");
+}
 
 // if (isset($_POST['chatmsg'])) {
 // 	$chatmsg = $_POST['chatmsg'];

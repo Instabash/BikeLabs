@@ -5,7 +5,7 @@ user_protect();
 include '../../includes/header.php';
 include '../../includes/dbh.inc.php';
 $user_id = $_SESSION['userId'];
-$spaartsql = "SELECT * FROM order_table WHERE idUsers = {$user_id} AND order_status = 'Processing' OR order_status = 'Open';";
+$spaartsql = "SELECT * FROM order_table WHERE idUsers = {$user_id} AND (order_status = 'Processing' OR order_status = 'Open');";
 $stmt = mysqli_stmt_init($conn);
 ?>
 <label href="#" class="list-group-item" style="width: auto;">User Panel
@@ -59,8 +59,6 @@ $stmt = mysqli_stmt_init($conn);
 
 					while ($row1 = mysqli_fetch_assoc($result1)) 
 					{
-										//echo $row['ad_image_name'];
-
 						?>
 						<div class="p-3 mt-3 border-new border border-dark rounded " style="width: 100%;border-radius: 8px !important;<?php if ($isOdd) {
 							echo 'background-color: #f8f9fa;';
@@ -81,14 +79,20 @@ $stmt = mysqli_stmt_init($conn);
 								<div style="width: 15%;">
 									<label><?php echo $row['order_date'] ?></label>
 								</div>
-								<div style="width: 15%;">
+								<div style="width: 16%;">
 									<label><?php echo $row1['Order_Address'] ?></label>
 								</div>
-								<div style="width: 15%;" class="ml-1">
+								<div style="width: 16%;" class="ml-1">
 									<label><?php echo $row1['Order_price'] ?> Rs.</label>
 								</div>
-								<div style="width: 5%;" class="ml-1">
+								<div style="width: 6%;" class="ml-1">
 									<label><?php echo $row1['Order_quantity'] ?></label>
+								</div>
+								<div style="width: 10%;" class="ml-1">
+									<form action="../../includes/chat.inc.php" method="post">
+										<input type="hidden" name="vendor-id" value="<?php echo $row['assigned_vendor']; ?>">
+										<button class="btn btn-outline-danger" name="chat-btn">Chat with vendor</button>	
+									</form>
 								</div>
 							</div>
 
