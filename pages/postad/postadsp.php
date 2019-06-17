@@ -36,7 +36,7 @@ include_once '../../includes/header.php';
 						<label>Condition</label>
 						<div class="select-wrap mb-2">
 							<select class="custom-select" name="spcondition" id="title">
-								<option value="" disabled selected>Select</option>
+								<option value="0" selected>Select</option>
 								<option value="New">New</option>
 								<option value="Used">Used</option>
 							</select>

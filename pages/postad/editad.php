@@ -34,27 +34,40 @@ if (isset($_POST['editad'])) {
 			$ad_make = $row['bike_make'];
 			$ad_year = $row['bike_year'];
 		}
-		if ($ad_type == 'bike') {?>
+		if ($ad_type == 'bike') {
+			?>
 			<section id="postad" class="section postadsection content">
 				<div class="container">
-					<br>
+					<div>
+						<h4>What are you selling?</h4>
+						<a href="postadbike.php">
+							<div class="btncreative btn-1 btn-1a" >
+								Motorbikes.
+							</div>
+						</a>
+						<a href="postadsp.php">
+							<div class="btncreative btn-1 btn-1a" >
+								Spare Parts.
+							</div>
+						</a>
+					</div><br>
 					<div class="fullAlter">
-						<h4 class="p-3">Edit advert</h4>
+						<h4 class="p-3">Please add the following details to submit your advert</h4>
 						<div class="advertpick form-wrap clearfix border-new border border-dark rounded">
 							<form class="p-2" action="includes/postadbike.inc.php" method="post" enctype="multipart/form-data" id="bkform">
 								<div class="form-row formrowad p-2 pt-4 mb-3">
 									<label for="title">Title</label>
 									<div>
 										<div class="input-group">
-											<input type="text" class="form-control" name="bktitle" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1" value="<?php echo $ad_title; ?>">
+											<input type="text" class="form-control" name="bktitle" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1"  value="<?php echo $ad_title; ?>">
 										</div>
 									</div>
 								</div>
 								<div class="form-row formrowad p-2">
 									<label>Condition</label>
 									<div class="select-wrap mb-2">
-										<select class="custom-select" name="bkcondition" id="title">
-											<option value="" hidden="" selected><?php echo $ad_condition; ?></option>
+										<select class="custom-select" name="bkcondition">
+											<option value="<?php echo $ad_condition; ?>" selected ><?php echo $ad_condition; ?></option>
 											<option value="New">New</option>
 											<option value="Used">Used</option>
 										</select>
@@ -64,7 +77,7 @@ if (isset($_POST['editad'])) {
 									<label>Make</label>
 									<div class="select-wrap mb-2">
 										<select class="custom-select" name="bkmake" id="title">
-											<option value="" hidden="" selected><?php echo $ad_make; ?></option>
+											<option value="<?php echo $ad_make; ?>" selected ><?php echo $ad_make; ?></option>
 											<option value="Honda">Honda</option>
 											<option value="SuperPower">SuperPower</option>
 											<option value="Unique">Unique</option>
@@ -107,7 +120,7 @@ if (isset($_POST['editad'])) {
 									<label>Postcode</label>
 									<div class="">
 										<div class="input-group mb-3">
-											<input type="text" class="form-control" name="bkpcode" placeholder="Postcode" aria-label="Postcode" aria-describedby="basic-addon1" value="<?php echo $ad_pcode; ?>">
+											<input type="number" class="form-control" name="bkpcode" placeholder="Postcode" aria-label="Postcode" aria-describedby="basic-addon1" value="<?php echo $ad_pcode; ?>">
 										</div>
 									</div>
 								</div>
@@ -115,7 +128,8 @@ if (isset($_POST['editad'])) {
 									<label>Country/Region</label>
 									<div class="select-wrap mb-3">
 										<select class="custom-select" name="bkcountryregion" id="title">
-											<option value="IS" selected="selected"><?php echo $ad_country; ?></option>
+											<option value="<?php echo $ad_country; ?>" selected><?php echo $ad_country; ?></option>
+											<option value="IS">Islamabad</option>
 											<option value="KHI">Karachi</option>
 											<option value="LH">Lahore</option>
 											<option value="RW">Rawalpindi</option>
@@ -127,13 +141,13 @@ if (isset($_POST['editad'])) {
 									<label>Phone Number</label>
 									<div>
 										<div class="input-group mb-3">
-											<input type="text" class="form-control" name="bkphone" placeholder="Phone number" aria-label="Phone number" aria-describedby="basic-addon1" value="<?php echo $ad_phone; ?>">
+											<input type="number" class="form-control" name="bkphone" placeholder="Phone number" aria-label="Phone number" aria-describedby="basic-addon1" value="<?php echo $ad_phone; ?>">
 										</div>
 									</div>
 								</div>
 								<div class="form-row formrowad p-2 imageupload" align="left">
 									<label>Attachment Instructions</label>
-									<ul style="list-style: none;">
+									<ul class="imagelist" style="list-style: none;">
 										<li>
 											Allowed only files with extension (jpg, png, gif)
 										</li>
@@ -151,39 +165,50 @@ if (isset($_POST['editad'])) {
 												<input type="button" class="btn btn-outline-danger" value="Browse..." onclick="document.getElementById('files').click();" />
 											</span>
 										</li>
-										<?php
-											$sqlimageprev = "SELECT * FROM post_ad_images WHERE ad_id = ?";
-											$stmt = mysqli_stmt_init($conn);
-											if(!mysqli_stmt_prepare($stmt, $sqlimageprev))
-											{
-												echo "SQL statement failed";
-												exit();
-											}
-											else
-											{
-												mysqli_stmt_bind_param($stmt, 's', $ad_id);
-												mysqli_stmt_execute($stmt);
-												$result = mysqli_stmt_get_result($stmt);
-
-												while ($row = mysqli_fetch_assoc($result)) {
-													?>
-													<li>
-														<output id="Filelist" style="max-width: 630px;"></output>
-														<div class="img-wrap pip">
-															<span class="close">&times;</span>
-												        	<img class="thumb imageThumb" src="../../images/sparepartimg/<?php echo $row['ad_image_name']; ?>"/>
-											        	</div>
-													</li>
-												<?php }
-											}
-										?>
 										<li>
-											<output id="Filelist" style="max-width: 630px;"></output>
+											<output id="Filelist" style="max-width: 630px;">
+												<ul class="thumb-Images" id="imgList" style="list-style: none;">
+													<?php
+													$sqlimageprev = "SELECT * FROM post_ad_images WHERE ad_id = ?";
+													$stmt = mysqli_stmt_init($conn);
+													if(!mysqli_stmt_prepare($stmt, $sqlimageprev))
+													{
+														echo "SQL statement failed";
+														exit();
+													}
+													else
+													{
+														mysqli_stmt_bind_param($stmt, 's', $ad_id);
+														mysqli_stmt_execute($stmt);
+														$result = mysqli_stmt_get_result($stmt);
+
+														while ($row = mysqli_fetch_assoc($result)) {
+															?>
+															
+															<li style="float: left;">
+																<div class="img-wrap pip">
+																	<span class="close">&times;</span>
+																	<img class="thumb imageThumb" src="../../images/sparepartimg/<?php echo $row['ad_image_name']; ?>"/>
+																</div>
+																<div class="FileNameCaptionStyle">honda-cb-unicorn-150-pearl-siena-red.png</div>
+															</li>
+														<?php }
+													}
+													?>
+												</ul>
+											</output>
 										</li>
 										<li>
-											<span id="error" style="color: white;"></span>
+											<output id="Filelist" class="imgoutput" style="max-width: 630px;"></output>
+										</li>
+										<li>
+											<span id="error" style="color: red;"></span>
 										</li>
 									</ul>
+								</div>
+								<div class="pb-4">
+									<p id="empty" style="color: red !important;"></p>
+									<p id="year" style="color: red !important;"></p>
 								</div>
 								<div class="addressbtn" style="float:right;padding:10px;">
 									<button type="submit" name="bksubmit" class="btn btn-outline-danger">Post the advert</button>
@@ -191,10 +216,148 @@ if (isset($_POST['editad'])) {
 							</form>
 						</div>
 					</div>
-
 				</div>
 			</section>
-	<script type="text/javascript">
+			
+			<?php
+		}
+		elseif ($ad_type == 'sparepart') { ?>
+			<section id="postad" class="section postadsection content">
+				<div class="container">
+					<div>
+						<h4>What are you selling?</h4>
+						<a href="postadbike.php">
+							<div class="btncreative btn-1 btn-1a" >
+								Motorbikes.
+							</div>
+						</a>
+						<a href="postadsp.php">
+							<div class="btncreative btn-1 btn-1a" >
+								Spare Parts.
+							</div>
+						</a>
+					</div><br>
+					<div class="fullAlter">
+						<h4 class="p-3">Please add the following details to submit your advert</h4>
+						<div class="advertpick form-wrap clearfix border-new border border-dark rounded">
+							<form class="p-2" action="includes/postadsp.inc.php" method="post" enctype="multipart/form-data" id="spform">
+								<div class="form-row p-2 pt-4 mb-3 formrowad">
+									<label for="title">Title</label>
+									<div>
+										<div class="input-group">
+											<input type="text" class="form-control" name="sptitle" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1">
+										</div>
+									</div>
+								</div>
+								<div class="form-row formrowad p-2">
+									<label>Condition</label>
+									<div class="select-wrap mb-2">
+										<select class="custom-select" name="spcondition" id="title">
+											<option value="0" selected>Select</option>
+											<option value="New">New</option>
+											<option value="Used">Used</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-row formrowad p-2">
+									<label>Description</label>
+									<div>
+										<div class="input-group mb-3">
+											<textarea class="form-control" rows="5" cols="50" id="description" name="spdescription" style="resize: none;"></textarea>
+										</div>
+									</div>
+								</div>
+								<div class="form-row formrowad pl-2 pr-2 pt-2">
+									<label>Price</label>
+									<div>
+										<div class="input-group mb-3">
+											<input type="number" class="form-control" name="spprice" placeholder="Price" aria-label="Price" aria-describedby="basic-addon1">
+										</div>
+									</div>
+								</div>
+								<div class="form-row formrowad p-2">
+									<label>House name/Number</label>
+									<div class="">
+										<div class="input-group mb-3">
+											<input type="text" class="form-control" name="sphomename" placeholder="House name or number" aria-label="House name or number" aria-describedby="basic-addon1">
+										</div>
+									</div>
+								</div>
+								<div class="form-row formrowad p-2">
+									<label>Postcode</label>
+									<div class="">
+										<div class="input-group mb-3">
+											<input type="number" class="form-control" name="sppcode" placeholder="Postcode" aria-label="Postcode" aria-describedby="basic-addon1">
+										</div>
+									</div>
+								</div>
+								<div class="form-row formrowad p-2">
+									<label>Country/Region</label>
+									<div class="select-wrap mb-3">
+										<select class="custom-select" name="spcountryregion" id="title">
+											<option value="IS" selected="selected">Islamabad</option>
+											<option value="KHI">Karachi</option>
+											<option value="LH">Lahore</option>
+											<option value="RW">Rawalpindi</option>
+											<option value="PSW">Peshawar</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-row formrowad p-2">
+									<label>Phone Number</label>
+									<div>
+										<div class="input-group mb-3">
+											<input type="number" class="form-control" name="spphone" placeholder="Phone number" aria-label="Phone number" aria-describedby="basic-addon1">
+										</div>
+									</div>
+								</div>
+								<div class="form-row formrowad p-2 imageupload" align="left">
+									<label>Attachment Instructions</label>
+									<ul class="imagelist" style="list-style: none;">
+										<li>
+											Allowed only files with extension (jpg, png, gif)
+										</li>
+										<li>
+											Maximum number of allowed files 10 with 300 KB for each
+										</li>
+										<li>
+											you can select files from different folders
+										</li>
+										<li>
+											<span class=" fileinput-button">
+												<br>
+												<span>Select Attachment</span>
+												<input type="file" name="files[]" style="display: none !important;" id="files" multiple accept="image/jpeg, image/png, image/gif,"><br />
+												<input type="button" class="btn btn-outline-danger" value="Browse..." onclick="document.getElementById('files').click();" />
+											</span>
+										</li>
+										<li>
+											<output id="Filelist" class="imgoutput" style="max-width: 630px;"></output>
+										</li>
+										<li>
+											<span id="error" style="color: red;"></span>
+										</li>
+									</ul>
+								</div>
+								<div class="pb-4">
+									<p id="empty" style="color: red !important;"></p>
+									<p id="year" style="color: red !important;"></p>
+								</div>
+								<div class="addressbtn" style="float:right;padding:10px;">
+									<button type="submit" name="spsubmit" class="btn btn-outline-danger">Post the advert</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</section>
+			<?php
+		}	
+	}
+}
+
+?>
+<script type="text/javascript">
 
         //I added event handler for the file upload control to access the files properties.
         document.addEventListener("DOMContentLoaded", init, false);
@@ -214,9 +377,12 @@ if (isset($_POST['editad'])) {
         ul.className = ("thumb-Images");
         ul.id = "imgList";
 
+        var validated = true;
+
         function init() {
             //add javascript handlers for the file upload event
             document.querySelector('#files').addEventListener('change', handleFileSelect, false);
+            
         }
 
         //the handler for file upload event
@@ -236,26 +402,65 @@ if (isset($_POST['editad'])) {
                 // Closure to capture the file information and apply validation.
                 fileReader.onload = (function (readerEvt) {
                 	return function (e) {
+                		dimensionValidation(e).then(function () {
+                			console.log('in promise')
+                			if (validated) {
+                                //Apply the validation rules for attachments upload
+                                ApplyFileValidationRules(readerEvt)
+                             //Render attachments thumbnails.
+                             RenderThumbnail(e, readerEvt);
 
-                        //Apply the validation rules for attachments upload
-                        ApplyFileValidationRules(readerEvt)
+                                //Fill the array of attachment
+                                FillAttachmentArray(e, readerEvt)                      
+                            }
+                        });
 
-                        //Render attachments thumbnails.
-                        RenderThumbnail(e, readerEvt);
-
-                        //Fill the array of attachment
-                        FillAttachmentArray(e, readerEvt)
-                    };
+                	};
                 })(f);
 
-                // Read in the image file as a data URL.
-                // readAsDataURL: The result property will contain the file/blob's data encoded as a data URL.
-                // More info about Data URI scheme https://en.wikipedia.org/wiki/Data_URI_scheme
                 fileReader.readAsDataURL(f);
             }
             document.getElementById('files').addEventListener('change', handleFileSelect, false);
-            
         }
+
+        function dimensionValidation(e) {
+
+        	var dfrd1 = $.Deferred();
+
+        	var image = new Image();
+
+                //Set the Base64 string return from FileReader as source.
+                image.src = e.target.result;
+
+                //Validate the File Height and Width.
+                image.onload = function () {
+                	var height = this.height;
+                	var width = this.width;
+                	console.log('h', height)
+                	console.log('w', width)
+                	if (height < 300 || width < 300) {
+                		console.log('v1', validated);
+                		validated = false;
+                    // alert("Height and Width must not exceed 100px.");
+                    console.log('v2', validated);
+                    e.preventDefault();
+
+                    dfrd1.resolve();
+                } else {
+
+                	validated = true;
+                  // alert("Uploaded image has valid Height and Width.");
+                  e.preventDefault();
+
+                  dfrd1.resolve();
+              }
+          };
+
+          return $.when(dfrd1).done(function(){
+
+          }).promise();
+          
+      }
 
         //To remove attachment once user click on x button
         jQuery(function ($) {
@@ -292,6 +497,7 @@ if (isset($_POST['editad'])) {
         //Apply the validation rules for attachments upload
         function ApplyFileValidationRules(readerEvt)
         {
+        	console.log(readerEvt);
             //To check file type according to upload conditions
             if (CheckFileType(readerEvt.type) == false) {
             	document.getElementById("error").innerHTML = "The file (" + readerEvt.name + ") does not match the upload conditions, You can only upload jpg/png/gif files";
@@ -301,10 +507,10 @@ if (isset($_POST['editad'])) {
 
             //To check file Size according to upload conditions
             if (CheckFileSize(readerEvt.size) == false) {
-            	// alert("The file (" + readerEvt.name + ") does not match the upload conditions, The maximum file size for uploads should not exceed 300 KB");
-            	document.getElementById("error").innerHTML = "The file("+ readerEvt.name + ") does not match the upload conditions,<br> The maximum file size for uploads should not exceed 300 KB)";
-            	e.preventDefault();
-            	return;
+                // alert("The file (" + readerEvt.name + ") does not match the upload conditions, The maximum file size for uploads should not exceed 300 KB");
+                document.getElementById("error").innerHTML = "The file("+ readerEvt.name + ") does not match the upload conditions,<br> The maximum file size for uploads should not exceed 300 KB)";
+                e.preventDefault();
+                return;
             }
 
             //To check files count according to upload conditions
@@ -371,8 +577,11 @@ if (isset($_POST['editad'])) {
         }
 
         //Render attachments thumbnails.
-        function RenderThumbnail(e, readerEvt)
-        {
+        function RenderThumbnail(e, readerEvt){
+        	console.log(validated);
+        	if (!validated) {
+        		return;
+        	}
         	var li = document.createElement('li');
         	li.style.cssFloat = "left";
         	ul.appendChild(li);
@@ -384,13 +593,14 @@ if (isset($_POST['editad'])) {
         	div.className = "FileNameCaptionStyle";
         	li.appendChild(div);
         	div.innerHTML = [readerEvt.name].join('');
-        	document.getElementById('Filelist').insertBefore(ul, null);
-        	
+        	document.getElementById('Filelist').insertBefore(ul, null);   
         }
 
         //Fill the array of attachment
-        function FillAttachmentArray(e, readerEvt)
-        {
+        function FillAttachmentArray(e, readerEvt){
+        	if (!validated) {
+        		return;
+        	}
         	AttachmentArray[arrCounter] =
         	{
         		AttachmentType: 1,
@@ -413,7 +623,7 @@ if (isset($_POST['editad'])) {
 				  formData.append('images', JSON.stringify(AttachmentArray));
 				  //return;
 				  $.ajax({
-				  	url: "../../includes/postadbike.inc.php",
+				  	url: "../../includes/editadbike.inc.php?adid=<?php echo $_GET['adid']; ?>",
 				  	type: "POST",
 				  	data:  formData,
 				  	contentType: false,
@@ -421,39 +631,55 @@ if (isset($_POST['editad'])) {
 				  	processData:false,
 				  	beforeSend : function()
 				  	{
-				    //$("#preview").fadeOut();
-				    //$("#err").fadeOut();
-				},
-				success: function(data)
-				{
-					if(data == 0)
-					{
-						location.href = "../../pages/postad/postadbike.php?error=emptyfields";
-					}
-					else
-						if (data == 1) 
-						{
-							location.href = "../../pages/postad/postadbike.php?error=invalidyear";
-						}
-						else
-						{
-							location.href = "../../usedbikes.php"
-						}
-					// alert(data);
-				},
-				error: function(e) 
-				{
-					$("#err").html(e).fadeIn();
-				}          
-			});
+				  	},
+				  	success: function(data)
+				  	{
+                    // alert(data);
+                    if (data == 0) 
+                    {
+                    	document.getElementById("empty").innerHTML = "Fill in all the fields";
+                    }else
+                    if (data == 1) 
+                    {
+                    	document.getElementById("empty").innerHTML = "You have entered an invalid year, please enter a year between 1990 and current year";
+                    }else
+                    if (data == 2) 
+                    {
+                    	document.getElementById("empty").innerHTML = "Please enter more than 20 characters for your description.";
+                    }else
+                    if (data == 3) 
+                    {
+                    	document.getElementById("empty").innerHTML = "Please enter a price between the ranges of 5000 to 5000000 Rs.";
+                    }else
+                    if (data == 4) 
+                    {
+                    	document.getElementById("empty").innerHTML = "Please enter a valid pakistani phone number.";
+                    }else
+                    if (data == 5) 
+                    {
+                    	document.getElementById("empty").innerHTML = "Please enter a valid post code";
+                    }else
+                    if (data == 6) 
+                    {
+                    	document.getElementById("empty").innerHTML = "Please select images";
+                    }
+                    else
+                    	if (data == 7) 
+                    	{
+                            // alert('success');
+                            location.href = "/BikeLabs/usedbikes.php";
+                        }
+                    },
+                    error: function(e) 
+                    {
+                    	$("#err").html(e).fadeIn();
+                    }          
+                });
 				}));
-        	
+
         });
     </script>
+
     <?php
     include_once '../../includes/footer.php';
     ?>
-<?php }
-}
-}
-?>
