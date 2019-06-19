@@ -5,63 +5,53 @@ include_once 'dbh.inc.php';
 if (isset($_POST['images'])) 
 {
 	$ad_id = $_GET['adid'];
-	$Condition = $_POST['bkcondition'];
-	$Make = $_POST['bkmake'];
-	$CountryReg = $_POST['bkcountryregion'];
+	$Condition = $_POST['spcondition'];
+	$CountryReg = $_POST['spcountryregion'];
 
 	if ($Condition == "0") {
 		$Condition = "";
 	}
-	if ($Make == "0") {
-		$Make = "";
-	}
 	if ($CountryReg == "0") {
 		$CountryReg = "";
 	}
-
 	
-	$Year = $_POST['bkyear'];
-	$Description = $_POST['bkdescription'];
-	$Price = $_POST['bkprice'];
-	$HomeName = $_POST['bkhomename'];
-	$PostCode = $_POST['bkpcode'];
-	$Phone = $_POST['bkphone'];
+	$Description = $_POST['spdescription'];
+	$Price = $_POST['spprice'];
+	$HomeName = $_POST['sphomename'];
+	$PostCode = $_POST['sppcode'];
+	$Phone = $_POST['spphone'];
 
-	$ad_type = "bike";
+	$ad_type = "sparepart";
 	$ad_date = date('Y-m-d H:i:s');
 	$user = $_SESSION['userId'];
 	
-	if (empty($Condition) || empty($Description) || empty($Price) || empty($HomeName) || empty($PostCode) || empty($CountryReg) || empty($Phone) || empty($Make) || empty($Year))
+	if (empty($Condition) || empty($Description) || empty($Price) || empty($HomeName) || empty($PostCode) || empty($CountryReg) || empty($Phone))
 	{
 		echo json_encode(0);
 		exit();
 	}
-	elseif($Year < 1900 || $Year > date("Y"))
+	elseif (strlen($Description) < 20) 
 	{
 		echo json_encode(1);
 		exit();
 	}
-	elseif (strlen($Description)<20) 
+	elseif ($Price > 1000000 || $Price < 50) 
 	{
 		echo json_encode(2);
 		exit();
 	}
-	elseif ($Price > 5000000 || $Price < 5000) 
-	{
+	elseif (!preg_match("/^((\+92)|(0092))-{0,1}\d{3}-{0,1}\d{7}$|^\d{11}$|^\d{4}-\d{7}$/", $Phone)) {
 		echo json_encode(3);
 		exit();
 	}
-	elseif (!preg_match("/^((\+92)|(0092))-{0,1}\d{3}-{0,1}\d{7}$|^\d{11}$|^\d{4}-\d{7}$/", $Phone)) {
-		echo json_encode(4);
-		exit();
-	}
 	elseif (!preg_match("/^\\d{5}$/", $PostCode)) {
-		echo json_encode(5);
+		echo json_encode(4);
 		exit();
 	}
 	else
 	{
-		$sql = "UPDATE post_ad SET ad_price=?, ad_description=?, ad_condition=?, ad_user_hname=?, ad_user_pcode=?, ad_user_country=?, ad_user_phone=?, bike_make=?, bike_year=? WHERE ad_id = ?;";
+		$sql = "UPDATE post_ad SET ad_price=?, ad_description=?, ad_condition=?, ad_user_hname=?, ad_user_pcode=?, ad_user_country=?, ad_user_phone=? WHERE ad_id = ?;";
+		
 		$stmt = mysqli_stmt_init($conn);
 		if (!mysqli_stmt_prepare($stmt, $sql)) 
 		{
@@ -70,11 +60,12 @@ if (isset($_POST['images']))
 		}	
 		else
 		{
-			mysqli_stmt_bind_param($stmt, "ssssssssss", $Price, $Description, $Condition, $HomeName, $PostCode, $CountryReg, $Phone, $Make, $Year, $ad_id);
+			mysqli_stmt_bind_param($stmt, "ssssssss", $Price, $Description, $Condition, $HomeName, $PostCode, $CountryReg, $Phone, $ad_id);
 			mysqli_stmt_execute($stmt);
 		}
-		if (empty(json_decode($_POST['images']))) {
-			echo json_encode(6);
+		if (empty(json_decode($_POST['images']))) 
+		{
+			echo json_encode(5);
 			exit();
 		}
 		else
@@ -145,7 +136,7 @@ if (isset($_POST['images']))
 				}
 			}
 		}
-		echo json_encode(7);
+		echo json_encode(6);
 		exit();
 	}
 }

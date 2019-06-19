@@ -38,28 +38,15 @@ if (isset($_POST['editad'])) {
 			?>
 			<section id="postad" class="section postadsection content">
 				<div class="container">
-					<div>
-						<h4>What are you selling?</h4>
-						<a href="postadbike.php">
-							<div class="btncreative btn-1 btn-1a" >
-								Motorbikes.
-							</div>
-						</a>
-						<a href="postadsp.php">
-							<div class="btncreative btn-1 btn-1a" >
-								Spare Parts.
-							</div>
-						</a>
-					</div><br>
 					<div class="fullAlter">
-						<h4 class="p-3">Please add the following details to submit your advert</h4>
+						<h2 class="p-3">Edit Ad.</h2>
 						<div class="advertpick form-wrap clearfix border-new border border-dark rounded">
 							<form class="p-2" action="includes/postadbike.inc.php" method="post" enctype="multipart/form-data" id="bkform">
 								<div class="form-row formrowad p-2 pt-4 mb-3">
 									<label for="title">Title</label>
 									<div>
 										<div class="input-group">
-											<input type="text" class="form-control" name="bktitle" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1"  value="<?php echo $ad_title; ?>">
+											<p class="form-control"><?php echo $ad_title; ?></p>
 										</div>
 									</div>
 								</div>
@@ -188,7 +175,7 @@ if (isset($_POST['editad'])) {
 															<li style="float: left;">
 																<div class="img-wrap pip">
 																	<span class="close">&times;</span>
-																	<img class="thumb imageThumb" src="../../images/sparepartimg/<?php echo $row['ad_image_name']; ?>"/>
+																	<img id="imageTH" class="thumb imageThumb" src="../../images/sparepartimg/<?php echo $row['ad_image_name']; ?>"/>
 																</div>
 																<div class="FileNameCaptionStyle">honda-cb-unicorn-150-pearl-siena-red.png</div>
 															</li>
@@ -224,28 +211,15 @@ if (isset($_POST['editad'])) {
 		elseif ($ad_type == 'sparepart') { ?>
 			<section id="postad" class="section postadsection content">
 				<div class="container">
-					<div>
-						<h4>What are you selling?</h4>
-						<a href="postadbike.php">
-							<div class="btncreative btn-1 btn-1a" >
-								Motorbikes.
-							</div>
-						</a>
-						<a href="postadsp.php">
-							<div class="btncreative btn-1 btn-1a" >
-								Spare Parts.
-							</div>
-						</a>
-					</div><br>
 					<div class="fullAlter">
-						<h4 class="p-3">Please add the following details to submit your advert</h4>
+						<h2 class="p-3">Edit Ad.</h2>
 						<div class="advertpick form-wrap clearfix border-new border border-dark rounded">
 							<form class="p-2" action="includes/postadsp.inc.php" method="post" enctype="multipart/form-data" id="spform">
 								<div class="form-row p-2 pt-4 mb-3 formrowad">
 									<label for="title">Title</label>
 									<div>
 										<div class="input-group">
-											<input type="text" class="form-control" name="sptitle" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1">
+											<p class="form-control"><?php echo $ad_title; ?></p>
 										</div>
 									</div>
 								</div>
@@ -253,7 +227,7 @@ if (isset($_POST['editad'])) {
 									<label>Condition</label>
 									<div class="select-wrap mb-2">
 										<select class="custom-select" name="spcondition" id="title">
-											<option value="0" selected>Select</option>
+											<option value="<?php echo $ad_condition; ?>" selected><?php echo $ad_condition; ?></option>
 											<option value="New">New</option>
 											<option value="Used">Used</option>
 										</select>
@@ -263,7 +237,7 @@ if (isset($_POST['editad'])) {
 									<label>Description</label>
 									<div>
 										<div class="input-group mb-3">
-											<textarea class="form-control" rows="5" cols="50" id="description" name="spdescription" style="resize: none;"></textarea>
+											<textarea class="form-control" rows="5" cols="50" id="description" name="spdescription" style="resize: none;"><?php echo $ad_description; ?></textarea>
 										</div>
 									</div>
 								</div>
@@ -271,7 +245,7 @@ if (isset($_POST['editad'])) {
 									<label>Price</label>
 									<div>
 										<div class="input-group mb-3">
-											<input type="number" class="form-control" name="spprice" placeholder="Price" aria-label="Price" aria-describedby="basic-addon1">
+											<input type="number" class="form-control" name="spprice" placeholder="Price" aria-label="Price" aria-describedby="basic-addon1" value="<?php echo $ad_price; ?>">
 										</div>
 									</div>
 								</div>
@@ -279,7 +253,7 @@ if (isset($_POST['editad'])) {
 									<label>House name/Number</label>
 									<div class="">
 										<div class="input-group mb-3">
-											<input type="text" class="form-control" name="sphomename" placeholder="House name or number" aria-label="House name or number" aria-describedby="basic-addon1">
+											<input type="text" class="form-control" name="sphomename" placeholder="House name or number" aria-label="House name or number" aria-describedby="basic-addon1" value="<?php echo $ad_hname; ?>">
 										</div>
 									</div>
 								</div>
@@ -287,7 +261,7 @@ if (isset($_POST['editad'])) {
 									<label>Postcode</label>
 									<div class="">
 										<div class="input-group mb-3">
-											<input type="number" class="form-control" name="sppcode" placeholder="Postcode" aria-label="Postcode" aria-describedby="basic-addon1">
+											<input type="number" class="form-control" name="sppcode" placeholder="Postcode" aria-label="Postcode" aria-describedby="basic-addon1" value="<?php echo $ad_pcode; ?>">
 										</div>
 									</div>
 								</div>
@@ -295,7 +269,7 @@ if (isset($_POST['editad'])) {
 									<label>Country/Region</label>
 									<div class="select-wrap mb-3">
 										<select class="custom-select" name="spcountryregion" id="title">
-											<option value="IS" selected="selected">Islamabad</option>
+											<option value="<?php echo $ad_country; ?>" selected="selected"><?php echo $ad_country; ?></option>
 											<option value="KHI">Karachi</option>
 											<option value="LH">Lahore</option>
 											<option value="RW">Rawalpindi</option>
@@ -307,7 +281,7 @@ if (isset($_POST['editad'])) {
 									<label>Phone Number</label>
 									<div>
 										<div class="input-group mb-3">
-											<input type="number" class="form-control" name="spphone" placeholder="Phone number" aria-label="Phone number" aria-describedby="basic-addon1">
+											<input type="number" class="form-control" name="spphone" placeholder="Phone number" aria-label="Phone number" aria-describedby="basic-addon1" value="<?php echo $ad_phone; ?>">
 										</div>
 									</div>
 								</div>
@@ -330,6 +304,39 @@ if (isset($_POST['editad'])) {
 												<input type="file" name="files[]" style="display: none !important;" id="files" multiple accept="image/jpeg, image/png, image/gif,"><br />
 												<input type="button" class="btn btn-outline-danger" value="Browse..." onclick="document.getElementById('files').click();" />
 											</span>
+										</li>
+										<li>
+											<output id="Filelist" style="max-width: 630px;">
+												<ul class="thumb-Images" id="imgList" style="list-style: none;">
+													<?php
+													$sqlimageprev = "SELECT * FROM post_ad_images WHERE ad_id = ?";
+													$stmt = mysqli_stmt_init($conn);
+													if(!mysqli_stmt_prepare($stmt, $sqlimageprev))
+													{
+														echo "SQL statement failed";
+														exit();
+													}
+													else
+													{
+														mysqli_stmt_bind_param($stmt, 's', $ad_id);
+														mysqli_stmt_execute($stmt);
+														$result = mysqli_stmt_get_result($stmt);
+
+														while ($row = mysqli_fetch_assoc($result)) {
+															?>
+															
+															<li style="float: left;">
+																<div class="img-wrap pip">
+																	<span class="close">&times;</span>
+																	<img id="imageTH" class="thumb imageThumb" src="../../images/sparepartimg/<?php echo $row['ad_image_name']; ?>"/>
+																</div>
+																<div class="FileNameCaptionStyle">honda-cb-unicorn-150-pearl-siena-red.png</div>
+															</li>
+														<?php }
+													}
+													?>
+												</ul>
+											</output>
 										</li>
 										<li>
 											<output id="Filelist" class="imgoutput" style="max-width: 630px;"></output>
@@ -441,15 +448,16 @@ if (isset($_POST['editad'])) {
                 	if (height < 300 || width < 300) {
                 		console.log('v1', validated);
                 		validated = false;
-                    // alert("Height and Width must not exceed 100px.");
-                    console.log('v2', validated);
-                    e.preventDefault();
+	                    console.log('v2', validated);
+	                    console.log("You cannot upload a file smaller that 300x300 px");
+	                    document.getElementById("empty").innerHTML = "You cannot upload a file smaller that 300x300 px";
+	                    e.preventDefault();
 
                     dfrd1.resolve();
                 } else {
 
                 	validated = true;
-                  // alert("Uploaded image has valid Height and Width.");
+                 	document.getElementById("empty").innerHTML = "";
                   e.preventDefault();
 
                   dfrd1.resolve();
@@ -461,6 +469,15 @@ if (isset($_POST['editad'])) {
           }).promise();
           
       }
+      function getBase64Image(img) {
+		  var canvas = document.createElement("canvas");
+		  canvas.width = img.width;
+		  canvas.height = img.height;
+		  var ctx = canvas.getContext("2d");
+		  ctx.drawImage(img, 0, 0);
+		  var dataURL = canvas.toDataURL("image/png");
+		  return dataURL.split(',')[1];
+		}
 
         //To remove attachment once user click on x button
         jQuery(function ($) {
@@ -668,6 +685,65 @@ if (isset($_POST['editad'])) {
                     	{
                             // alert('success');
                             location.href = "/BikeLabs/usedbikes.php";
+                        }
+                    },
+                    error: function(e) 
+                    {
+                    	$("#err").html(e).fadeIn();
+                    }          
+                });
+				}));
+
+        });
+         $(document).ready(function (e) {
+        	$("#spform").on('submit',(function(e) {
+        		e.preventDefault();
+				  //AttachmentArray
+				  var formData = new FormData(this);
+				  formData.append('images', JSON.stringify(AttachmentArray));
+				  //return;
+				  $.ajax({
+				  	url: "../../includes/editadsp.inc.php?adid=<?php echo $_GET['adid']; ?>",
+				  	type: "POST",
+				  	data:  formData,
+				  	contentType: false,
+				  	cache: false,
+				  	processData:false,
+				  	beforeSend : function()
+				  	{
+				  	},
+				  	success: function(data)
+				  	{
+                    // alert(data);
+                    if (data == 0) 
+                    {
+                        document.getElementById("empty").innerHTML = "Fill in all the fields";
+                    }else
+                    if (data == 1) 
+                    {
+                        document.getElementById("empty").innerHTML = "Please enter more than 20 characters for your description.";
+                    }else
+                    if (data == 2) 
+                    {
+                        document.getElementById("empty").innerHTML = "Please enter a price between the ranges of 5000 to 1000000 Rs.";
+                    }else
+                    if (data == 3) 
+                    {
+                        document.getElementById("empty").innerHTML = "Please enter a valid pakistani phone number.";
+                    }else
+                    if (data == 4) 
+                    {
+                        document.getElementById("empty").innerHTML = "Please enter a valid post code";
+                    }else
+                    if (data == 5) 
+                    {
+                        document.getElementById("empty").innerHTML = "Please select images";
+                    }
+                    else
+                        if (data == 6) 
+                        {
+                            // alert('success');
+                            location.href = "/BikeLabs/spareparts.php";
                         }
                     },
                     error: function(e) 
