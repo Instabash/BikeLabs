@@ -19,71 +19,28 @@ if (isset($_GET['pkg'])) {
 						{?>
 							<h3>You have selected package 1</h3><br>
 							<h5>Please specify any further modification you would like to implement from the package you have selected.</h5><br>
-							<div class="border-dark border border-new">
+							<div class="border-dark border border-new" style="padding:10px; padding-top: 30px;">
 							<?php
 							$pkg1 = array(
-								"Chain spocket","Silencer","125cc Carburetor","Remove filter"
+								"Chain spocket","Silencer","Carburetor","Remove filter pipe"
 							);
 							foreach ($pkg1 as $key) {?>
 								<div>
 									<label style="width: 200px;left: -20px;display: inline-block;vertical-align: middle;"><?php echo $key?></label><br><br>
-									<?php 
-									if ($key == "Body paint (User defined):") {?>
-										<div class="pb-4">
-											<select class="js-example-responsive" name="modpaintselect" style="width: 50%">
-												<option>Black</option>
-												<option>White</option>
-												<option>Blue</option>
-												<option>Grey</option>
-												<option>Red</option>
-												<option>Yellow</option>
-												<option>Purple</option>
-												<option>Green</option>
-											</select>
-										</div>
-									<?php }
-									?>
 								</div>
 							<?php }}
 					elseif($_GET['pkg'] == "2")
 						{?>
 							<h3>You have selected package 2</h3><br>
 							<h5>Please specify what modification you would like to implement from the package you have selected.</h5><br>
-							<div class="border-dark border border-new">
+							<div class="border-dark border border-new" style="padding:10px; padding-top: 30px;">
 							<?php
 							$pkg2 = array(
-								"Piston (0, 50, 90)","Weights","Head removal","Cylinder removal"
+								"Piston (0, 50, 90)","Weights","Head Cylinder (124cc)"
 							);
 							foreach ($pkg2 as $key) {?>
 								<div class="">
 									<label style="width: 200px;left: -20px;display: inline-block;vertical-align: middle;"><?php echo $key?></label><br><br>
-									<?php 
-									if ($key == "Body paint (User defined):") {?>
-										<div class="pb-4">
-											<select class="js-example-responsive" name="modpaintselect" style="width: 50%">
-												<option>Black</option>
-												<option>White</option>
-												<option>Blue</option>
-												<option>Grey</option>
-												<option>Red</option>
-												<option>Yellow</option>
-												<option>Purple</option>
-												<option>Green</option>
-											</select>
-										</div>
-									<?php }
-									if ($key == "Add theme (User defined):") {?>
-										<div class="pb-4">
-											<select class="js-example-responsive" name="modthemeselect" style="width: 50%">
-												<option>Flaming skulls theme</option>
-												<option>Harley davidson theme</option>
-												<option>Batman theme</option>
-												<option>Superman theme</option>
-												<option>Ironman theme</option>
-											</select>
-										</div>
-									<?php }
-									?>
 								</div>
 							<?php }}
 					elseif($_GET['pkg'] == "3")
@@ -91,56 +48,34 @@ if (isset($_GET['pkg'])) {
 						?>
 						<h3>You have selected package 3</h3><br>
 						<h5>Please specify what modification you would like to implement from the package you have selected.</h5><br>
-						<div class="border-dark border border-new">
+						<div class="border-dark border border-new" style="padding:10px; padding-top: 30px;">
 						<?php
 						$pkg3 = array(
-							"Genuine 70cc Carburetor","Genuine Piston","Genuine head cylinder","Genuine chain spocket","Genuine silencer","Genuine pipes"
+							"Genuine 70cc Carburetor","Genuine 70cc Piston","Genuine 70cc head cylinder","Genuine 70cc chain spocket","Genuine 70cc silencer","Genuine 70cc pipes", "Genuine 70cc Weights"
 						);
 						foreach ($pkg3 as $key) 
 						{
 							?>
 							<div>
 								<label style="width: 200px;left: -20px;display: inline-block;vertical-align: middle;"><?php echo $key?></label><br><br>
-								<?php 
-								if ($key == "Body paint (User defined):") 
-								{
-									?>
-									<div class="pb-4">
-										<select class="js-example-responsive" name="modpaintselect" style="width: 50%">
-											<option>Black</option>
-											<option>White</option>
-											<option>Blue</option>
-											<option>Grey</option>
-											<option>Red</option>
-											<option>Yellow</option>
-											<option>Purple</option>
-											<option>Green</option>
-										</select>
-									</div>
-								<?php 
-								}
-								if ($key == "Add theme (User defined):") 
-								{
-								?>
-									<div class="pb-4">
-										<select class="js-example-responsive" name="modthemeselect" style="width: 50%">
-											<option>Flaming skulls theme</option>
-											<option>Harley davidson theme</option>
-											<option>Batman theme</option>
-											<option>Superman theme</option>
-											<option>Ironman theme</option>
-										</select>
-									</div>
-								<?php 
-								}
-								?>
 							</div>
 							<?php 
 						}
 					}
+					elseif ($_GET['pkg'] == "custom") 
+						{?>
+							<h3>You have selected a custom package</h3><br>
+							<h5>Please specify what modification you would like to implement from the package you have selected.</h5><br>
+						<div class="border-dark border border-new" style="padding: 10px; padding-top: 30px;">
+							<?php 
+							foreach($_SESSION['pkg4'] as $key=>$value)
+								{?>
+									<label style="width: 200px;left: -20px;display: inline-block;vertical-align: middle;"><?php echo $value?></label><br><br>
+							<?php }
+						}
 					else
 					{?>
-						echo '<script>window.location="../../modification.php"</script>';
+						echo '<script>window.location="../../alteration.php"</script>';
 						<?php 
 					}?>
 				</div></div>

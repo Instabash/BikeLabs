@@ -116,22 +116,6 @@ if (isset($_POST['btnplaceorder'])) {
 					}
 				}	
 			}
-
-
-
-
-
-
-		// echo "make: " . $make; echo "<br>";
-		// echo "model: " . $model; echo "<br>";
-		// echo "year: " . $year; echo "<br>";
-		// echo "package: " . $package; echo "<br>";
-		// echo "paint: " . $paint; echo "<br>";
-		// echo "price: " . $price; echo "<br>";
-		// echo "description: " . $description; echo "<br>";
-		// echo "theme: " . $theme; echo "<br>";
-		// echo "selectedparts: " . $selectedparts; echo "<br>";
-		// echo "address: " .$address;
 		}
 		elseif ($modoralt == "alteration") {
 			$ordertype = "Alteration";
@@ -159,7 +143,7 @@ if (isset($_POST['btnplaceorder'])) {
 					$paint = $item['paint'];
 					$description = $item['description'];
 					$price = $item['price'];
-					$ordersumm1 = "Remove jump cover,Reflectors,Remove mudguard,Body paint (User defined)";
+					$ordersumm1 = "Chain spocket, Silencer, Carburetor, Remove filter pipe";
 					$order_summ .= $ordersumm1;
 				}
 
@@ -168,7 +152,7 @@ if (isset($_POST['btnplaceorder'])) {
 					$description = $item['description'];
 					$price = $item['price'];
 					$theme = $item['theme'];
-					$ordersumm2 = "Remove jump cover,Reflectors,HID Lights,Remove mudguard,Add theme (User defined),Body paint (User defined)";
+					$ordersumm2 = "Piston (0, 50, 90) ,Weights ,Head Cylinder (124cc)";
 					$order_summ .= $ordersumm2;
 				}
 
@@ -177,7 +161,7 @@ if (isset($_POST['btnplaceorder'])) {
 					$description = $item['description'];
 					$price = $item['price'];
 					$theme = $item['theme'];
-					$ordersumm3 = "Remove jump cover,Reflectors,HID Lights,Remove mudguard,Short meter,Remove headlight holders,Body paint (User defined),Add theme (User defined)";
+					$ordersumm3 = "Genuine 70cc Carburetor, Genuine 70cc Piston, Genuine 70cc head cylinder, Genuine 70cc chain spocket, Genuine 70cc silencer, Genuine 70cc pipes, Genuine 70cc Weights";
 					$order_summ .= $ordersumm3;
 				}
 			}
@@ -232,22 +216,6 @@ if (isset($_POST['btnplaceorder'])) {
 					}
 				}	
 			}
-
-
-
-
-
-
-		// echo "make: " . $make; echo "<br>";
-		// echo "model: " . $model; echo "<br>";
-		// echo "year: " . $year; echo "<br>";
-		// echo "package: " . $package; echo "<br>";
-		// echo "paint: " . $paint; echo "<br>";
-		// echo "price: " . $price; echo "<br>";
-		// echo "description: " . $description; echo "<br>";
-		// echo "theme: " . $theme; echo "<br>";
-		// echo "selectedparts: " . $selectedparts; echo "<br>";
-		// echo "address: " .$address;
 		}
 	}
 	elseif (isset($_SESSION['bikecart'])) {

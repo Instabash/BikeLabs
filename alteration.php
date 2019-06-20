@@ -42,33 +42,45 @@ include_once 'includes/header.php';
 						<option value="Unique">Unique</option>
 					</select>
 				</div>
-			</div><br><br><br><br>
+			</div><br><br>
+			<?php
+			if (isset($_GET['error'])) {
+				if ($_GET['error'] == "emptyfields") 
+				{
+					echo '<p style="color:red !important ;padding:5px;";>Please select all fields</p>';
+				}
+				elseif ($_GET['error'] == "nopkgselected") {
+					echo '<p style="color:red !important ;padding:5px;";>Please select a package</p>';
+				}
+			}
+			?>
+			<br><br>
 			<h3>Step 2: </h3><br>
 			<h6>What alteration would you like to make to your motorbike?</h6><br>
 			<div style="text-align: center;">
 				<div class="btncreative btn-1 btn-1a" onclick="switch_div(1);" style="text-align: center;">
-					Genuine
+					Alter
 				</div>
 				<div class="btncreative btn-1 btn-1a" onclick="switch_div(2);" style="text-align: center;">
-					Alter
+					Genuine
 				</div>
 			</div><br>
 			<div class="fullAlter hide" id="show_1" style="margin-bottom: 20px;">
 				<h3>Step 3: Select what to Modify</h3><br>
 				<h6>We offer 2 packages of our own</h6><br>
 				<div class="row">
-					<div class="modleft1 border-new border border-dark rounded p-3">
+					<div class="modleft1 border-new border border-dark rounded p-3" style="margin:0 5px 0 100px;">
 						<h5>Package 1</h5>
 						<div class="packageList" style="height: 250px;">
 							<ul>
-								<li>Handle bar</li>
-								<li>Air Filter</li>
-								<li>NGK Sparkplugs</li>
-								<li>Exhaust & Silencer</li>
+								<li>Chain Spocket</li>
+								<li>Silencer</li>
+								<li>Carburetor</li>
+								<li>Remove filter pipe</li>
 							</ul>
 						</div>
 						<div>
-							<div id="carouselExampleInterval" class="carousel slide" data-ride="carousel" data-interval="1000">
+							<!-- <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel" data-interval="1000">
 								<div class="carousel-inner" >
 									<div class="carousel-item active" data-interval="3000">
 										<img src="images/modify.jpg" class="d-block w-100" alt="...">
@@ -80,78 +92,82 @@ include_once 'includes/header.php';
 										<img src="images/modify3.jpg" class="d-block w-100" alt="...">
 									</div>
 								</div>
+							</div> -->
+							<div class="pkgslider border-new border border-dark rounded">
+								<div class="pkg1slide1"></div>
+								<div class="pkg1slide2"></div>
+								<div class="pkg1slide3"></div>
 							</div>
 							<label class="btncreative btn-1 btn-1a packageradio">
 								Select
-								<input type="radio" name="altradiopkg" value="pkg1">
+								<input type="radio" name="radiopkg" value="pkg1">
 							</label>
 						</div>
 					</div>
-					<div class="modright1 border-new border border-dark rounded p-3">
+					<div class="modright1 border-new border border-dark rounded p-3" style="margin:0 100px 0 5px;">
 						<h5>Package 2</h5>
 						<div class="packageList" style="height: 250px;">
 							<ul>
-								<li>Handle bar</li>
-								<li>Air Filter</li>
-								<li>NGK Sparkplugs</li>
-								<li>Exhaust & Silencer</li>
-								<li>Handle bar</li>
-								<li>Air Filter</li>
-								<li>NGK Sparkplugs</li>
-								<li>Exhaust & Silencer</li>
+								<li>Piston (0, 50, 90)</li>
+								<li>Weights</li>
+								<li>Head Cylinder (124cc)</li>
 							</ul>
 						</div>
-						<div>
-							<div id="carouselExampleInterval" class="carousel slide" data-ride="carousel" data-interval="1000">
-								<div class="carousel-inner" >
-									<div class="carousel-item active" data-interval="3000">
-										<img src="images/modify.jpg" class="d-block w-100" alt="...">
-									</div>
-									<div class="carousel-item" data-interval="3000">
-										<img src="images/modify2.jpg" class="d-block w-100" alt="...">
-									</div>
-									<div class="carousel-item" data-interval="3000">
-										<img src="images/modify3.jpg" class="d-block w-100" alt="...">
-									</div>
-								</div>
+						<div class="">
+							<div class="pkgslider border-new border border-dark rounded">
+								<div class="pkg1slide1"></div>
+								<div class="pkg1slide2"></div>
+								<div class="pkg1slide3"></div>
 							</div>
 							<label class="btncreative btn-1 btn-1a packageradio">
 								Select
-								<input type="radio" name="altradiopkg" value="pkg2">
+								<input type="radio" name="radiopkg" value="pkg2">
 							</label>
 						</div>
 					</div>
 				</div>
-				
+				<div><br>
+					<h3>Or</h3><br>
+					<label class="btncreative btn-1 btn-1a packageradio">
+						Choose custom parts
+						<input type="radio" name="radiopkg" id="togglecustom" value="2">
+					</label><br>
+					<div class="customparts"><br>
+						<select style="width: 100%" class="js-example-basic-multiple js-states form-control select2-hidden-accessible" multiple="multiple"  tabindex="-1" aria-hidden="true" name="select2[]" id="selectbox">
+							<option>Chain Spocket</option>
+							<option>Carburetor</option>
+							<option>Silencer</option>
+							<option>Remove filter pipe</option>
+							<option>Piston</option>
+							<option>Weights</option>
+							<option>Head Cylinder</option>
+						</select>
+					</div>
+				</div><br><br>
 			</div>
-			<div class="alterGenuine hide" id="show_2">
+			<div class="alterGenuine hide" id="show_2" style="margin:0 300px 0 300px;">
 				<h3>Step 3: Select what to Modify</h3><br>
 				<div class="border-new border border-dark rounded p-3">
 					<h5>Package 1</h5>
 					<div class="packageList" style="height: 250px;">
 						<ul>
-							<li>Handle bar</li>
-							<li>Air Filter</li>
-							<li>NGK Sparkplugs</li>
-							<li>Exhaust & Silencer</li>
+							<li>Genuine 70cc Carburetor</li>
+							<li>Genuine 70cc Piston</li>
+							<li>Genuine 70cc head cylinder</li>
+							<li>Genuine 70cc chain spocket</li>
+							<li>Genuine 70cc silencer</li>
+							<li>Genuine 70cc pipes</li>
+							<li>Genuine 70cc Weights</li>
 						</ul>
 					</div>
-					<div id="carouselExampleInterval" class="carousel slide" data-ride="carousel" data-interval="1000">
-						<div class="carousel-inner" >
-							<div class="carousel-item active" data-interval="3000">
-								<img src="images/modify.jpg" class="d-block w-100" alt="...">
-							</div>
-							<div class="carousel-item" data-interval="3000">
-								<img src="images/modify2.jpg" class="d-block w-100" alt="...">
-							</div>
-							<div class="carousel-item" data-interval="3000">
-								<img src="images/modify3.jpg" class="d-block w-100" alt="...">
-							</div>
-						</div>
+					<div class="pkgslider border-new border border-dark rounded">
+						<div class="pkg1slide1"></div>
+						<div class="pkg1slide2"></div>
+						<div class="pkg1slide3"></div>
 					</div>
 					<label class="btncreative btn-1 btn-1a packageradio">
 						Select
-						<input type="radio" name="altradiopkg" value="pkg3">
+						<input type="radio" name="radiopkg" value="pkg3">
 					</label>
 				</div>
 			</div>
@@ -172,7 +188,7 @@ include_once 'includes/header.php';
 		minimumResultsForSearch: -1,
 		placeholder: "Select..",
     	width: 'resolve' // need to override the changed default
-	});
+    });
 	
 </script>
 <?php

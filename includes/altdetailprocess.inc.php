@@ -7,39 +7,19 @@ if (isset($_POST['btnalt2'])) {
 	if ($selectedpkg == 1) {
 		$price = 3000;
 		$paint = $_POST['modpaintselect'];
-		// if (isset($_POST['select2'])) 
-		// {
-		// 	$ctmpts = array();
-		// 	foreach ($_POST['select2'] as $selectedOption)
-		// 	{
-		// 		$ctmpts[] = $selectedOption;
-		// 	}
-		// }
 		$_SESSION['altcart'][] = array(
 			'selectedpkg' => $selectedpkg,
-			'paint' => $paint,
 			'description' => $specified,
 			'price' => $price);
 		
-		// print_r($_SESSION['modcart']);
 		header("Location: ../addresscon.php");
 	}
 	if ($selectedpkg == 2) {
 		$price = 5000;
 		$paint = $_POST['modpaintselect'];
 		$theme = $_POST['modthemeselect'];
-		// if (isset($_POST['select2'])) 
-		// {
-		// 	$ctmpts = array();
-		// 	foreach ($_POST['select2'] as $selectedOption)
-		// 	{
-		// 		$ctmpts[] = $selectedOption;
-		// 	}
-		// }
 		$_SESSION['altcart'][] = array(
 			'selectedpkg' => $selectedpkg,
-			'paint' => $paint,
-			'theme' => $theme,
 			'description' => $specified,
 			'price' => $price);
 		
@@ -49,18 +29,8 @@ if (isset($_POST['btnalt2'])) {
 		$price = 8000;
 		$paint = $_POST['modpaintselect'];
 		$theme = $_POST['modthemeselect'];
-		// if (isset($_POST['select2'])) 
-		// {
-		// 	$ctmpts = array();
-		// 	foreach ($_POST['select2'] as $selectedOption)
-		// 	{
-		// 		$ctmpts[] = $selectedOption;
-		// 	}
-		// }
 		$_SESSION['altcart'][] = array(
 			'selectedpkg' => $selectedpkg,
-			'paint' => $paint,
-			'theme' => $theme,
 			'description' => $specified,
 			'price' => $price);
 		

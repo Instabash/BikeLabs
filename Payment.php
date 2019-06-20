@@ -276,12 +276,11 @@ include_once 'includes/header.php';
 										<ul style="list-style: none; padding: 10px;">
 											<li>Chain spocket</li>
 											<li>Silencer</li>
-											<li>125cc Carburetor</li>
-											<li>Remove filter</li>
+											<li>Carburetor</li>
+											<li>Remove filter pipe</li>
 										</ul>
 									</div>
 								</div>
-								<div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div>
 								<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><label><?php echo $item['description'];?></label><br></div>
 								<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><label><?php echo $item['price']." Rs.";?></label><br></div><?php
 							}
@@ -299,13 +298,10 @@ include_once 'includes/header.php';
 										<ul style="list-style: none; padding: 10px;">
 											<li>Piston (0, 50, 90)</li>
 											<li>Weights</li>
-											<li>Head removal</li>
-											<li>Cylinder removal</li>
+											<li>Head Cylinder (124cc)</li>
 										</ul>
 									</div>
 								</div>
-								<div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div>
-								<div class="border border-dark border-new"><h5 class="p-2">Theme</h5><?php echo $item['theme'];?><br></div>
 								<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><label><?php echo $item['description'];?></label><br></div>
 								<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><label><?php echo $item['price']." Rs.";?></label><br></div><?php
 							}
@@ -322,16 +318,15 @@ include_once 'includes/header.php';
 									<div id="collapse_0" class="accordion-body in collapse" style="">
 										<ul style="list-style: none; padding: 10px;">
 											<li>Genuine 70cc Carburetor</li>
-											<li>Genuine Piston</li>
-											<li>Genuine head cylinder</li>
-											<li>Genuine chain spocket</li>
-											<li>Genuine silencer</li>
-											<li>Genuine pipes</li>
+											<li>Genuine 70cc Piston</li>
+											<li>Genuine 70cc Head Cylinder</li>
+											<li>Genuine 70cc Chain Spocket</li>
+											<li>Genuine 70cc Silencer</li>
+											<li>Genuine 70cc Pipes</li>
+											<li>Genuine 70cc Weights</li>
 										</ul>
 									</div>
 								</div>
-							<!-- <div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div>
-								<div class="border border-dark border-new"><h5 class="p-2">Theme</h5><?php echo $item['theme'];?><br></div> -->
 								<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><label><?php echo $item['description'];?></label><br></div>
 								<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><label><?php echo $item['price']." Rs.";?></label><br></div>
 
