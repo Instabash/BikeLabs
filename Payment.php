@@ -153,7 +153,7 @@ include_once 'includes/header.php';
 						<div class="accordion-group" id="make">
 							<div class="accordion-heading">
 								<div class="border border-dark border-new accordion-toggle collapsed" data-toggle="collapse" href="#collapse_0" aria-expanded="false">
-									<b><h5 class="p-2">Selected package</h5><?php echo $item['selectedpkg'];?><br></b>
+									<b><h5 class="p-2">Selected package</h5><p><b><?php echo $item['selectedpkg'];?></b></p>
 									<a href="#">Click for package details
 										<i class="fa fa-caret-down"></i>
 									</a>
@@ -176,7 +176,7 @@ include_once 'includes/header.php';
 						<div class="accordion-group" id="make">
 							<div class="accordion-heading">
 								<div class="border border-dark border-new accordion-toggle collapsed" data-toggle="collapse" href="#collapse_0" aria-expanded="false">
-									<h5 class="p-2">Selected package</h5><?php echo $item['selectedpkg'];?><br>
+									<h5 class="p-2">Selected package</h5><p><b><?php echo $item['selectedpkg'];?></b></p>
 									<a href="#">Click for package details
 										<i class="fa fa-caret-down"></i>
 									</a>
@@ -202,7 +202,7 @@ include_once 'includes/header.php';
 								<div class="accordion-group" id="make">
 									<div class="accordion-heading">
 										<div class="border border-dark border-new accordion-toggle collapsed" data-toggle="collapse" href="#collapse_0" aria-expanded="false">
-											<h5 class="p-2">Selected package</h5><?php echo $item['selectedpkg'];?><br>
+											<h5 class="p-2">Selected package</h5><p><b><?php echo $item['selectedpkg'];?></b></p>
 											<a href="#">Click for package details
 												<i class="fa fa-caret-down"></i>
 											</a>
@@ -231,7 +231,7 @@ include_once 'includes/header.php';
 								<div class="accordion-group" id="make">
 									<div class="accordion-heading">
 										<div class="border border-dark border-new accordion-toggle collapsed" data-toggle="collapse" href="#collapse_0" aria-expanded="false">
-											<h5 class="p-2">Selected package</h5><?php echo $item['selectedpkg'];?><br>
+											<h5 class="p-2">Selected package</h5><p><b><?php echo $item['selectedpkg'];?></b></p>
 											<a href="#">Click for package details
 												<i class="fa fa-caret-down"></i>
 											</a>
@@ -266,7 +266,7 @@ include_once 'includes/header.php';
 								<div class="accordion-group" id="make">
 									<div class="accordion-heading">
 										<div class="border border-dark border-new accordion-toggle collapsed" data-toggle="collapse" href="#collapse_0" aria-expanded="false">
-											<h5 class="p-2">Selected package</h5><?php echo $item['selectedpkg'];?><br>
+											<h5 class="p-2">Selected package</h5><p><b><?php echo $item['selectedpkg'];?></b></p>
 											<a href="#">Click for package details
 												<i class="fa fa-caret-down"></i>
 											</a>
@@ -288,7 +288,7 @@ include_once 'includes/header.php';
 								<div class="accordion-group" id="make">
 									<div class="accordion-heading">
 										<div class="border border-dark border-new accordion-toggle collapsed" data-toggle="collapse" href="#collapse_0" aria-expanded="false">
-											<h5 class="p-2">Selected package</h5><?php echo $item['selectedpkg'];?><br>
+											<h5 class="p-2">Selected package</h5><p><b><?php echo $item['selectedpkg'];?></b></p>
 											<a href="#">Click for package details
 												<i class="fa fa-caret-down"></i>
 											</a>
@@ -309,7 +309,7 @@ include_once 'includes/header.php';
 								<div class="accordion-group" id="make">
 									<div class="accordion-heading">
 										<div class="border border-dark border-new accordion-toggle collapsed" data-toggle="collapse" href="#collapse_0" aria-expanded="false">
-											<h5 class="p-2">Selected package</h5><?php echo $item['selectedpkg'];?><br>
+											<h5 class="p-2">Selected package</h5><p><b><?php echo $item['selectedpkg'];?></b></p>
 											<a href="#">Click for package details
 												<i class="fa fa-caret-down"></i>
 											</a>
@@ -326,7 +326,35 @@ include_once 'includes/header.php';
 											<li>Genuine 70cc Weights</li>
 										</ul>
 									</div>
-								</div>
+								</div>`
+								<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><label><?php echo $item['description'];?></label><br></div>
+								<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><label><?php echo $item['price']." Rs.";?></label><br></div>
+
+							<?php }
+							elseif ($item['selectedpkg'] == "custom") {?>
+								<div class="accordion-group" id="make">
+									<div class="accordion-heading">
+										<div class="border border-dark border-new accordion-toggle collapsed" data-toggle="collapse" href="#collapse_0" aria-expanded="false">
+											<h5 class="p-2">Selected package</h5><p><b><?php echo $item['selectedpkg'];?></b></p>
+											<a href="#">Click for package details
+												<i class="fa fa-caret-down"></i>
+											</a>
+										</div>
+									</div>
+									<div id="collapse_0" class="accordion-body in collapse" style="">
+										<ul style="list-style: none; padding: 10px;">
+											<?php 
+											foreach($_SESSION['pkg4'] as $key=>$value)
+												{?>
+													<li><?php echo $value; ?></li>
+
+												<?php }
+												?>
+											</ul>
+										</div>
+									</div>
+							<!-- <div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div>
+								<div class="border border-dark border-new"><h5 class="p-2">Theme</h5><?php echo $item['theme'];?><br></div> -->
 								<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><label><?php echo $item['description'];?></label><br></div>
 								<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><label><?php echo $item['price']." Rs.";?></label><br></div>
 
