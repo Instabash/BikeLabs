@@ -58,13 +58,13 @@ if (isset($_SESSION['cart']) || isset($_SESSION['bikecart'])) {
 
 elseif (isset($_SESSION['modcart'])) {
 	if (isset($_POST['homepickbtn'])) {
-		$title = $_POST['title'];
-		$fname = $_POST['fname'];
-		$lname = $_POST['lname'];
-		$phone = $_POST['phone'];
-		$countryreg = $_POST['countryorregion'];
-		$hnameorno = $_POST['hnameorno'];
-		$pcode = $_POST['pcode'];
+		$title = trim($_POST['title']);
+		$fname = trim($_POST['fname']);
+		$lname = trim($_POST['lname']);
+		$phone = trim($_POST['phone']);
+		$countryreg = trim($_POST['countryorregion']);
+		$hnameorno = trim($_POST['hnameorno']);
+		$pcode = trim($_POST['pcode']);
 		$del_method = 1;
 		if(empty($title) || empty($fname) || empty($lname) || empty($phone) || empty($countryreg) || empty($hnameorno) || empty($pcode) || empty($del_method))
 		{
