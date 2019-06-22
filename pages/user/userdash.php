@@ -50,15 +50,6 @@ $user_id = $_SESSION['userId'];
 					{
 
 					?>
-			
-			<!-- <div class="p-2">
-				<h5>First Name</h5>
-		 		<label><?php echo $row1['uidUsers']; ?></label>
-			</div>
-			<div class="p-2">
-				<h5>Last Name</h5>
-		 		<label><?php echo $row1['uidUsers']; ?></label>
-			</div> -->
 			<div class="p-2">
 				<h5>Display Name</h5>
 		 		<label><?php echo $row1['uidUsers']; ?></label>
@@ -72,7 +63,10 @@ $user_id = $_SESSION['userId'];
 		 		<label>*********</label>
 			</div>
 			<div class="p-2" >
-				<a href="#" style="color: #dc3545 !important;">Edit Account</a>
+				<form action="user-reset-pass.php" method="post"> 
+					<input type="submit" name="change-pass" class="btn btn-outline-danger" value="Reset Password">
+				</form>
+				
 			</div>
 		 	
 		</div>
