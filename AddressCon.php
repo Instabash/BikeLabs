@@ -41,7 +41,7 @@ include_once 'includes/header.php';
 					<div class="form-row p-2 pt-4 mb-3">
 						<label for="title">Title</label>
 						<div class="select-wrap ">
-							<select class="btn newbtn" name="title" id="title">
+							<select class="custom-select" name="title" id="title">
 								<option value="Mr" selected="selected">Mr</option>
 								<option value="Mrs">Mrs</option>
 								<option value="Miss">Miss</option>
@@ -79,7 +79,7 @@ include_once 'includes/header.php';
 					<div class="form-row p-2">
 						<label>Country/Region</label>
 						<div class="select-wrap mb-3">
-							<select class="btn newbtn" name="countryorregion" id="countryreg">
+							<select class="custom-select" name="countryorregion" id="countryreg">
 								<option value="IS" selected="selected">Islamabad</option>
 								<option value="KHI">Karachi</option>
 								<option value="LH">Lahore</option>
