@@ -82,6 +82,8 @@ if(!isset($_SESSION))
 	<script src="/BikeLabs/script/dataTables.bootstrap.js"></script>
 	<script src="/BikeLabs/script/jquery.inputmask.js"></script>
 	<script src="/BikeLabs/script/inputmask.binding.js"></script>
+	<script src="/BikeLabs/script/jquery.capslockstate.js"></script>
+	
 	<!---------------------------------Scripts end---------------------------------->
 
 </head>
