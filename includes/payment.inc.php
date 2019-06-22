@@ -164,6 +164,19 @@ if (isset($_POST['btnplaceorder'])) {
 					$ordersumm3 = "Genuine 70cc Carburetor, Genuine 70cc Piston, Genuine 70cc head cylinder, Genuine 70cc chain spocket, Genuine 70cc silencer, Genuine 70cc pipes, Genuine 70cc Weights";
 					$order_summ .= $ordersumm3;
 				}
+
+				if ($package == "custom") {
+					$paint = $item['paint'];
+					$theme = $item['theme'];
+					$description = $item['description'];
+					$price = $item['price'];
+
+					foreach($_SESSION['pkg4'] as $key=>$value)
+					{
+						$selectedparts .=  $value . ", ";
+					}
+					$order_summ .= $selectedparts;
+				}
 			}
 
 			$modaltsql = "INSERT INTO modalt (modalttype, modaltmake, modaltbikemodel, modaltbikeyear, modaltpkg, modaltselectedpts, modaltselectedtheme, modaltselectedpaint, modaltdescription, modaltprice, userId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
