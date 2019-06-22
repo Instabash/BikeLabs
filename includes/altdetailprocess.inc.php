@@ -36,4 +36,49 @@ if (isset($_POST['btnalt2'])) {
 		
 		header("Location: ../addresscon.php");
 	}
+	if ($selectedpkg == "custom") {
+		$removeJCPrice = 700;
+		$reflectorPrice = 1200;
+		$hidprice = 2000;
+		$removeMudgPrice = 700;
+		$shortmeterPrice = 900; 
+		$removehlightPrice = 700;
+		$bodypaintPrice = 2300;
+		$themePrice = 4000;
+
+		$priceSum = 0;
+
+		foreach($_SESSION['pkg4'] as $key=>$value)
+		{	
+			 // echo 'The value of $_SESSION['."'".$key."'".'] is '."'".$value."'".' <br />';
+			if ($value == "Chain Spocket") {
+				$priceSum+=$removeJCPrice;
+			}
+			if ($value == "Carburetor") {
+				$priceSum+=$reflectorPrice;
+			}
+			if ($value == "Silencer") {
+				$priceSum+=$hidprice;
+			}
+			if ($value == "Remove filter pipe") {
+				$priceSum+=$removeMudgPrice;
+			}
+			if ($value == "Piston") {
+				$priceSum+=$shortmeterPrice;
+			}	
+			if ($value == "Weights") {
+				$priceSum+=$removehlightPrice;
+			}
+			if ($value == "Head Cylinder") {
+				$priceSum+=$bodypaintPrice;
+			}
+		}
+		$specified = $_POST['customspecifytxtarea'];
+		$selectedpkg = $_SESSION['packageselected'];
+		$_SESSION['altcart'][] = array(
+			'selectedpkg' => $selectedpkg,
+			'description' => $specified,
+			'price' => $priceSum);
+		header("Location: ../addresscon.php");
+	}
 }
