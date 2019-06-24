@@ -69,34 +69,50 @@ $stmt = mysqli_stmt_init($conn);
 						$isOdd = ! $isOdd;
 						?>">
 						
-							<div class="row">
-								<div style="width: 15%;margin-left: 20px;">
-									<label href=""><?php echo $row['order_type'] ?></label>
-								</div>
-								<div style="width: 15%;">
-									<label><?php echo $row['order_status']; ?></label>
-								</div>
-								<div style="width: 15%;">
-									<label><?php echo $row['order_date'] ?></label>
-								</div>
-								<div style="width: 16%;">
-									<label><?php echo $row1['Order_Address'] ?></label>
-								</div>
-								<div style="width: 16%;" class="ml-1">
-									<label><?php echo $row1['Order_price'] ?> Rs.</label>
-								</div>
-								<div style="width: 6%;" class="ml-1">
-									<label><?php echo $row1['Order_quantity'] ?></label>
-								</div>
-								<div style="width: 10%;" class="ml-1">
-									<form action="../../includes/chat.inc.php" method="post">
-										<input type="hidden" name="vendor-id" value="<?php echo $row['assigned_vendor']; ?>">
-										<button class="btn btn-outline-danger" name="chat-btn">Chat with vendor</button>	
-									</form>
-								</div>
+						<div class="row">
+							<div style="width: 15%;margin-left: 20px;">
+								<label href=""><?php echo $row['order_type'] ?></label>
 							</div>
-
-						
+							<div style="width: 15%;">
+								<label><?php echo $row['order_status']; ?></label>
+							</div>
+							<div style="width: 15%;">
+								<label><?php echo $row['order_date'] ?></label>
+							</div>
+							<div style="width: 16%;">
+								<label><?php echo $row1['Order_Address'] ?></label>
+							</div>
+							<div style="width: 16%;" class="ml-1">
+								<label><?php echo $row1['Order_price'] ?> Rs.</label>
+							</div>
+							<div style="width: 6%;" class="ml-1">
+								<label><?php echo $row1['Order_quantity'] ?></label>
+							</div>
+							<?php 
+							$sql = 'SELECT * FROM users WHERE idUsers = ?';
+							if(!mysqli_stmt_prepare($stmt, $sql))
+							{
+								echo "SQL statement failed";
+							}
+							else
+							{
+								$vendor = $row['assigned_vendor'];
+								mysqli_stmt_bind_param($stmt, "s", $vendor);
+								mysqli_stmt_execute($stmt);
+								$result2 = mysqli_stmt_get_result($stmt);
+								if ($row2 = mysqli_fetch_assoc($result2)) 
+								{
+									$vendor_name = $row2['uidUsers'];
+								}
+							}
+							?>
+							<div style="width: 10%;" class="ml-1">
+								<form action="../chat.php?user=<?php echo $vendor_name; ?>" method="post">
+									<input type="hidden" name="vendor-id" value="<?php echo $row['assigned_vendor']; ?>">
+									<button class="btn btn-outline-danger" name="chat-btn">Chat with vendor</button>	
+								</form>
+							</div>
+						</div>	
 					</div>
 					<?php 
 				}			
