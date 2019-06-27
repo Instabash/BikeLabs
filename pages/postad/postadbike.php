@@ -35,7 +35,8 @@ include_once '../../includes/header.php';
 					<div class="form-row formrowad p-2">
 						<label>Condition</label>
 						<div class="select-wrap mb-2">
-							<select class="custom-select" name="bkcondition">
+                            <select class="js-example-responsive" name="bkcondition" style="width: 100px;">
+							<!-- <select class="custom-select" name="bkcondition"> -->
 								<option value="0" selected >Select</option>
 								<option value="New">New</option>
 								<option value="Used">Used</option>
@@ -45,7 +46,8 @@ include_once '../../includes/header.php';
 					<div class="form-row formrowad p-2">
 						<label>Make</label>
 						<div class="select-wrap mb-2">
-							<select class="custom-select" name="bkmake" id="title">
+                            <select class="js-example-responsive" name="bkmake" style="width: 100px;">
+							<!-- <select class="custom-select" name="bkmake" id="title"> -->
 								<option value="0" selected >Select</option>
 								<option value="Honda">Honda</option>
 								<option value="SuperPower">SuperPower</option>
@@ -96,7 +98,8 @@ include_once '../../includes/header.php';
 					<div class="form-row formrowad p-2">
 						<label>Country/Region</label>
 						<div class="select-wrap mb-3">
-							<select class="custom-select" name="bkcountryregion" id="title">
+                             <select class="js-example-responsive" name="bkcountryregion" style="width: 100px;">
+							<!-- <select class="custom-select" name="bkcountryregion" id="title"> -->
                                 <option value="0" selected>Select</option>
                                 <option value="IS">Islamabad</option>
                                 <option value="KHI">Karachi</option>
@@ -476,7 +479,11 @@ include_once '../../includes/header.php';
 
    });
 </script>
-
+<script>
+    $(".js-example-responsive").select2({
+        minimumResultsForSearch: -1
+    });
+</script>
 <?php
 include_once '../../includes/footer.php';
 ?>

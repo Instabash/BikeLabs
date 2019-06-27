@@ -41,7 +41,8 @@ include_once 'includes/header.php';
 					<div class="form-row p-2 pt-4 mb-3">
 						<label for="title">Title</label>
 						<div class="select-wrap ">
-							<select class="custom-select" name="title" id="title">
+							<select class="js-example-responsive" name="title" style="width: 100px;">
+							<!-- <select class="custom-select" name="title" id="title"> -->
 								<option value="Mr" selected="selected">Mr</option>
 								<option value="Mrs">Mrs</option>
 								<option value="Miss">Miss</option>
@@ -79,7 +80,8 @@ include_once 'includes/header.php';
 					<div class="form-row p-2">
 						<label>Country/Region</label>
 						<div class="select-wrap mb-3">
-							<select class="custom-select" name="countryorregion" id="countryreg">
+							<select class="js-example-responsive" name="countryorregion" style="width: 100px;">
+							<!-- <select class="custom-select" name="countryorregion" id="countryreg"> -->
 								<option value="IS" selected="selected">Islamabad</option>
 								<option value="KHI">Karachi</option>
 								<option value="LH">Lahore</option>
@@ -144,6 +146,11 @@ include_once 'includes/header.php';
  
 	// var second = sessionStorage.getItem('quant');
 	// console.log(second);	
+</script>
+<script>
+	$(".js-example-responsive").select2({
+		minimumResultsForSearch: -1
+	});
 </script>
 <?php
 include_once 'includes/footer.php';

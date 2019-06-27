@@ -45,7 +45,8 @@ include '../../includes/dbh.inc.php';
                         <div class="form-row formrowad p-2">
                             <label>Brand</label>
                             <div class="select-wrap mb-2">
-                                <select class="custom-select" name="bkbrand" id="title">
+                                <select class="js-example-responsive" name="bkbrand" style="width: 100px;">
+                                <!-- <select class="custom-select" name="bkbrand" id="title"> -->
                                     <option value="0" selected>Select</option>
                                     <option value="Honda">Honda</option>
                                     <option value="SuperPower">SuperPower</option>
@@ -56,7 +57,8 @@ include '../../includes/dbh.inc.php';
                         <div class="form-row formrowad p-2 pt-4">
                             <label>Model</label>
                             <div class="select-wrap mb-2">
-                                <select class="custom-select" name="bkmodel" id="title">
+                                <select class="js-example-responsive" name="bkmodel" style="width: 100px;">
+                                <!-- <select class="custom-select" name="bkmodel" id="title"> -->
                                     <option value="0" selected>Select</option>
                                     <option value="70cc">70cc</option>
                                     <option value="125cc">125cc</option>
@@ -545,6 +547,11 @@ include '../../includes/dbh.inc.php';
                 }));
 
    });
+</script>
+<script>
+    $(".js-example-responsive").select2({
+        minimumResultsForSearch: -1
+    });
 </script>
 <?php
 include_once '../../includes/footer.php';

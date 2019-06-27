@@ -35,7 +35,8 @@ include_once '../../includes/header.php';
 					<div class="form-row formrowad p-2">
 						<label>Condition</label>
 						<div class="select-wrap mb-2">
-							<select class="custom-select" name="spcondition" id="title">
+                            <select class="js-example-responsive" name="spcondition" style="width: 100px;">
+							<!-- <select class="custom-select" name="spcondition" id="title"> -->
 								<option value="0" selected>Select</option>
 								<option value="New">New</option>
 								<option value="Used">Used</option>
@@ -77,7 +78,8 @@ include_once '../../includes/header.php';
 					<div class="form-row formrowad p-2">
 						<label>Country/Region</label>
 						<div class="select-wrap mb-3">
-							<select class="custom-select" name="spcountryregion" id="title">
+                            <select class="js-example-responsive" name="spcountryregion" style="width: 100px;">
+							<!-- <select class="custom-select" name="spcountryregion" id="title"> -->
 								<option value="IS" selected="selected">Islamabad</option>
 								<option value="KHI">Karachi</option>
 								<option value="LH">Lahore</option>
@@ -449,7 +451,11 @@ include_once '../../includes/header.php';
 
    });
 </script>
-
+<script>
+    $(".js-example-responsive").select2({
+        minimumResultsForSearch: -1
+    });
+</script>
 <?php
 include_once '../../includes/footer.php';
 ?>
