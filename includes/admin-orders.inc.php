@@ -52,7 +52,7 @@ elseif (isset($_POST['vendor-appr-order'])) {
 	}
 	else
 	{
-		header("Location: /BikeLabs/pages/admin/vendor-orders.php?error=order");
+		header("Location: /BikeLabs/pages/vendor/vendor-orders.php?error=order");
 		exit();
 	}
 	
@@ -78,12 +78,12 @@ elseif (isset($_POST['vendor-close-order'])) {
 		foreach($_POST['vendor-close-check'] as $check) {
 			$sql = "UPDATE order_table SET order_status = 'Approved' WHERE order_id = '$check'";
 			$result = mysqli_query($conn, $sql);
-			header("Location: /BikeLabs/pages/vendor/vendor-orders.php?successr");
+			header("Location: /BikeLabs/pages/vendor/vendor-modaltprocessed.php?successr");
 		}
 	}
 	else
 	{
-		header("Location: /BikeLabs/pages/admin/vendor-orders.php?error=order");
+		header("Location: /BikeLabs/pages/admin/vendor-modaltprocessed.php?error=order");
 		exit();
 	}
 	
