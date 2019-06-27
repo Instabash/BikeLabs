@@ -253,14 +253,14 @@ if (isset($_POST['btnplaceorder'])) {
 		}
 
 		foreach ($_SESSION['bikecart'] as $item) {
+			$part_bike_id_assign = $item['product_id'];
 			$price = $item['price'];
 			$orderQuantity = $item['quantity'];
 			$multipliedprice = $price*$orderQuantity;
 			$total_price+=$multipliedprice;
 		}
-		$assigned = "";
 		$idvendor = "";
-		$vendoridsql = "SELECT * FROM bikes WHERE part_id = ?";
+		$vendoridsql = "SELECT * FROM bikes WHERE bike_id = ?";
 		$stmt = mysqli_stmt_init($conn);
 		if (!mysqli_stmt_prepare($stmt, $vendoridsql)) 
 		{
