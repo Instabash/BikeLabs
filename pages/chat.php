@@ -1,10 +1,14 @@
 <?php
 session_start();
+include '../includes/restrictions.inc.php';
+logged_in();
 include_once '../includes/header.php';
 include_once '../includes/dbh.inc.php';
 $user = $_SESSION['userUId'];
+$no_message = false;
 if (isset($_GET['user'])) {
 	$_GET['user'] = $_GET['user']; 
+	$r_name = $_GET['user'];
 }
 else{
 	$user = $_SESSION['userUId'];
@@ -30,7 +34,11 @@ else{
 		}
 		else
 		{
-			echo "no messages from you.";
+			?>
+			<!-- <div class="p">
+				<p>You don't have any messages right now.</p>
+			</div -->
+			<?php $no_message = true;
 		}
 	}
 	else{
@@ -39,7 +47,7 @@ else{
 }
 $sql = "SELECT * FROM chat_message WHERE sender_name = ? AND receiver_name = ? OR sender_name = ? AND receiver_name = ?";
 
-$r_name = $_GET['user'];
+// $r_name = $_GET['user']; IF ANY THING GOES WRONG UN COMMENT THIS PLEASE.
 $stmt = mysqli_stmt_init($conn);
 
 ?>
@@ -88,7 +96,7 @@ $stmt = mysqli_stmt_init($conn);
 													<div class="chat_people">
 														<div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
 														<div class="chat_ib">
-															<h5><?php echo $receiver_name; ?> <span class="chat_date">Dec 25</span></h5>
+															<h5><?php echo '<a href="?user='.$receiver_name.'">'. $receiver_name.'</a>'; ?> <span class="chat_date">Dec 25</span></h5>
 														</div>
 													</div>
 												</div>
@@ -108,16 +116,16 @@ $stmt = mysqli_stmt_init($conn);
 											else{
 											//add the sender name
 												?>
-												THE CURRENT USER THAT WE WILL GET WITH THE userUId WILL BE HERE -->
+												
 												<div class="chat_list active_chat">
 													<div class="chat_people">
 														<div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
 														<div class="chat_ib">
-															<h5><?php echo $sender_name; ?> <span class="chat_date">Dec 25</span></h5>
+															<h5><?php echo '<a href="?user='.$sender_name.'">'. $sender_name.'</a>'; ?> <span class="chat_date">Dec 25</span></h5>
 														</div>
 													</div>
 												</div>
-												REST OF THE PAST CHAT USERS IF ANY, WILL BE IN A LOOP
+												
 												<?php
 												//add sender name to the array as well
 												$added_user = array($counter => $sender_name);
@@ -129,7 +137,11 @@ $stmt = mysqli_stmt_init($conn);
 								}
 								else
 								{
-									echo "no messages from you.";
+									?>
+									<div class="pt-5">
+										<p>You don't have any messages right now.</p>
+									</div>
+									<?php
 								}
 							}
 							else{
@@ -141,46 +153,58 @@ $stmt = mysqli_stmt_init($conn);
 					<div class="mesgs">
 						<div class="msg_history" id="msg-container">
 							<?php
-							if (!mysqli_stmt_prepare($stmt, $sql)) 
-							{
-								echo "SQL statement failed";
-							}	
-							else
-							{
-								mysqli_stmt_bind_param($stmt, "ssss", $user , $r_name, $r_name, $user);
-								mysqli_stmt_execute($stmt);
-								$result = mysqli_stmt_get_result($stmt);
-								while($row = mysqli_fetch_assoc($result))
+							if ($no_message == false) {
+								if (!mysqli_stmt_prepare($stmt, $sql)) 
 								{
-									$sender_name = $row['sender_name'];
-									$receiver_name = $row['receiver_name'];
-									$message = $row['chat_message'];
+									echo "SQL statement failed";
+								}	
+								else
+								{
+									mysqli_stmt_bind_param($stmt, "ssss", $user , $r_name, $r_name, $user);
+									mysqli_stmt_execute($stmt);
+									$result = mysqli_stmt_get_result($stmt);
+									while($row = mysqli_fetch_assoc($result))
+									{
+										$sender_name = $row['sender_name'];
+										$receiver_name = $row['receiver_name'];
+										$message = $row['chat_message'];
 
-									if ($sender_name == $user) 
-									{
-										?>
-										<div class="outgoing_msg">
-											<div class="sent_msg">
-												<p><?php echo $message; ?>	</p>
-											</div>
-										</div>
-										<?php 
-									}
-									else
-									{
-										?>
-										<div class="incoming_msg">
-											<div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-											<div class="received_msg">
-												<div class="received_withd_msg">
-													<a href="#"><?php echo $sender_name; ?></a>
+										if ($sender_name == $user) 
+										{
+											?>
+											<div class="outgoing_msg">
+												<div class="sent_msg">
 													<p><?php echo $message; ?>	</p>
 												</div>
 											</div>
-										</div>
-										<?php 
+											<?php 
+										}
+										else
+										{
+											?>
+											<div class="incoming_msg">
+												<div class="incoming_msg_img pt-3">
+													<img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> 
+												</div>
+												<div class="received_msg">
+													<div class="received_withd_msg">
+														<a href="#"><?php echo $sender_name; ?></a>
+														<p><?php echo $message; ?>	</p>
+													</div>
+												</div>
+											</div>
+											<?php 
+										}
 									}
 								}
+							}
+							else
+							{
+								?>
+								<div class="pt-5">
+									<p>You don't have any messages right now.</p>
+								</div>
+								<?php
 							}
 							?>
 						</div>
@@ -189,7 +213,7 @@ $stmt = mysqli_stmt_init($conn);
 								<form id="chatmsgsub">
 									<input type="text" class="write_msg" id="chatmsg" placeholder="Type a message" />
 
-									<button class="msg_send_btn" name="msgsendbtn" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+									<button class="msg_send_btn" name="msgsendbtn" type="submit"><i class="fa fa-paper-plane pr-1" aria-hidden="true"></i></button>
 								</form>
 							</div>
 						</div>
@@ -205,33 +229,19 @@ $stmt = mysqli_stmt_init($conn);
 			$('#chatmsgsub').on('submit', function (e) {
 				e.preventDefault();
 				var message = $("#chatmsg").val();
-
-				// var query = window.location.search.substring(1);
-				// var qs = parse_query_string(query);
-
-				// var usertoid = qs.usertoid;
 				$.post('../includes/chat.inc.php?user=<?php echo $_GET['user']; ?>',{
 					chatmsg: message,
 				},
 				function(data, status){
+					if (data == 0) {
+						alert("write something!");
+					}
+					else{
 					$("#chatmsg").val("");
-					// alert(data);
 					document.getElementById("msg-container").innerHTML += data;
+					}
 				}
 				);
-				// $.ajax({
-				// 	type: 'post',
-				// 	url: '../includes/chat.inc.php?user=<?php echo $_GET['user']; ?>',
-				// 	data: 
-				// 	{ 
-				// 		chatmsg: message
-				// 	},
-				// 	success: function (data) {
-				// 		$("#chatmsg").val("");
-
-				// 		document.getElementById("msg-container").innerHTML += data;
-				// 	}
-				// });
 			});
 		});
 	</script>
