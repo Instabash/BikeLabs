@@ -52,7 +52,7 @@ $vendor_name = $_SESSION['userId'];
 									</thead>
 									<tbody>
 										<?php
-										$sql = "SELECT * FROM order_table WHERE order_status = 'Processed' AND assigned_vendor = ? AND Order_type = 'Modification' OR Order_type = 'Alteration';";
+										$sql = "SELECT * FROM order_table WHERE order_status = 'Processed' AND assigned_vendor = ? AND (Order_type = 'Modification' OR Order_type = 'Alteration');";
 										$stmt = mysqli_stmt_init($conn);
 										if (!mysqli_stmt_prepare($stmt, $sql)) 
 										{
