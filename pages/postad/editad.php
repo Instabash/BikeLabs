@@ -366,6 +366,18 @@ if (isset($_POST['editad'])) {
 ?>
 <script type="text/javascript">
 
+		//get content of loaded image
+		// var img = document.getElementById('imageTH'); 
+
+		// // var width = img.naturalWidth;
+		// // var height = img.naturalHeight;
+		// // console.log(width);
+		// // console.log(height);
+		
+		// var base64 = getBase64Image(document.getElementById("imageTH"));
+		// console.log(base64);	
+		// console.log(size);
+
         //I added event handler for the file upload control to access the files properties.
         document.addEventListener("DOMContentLoaded", init, false);
 
@@ -391,7 +403,7 @@ if (isset($_POST['editad'])) {
             document.querySelector('#files').addEventListener('change', handleFileSelect, false);
             
         }
-
+        //gags
         //the handler for file upload event
         function handleFileSelect(e) {
             //to make sure the user select file/files
@@ -448,36 +460,37 @@ if (isset($_POST['editad'])) {
                 	if (height < 300 || width < 300) {
                 		console.log('v1', validated);
                 		validated = false;
-	                    console.log('v2', validated);
-	                    console.log("You cannot upload a file smaller that 300x300 px");
-	                    document.getElementById("empty").innerHTML = "You cannot upload a file smaller that 300x300 px";
-	                    e.preventDefault();
+                		console.log('v2', validated);
+                		console.log("You cannot upload a file smaller that 300x300 px");
+                		document.getElementById("empty").innerHTML = "You cannot upload a file smaller that 300x300 px";
+                		e.preventDefault();
 
-                    dfrd1.resolve();
-                } else {
+                		dfrd1.resolve();
+                	} else {
 
-                	validated = true;
-                 	document.getElementById("empty").innerHTML = "";
-                  e.preventDefault();
+                		validated = true;
+                		document.getElementById("empty").innerHTML = "";
+                		e.preventDefault();
 
-                  dfrd1.resolve();
-              }
-          };
+                		dfrd1.resolve();
+                	}
+                };
 
-          return $.when(dfrd1).done(function(){
+                return $.when(dfrd1).done(function(){
 
-          }).promise();
-          
-      }
-      function getBase64Image(img) {
-		  var canvas = document.createElement("canvas");
-		  canvas.width = img.width;
-		  canvas.height = img.height;
-		  var ctx = canvas.getContext("2d");
-		  ctx.drawImage(img, 0, 0);
-		  var dataURL = canvas.toDataURL("image/png");
-		  return dataURL.split(',')[1];
-		}
+                }).promise();
+
+            }
+
+        function getBase64Image(img) {
+        	var canvas = document.createElement("canvas");
+        	canvas.width = img.width;
+        	canvas.height = img.height;
+        	var ctx = canvas.getContext("2d");
+        	ctx.drawImage(img, 0, 0);
+        	var dataURL = canvas.toDataURL("image/png");
+        	return dataURL.split(',')[1];
+        }
 
         //To remove attachment once user click on x button
         jQuery(function ($) {
@@ -630,6 +643,7 @@ if (isset($_POST['editad'])) {
         		FileSizeInBytes: readerEvt.size,
         	};
         	arrCounter = arrCounter + 1;
+        	
         }
 
         $(document).ready(function (e) {
@@ -695,7 +709,7 @@ if (isset($_POST['editad'])) {
 				}));
 
         });
-         $(document).ready(function (e) {
+        $(document).ready(function (e) {
         	$("#spform").on('submit',(function(e) {
         		e.preventDefault();
 				  //AttachmentArray
@@ -717,31 +731,31 @@ if (isset($_POST['editad'])) {
                     // alert(data);
                     if (data == 0) 
                     {
-                        document.getElementById("empty").innerHTML = "Fill in all the fields";
+                    	document.getElementById("empty").innerHTML = "Fill in all the fields";
                     }else
                     if (data == 1) 
                     {
-                        document.getElementById("empty").innerHTML = "Please enter more than 20 characters for your description.";
+                    	document.getElementById("empty").innerHTML = "Please enter more than 20 characters for your description.";
                     }else
                     if (data == 2) 
                     {
-                        document.getElementById("empty").innerHTML = "Please enter a price between the ranges of 5000 to 1000000 Rs.";
+                    	document.getElementById("empty").innerHTML = "Please enter a price between the ranges of 5000 to 1000000 Rs.";
                     }else
                     if (data == 3) 
                     {
-                        document.getElementById("empty").innerHTML = "Please enter a valid pakistani phone number.";
+                    	document.getElementById("empty").innerHTML = "Please enter a valid pakistani phone number.";
                     }else
                     if (data == 4) 
                     {
-                        document.getElementById("empty").innerHTML = "Please enter a valid post code";
+                    	document.getElementById("empty").innerHTML = "Please enter a valid post code";
                     }else
                     if (data == 5) 
                     {
-                        document.getElementById("empty").innerHTML = "Please select images";
+                    	document.getElementById("empty").innerHTML = "Please select images";
                     }
                     else
-                        if (data == 6) 
-                        {
+                    	if (data == 6) 
+                    	{
                             // alert('success');
                             location.href = "/BikeLabs/spareparts.php";
                         }
