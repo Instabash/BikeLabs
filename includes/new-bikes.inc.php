@@ -54,34 +54,35 @@ if (isset($_POST['images']))
 	}
 	else
 	{
-		$sql = "INSERT INTO bikes (bike_brand, bike_model, bikeyear, bike_price, bike_desc, idUsers) VALUES (?, ?, ?, ?, ?, ?);";
-		$stmt = mysqli_stmt_init($conn);
-		if (!mysqli_stmt_prepare($stmt, $sql)) 
-		{
-			echo "SQL statement failed";
-		}	
-		else
-		{
-			mysqli_stmt_bind_param($stmt, "ssssss", $Brand, $Model, $Year, $Price, $Description, $user);
-			mysqli_stmt_execute($stmt);
-			$bk_id = $conn->insert_id;
-			$sql2 = "INSERT INTO bikespecs (bike_engine_type, bike_bore_stroke, bike_transmission, bike_starting, bike_frame, bike_dimensions, bike_petrol_cap, bike_f_tyre, bike_b_tyre, bike_dry_weight, bike_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-			if (!mysqli_stmt_prepare($stmt, $sql2)) 
-			{
-				echo "SQL statement failed";
-			}	
-			else
-			{
-				mysqli_stmt_bind_param($stmt, "sssssssssss", $EngineType, $BoreStroke, $Transmission, $Starting, $Frame, $Dimensions, $PetrolCap, $TyreFront, $TyreBack, $DryWeight, $bk_id);
-				mysqli_stmt_execute($stmt);
-			}
-		}
 		if (empty(json_decode($_POST['images']))) {
 			echo json_encode(4);
 			exit();
 		}
 		else
 		{
+			$sql = "INSERT INTO bikes (bike_brand, bike_model, bikeyear, bike_price, bike_desc, idUsers) VALUES (?, ?, ?, ?, ?, ?);";
+			$stmt = mysqli_stmt_init($conn);
+			if (!mysqli_stmt_prepare($stmt, $sql)) 
+			{
+				echo "SQL statement failed";
+			}	
+			else
+			{
+				mysqli_stmt_bind_param($stmt, "ssssss", $Brand, $Model, $Year, $Price, $Description, $user);
+				mysqli_stmt_execute($stmt);
+				$bk_id = $conn->insert_id;
+				$sql2 = "INSERT INTO bikespecs (bike_engine_type, bike_bore_stroke, bike_transmission, bike_starting, bike_frame, bike_dimensions, bike_petrol_cap, bike_f_tyre, bike_b_tyre, bike_dry_weight, bike_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+				if (!mysqli_stmt_prepare($stmt, $sql2)) 
+				{
+					echo "SQL statement failed";
+				}	
+				else
+				{
+					mysqli_stmt_bind_param($stmt, "sssssssssss", $EngineType, $BoreStroke, $Transmission, $Starting, $Frame, $Dimensions, $PetrolCap, $TyreFront, $TyreBack, $DryWeight, $bk_id);
+					mysqli_stmt_execute($stmt);
+				}
+			}
+			
 			for($i=0;$i<count(json_decode($_POST['images']));$i++){
 				$j = json_decode($_POST['images'], true);
 

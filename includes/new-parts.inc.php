@@ -25,19 +25,6 @@ if (isset($_POST['images']))
 		exit();
 	}
 	else{
-		$sql = "INSERT INTO spare_parts (part_name, part_description, part_price, idUsers) VALUES (?, ?, ?, ?);";
-		$stmt = mysqli_stmt_init($conn);
-		if (!mysqli_stmt_prepare($stmt, $sql)) 
-		{
-			echo "SQL statement failed";
-		}	
-		else
-		{
-			mysqli_stmt_bind_param($stmt, "ssss", $Title, $Description, $Price, $user);
-			mysqli_stmt_execute($stmt);
-			$sp_id = $conn->insert_id;
-		}
-
 		if (empty(json_decode($_POST['images']))) 
 		{
 			echo json_encode(3);
@@ -45,6 +32,18 @@ if (isset($_POST['images']))
 		}
 		else
 		{
+			$sql = "INSERT INTO spare_parts (part_name, part_description, part_price, idUsers) VALUES (?, ?, ?, ?);";
+			$stmt = mysqli_stmt_init($conn);
+			if (!mysqli_stmt_prepare($stmt, $sql)) 
+			{
+				echo "SQL statement failed";
+			}	
+			else
+			{
+				mysqli_stmt_bind_param($stmt, "ssss", $Title, $Description, $Price, $user);
+				mysqli_stmt_execute($stmt);
+				$sp_id = $conn->insert_id;
+			}
 			for($i=0;$i<count(json_decode($_POST['images']));$i++){
 				$j = json_decode($_POST['images'], true);
 				$fileName = $j[$i]['FileName'];
