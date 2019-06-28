@@ -16,10 +16,10 @@ include '../../includes/dbh.inc.php';
 			<a href="/BikeLabs/pages/admin/admin-jobs.php" class="list-group-item list-group-item-action bg-light">Pending Jobs</a>
 			<a href="/BikeLabs/pages/admin/admin-orders.php" class="list-group-item list-group-item-action bg-light">Pending Orders</a>
 			<a href="/BikeLabs/pages/admin/admin-vendor.php" class="list-group-item list-group-item-action bg-light">Vendor management</a>
-			<a href="/BikeLabs/pages/admin/admin-user.php" class="list-group-item list-group-item-action bg-light">User management</a>
 			<a href="/BikeLabs/pages/admin/admin-sales.php" class="list-group-item list-group-item-action bg-light">Sales</a>
 			<a href="/BikeLabs/pages/admin/admin-bikes.php" class="list-group-item list-group-item-action bg-light">Add new Bikes</a>
 			<a href="/BikeLabs/pages/admin/admin-parts.php" class="list-group-item list-group-item-action bg-light">Add new Parts</a>
+			<a href="/BikeLabs/pages/admin/admin-bike-parts.php" class="list-group-item list-group-item-action bg-light">Bikes/Parts Posted</a>
 		</div>
 	</div>
 	<section id="modify" class="section modsection content content2">
@@ -35,24 +35,68 @@ include '../../includes/dbh.inc.php';
 						<form action="/BikeLabs/includes/signup.inc.php" method="post">
 							<div class="pt-4  p-5">
 								<label class="pb-3">Add a new vendor</label>
+								<?php
+								if (isset($_GET['error'])) 
+								{
+									if ($_GET['error'] == "emptyfields") 
+									{
+										echo '<p style="color:red !important;padding:5px;";>Fill in all fields</p>';
+									}
+									elseif ($_GET['error'] == "invalidmailuid") 
+									{
+										echo '<p style="color:red !important;padding:5px;";>Invalid Username and e-mail!</p>';
+									}
+									elseif ($_GET['error'] == "invaliduid") 
+									{
+										echo '<p style="color:red !important;padding:5px;";>Invalid Username!</p>';
+									}
+									elseif ($_GET['error'] == "invalidmail") 
+									{
+										echo '<p style="color:red !important;padding:5px;";>Invalid e-mail!</p>';
+									}
+									elseif ($_GET['error'] == "usertaken") 
+									{
+										echo '<p style="color:red !important;padding:5px;";>Username is taken!</p>';
+									}
+									elseif ($_GET['error'] == "invalidphone") 
+									{
+										echo '<p style="color:red !important;padding:5px;";>You have entered an invalid phone number!</p>';
+									}
+									elseif ($_GET['error'] == "passwordcheck") 
+									{
+										echo '<p style="color:red !important;padding:5px;";>Passwords do not match!</p>';
+									}
+									elseif ($_GET['error'] == "pwdstr") 
+									{
+										echo '<p style="color:red !important;padding:5px;";>Please enter a strong password!</p>';
+									}
+
+								}
+								if (isset($_GET['signup'])) {
+									if ($_GET['signup'] == "success") 
+									{
+										echo '<p style="color:green!important;padding:5px;";>Vendor added!</p>';
+									}
+								}
+								?>
 								<div class=" ">
 									<div class="" >
-										<input class="form-control" type="text" name="uid" placeholder="Vendor name">
+										<input class="form-control" type="text" name="uid" placeholder="Vendor name" value="<?= isset($_GET['uid']) ? $_GET['uid'] : ''; ?>">
 									</div>
 								</div><br>
 								<div class=" ">
 									<div class="" >
-										<input class="form-control" type="text" name="mail" placeholder="E-mail">
+										<input class="form-control" type="text" name="mail" placeholder="E-mail" value="<?= isset($_GET['mail']) ? $_GET['mail'] : ''; ?>">
 									</div>
 								</div><br>
 								<div class=" ">
 									<div class="" >
-										<input class="form-control" type="text" name="phone" placeholder="Phone">
+										<input class="form-control" type="text" name="phone" placeholder="Phone" value="<?= isset($_GET['phone']) ? $_GET['phone'] : ''; ?>">
 									</div>
 								</div><br>
 								<div class=" ">
 									<div class="" >
-										<input class="form-control" type="text" name="address" placeholder="Address">
+										<input class="form-control" type="text" name="address" placeholder="Address" value="<?= isset($_GET['address']) ? $_GET['address'] : ''; ?>">
 									</div>
 								</div><br>
 								<div class=" ">
@@ -101,8 +145,6 @@ include '../../includes/dbh.inc.php';
 											$result = mysqli_stmt_get_result($stmt);
 											while($row = mysqli_fetch_assoc($result))
 											{
-												$orderid = $row['order_id'];
-
 												?>
 												<tr>
 													<td><input type="checkbox" name="rem-vendor-check[]" value="<?php echo $row['idUsers']; ?>"></td>
