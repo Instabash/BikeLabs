@@ -106,9 +106,17 @@ elseif(isset($_POST['signup-vendor']))
 	$passwordRepeat = $_POST['pwd-repeat'];
 	$address = $_POST['address'];
 	$usertype = 2;
-	if(empty($username) || empty($email) || empty($password) || empty($passwordRepeat))
+	$uppercase = preg_match('@[A-Z]@', $password);
+	$lowercase = preg_match('@[a-z]@', $password);
+	$number    = preg_match('@[0-9]@', $password);
+	if(empty($username) || empty($email) || empty($password) || empty($passwordRepeat) || empty($address) || empty($phone))
 	{
-		header("Location: /BikeLabs/pages/admin/admin-vendor.php?error=emptyfields&uid=".$username."&mail=".$email);
+		header("Location: /BikeLabs/pages/admin/admin-vendor.php?error=emptyfields&uid=".$username."&mail=".$email."&address=".$address."&phone=".$phone);
+		exit();
+	}
+	elseif (!filter_var($email,FILTER_VALIDATE_EMAIL) && !preg_match("/^[a-zA-Z0-9]*$/", $username)) 
+	{
+		header("Location: /BikeLabs/pages/admin/admin-vendor.php?error=invalidmailuid");
 		exit();
 	}
 	elseif (!filter_var($email,FILTER_VALIDATE_EMAIL)) 
@@ -118,11 +126,16 @@ elseif(isset($_POST['signup-vendor']))
 	}
 	elseif (!preg_match("/^((\+92)|(0092))-{0,1}\d{3}-{0,1}\d{7}$|^\d{11}$|^\d{4}-\d{7}$/", $phone)) 
 	{
-		header("Location: /BikeLabs/pages/admin/admin-vendor.php?error=invalidphone");
+		header("Location: /BikeLabs/pages/admin/admin-vendor.php?error=invalidphone&uid=".$username."&mail=".$email."&address=".$address);
+		exit();
+	}
+	elseif(!$uppercase || !$lowercase || !$number || strlen($password) < 7)
+	{
+		header("Location: /BikeLabs/pages/admin/admin-vendor.php?error=pwdstr&uid=".$username."&mail=".$email."&address=".$address."&phone=".$phone.$password);
 		exit();
 	}
 	elseif ($password !== $passwordRepeat) {
-		header("Location: /BikeLabs/pages/admin/admin-vendor.php?error=passwordcheck&uid=".$username."&mail=".$email);
+		header("Location: /BikeLabs/pages/admin/admin-vendor.php?error=passwordcheck&uid=".$username."&mail=".$email."&address=".$address."&phone=".$phone);
 		exit();
 	}
 	else
