@@ -26,20 +26,28 @@ include_once 'includes/header.php';
 				if ($modoralt == "modification") 
 				{
 					?>
-					<p><b>Current address:</b> <?php
-					foreach($_SESSION['modaddress'] as $value)
-					{
-						echo $value['modadhname'] . ", " . $value['modadpcode'] . ", " . $value['modadcountry'];
+					<?php
+					if (isset($_SESSION['modaddress'])) {?>
+					<p><b>Current address:</b> 
+					<?php
+						foreach($_SESSION['modaddress'] as $value)
+						{
+							echo $value['modadhname'] . ", " . $value['modadpcode'] . ", " . $value['modadcountry'];
+						}
 					}
 					?></p><?php 
 				}
 				if ($modoralt == "alteration") 
 				{
 					?>
-					<p><b>Current address:</b> <?php
-					foreach($_SESSION['altaddress'] as $value)
-					{
-						echo $value['altadhname'] . ", " . $value['altadpcode'] . ", " . $value['altadcountry'];
+					<?php
+					if (isset($_SESSION['altaddress'])) {?>
+					<p><b>Current address:</b> 
+					<?php
+						foreach($_SESSION['altaddress'] as $value)
+						{
+							echo $value['altadhname'] . ", " . $value['altadpcode'] . ", " . $value['altadcountry'];
+						}
 					}
 					?></p><?php 
 				}?>
@@ -326,7 +334,7 @@ include_once 'includes/header.php';
 											<li>Genuine 70cc Weights</li>
 										</ul>
 									</div>
-								</div>`
+								</div>
 								<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><label><?php echo $item['description'];?></label><br></div>
 								<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><label><?php echo $item['price']." Rs.";?></label><br></div>
 

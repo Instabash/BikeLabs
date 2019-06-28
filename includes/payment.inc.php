@@ -19,10 +19,16 @@ if (isset($_POST['btnplaceorder'])) {
 			$del_method = $_SESSION['del_method'];
 			$order_summ = $ordertype . ", Package : " . $package . ",";
 			$pay_type = "cash on delivery";
-			foreach($_SESSION['modaddress'] as $value)
-			{
-				$address = $value['modadhname'] . ", " . $value['modadpcode'] . ", " . $value['modadcountry'];
-				$fullname = $value['modadfname'] . " " .  $value['modadlname'];
+			if (isset($_SESSION['modaddress'])) {
+				foreach($_SESSION['modaddress'] as $value)
+				{
+					$address = $value['modadhname'] . ", " . $value['modadpcode'] . ", " . $value['modadcountry'];
+					$fullname = $value['modadfname'] . " " .  $value['modadlname'];
+				}
+			}
+			else{
+				$fullname = $_SESSION['userUId'];
+				$address = $_SESSION['modaddress_store'];
 			}
 			foreach ($_SESSION['modcart'] as $item) 
 			{
@@ -132,10 +138,16 @@ if (isset($_POST['btnplaceorder'])) {
 			$del_method = $_SESSION['del_method'];
 			$order_summ = $ordertype . ", Package : " . $package . ",";
 			$pay_type = "cash on delivery";
-			foreach($_SESSION['altaddress'] as $value)
-			{
-				$address = $value['altadhname'] . ", " . $value['altadpcode'] . ", " . $value['altadcountry'];
-				$fullname = $value['altadfname'] . " " .  $value['altadlname'];
+			if (isset($_SESSION['altaddress'])) {
+				foreach($_SESSION['altaddress'] as $value)
+				{
+					$address = $value['altadhname'] . ", " . $value['altadpcode'] . ", " . $value['altadcountry'];
+					$fullname = $value['altadfname'] . " " .  $value['altadlname'];
+				}
+			}
+			else{
+				$fullname = $_SESSION['userUId'];
+				$address = $_SESSION['altaddress_store'];
 			}
 			foreach ($_SESSION['altcart'] as $item) 
 			{
@@ -246,10 +258,16 @@ if (isset($_POST['btnplaceorder'])) {
 		
 		$del_method = $_SESSION['del_method'];
 		$pay_type = "cash on delivery";
-		foreach($_SESSION['new_b_p_address'] as $value)
-		{
-			$address = $value['new_b_p_hname'] . ", " . $value['new_b_p_pcode'] . ", " . $value['new_b_p_country'];
-			$fullname = $value['new_b_p_fname'] . " " .  $value['new_b_p_lname'];
+		if (isset($_SESSION['new_b_p_address'])) {
+			foreach($_SESSION['new_b_p_address'] as $value)
+			{
+				$address = $value['new_b_p_hname'] . ", " . $value['new_b_p_pcode'] . ", " . $value['new_b_p_country'];
+				$fullname = $value['new_b_p_fname'] . " " .  $value['new_b_p_lname'];
+			}
+		}
+		else{
+			$fullname = $_SESSION['userUId'];
+			$address = $_SESSION['new_b_p_address_store'];
 		}
 
 		foreach ($_SESSION['bikecart'] as $item) {
@@ -315,6 +333,9 @@ if (isset($_POST['btnplaceorder'])) {
 			}
 			else
 			{	
+				echo $address;
+				echo $del_method;
+				echo $fullname;
 						// echo $orderid . $fullname . $address . $del_method . $order_summ . $pay_type . $address;
 				mysqli_stmt_bind_param($stmt, "sssssss", $orderid, $fullname, $address, $del_method, $order_summ, $pay_type, $address);
 				mysqli_stmt_execute($stmt);
@@ -338,10 +359,16 @@ if (isset($_POST['btnplaceorder'])) {
 		
 		$del_method = $_SESSION['del_method'];
 		$pay_type = "cash on delivery";
-		foreach($_SESSION['new_b_p_address'] as $value)
-		{
-			$address = $value['new_b_p_hname'] . ", " . $value['new_b_p_pcode'] . ", " . $value['new_b_p_country'];
-			$fullname = $value['new_b_p_fname'] . " " .  $value['new_b_p_lname'];
+		if (isset($_SESSION['new_b_p_address'])) {
+			foreach($_SESSION['new_b_p_address'] as $value)
+			{
+				$address = $value['new_b_p_hname'] . ", " . $value['new_b_p_pcode'] . ", " . $value['new_b_p_country'];
+				$fullname = $value['new_b_p_fname'] . " " .  $value['new_b_p_lname'];
+			}
+		}
+		else{
+			$fullname = $_SESSION['userUId'];
+			$address = $_SESSION['new_b_p_address_store'];
 		}
 
 		foreach ($_SESSION['cart'] as $item) {
@@ -418,6 +445,7 @@ if (isset($_POST['btnplaceorder'])) {
 				mysqli_stmt_bind_param($stmt, "sssssss", $orderid, $fullname, $address, $del_method, $total_order_summ, $pay_type, $address);
 				mysqli_stmt_execute($stmt);
 				unset($_SESSION['cart']);
+				unset($_SESSION['bikecart']);
 				header("Location: ../orderconfirmation.php?order=success");
 			}
 		}	

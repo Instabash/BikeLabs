@@ -1,7 +1,16 @@
 <?php
 session_start();
+if (isset($_SESSION['bikecart'])) {
+	unset($_SESSION['cart']);
+}
+elseif (isset($_SESSION['cart'])){
+	unset($_SESSION['bikecart']);
+}
+
 unset($_SESSION['modaddress']);
 unset($_SESSION['altaddress']);
+unset($_SESSION['new_b_p_address']);
+unset($_SESSION['new_b_p_address_store']);
 unset($_SESSION['modORalt']);
 
 if (isset($_SESSION['cart']) || isset($_SESSION['bikecart'])) {
@@ -13,7 +22,7 @@ if (isset($_SESSION['cart']) || isset($_SESSION['bikecart'])) {
 		$countryreg = $_POST['countryorregion'];
 		$hnameorno = $_POST['hnameorno'];
 		$pcode = $_POST['pcode'];
-		$del_method = 1;
+		$del_method = "Home Pickup";
 		if(empty($title) || empty($fname) || empty($lname) || empty($phone) || empty($countryreg) || empty($hnameorno) || empty($pcode) || empty($del_method))
 		{
 			header("Location: ../AddressCon.php?error=emptyfields&title=".$title."&fname=".$fname."&lname=".$lname."&countryreg=".$countryreg."&hnameorno=".$hnameorno."&pcode=".$pcode."&del_method=".$del_method."&phone=".$phone);
@@ -33,14 +42,7 @@ if (isset($_SESSION['cart']) || isset($_SESSION['bikecart'])) {
 			exit();
 		}
 		else{
-			if ($del_method == 1) {
-				$del_method_text = "Home Pickup";
-			}
-			if ($del_method == 2) {
-				$del_method_text = "Drop Off";
-			}
-
-			$_SESSION['del_method'] = $del_method_text;
+			$_SESSION['del_method'] = $del_method;
 			$_SESSION['new_b_p_address'][] = array(
 				'new_b_p_title' => $title,
 				'new_b_p_fname' => $fname,
@@ -52,6 +54,13 @@ if (isset($_SESSION['cart']) || isset($_SESSION['bikecart'])) {
 			);
 			header("Location: ../payment.php");
 		}
+	}
+	elseif (isset($_POST['storepickupbtn'])) {
+		$del_method = "Drop Off";
+		$_SESSION['del_method'] = $del_method;
+		$store = $_POST['storepickup'];
+		$_SESSION['new_b_p_address_store'] = $store;
+		header("Location: ../payment.php");
 	}
 }
 
@@ -65,7 +74,7 @@ elseif (isset($_SESSION['modcart'])) {
 		$countryreg = trim($_POST['countryorregion']);
 		$hnameorno = trim($_POST['hnameorno']);
 		$pcode = trim($_POST['pcode']);
-		$del_method = 1;
+		$del_method = "Home Pickup";
 		if(empty($title) || empty($fname) || empty($lname) || empty($phone) || empty($countryreg) || empty($hnameorno) || empty($pcode) || empty($del_method))
 		{
 			header("Location: ../AddressCon.php?error=emptyfields&title=".$title."&fname=".$fname."&lname=".$lname."&countryreg=".$countryreg."&hnameorno=".$hnameorno."&pcode=".$pcode."&del_method=".$del_method."&phone=".$phone);
@@ -85,14 +94,7 @@ elseif (isset($_SESSION['modcart'])) {
 			exit();
 		}
 		else{
-			if ($del_method == 1) {
-				$del_method_text = "Home Pickup";
-			}
-			if ($del_method == 2) {
-				$del_method_text = "Drop Off";
-			}
-
-			$_SESSION['del_method'] = $del_method_text;
+			$_SESSION['del_method'] = $del_method;
 			$_SESSION['modaddress'][] = array(
 				'modadtitle' => $title,
 				'modadfname' => $fname,
@@ -106,6 +108,15 @@ elseif (isset($_SESSION['modcart'])) {
 			header("Location: ../payment.php");
 		}
 	}
+	elseif (isset($_POST['storepickupbtn'])) {
+		$del_method = "Drop Off";
+		$_SESSION['del_method'] = $del_method;
+		$store = $_POST['storepickup'];
+		$_SESSION['modaddress_store'] = $store;
+		// echo $store;
+		$_SESSION['modORalt'] = "modification";
+		header("Location: ../payment.php");
+	}
 }
 elseif (isset($_SESSION['altcart'])) {
 	if (isset($_POST['homepickbtn'])) {
@@ -116,14 +127,9 @@ elseif (isset($_SESSION['altcart'])) {
 		$countryreg = $_POST['countryorregion'];
 		$hnameorno = $_POST['hnameorno'];
 		$pcode = $_POST['pcode'];
-		$del_method = 1;
-		if ($del_method == 1) {
-			$del_method_text = "Home Pickup";
-		}
-		if ($del_method == 2) {
-			$del_method_text = "Drop Off";
-		}
-		$_SESSION['del_method'] = $del_method_text;
+		$del_method = "Home Pickup";
+
+		$_SESSION['del_method'] = $del_method;
 		$_SESSION['altaddress'][] = array(
 			'altadtitle' => $title,
 			'altadfname' => $fname,
@@ -135,6 +141,14 @@ elseif (isset($_SESSION['altcart'])) {
 		);
 		$_SESSION['modORalt'] = "alteration";
 		// echo $_SESSION['modORalt'];;
+		header("Location: ../payment.php");
+	}
+	elseif (isset($_POST['storepickupbtn'])) {
+		$del_method = "Drop Off";
+		$_SESSION['del_method'] = $del_method;
+		$store = $_POST['storepickup'];
+		$_SESSION['altaddress_store'] = $store;
+		$_SESSION['modORalt'] = "alteration";
 		header("Location: ../payment.php");
 	}
 }

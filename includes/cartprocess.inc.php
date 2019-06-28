@@ -28,7 +28,7 @@ if (isset($_POST['buyBtn-bikes'])) {
 
 	if($row = mysqli_fetch_assoc($result))
 	{
-		$title = $row['bike_name'];
+		$title = $row['bike_brand'] . " " . $row['bike_model'] . " " . $row['bikeyear'];
 		$price = $row['bike_price'];
 	}
 

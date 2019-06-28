@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+if (isset($_GET['bikeid'])) {
+	unset($_SESSION['cart']);
+}
+elseif (isset($_GET['partid'])){
+	unset($_SESSION['bikecart']);
+}
 include 'includes/restrictions.inc.php';
 logged_in();
 $title = 'Address Confirmation';
@@ -10,16 +17,39 @@ include_once 'includes/header.php';
 	<div class="container">
 		<h3>How would you like to recieve your order?</h3><br>
 		<form class="p-2" action="includes/addresscon.inc.php" method="post">
+			<input type="hidden" name="bikeorpart" value="<?php if (isset($_GET['bikeid'])) {echo 'bikeid=$_GET["bikeid"]';}elseif($_GET['partid']){echo 'partid=$_GET["partid"]';} ?>">
 			<div class="form-check-inline">
 				<div class="btncreative btn-1 btn-1a" onclick="switch_div(1)">
-					<label>Home Pickup</label>
+					<?php
+					if (isset($_GET['bikeid']) || isset($_GET['partid'])) {?>
+						<label>Home Dropoff</label>
+					<?php }
+					else{ ?>
+						<label>Home Pickup</label>
+					<?php }
+					?>
+					
 				</div>
 				<div class="btncreative btn-1 btn-1a" onclick="switch_div(2)" >
-					<label>Drop off</label>
+					<?php
+					if (isset($_GET['bikeid']) || isset($_GET['partid'])) {?>
+						<label>Store Pickup</label>
+					<?php }
+					else{ ?>
+						<label>Drop off</label>
+					<?php }
+					?>
 				</div>
 			</div>
 			<div class="homepickup-pick hide <?php if (isset($_GET['error'])) {echo 'show';} ?>" id="show_1">
-				<h4 class="p-3">Where are we picking up your motorbike from?</h4>
+				<?php
+				if (isset($_GET['bikeid']) || isset($_GET['partid'])) {?>
+					<h4 class="p-3">Where are we dropping off your order?</h4>
+				<?php }
+				else{ ?>
+					<h4 class="p-3">Where are we picking up your motorbike from?</h4>
+				<?php }
+				?>
 				<div class="home-pick form-wrap clearfix border-new border border-dark rounded">
 					<?php
 					if (isset($_GET['error'])) {
@@ -42,7 +72,7 @@ include_once 'includes/header.php';
 						<label for="title">Title</label>
 						<div class="select-wrap ">
 							<select class="js-example-responsive" name="title" style="width: 100px;">
-							<!-- <select class="custom-select" name="title" id="title"> -->
+								<!-- <select class="custom-select" name="title" id="title"> -->
 								<option value="Mr" selected="selected">Mr</option>
 								<option value="Mrs">Mrs</option>
 								<option value="Miss">Miss</option>
@@ -81,47 +111,65 @@ include_once 'includes/header.php';
 						<label>Country/Region</label>
 						<div class="select-wrap mb-3">
 							<select class="js-example-responsive" name="countryorregion" style="width: 100px;">
-							<!-- <select class="custom-select" name="countryorregion" id="countryreg"> -->
-								<option value="IS" selected="selected">Islamabad</option>
-								<option value="KHI">Karachi</option>
-								<option value="LH">Lahore</option>
-								<option value="RW">Rawalpindi</option>
-								<option value="PSW">Peshawar</option>
-							</select>
-						</div>
-					</div>
-					<div class="form-row p-2">
-						<label>House name/Number</label>
-						<div class="">
-							<div class="input-group mb-3">
-								<input type="text" class="form-control" name="hnameorno" placeholder="House name or number" aria-label="House name or number" aria-describedby="basic-addon1">
+								<!-- <select class="custom-select" name="countryorregion" id="countryreg"> -->
+									<option value="IS" selected="selected">Islamabad</option>
+									<option value="KHI">Karachi</option>
+									<option value="LH">Lahore</option>
+									<option value="RW">Rawalpindi</option>
+									<option value="PSW">Peshawar</option>
+								</select>
 							</div>
 						</div>
-					</div>
-					<div class="form-row p-2">
-						<label>Postcode</label>
-						<div class="">
-							<div class="input-group mb-3">
-								<input type="text" class="form-control" name="pcode" placeholder="Postcode" aria-label="Postcode" aria-describedby="basic-addon1">
+						<div class="form-row p-2">
+							<label>House name/Number</label>
+							<div class="">
+								<div class="input-group mb-3">
+									<input type="text" class="form-control" name="hnameorno" placeholder="House name or number" aria-label="House name or number" aria-describedby="basic-addon1">
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="addressbtn" style="float:right;padding:10px;">
-						<button type="submit" id="" name="homepickbtn" class="btn btn-outline-danger" value="">Use this address</button>
+						<div class="form-row p-2">
+							<label>Postcode</label>
+							<div class="">
+								<div class="input-group mb-3">
+									<input type="text" class="form-control" name="pcode" placeholder="Postcode" aria-label="Postcode" aria-describedby="basic-addon1">
+								</div>
+							</div>
+						</div>
+						<div class="addressbtn" style="float:right;padding:10px;">
+							<button type="submit" id="" name="homepickbtn" class="btn btn-outline-danger" value="">Use this address</button>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="dropoff-pick form-wrap clearfix hide border-new border border-dark rounded" id="show_2">
-				<h4 class="p-3">Which store would you like to drop off your motorbike?</h4>
-				<p class="text-left p-3">Find your nearest store</p>
-				<div class="form-row pl-3">
-					<div class="select-wrap">
-						<div class="input-group mb-3">
-							<input type="text" class="form-control" name="near-store" placeholder="Enter town or postcode" aria-label="Enter town or postcode" aria-describedby="basic-addon1">
+				<div class="dropoff-pick form-wrap clearfix hide " id="show_2">
+					<?php
+					if (isset($_GET['bikeid']) || isset($_GET['partid'])) {?>
+						<h4 class="p-3">Where would you like to pickup your order from?</h4>
+					<?php }
+					else{ ?>
+						<h4 class="p-3">Which store would you like to drop off your motorbike?</h4>
+					<?php }
+					?>
+
+					<div class="border-new border border-dark rounded">
+						<h4 class="text-left p-3">Select a store</h4>
+						<div class="form-row pl-3 pt-3">
+							<div class="select-wrap">
+								<div class="input-group mb-3 pt-1">
+									<select class="js-example-responsive" name="storepickup">
+									<!-- <select class="custom-select" name="countryorregion" id="countryreg"> -->
+										<option value="Yamaha Capital Motors" selected="selected">Yamaha Capital Motors (Islamabad)</option>
+										<option value="Fazal Traders">Fazal Traders (Karachi)</option>
+										<option value="Chaudhary Autos">Chaudhary Autos (Lahore)</option>
+										<option value="Qazi Autos">Qazi Autos (Rawalpindi)</option>
+										<option value="Paradise Motorcycle">Paradise Motorcycle (Peshawar)</option>
+									</select>
+								</div>
+							</div>
+							<div class="addressbtn pl-4">
+								<button type="submit" id="" name="storepickupbtn" class="btn btn-outline-danger" value="">Select store</button>
+							</div>
 						</div>
-					</div>
-					<div class="addressbtn pl-4">
-						<button type="submit" id="" name="" class="btn btn-outline-danger" value="">Find stores</button>
 					</div>
 				</div>
 			</div>
@@ -132,20 +180,6 @@ include_once 'includes/header.php';
 <script>
 	var firstData = sessionStorage.getItem('partid');
 	console.log(firstData);	
-
-	// var query = window.location.search.substring(1);
-	// var qs = parse_query_string(query);
-	// // console.log(qs.quant);
-	// var quant1 = qs.quant;
-	
- //  		localStorage.setItem('quant', quant1);	
- 
-
- 
- 
- 
-	// var second = sessionStorage.getItem('quant');
-	// console.log(second);	
 </script>
 <script>
 	$(".js-example-responsive").select2({
