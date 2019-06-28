@@ -137,7 +137,7 @@ elseif (isset($_POST['buyBtn-parts'])) {
 }
 
 elseif (isset($_POST['cartBuy-parts'])) {
-	header("Location: ../addresscon.php");
+	header("Location: ../addresscon.php?partid=");
 }
 
 if (isset($_POST['removeItem'])) {

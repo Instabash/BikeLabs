@@ -60,7 +60,7 @@ include_once 'includes/header.php';
 			<!-- <?php
 				//echo POST['order-item(n)'];
 			?> -->
-			<a href="">Edit your shopping bag</a>
+			<a href="newspareparts.php">Edit your shopping bag</a>
 		</div>
 	<?php } ?>
 	<div class="paymentmain" style="margin-left: 0px;margin-right: 0px">
