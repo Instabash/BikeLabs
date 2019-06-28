@@ -1,5 +1,6 @@
 <?php
 session_start();
+if (isset($_SESSION['order_id'])) {
 include 'includes/restrictions.inc.php';
 logged_in();
 $title = 'Order confirmation';
@@ -8,6 +9,7 @@ include_once 'includes/dbh.inc.php';
 ?>
 
 <div id="" class="section orderconsec content">
+
 	<div class="container">
 		<div class="pb-4">
 			<h3>Thank you for your order</h3>
@@ -112,4 +114,8 @@ include_once 'includes/dbh.inc.php';
 
 <?php
 	include_once 'includes/footer.php';
+	}
+	else{
+		header("Location: index.php");
+	}
 ?>
