@@ -82,7 +82,7 @@ else
 				<tr>
 					<th></th>
 					<?php 
-					$sql2 = "SELECT * FROM b_images WHERE (bike_id = {$bike1} OR bike_id = {$bike2}) AND bike_image_thumb = '0';";
+					$sql2 = "SELECT * , MIN(bike_image_thumb) FROM b_images WHERE (bike_id = {$bike1} OR bike_id = {$bike2}) GROUP BY bike_id;";
 					if(!mysqli_stmt_prepare($stmt, $sql2))
 					{
 						echo "SQL statement failed";
