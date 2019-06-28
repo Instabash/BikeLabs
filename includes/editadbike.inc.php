@@ -61,24 +61,25 @@ if (isset($_POST['images']))
 	}
 	else
 	{
-		$sql = "UPDATE post_ad SET ad_price=?, ad_description=?, ad_condition=?, ad_user_hname=?, ad_user_pcode=?, ad_user_country=?, ad_user_phone=?, bike_make=?, bike_year=? WHERE ad_id = ?;";
-		$stmt = mysqli_stmt_init($conn);
-		if (!mysqli_stmt_prepare($stmt, $sql)) 
-		{
-			echo "SQL statement failed";
-			exit();
-		}	
-		else
-		{
-			mysqli_stmt_bind_param($stmt, "ssssssssss", $Price, $Description, $Condition, $HomeName, $PostCode, $CountryReg, $Phone, $Make, $Year, $ad_id);
-			mysqli_stmt_execute($stmt);
-		}
 		if (empty(json_decode($_POST['images']))) {
 			echo json_encode(6);
 			exit();
 		}
 		else
 		{
+			$sql = "UPDATE post_ad SET ad_price=?, ad_description=?, ad_condition=?, ad_user_hname=?, ad_user_pcode=?, ad_user_country=?, ad_user_phone=?, bike_make=?, bike_year=? WHERE ad_id = ?;";
+			$stmt = mysqli_stmt_init($conn);
+			if (!mysqli_stmt_prepare($stmt, $sql)) 
+			{
+				echo "SQL statement failed";
+				exit();
+			}	
+			else
+			{
+				mysqli_stmt_bind_param($stmt, "ssssssssss", $Price, $Description, $Condition, $HomeName, $PostCode, $CountryReg, $Phone, $Make, $Year, $ad_id);
+				mysqli_stmt_execute($stmt);
+			}
+			
 			$delimage = "DELETE FROM post_ad_images WHERE ad_id = ?;";
 			if (!mysqli_stmt_prepare($stmt, $delimage)) 
 			{

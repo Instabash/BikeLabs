@@ -51,19 +51,6 @@ if (isset($_POST['images']))
 	}
 	else
 	{
-		$sql = "INSERT INTO post_ad (ad_title, ad_type, ad_date, ad_price, ad_description, idUsers, ad_condition, ad_user_hname, ad_user_pcode, ad_user_country, ad_user_phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-		$stmt = mysqli_stmt_init($conn);
-		if (!mysqli_stmt_prepare($stmt, $sql)) 
-		{
-			echo "SQL statement failed";
-			exit();
-		}	
-		else
-		{
-			mysqli_stmt_bind_param($stmt, "sssssssssss", $Title, $ad_type, $ad_date, $Price, $Description, $user, $Condition, $HomeName, $PostCode, $CountryReg, $Phone);
-			mysqli_stmt_execute($stmt);
-			$ad_id = $conn->insert_id;
-		}
 		if (empty(json_decode($_POST['images']))) 
 		{
 			echo json_encode(5);
@@ -71,6 +58,20 @@ if (isset($_POST['images']))
 		}
 		else
 		{
+			$sql = "INSERT INTO post_ad (ad_title, ad_type, ad_date, ad_price, ad_description, idUsers, ad_condition, ad_user_hname, ad_user_pcode, ad_user_country, ad_user_phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+			$stmt = mysqli_stmt_init($conn);
+			if (!mysqli_stmt_prepare($stmt, $sql)) 
+			{
+				echo "SQL statement failed";
+				exit();
+			}	
+			else
+			{
+				mysqli_stmt_bind_param($stmt, "sssssssssss", $Title, $ad_type, $ad_date, $Price, $Description, $user, $Condition, $HomeName, $PostCode, $CountryReg, $Phone);
+				mysqli_stmt_execute($stmt);
+				$ad_id = $conn->insert_id;
+			}
+			
 			for($i=0;$i<count(json_decode($_POST['images']));$i++)
 			{
 				$j = json_decode($_POST['images'], true);
