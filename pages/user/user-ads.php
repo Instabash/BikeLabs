@@ -85,7 +85,7 @@ $stmt = mysqli_stmt_init($conn);
 									<p><?php echo $row['ad_price'] ?> Rs.</p>
 								</div>
 								<div style="flex: 5%;margin: auto; width: 50%;">
-									<form action="" method="post">
+									<form action="/BikeLabs/includes/markadsold.inc.php?ad_id=<?php echo $row['ad_id']; ?>" method="post">
 										<input class="btn-outline-danger btn" type="submit" name="mksold" value="Mark as sold">
 									</form>
 								</div>
