@@ -29,6 +29,10 @@ include_once 'includes/header.php';
 				{
 					echo '<p style="color:red !important;padding:5px;";>Username is taken!</p>';
 				}
+				elseif ($_GET['error'] == "passwordcheck") 
+				{
+					echo '<p style="color:red !important;padding:5px;";>Passwords do not match!</p>';
+				}
 				elseif ($_GET['error'] == "pwdstr") 
 				{
 					echo '<p style="color:red !important;padding:5px;";>Please enter a strong password!</p>';
@@ -103,13 +107,13 @@ include_once 'includes/header.php';
 			}
 			if (password.length > 7) strength += 1
 			// If password contains both lower and uppercase characters, increase strength value.
-			if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) strength += 1
+		if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) strength += 1
 			// If it has numbers and characters, increase strength value.
-			if (password.match(/([a-zA-Z])/) && password.match(/([0-9])/)) strength += 1
+		if (password.match(/([a-zA-Z])/) && password.match(/([0-9])/)) strength += 1
 			// If it has one special character, increase strength value.
-			if (password.match(/([!,%,&,@,#,$,^,*,?,_,~])/)) strength += 1
+		if (password.match(/([!,%,&,@,#,$,^,*,?,_,~])/)) strength += 1
 			// If it has two special characters, increase strength value.
-			if (password.match(/(.*[!,%,&,@,#,$,^,*,?,_,~].*[!,%,&,@,#,$,^,*,?,_,~])/)) strength += 1
+		if (password.match(/(.*[!,%,&,@,#,$,^,*,?,_,~].*[!,%,&,@,#,$,^,*,?,_,~])/)) strength += 1
 			// Calculated strength value, we can return messages
 			// If value is less than 2
 			if (strength < 2) 
@@ -134,16 +138,16 @@ include_once 'includes/header.php';
 	});
 </script>
 <?php
-	if (isset($_GET['success'])) {
-?>
-<script>
-	$(function(){
-    $("body").fadeOut(1000,function(){
-       window.location.href = "http://test.example.com/;"
-    })
- });
-</script>
-<?php
+if (isset($_GET['success'])) {
+	?>
+	<script>
+		$(function(){
+			$("body").fadeOut(1000,function(){
+				window.location.href = "http://test.example.com/;"
+			})
+		});
+	</script>
+	<?php
 }
 ?>
 <?php
