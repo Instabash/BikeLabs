@@ -29,7 +29,7 @@ $stmt = mysqli_stmt_init($conn);
 						while ($row1 = mysqli_fetch_assoc($result1)) 
 						{
 							?>
-							<img class="mySlides" src="../../images/sparepartimg/<?php echo $row1['part_image_name'] ?>" style="width:100%">
+							<img class="mySlides" src="../../images/sparepartimg/<?php echo $row1['part_image_name'] ?>" style="width:100%;height: 500px !important;">
 							<?php 
 						}			
 					}
