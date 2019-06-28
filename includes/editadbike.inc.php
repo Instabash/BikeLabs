@@ -95,11 +95,13 @@ if (isset($_POST['images']))
 				$j = json_decode($_POST['images'], true);
 				$fileName = $j[$i]['FileName'];
 				$fileSize =  $j[$i]['FileSizeInBytes'];
+				$ArrayType = $j[$i]['ArrayType'];
 				$fileExt = explode('.', $fileName);
 				$fileActualExt = strtolower(end($fileExt));
 				$allowed = array('jpg', 'jpeg', 'png');	
 
 				$thumbnail = $i;
+				
 				if (in_array($fileActualExt, $allowed)) 
 				{
 					if ($fileSize < 5000000) 

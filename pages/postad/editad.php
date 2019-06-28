@@ -175,7 +175,7 @@ if (isset($_POST['editad'])) {
 															<li style="float: left;">
 																<div class="img-wrap pip">
 																	<span class="close">&times;</span>
-																	<img id="imageTH" class="thumb imageThumb" src="../../images/sparepartimg/<?php echo $row['ad_image_name']; ?>"/>
+																	<img id="imageTH" class="thumb imageThumb" src="../../images/sparepartimg/<?php echo $row['ad_image_name']; ?> " data-id="<?php echo $row['ad_image_name']; ?>"/>
 																</div>
 																<div class="FileNameCaptionStyle">honda-cb-unicorn-150-pearl-siena-red.png</div>
 															</li>
@@ -328,7 +328,7 @@ if (isset($_POST['editad'])) {
 															<li style="float: left;">
 																<div class="img-wrap pip">
 																	<span class="close">&times;</span>
-																	<img id="imageTH" class="thumb imageThumb" src="../../images/sparepartimg/<?php echo $row['ad_image_name']; ?>"/>
+																	<img  id="imageTH" class="thumb imageThumb" src="../../images/sparepartimg/<?php echo $row['ad_image_name']; ?>" data-id="<?php echo $row['ad_image_name']; ?>"/>
 																</div>
 																<div class="FileNameCaptionStyle">honda-cb-unicorn-150-pearl-siena-red.png</div>
 															</li>
@@ -363,9 +363,37 @@ if (isset($_POST['editad'])) {
 	}
 }
 
+//get image miime type
+function getMimeType($img='')
+{
+$typeString = null;
+$typeInt = exif_imagetype($img);
+switch($typeInt) {
+  case IMG_GIF:
+    return $typeString = 'image/gif';
+    break;
+  case IMG_JPG:
+    return $typeString = 'image/jpg';
+    break;
+  case IMG_JPEG:
+    return $typeString = 'image/jpeg';
+    break;
+  case IMG_PNG:
+    return $typeString = 'image/png';
+    break;
+  case IMG_WBMP:
+    return $typeString = 'image/wbmp';
+    break;
+  case IMG_XPM:
+    return $typeString = 'image/xpm';
+    break;
+  default: 
+    return $typeString = 'unknown';
+
+}
+}
 ?>
 <script type="text/javascript">
-
 		//get content of loaded image
 		// var img = document.getElementById('imageTH'); 
 
@@ -422,7 +450,7 @@ if (isset($_POST['editad'])) {
                 fileReader.onload = (function (readerEvt) {
                 	return function (e) {
                 		dimensionValidation(e).then(function () {
-                			console.log('in promise')
+                			// console.log('in promise')
                 			if (validated) {
                                 //Apply the validation rules for attachments upload
                                 ApplyFileValidationRules(readerEvt)
@@ -455,13 +483,13 @@ if (isset($_POST['editad'])) {
                 image.onload = function () {
                 	var height = this.height;
                 	var width = this.width;
-                	console.log('h', height)
-                	console.log('w', width)
+                	// console.log('h', height)
+                	// console.log('w', width)
                 	if (height < 300 || width < 300) {
-                		console.log('v1', validated);
+                		// console.log('v1', validated);
                 		validated = false;
-                		console.log('v2', validated);
-                		console.log("You cannot upload a file smaller that 300x300 px");
+                		// console.log('v2', validated);
+                		// console.log("You cannot upload a file smaller that 300x300 px");
                 		document.getElementById("empty").innerHTML = "You cannot upload a file smaller that 300x300 px";
                 		e.preventDefault();
 
@@ -496,9 +524,10 @@ if (isset($_POST['editad'])) {
         jQuery(function ($) {
         	$('div').on('click', '.img-wrap .close', function () {
         		var id = $(this).closest('.img-wrap').find('img').data('id');
-
+        		// console.log(id);
                 //to remove the deleted item from array
                 var elementPos = AttachmentArray.map(function (x) { return x.FileName; }).indexOf(id);
+                // console.log(elementPos);
                 if (elementPos !== -1) {
                 	AttachmentArray.splice(elementPos, 1);
                 }
@@ -527,7 +556,7 @@ if (isset($_POST['editad'])) {
         //Apply the validation rules for attachments upload
         function ApplyFileValidationRules(readerEvt)
         {
-        	console.log(readerEvt);
+        	// console.log(readerEvt);
             //To check file type according to upload conditions
             if (CheckFileType(readerEvt.type) == false) {
             	document.getElementById("error").innerHTML = "The file (" + readerEvt.name + ") does not match the upload conditions, You can only upload jpg/png/gif files";
@@ -608,7 +637,7 @@ if (isset($_POST['editad'])) {
 
         //Render attachments thumbnails.
         function RenderThumbnail(e, readerEvt){
-        	console.log(validated);
+        	// console.log(validated);
         	if (!validated) {
         		return;
         	}
@@ -641,11 +670,47 @@ if (isset($_POST['editad'])) {
         		MimeType: readerEvt.type,
         		Content: e.target.result.split("base64,")[1],
         		FileSizeInBytes: readerEvt.size,
+        		ArrayType : "New",
         	};
         	arrCounter = arrCounter + 1;
         	
         }
 
+
+        <?php
+		$sqlimageprev = "SELECT * FROM post_ad_images WHERE ad_id = ?";
+		$stmt = mysqli_stmt_init($conn);
+		if(!mysqli_stmt_prepare($stmt, $sqlimageprev))
+		{
+			echo "SQL statement failed";
+			exit();
+		}
+		else
+		{
+			mysqli_stmt_bind_param($stmt, 's', $ad_id);
+			mysqli_stmt_execute($stmt);
+			$result = mysqli_stmt_get_result($stmt);
+			//<?php echo $row['ad_image_name']; 
+			while ($row = mysqli_fetch_assoc($result)) {
+		?>
+		AttachmentArray[arrCounter] =
+    	{
+    		AttachmentType: 1,
+    		ObjectType: 1,
+    		FileName: '<?php echo $row['ad_image_name'] ?>',
+    		FileDescription: "Attachment",
+    		NoteText: "",
+    		MimeType: '<?php echo getMimeType('../../images/sparepartimg/'.$row['ad_image_name']) ?>',
+    		Content: '<?php echo base64_encode(file_get_contents('../../images/sparepartimg/'.$row['ad_image_name'])) ?>',
+    		FileSizeInBytes: <?php echo filesize('../../images/sparepartimg/'.$row['ad_image_name']) ?>,
+    		ArrayType : "Old",
+    	};
+    	arrCounter = arrCounter + 1;
+		
+		<?php }
+		}
+		?>
+		// console.log(AttachmentArray);
         $(document).ready(function (e) {
         	$("#bkform").on('submit',(function(e) {
         		e.preventDefault();
