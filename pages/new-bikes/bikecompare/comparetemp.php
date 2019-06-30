@@ -1,4 +1,8 @@
 <?php
+if (!isset($_GET['bike1']) || !isset($_GET['bike2'])) {
+	header("Location: /BikeLabs/404-page.php");
+}
+else{
 include_once '../../../includes/header.php';
 include_once '../../../includes/dbh.inc.php';
 
@@ -7,6 +11,15 @@ $stmt = mysqli_stmt_init($conn);
 
 $bike1 = $_GET['bike1'];
 $bike2 = $_GET['bike2'];
+$query = mysqli_query($conn, "select * from bikespecs inner join (select bike_spec_id from bikespecs where bike_id IN ({$bike1}, {$bike2}) having count(distinct bike_id ) = 2) t on t.bike_spec_id = bikespecs.bike_spec_id");
+
+if (!$query)
+{
+    die('Error: ' . mysqli_error($conn));
+}
+
+if(mysqli_num_rows($query) > 0)
+{
 
 $sql = "SELECT * FROM bikespecs WHERE bike_id = {$bike1} OR bike_id = {$bike2};";
 
@@ -100,8 +113,8 @@ else
 							{
 								?>
 								<td class="" style="width: 30%;padding: 30px;">
-									<img src="/BikeLabs/images/sparepartimg/<?php echo $row2['bike_image_name']; ?>" style="border:3px solid black;border-radius: 4px;"> <br><br>
-									<p style="text-align: center;"><?php echo $bike1Name; ?></p>
+									<img src="/BikeLabs/images/sparepartimg/<?php echo $row2['bike_image_name']; ?>" style="border:2px solid black;border-radius: 4px;width:100%;height: 290px !important;"> <br><br>
+									<h5 style="text-align: center;"><?php echo $bike1Name; ?></h5>
 								</td>
 								<?php 
 							}
@@ -109,8 +122,8 @@ else
 							{
 								?>
 								<td class="" style="width: 30%;padding: 30px;">
-									<img src="/BikeLabs/images/sparepartimg/<?php echo $row2['bike_image_name']; ?>" style="border:3px solid black;border-radius: 4px;"> <br><br>
-									<p style="text-align: center;"><?php echo $bike2Name; ?></p>
+									<img src="/BikeLabs/images/sparepartimg/<?php echo $row2['bike_image_name']; ?>" style="border:2px solid black;border-radius: 4px;width:100%;height: 290px !important;"> <br><br>
+									<h5 style="text-align: center;"><?php echo $bike2Name; ?></h5>
 								</td>
 								<?php 
 							}
@@ -123,55 +136,64 @@ else
 		<table class="table table-bordered table-striped" style="width:100%">
 			<col style="width:20%" span="4" />
 			<tr>
-				<th>Engine Type</th>
+				<th><h6>Engine Type</h6></th>
 				<td><p style="text-align: center;"><?php echo $bike1eng; ?></p></td>
 				<td><p style="text-align: center;"><?php echo $bike2eng; ?></p></td>
 			</tr>
 			<tr>
-				<th>Bore & Stroke</th>
+				<th><h6>Bore & Stroke</h6></th>
 				<td><p style="text-align: center;"><?php echo $bike1bore_str; ?></p></td>
 				<td><p style="text-align: center;"><?php echo $bike2bore_str; ?></p></td>
 			</tr>
 			<tr>
-				<th>Transmission</th>
+				<th><h6>Transmission</h6></th>
 				<td><p style="text-align: center;"><?php echo $bike1trans; ?></p></td>
 				<td><p style="text-align: center;"><?php echo $bike2trans; ?></p></td>
 			</tr>
 			<tr>
-				<th>Starting</th>
+				<th><h6>Starting</h6></th>
 				<td><p style="text-align: center;"><?php echo $bike1starting; ?></p></td>
 				<td><p style="text-align: center;"><?php echo $bike2starting; ?></p></td>
 			</tr>
 			<tr>
-				<th>Frame</th>
+				<th><h6>Frame</h6></th>
 				<td><p style="text-align: center;"><?php echo $bike1frame; ?></p></td>
 				<td><p style="text-align: center;"><?php echo $bike2frame; ?></p></td>
 			</tr>
 			<tr>
-				<th>Dimension (Lxwxh)</th>
+				<th><h6>Dimension (Lxwxh)</h6></th>
 				<td><p style="text-align: center;"><?php echo $bike1dimensions; ?></p></td>
 				<td><p style="text-align: center;"><?php echo $bike2dimensions; ?></p></td>
 			</tr>
 			<tr>
-				<th>Petrol Capacity</th>
+				<th><h6>Petrol Capacity</h6></th>
 				<td><p style="text-align: center;"><?php echo $bike1petrol_cap; ?></p></td>
 				<td><p style="text-align: center;"><?php echo $bike2petrol_cap; ?></p></td>
 			</tr>
 			<tr>
-				<th>Tyre at Front</th>
+				<th><h6>Tyre at Front</h6></th>
 				<td><p style="text-align: center;"><?php echo $bike1f_tyre; ?></p></td>
 				<td><p style="text-align: center;"><?php echo $bike2f_tyre; ?></p></td>
 			</tr>
 			<tr>
-				<th>Tyre at Back</th>
+				<th><h6>Tyre at Back</h6></th>
 				<td><p style="text-align: center;"><?php echo $bike1b_tyre; ?></p></td>
 				<td><p style="text-align: center;"><?php echo $bike2b_tyre; ?></p></td>
 			</tr>
 			<tr>
-				<th>Dry Weight</th>
+				<th><h6>Dry Weight</h6></th>
 				<td><p style="text-align: center;"><?php echo $bike1dry_weight; ?></p></td>
 				<td><p style="text-align: center;"><?php echo $bike2dry_weight; ?></p></td>
 			</tr>
 		</table>
 	</div>
 </section>
+ <?php   
+}
+else
+{?>
+<p>no dice</p>
+<?php
+	}
+}
+?>
