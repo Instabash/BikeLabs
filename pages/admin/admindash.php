@@ -28,65 +28,7 @@ include '../../includes/dbh.inc.php';
 		<div class="pb-5" >
 			<h4>Admin panel</h4>
 		</div>
-		<div class="row">
-			<div class="col-md-3 col-sm-6 col-xs-12">
-				<div class="info-box">
-					<span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
-
-					<div class="info-box-content">
-						<span class="info-box-text">CPU Traffic</span>
-						<span class="info-box-number">90<small>%</small></span>
-					</div>
-					<!-- /.info-box-content -->
-				</div>
-				<!-- /.info-box -->
-			</div>
-			<!-- /.col -->
-			<div class="col-md-3 col-sm-6 col-xs-12">
-				<div class="info-box">
-					<span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
-
-					<div class="info-box-content">
-						<span class="info-box-text">Likes</span>
-						<span class="info-box-number">41,410</span>
-					</div>
-					<!-- /.info-box-content -->
-				</div>
-				<!-- /.info-box -->
-			</div>
-			<!-- /.col -->
-
-			<!-- fix for small devices only -->
-			<div class="clearfix visible-sm-block"></div>
-
-			<div class="col-md-3 col-sm-6 col-xs-12">
-				<div class="info-box">
-					<span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
-
-					<div class="info-box-content">
-						<span class="info-box-text">Sales</span>
-						<span class="info-box-number">760</span>
-					</div>
-					<!-- /.info-box-content -->
-				</div>
-				<!-- /.info-box -->
-			</div>
-			<!-- /.col -->
-			<div class="col-md-3 col-sm-6 col-xs-12">
-				<div class="info-box">
-					<span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
-
-					<div class="info-box-content">
-						<span class="info-box-text">New Members</span>
-						<span class="info-box-number">2,000</span>
-					</div>
-					<!-- /.info-box-content -->
-				</div>
-				<!-- /.info-box -->
-			</div>
-			<!-- /.col -->
-		</div>
-		<div class="row pt-5" style="width: 100%;">
+		<div class="row pt-2" style="width: 100%;">
 			<!-- Left col -->
 			<div class="col-sm-6 ">
 				<div class="box box-info">
@@ -108,7 +50,7 @@ include '../../includes/dbh.inc.php';
 								<tbody>
 									<?php
 
-									$sql = "SELECT * FROM order_table WHERE order_status = 'Pending approval' LIMIT 5;";
+									$sql = "SELECT * FROM order_table WHERE order_status = 'Processing' ORDER BY order_date DESC LIMIT 5;";
 									$stmt = mysqli_stmt_init($conn);
 									if (!mysqli_stmt_prepare($stmt, $sql)) 
 									{
@@ -138,7 +80,7 @@ include '../../includes/dbh.inc.php';
 												{
 													?>
 													<tr>
-														<td><a href="pages/examples/invoice.html"><?php echo $row['order_id']; ?></a></td>
+														<td><span class="label label-success"><?php echo $row['order_id']; ?></span></td>
 														<td><?php echo $row['order_type']; ?></td>
 														<td><span class="label label-success"><?php echo $row['order_status']; ?></span></td>
 														<td><?php echo $row['order_date']; ?></td>
@@ -198,7 +140,7 @@ include '../../includes/dbh.inc.php';
 											
 											?>
 											<tr>
-												<td><a href="pages/examples/invoice.html"><?php echo $row['uidUsers']; ?></a></td>
+												<td><span class="label label-success"><?php echo $row['uidUsers']; ?></span></td>
 												<td><?php echo $row['User_Address']; ?></td>
 												<td><span class="label label-success"><?php echo $row['User_Contact']; ?></span></td>
 												<td><?php echo $row['emailUsers']; ?></td>
