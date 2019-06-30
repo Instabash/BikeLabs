@@ -169,10 +169,14 @@ include_once 'includes/header.php';
 							</div>
 							<div id="collapse_0" class="accordion-body in collapse" style="">
 								<ul style="list-style: none; padding: 10px;">
-									<li>Remove jump cover</li>
-									<li>Reflectors</li>
-									<li>Remove mudguard</li>
-									<li>Body paint (User defined)</li>
+									<?php
+									$sql = "SELECT * FROM modaltpackages WHERE map_pkg_1 = 1";
+									$result = mysqli_query($conn, $sql);
+									while ($row = mysqli_fetch_assoc($result)) 
+									{?>
+										<li><?php echo $row['map_name']; ?></li>
+									<?php }
+									?>
 								</ul>
 							</div>
 						</div>
@@ -192,12 +196,14 @@ include_once 'includes/header.php';
 							</div>
 							<div id="collapse_0" class="accordion-body in collapse" style="">
 								<ul style="list-style: none; padding: 10px;">
-									<li>Remove jump cover</li>
-									<li>Reflectors</li>
-									<li>HID Lights</li>
-									<li>Remove mudguard</li>
-									<li>Add theme (User defined)</li>
-									<li>Body paint (User defined)</li>
+									<?php
+									$sql = "SELECT * FROM modaltpackages WHERE map_pkg_2 = 1";
+									$result = mysqli_query($conn, $sql);
+									while ($row = mysqli_fetch_assoc($result)) 
+									{?>
+										<li><?php echo $row['map_name']; ?></li>
+									<?php }
+									?>
 								</ul>
 							</div>
 						</div>
@@ -218,14 +224,14 @@ include_once 'includes/header.php';
 									</div>
 									<div id="collapse_0" class="accordion-body in collapse" style="">
 										<ul style="list-style: none; padding: 10px;">
-											<li>Remove jump cover</li>
-											<li>Reflectors</li>
-											<li>HID Lights</li>
-											<li>Remove mudguard</li>
-											<li>Short meter</li>
-											<li>Remove headlight holders</li>
-											<li>Add theme (User defined)</li>
-											<li>Body paint (User defined)</li>
+											<?php
+											$sql = "SELECT * FROM modaltpackages WHERE map_pkg_3 = 1";
+											$result = mysqli_query($conn, $sql);
+											while ($row = mysqli_fetch_assoc($result)) 
+											{?>
+												<li><?php echo $row['map_name']; ?></li>
+											<?php }
+											?>
 										</ul>
 									</div>
 								</div>

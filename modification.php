@@ -4,6 +4,7 @@ include 'includes/restrictions.inc.php';
 logged_in();
 $title = 'Modification';
 include_once 'includes/header.php';
+include_once 'includes/dbh.inc.php';
 ?>
 <!-- Modify section -->
 <section id="modify" class="section modsection content">
@@ -65,10 +66,14 @@ include_once 'includes/header.php';
 					<h5>Package 1</h5>
 					<div class="packageList" style="height: 250px;">
 						<ul class="list-group"> 
-							<li>Remove jump cover</li>
-							<li>Reflectors</li>
-							<li>Remove mudguard</li>
-							<li>Body paint (User defined)</li>
+							<?php
+							$sql = "SELECT * FROM modaltpackages WHERE map_pkg_1 = 1";
+							$result = mysqli_query($conn, $sql);
+							while ($row = mysqli_fetch_assoc($result)) 
+							{?>
+								<li><?php echo $row['map_name']; ?></li>
+							<?php }
+							?>
 						</ul>
 					</div>
 					<div style="">
@@ -90,12 +95,14 @@ include_once 'includes/header.php';
 					<h5>Package 2</h5>
 					<div class="packageList" style="height: 250px;">
 						<ul class="list-group">
-							<li>Remove jump cover</li>
-							<li>Reflectors</li>
-							<li>HID Lightsgs</li>
-							<li>Remove mudguard</li>
-							<li>Add theme (User defined)</li>
-							<li>Body paint (User defined)</li>
+							<?php
+							$sql = "SELECT * FROM modaltpackages WHERE map_pkg_2 = 1";
+							$result = mysqli_query($conn, $sql);
+							while ($row = mysqli_fetch_assoc($result)) 
+							{?>
+								<li><?php echo $row['map_name']; ?></li>
+							<?php }
+							?>
 						</ul>
 					</div>
 					<div style="">
@@ -114,14 +121,14 @@ include_once 'includes/header.php';
 					<h5>Package 3</h5>
 					<div class="packageList" style="height: 250px;">
 						<ul class="list-group">
-							<li>Remove jump cover</li>
-							<li>Reflectors</li>
-							<li>HID Lights</li>
-							<li>Remove mudguard</li>
-							<li>Short meter</li>
-							<li>Remove headlight holders</li>
-							<li>Body paint (User defined)</li>
-							<li>Add theme (User defined)</li>
+							<?php
+							$sql = "SELECT * FROM modaltpackages WHERE map_pkg_3 = 1";
+							$result = mysqli_query($conn, $sql);
+							while ($row = mysqli_fetch_assoc($result)) 
+							{?>
+								<li><?php echo $row['map_name']; ?></li>
+							<?php }
+							?>
 						</ul>
 					</div>
 					<div>
@@ -144,15 +151,15 @@ include_once 'includes/header.php';
 					<input type="radio" name="radiopkg" id="togglecustom" value="2">
 				</label><br>
 				<div class="customparts"><br>
-					<select style="width: 100%" class="js-example-basic-multiple js-states form-control select2-hidden-accessible" multiple="multiple"  tabindex="-1" aria-hidden="true" name="select2[]" id="selectbox">
-						<option>Remove jump cover</option>
-						<option>Reflectors</option>
-						<option>HID Lights</option>
-						<option>Remove mudguard</option>
-						<option>Short meter</option>
-						<option>Remove headlight holders</option>
-						<option>Body paint (User defined)</option>
-						<option>Add theme (User defined)</option>
+					<select style="width: 100%" class="js-example-basic-multiple js-states form-control select2-hidden-accessible" multiple="multiple"  tabindex="-1" aria-hidden="true" name="select2[]" id="selectbox">\
+						<?php
+							$sql = "SELECT * FROM modaltpackages WHERE map_pkg_3 = 1";
+							$result = mysqli_query($conn, $sql);
+							while ($row = mysqli_fetch_assoc($result)) 
+							{?>
+								<option><?php echo $row['map_name']; ?></option>
+							<?php }
+						?>
 					</select>
 				</div>
 			</div><br><br>

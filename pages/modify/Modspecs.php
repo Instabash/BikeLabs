@@ -4,6 +4,7 @@ include '../../includes/restrictions.inc.php';
 logged_in();
 $title = 'Modification specifications';
 include_once '../../includes/header.php';
+include_once '../../includes/dbh.inc.php';
 ?>
 <?php
 if (isset($_GET['pkg'])) {
@@ -20,14 +21,21 @@ if (isset($_GET['pkg'])) {
 							<h6>Please specify any further modification you would like to implement from the package you have selected.</h6><br>
 							<div class="border-dark border border-new" style="padding: 10px;">
 							<?php
-							$pkg1 = array(
-								"Remove jump cover","Reflectors","Remove mudguard","Body paint (User defined):"
-							);
+							// $pkg1 = array(
+							// 	"Remove jump cover","Reflectors","Remove mudguard","Body paint (User defined):"
+							// );
+							$sql = "SELECT * FROM modaltpackages WHERE map_pkg_1 = 1";
+							$result = mysqli_query($conn, $sql);
+							$pkg1 = array();
+							while ($row = mysqli_fetch_assoc($result)) 
+							{
+								$pkg1[] = $row['map_name'];
+							}
 							foreach ($pkg1 as $key) {?>
 								<div>
 									<label style="width: 200px;left: -20px;display: inline-block;vertical-align: middle;"><?php echo $key?></label><br><br>
 									<?php 
-									if ($key == "Body paint (User defined):") {?>
+									if ($key == "Body paint (User defined)") {?>
 										<div class="pb-4">
 											<select class="js-example-responsive" name="modpaintselect" style="width: 50%">
 												<option>Black</option>
@@ -50,15 +58,22 @@ if (isset($_GET['pkg'])) {
 							<h6>Please specify what modification you would like to implement from the package you have selected.</h6><br>
 							<div class="border-dark border border-new" style="padding: 10px;">
 							<?php
-							$pkg2 = array(
-								"Remove jump cover","Reflectors","HID Lights","Remove mudguard","Add theme (User defined):","Body paint (User defined):"
-							);
+							// $pkg2 = array(
+							// 	"Remove jump cover","Reflectors","HID Lights","Remove mudguard","Add theme (User defined):","Body paint (User defined):"
+							// );
+							$sql = "SELECT * FROM modaltpackages WHERE map_pkg_2 = 1";
+							$result = mysqli_query($conn, $sql);
+							$pkg1 = array();
+							while ($row = mysqli_fetch_assoc($result)) 
+							{
+								$pkg2[] = $row['map_name'];
+							}
 							foreach ($pkg2 as $key) {?>
 								<div class="">
 									<label style="width: 200px;left: -20px;display: inline-block;vertical-align: middle;"><?php echo $key?></label><br><br>
 									<?php 
 
-									if ($key == "Body paint (User defined):") {?>
+									if ($key == "Body paint (User defined)") {?>
 										<div class="pb-4">
 											<select class="js-example-responsive" name="modpaintselect" style="width: 50%">
 												<option>Black</option>
@@ -72,7 +87,7 @@ if (isset($_GET['pkg'])) {
 											</select>
 										</div>
 									<?php }
-									if ($key == "Add theme (User defined):") {?>
+									if ($key == "Add theme (User defined)") {?>
 										<div class="pb-4">
 											<select class="js-example-responsive" name="modthemeselect" style="width: 50%">
 												<option>Flaming skulls theme</option>
@@ -93,16 +108,23 @@ if (isset($_GET['pkg'])) {
 						<h6>Please specify what modification you would like to implement from the package you have selected.</h6><br>
 						<div class="border-dark border border-new" style="padding: 10px;">
 						<?php
-						$pkg3 = array(
-							"Remove jump cover","Reflectors","HID Lights","Remove mudguard","Short meter","Remove headlight holders","Body paint (User defined):","Add theme (User defined):"
-						);
+						// $pkg3 = array(
+						// 	"Remove jump cover","Reflectors","HID Lights","Remove mudguard","Short meter","Remove headlight holders","Body paint (User defined):","Add theme (User defined):"
+						// );
+						$sql = "SELECT * FROM modaltpackages WHERE map_pkg_3 = 1";
+							$result = mysqli_query($conn, $sql);
+							$pkg1 = array();
+							while ($row = mysqli_fetch_assoc($result)) 
+							{
+								$pkg3[] = $row['map_name'];
+							}
 						foreach ($pkg3 as $key) 
 						{
 							?>
 							<div>
 								<label style="width: 200px;left: -20px;display: inline-block;vertical-align: middle;"><?php echo $key?></label><br><br>
 								<?php 
-								if ($key == "Body paint (User defined):") 
+								if ($key == "Body paint (User defined)") 
 								{
 									?>
 									<div class="pb-4">
@@ -119,7 +141,7 @@ if (isset($_GET['pkg'])) {
 									</div>
 								<?php 
 								}
-								if ($key == "Add theme (User defined):") 
+								if ($key == "Add theme (User defined)") 
 								{
 								?>
 									<div class="pb-4">
@@ -144,6 +166,7 @@ if (isset($_GET['pkg'])) {
 							<h5>Please specify what modification you would like to implement from the package you have selected.</h5><br>
 						<div class="border-dark border border-new" style="padding: 10px;">
 							<?php 
+							
 							foreach($_SESSION['pkg4'] as $key=>$value)
 								{?>
 									<label style="width: 200px;left: -20px;display: inline-block;vertical-align: middle;"><?php echo $value?></label><br><br>
