@@ -11,6 +11,10 @@ redirect();
 <section id="spparts" class="section sppartsection content">
 	<div class="container">
 		<h3>New motorbikes</h3> <br>
+		<form class="example" action="includes/search.inc.php" method="post">
+			<input type="text" placeholder="Search.." name="search">
+			<button type="submit" name="submit-search-nb"><i class="fa fa-search"></i></button>
+		</form>
 		<div class="search-page-new">
 			<div class="row">
 				<div class="mt-4 col-md-2 used-car-refine-search">
@@ -155,8 +159,10 @@ redirect();
 						</div>
 					</div>
 				</div>
+
 				<div class="col-md-10">
 					<div class="row">
+						
 						<?php
 						if (isset($_GET['pageno'])) {
 							$pageno = $_GET['pageno'];
@@ -171,6 +177,59 @@ redirect();
 
 						$total_rows = mysqli_fetch_array($result)[0];
 						$total_pages = ceil($total_rows / $no_of_records_per_page);		
+						?>
+						<?php
+						if (isset($_GET['s'])) 
+						{
+							$stmt = mysqli_stmt_init($conn);
+							$query = $_GET['s'];
+							$searchsql = "SELECT * FROM bikes WHERE bike_brand LIKE '%$query%' OR bike_model LIKE '%$query%' OR bikeyear LIKE '%$query%' OR bike_price LIKE '%$query%' OR bike_desc LIKE '%$query%' LIMIT {$offset}, {$no_of_records_per_page};";
+							$resultsearch = mysqli_query($conn, $searchsql);
+							$queryResult = mysqli_num_rows($resultsearch);
+							if ($queryResult > 0) { 
+								while ($row = mysqli_fetch_assoc($resultsearch)) 
+								{
+								$imgnamesqlprice = "SELECT bike_image_name, MIN(bike_image_thumb) FROM b_images WHERE bike_id = {$row['bike_id']} GROUP BY bike_id;";
+								if(!mysqli_stmt_prepare($stmt, $imgnamesqlprice))
+								{
+									echo "SQL statement failed";
+								}
+								else
+								{
+									mysqli_stmt_execute($stmt);
+									$result1 = mysqli_stmt_get_result($stmt);
+
+									while ($row1 = mysqli_fetch_assoc($result1)) 
+										{
+											?>
+											<div class="col-md-4" id="myUL">
+												<a href="pages/new-bikes/new-bikes.php?bikeid=<?php echo $row['bike_id'] ?>">
+													<div class="product-item">
+														<img src="images/sparepartimg/<?php echo $row1['bike_image_name'] ?>"  style="height: 200px !important;width: 100% !important;">
+														<div class="nigger">
+															<label class="productName"><?php echo $row['bike_brand'] . " " . $row['bike_model'] . " " . $row['bikeyear']; ?></label><br>
+															<label>Price:</label>
+															<label class="price"><?php echo $row['bike_price'] ?></label>
+														</div>
+													</div>
+												</a>
+											</div>
+											<?php
+										}
+									}
+								}
+							} 
+							else 
+							{ 
+								?>
+								<div class="pt-5 pl-5" id="noresult">
+									<label>Nothing matched your query</label>
+								</div>
+								<?php
+							}
+						}
+						else
+						{
 						?>
 						<?php 
 						$spaartsql = "SELECT * FROM bikes LIMIT {$offset}, {$no_of_records_per_page};";
@@ -662,11 +721,14 @@ redirect();
 																<li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
 															</ul>
 														</div>
-													<?php	
-												}
-											?>
-					</div>
-				</div>
+														<?php	
+													}
+												?>
+							</div>
+						</div>
+					<?php
+					}
+				?>
 			</div>
 		</div>
 	</div>	

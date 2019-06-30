@@ -10,6 +10,10 @@ redirect();
 <section id="spparts" class="section sppartsection content">
 	<div class="container">
 		<h3>New Spareparts</h3> <br>
+		<form class="example" action="includes/search.inc.php" method="post">
+			<input type="text" placeholder="Search.." name="search">
+			<button type="submit" name="submit-search-usp"><i class="fa fa-search"></i></button>
+		</form>
 		<div class="search-page-new">
 			<div class="row">
 				<div class="mt-3 col-md-2 used-car-refine-search">
@@ -73,6 +77,7 @@ redirect();
 				</div>
 				<div class="col-md-10">
 					<div class="row">
+						
 						<?php
 						if (isset($_GET['pageno'])) {
 							$pageno = $_GET['pageno'];
@@ -87,6 +92,59 @@ redirect();
 
 						$total_rows = mysqli_fetch_array($result)[0];
 						$total_pages = ceil($total_rows / $no_of_records_per_page);		
+						?>
+						<?php
+						if (isset($_GET['s'])) 
+						{
+							$stmt = mysqli_stmt_init($conn);
+							$query = $_GET['s'];
+							$searchsql = "SELECT * FROM post_ad WHERE ad_title LIKE '%$query%' OR ad_description LIKE '%$query%' OR ad_price LIKE '%$query%' OR bike_make LIKE '%$query%' AND (ad_type = 'sparepart') ORDER BY `ad_date` DESC LIMIT {$offset}, {$no_of_records_per_page};";
+							$resultsearch = mysqli_query($conn, $searchsql);
+							$queryResult = mysqli_num_rows($resultsearch);
+							if ($queryResult > 0) { 
+								while ($row = mysqli_fetch_assoc($resultsearch)) 
+								{
+									$imgnamesqlprice = "SELECT ad_image_name, MIN(ad_image_thumb) FROM post_ad_images WHERE ad_id = {$row['ad_id']} GROUP BY ad_id;";
+
+									if(!mysqli_stmt_prepare($stmt, $imgnamesqlprice))
+									{
+										echo "SQL statement failed";
+									}
+									else
+									{
+										mysqli_stmt_execute($stmt);
+										$result1 = mysqli_stmt_get_result($stmt);
+
+										while ($row1 = mysqli_fetch_assoc($result1)) 
+											{?>
+												<div class="col-md-4">
+													<a href="pages/spareparts/spareparttemp.php?partid=<?php echo $row['ad_id'] ?>">
+														<div class="product-item">
+															<img src="images/sparepartimg/<?php echo $row1['ad_image_name'] ?>" style="height: 200px !important;width: 100% !important;">
+															<div>
+																<label class="productName"><?php echo $row['ad_title'] ?></label><br>
+																<label><b>Price:</b></label>
+																<label class="price"><?php echo $row['ad_price'] ?> Rs.</label>
+															</div>
+														</div>
+													</a>
+												</div>
+												<?php
+											}
+										}
+								}
+							} 
+							else 
+							{ 
+								?>
+								<div class="pt-5 pl-5" id="noresult">
+									<label>Nothing matched your query</label>
+								</div>
+								<?php
+							}
+						}
+						else
+						{
 						?>
 						<?php 
 						$spaartsql = "SELECT * FROM post_ad WHERE ad_type = 'sparepart' ORDER BY `ad_date` DESC LIMIT {$offset}, {$no_of_records_per_page};";
@@ -200,6 +258,7 @@ redirect();
 											}
 										}			
 									}
+								}
 								}
 								?>
 								<div class="container pt-5">
