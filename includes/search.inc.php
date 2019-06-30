@@ -1,5 +1,5 @@
 <?php
-
+include_once 'dbh.inc.php';
 if(isset($_POST['search-sub']) || isset($_POST['search-parts']) || isset($_POST['search-con']) || isset($_POST['search-parts-used']))
 {
 	if (!empty($_POST['fromval'])) {
@@ -60,4 +60,20 @@ if(isset($_POST['search-sub']) || isset($_POST['search-parts']) || isset($_POST[
 	header("Location: ../spareparts.php?" . $query);
 	}	
 
+}
+elseif (isset($_POST['submit-search-nb'])) {
+	$query = mysqli_real_escape_string($conn, $_POST['search']);
+	header("Location: ../newbikes.php?s=" . $query);
+}
+elseif (isset($_POST['submit-search-nsp'])) {
+	$query = mysqli_real_escape_string($conn, $_POST['search']);
+	header("Location: ../newspareparts.php?s=" . $query);
+}
+elseif (isset($_POST['submit-search-usp'])) {
+	$query = mysqli_real_escape_string($conn, $_POST['search']);
+	header("Location: ../spareparts.php?s=" . $query);
+}
+elseif (isset($_POST['submit-search-ub'])) {
+	$query = mysqli_real_escape_string($conn, $_POST['search']);
+	header("Location: ../usedbikes.php?s=" . $query);
 }
