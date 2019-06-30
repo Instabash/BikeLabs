@@ -218,7 +218,8 @@ $stmt = mysqli_stmt_init($conn);
 										<div class="formrowad p-2">
 											<label>Make</label>
 											<div class="select-wrap mb-2">
-												<select class="custom-select" name="category" id="category">
+												<!-- <select class="custom-select" name="category" id="category"> -->
+												<select class="js-example-responsive" name="category" id="category" style="width: 100%">
 													<option value="Honda">Honda</option>
 													<option value="SuperPower">SuperPower</option>
 													<option value="Unique">Unique</option> 
@@ -228,7 +229,8 @@ $stmt = mysqli_stmt_init($conn);
 										<div class="formrowad p-2">
 											<label>Make</label>
 											<div class="select-wrap mb-2">
-												<select class="custom-select" name="choices" id="choices">
+												<!-- <select class="custom-select" name="choices" id="choices"> -->
+												<select class="js-example-responsive" name="choices" id="choices" style="width: 100%">
 													<!-- populated using JavaScript -->
 												</select>
 											</div>
@@ -471,7 +473,12 @@ return;
 	appendDataToSelect(rel, data);
 }());
 </script>
-
+<script>
+	$(".js-example-responsive").select2({
+		minimumResultsForSearch: -1,
+    	width: 'resolve' // need to override the changed default
+	});
+</script>
 <?php
 include_once '../../includes/footer.php';
 ?>
