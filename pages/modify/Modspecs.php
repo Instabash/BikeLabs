@@ -21,10 +21,7 @@ if (isset($_GET['pkg'])) {
 							<h6>Please specify any further modification you would like to implement from the package you have selected.</h6><br>
 							<div class="border-dark border border-new" style="padding: 10px;">
 							<?php
-							// $pkg1 = array(
-							// 	"Remove jump cover","Reflectors","Remove mudguard","Body paint (User defined):"
-							// );
-							$sql = "SELECT * FROM modaltpackages WHERE map_pkg_1 = 1";
+							$sql = "SELECT * FROM modaltpackages WHERE map_pkg_1 = 1 AND map_type = 'modification'";
 							$result = mysqli_query($conn, $sql);
 							$pkg1 = array();
 							while ($row = mysqli_fetch_assoc($result)) 
@@ -58,10 +55,7 @@ if (isset($_GET['pkg'])) {
 							<h6>Please specify what modification you would like to implement from the package you have selected.</h6><br>
 							<div class="border-dark border border-new" style="padding: 10px;">
 							<?php
-							// $pkg2 = array(
-							// 	"Remove jump cover","Reflectors","HID Lights","Remove mudguard","Add theme (User defined):","Body paint (User defined):"
-							// );
-							$sql = "SELECT * FROM modaltpackages WHERE map_pkg_2 = 1";
+							$sql = "SELECT * FROM modaltpackages WHERE map_pkg_2 = 1 AND map_type = 'modification'";
 							$result = mysqli_query($conn, $sql);
 							$pkg1 = array();
 							while ($row = mysqli_fetch_assoc($result)) 
@@ -111,7 +105,7 @@ if (isset($_GET['pkg'])) {
 						// $pkg3 = array(
 						// 	"Remove jump cover","Reflectors","HID Lights","Remove mudguard","Short meter","Remove headlight holders","Body paint (User defined):","Add theme (User defined):"
 						// );
-						$sql = "SELECT * FROM modaltpackages WHERE map_pkg_3 = 1";
+						$sql = "SELECT * FROM modaltpackages WHERE map_pkg_3 = 1 AND map_type = 'modification'";
 							$result = mysqli_query($conn, $sql);
 							$pkg1 = array();
 							while ($row = mysqli_fetch_assoc($result)) 

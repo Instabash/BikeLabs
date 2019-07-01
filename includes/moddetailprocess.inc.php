@@ -3,28 +3,28 @@ session_start();
 unset($_SESSION['modcart']);
 include_once 'dbh.inc.php';
 
-$sql = "SELECT * FROM modaltpackages WHERE map_pkg_1 = 1";
+$sql = "SELECT * FROM modaltpackages WHERE map_pkg_1 = 1 AND map_type = 'modification'";
 $result = mysqli_query($conn, $sql);
 $pkg1price = 0;
 while ($row = mysqli_fetch_assoc($result)) 
 {
 	$pkg1price += $row['map_price'];
 }
-$sql = "SELECT * FROM modaltpackages WHERE map_pkg_2 = 1";
+$sql = "SELECT * FROM modaltpackages WHERE map_pkg_2 = 1 AND map_type = 'modification'";
 $result = mysqli_query($conn, $sql);
 $pkg2price = 0;
 while ($row = mysqli_fetch_assoc($result)) 
 {
 	$pkg2price += $row['map_price'];
 }
-$sql = "SELECT * FROM modaltpackages WHERE map_pkg_3 = 1";
+$sql = "SELECT * FROM modaltpackages WHERE map_pkg_3 = 1 AND map_type = 'modification'";
 $result = mysqli_query($conn, $sql);
 $pkg3price = 0;
 while ($row = mysqli_fetch_assoc($result)) 
 {
 	$pkg3price += $row['map_price'];
 }
-$sql = "SELECT * FROM modaltpackages WHERE map_pkg_4 = 1";
+$sql = "SELECT * FROM modaltpackages WHERE map_pkg_4 = 1 AND map_type = 'modification'";
 $result = mysqli_query($conn, $sql);
 $pkg4price = 0;
 while ($row = mysqli_fetch_assoc($result)) 
@@ -42,7 +42,6 @@ if (isset($_POST['btnmod2'])) {
 	$selectedpkg = $_SESSION['packageselected'];
 	$specified = $_POST['customspecifytxtarea'];
 	if ($selectedpkg == 1) {
-		$price = 3000;
 		$paint = $_POST['modpaintselect'];
 		$_SESSION['modcart'][] = array(
 			'selectedpkg' => $selectedpkg,
@@ -53,7 +52,6 @@ if (isset($_POST['btnmod2'])) {
 		header("Location: ../addresscon.php");
 	}
 	if ($selectedpkg == 2) {
-		$price = 5000;
 		$paint = $_POST['modpaintselect'];
 		$theme = $_POST['modthemeselect'];
 		$_SESSION['modcart'][] = array(
@@ -66,7 +64,6 @@ if (isset($_POST['btnmod2'])) {
 		header("Location: ../addresscon.php");
 	}
 	if ($selectedpkg == 3) {
-		$price = 8000;
 		$paint = $_POST['modpaintselect'];
 		$theme = $_POST['modthemeselect'];
 		$_SESSION['modcart'][] = array(
@@ -90,5 +87,6 @@ if (isset($_POST['btnmod2'])) {
 			'description' => $specified,
 			'price' => $pkg4price);
 		header("Location: ../addresscon.php");
+		// echo $pkg4price;
 	}
 }

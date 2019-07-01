@@ -40,7 +40,7 @@ include '../../includes/dbh.inc.php';
                     <div class="box-body">
 
                         <div class="table-responsive pl-4">
-                            
+
                             <?php
                             if (isset($_GET['pkgmod'])) {
                                 $pkgget = $_GET['pkgmod'];
@@ -70,9 +70,9 @@ include '../../includes/dbh.inc.php';
 
                                                 <div class="row pl-4 pt-1 pb-1 border" id="" style="width: 100%;">
                                                     <div class="altright">
-                                                       <input type="text" value="<?php echo $row['map_name']; ?>" disabled style="background-color: transparent;border: none" class="textfieldToClose" name="pkgname<?php echo $row['map_id'] ?>"></input>
-                                                   </div>
-                                                   <div class="altright">
+                                                     <input type="text" value="<?php echo $row['map_name']; ?>" disabled style="background-color: transparent;border: none" class="textfieldToClose" name="pkgname<?php echo $row['map_id'] ?>"></input>
+                                                 </div>
+                                                 <div class="altright">
                                                     <input type="text" value="<?php echo $row['map_price'] ." Rs."; ?>" disabled style="background-color: transparent;border: none" class="textfieldToClose" name="pkgprice<?php echo $row['map_id'] ?>"></input>
                                                 </div>
                                                 <div class="altright">
@@ -105,12 +105,7 @@ include '../../includes/dbh.inc.php';
                                             </div>  
                                         </div>
                                         <div class="box-footer clearfix" style="padding-top: 10px;" style="padding-top: 10px;">
-                                            <!-- <input type="hidden" name="count" value="<?php echo $rowcount; ?>"> -->
-                                            <!-- <input type="submit" class="btn btn-outline-danger btn-sm" id="add<?php echo $pkgget ?>" name="add<?php echo $pkgget ?>" value="Add new part" ></input>  -->
                                             <button class="btn btn-outline-danger btn-sm" id="add" >Add new part</button>
-                                        <!-- <button class="btn btn-outline-danger btn-sm" id="edit" >Edit</button>
-                                            <button type="submit" class="btn btn-outline-danger btn-sm" id="save1" name="save" value="<?php echo $row['map_id'] ?>" style="display: none" class="remove" >Save</button> -->
-
                                         </div>
                                     </div>
                                 </form>
@@ -133,31 +128,57 @@ include '../../includes/dbh.inc.php';
                                 }
                                 $sql = "SELECT * FROM modaltpackages WHERE $queryrow = 1 AND map_type = 'alteration';";
                                 ?>
-                                <h5 class="box-title"><b>Package <?php echo $pkgget; ?></b></h5>
-                                <br><br>
-                                <?php
-                                $result = mysqli_query($conn, $sql);
-                                while ($row = mysqli_fetch_assoc($result)) 
-                                    {?>
-                                        <div class="row pl-4 pt-1 pb-1 border" style="width: 100%;">
-                                            <div class="altright">
-                                               <input type="text" value="<?php echo $row['map_name']; ?>" style="background-color: transparent;border: none" class="textfieldToClose"></input>
-                                           </div>
-                                           <div class="altright">
-                                            <input type="text" value="<?php echo $row['map_price']; ?>" style="background-color: transparent;border: none" class="textfieldToClose"></input>
+                                <form action="/BikeLabs/includes/admin-pkg-process.inc.php" method="post">
+                                    <div id="fillDiv">
+                                        <h5 class="box-title"><b>Package <?php echo $pkgget; ?></b></h5>
+                                        <br><br>
+                                        <?php
+                                        $result = mysqli_query($conn, $sql);
+                                        $rowcount=mysqli_num_rows($result);
+                                        while ($row = mysqli_fetch_assoc($result)) 
+                                            {?>
+
+                                                <div class="row pl-4 pt-1 pb-1 border" id="" style="width: 100%;">
+                                                    <div class="altright">
+                                                     <input type="text" value="<?php echo $row['map_name']; ?>" disabled style="background-color: transparent;border: none" class="textfieldToClose" name="pkgname<?php echo $row['map_id'] ?>"></input>
+                                                 </div>
+                                                 <div class="altright">
+                                                    <input type="text" value="<?php echo $row['map_price'] ." Rs."; ?>" disabled style="background-color: transparent;border: none" class="textfieldToClose" name="pkgprice<?php echo $row['map_id'] ?>"></input>
+                                                </div>
+                                                <div class="altright">
+                                                    <input type="hidden" name="pkg" value="<?php echo $pkgget?>">
+                                                    <button type="submit" class="btn btn-outline-danger btn-sm" name="removealt<?php echo $pkgget ?>" value="<?php echo $row['map_id'] ?>" class="remove" >Remove</button> 
+                                                </div>
+
+                                            </div>
+                                        <?php }
+                                        ?>
+                                        <div class="row pl-4 pt-1 pb-1 border" id="hiddenDiv" style="width: 100%;display: none">
+                                            <div style="float: left;">
+                                                <div class="altright">
+                                                    <label>Part name</label>
+                                                </div>
+                                                <div>
+                                                    <input type="text" name="txtName" class="textfieldToClose form-control mr-2" style="width: 200px;" ></input>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="altright">
+                                                    <label>Part price</label>
+                                                </div>
+                                                <div>
+                                                    <input type="text" name="txtPrice" class="textfieldToClose form-control ml-2" style="width: 200px;" ></input>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <button type="submit" name="savealt<?php echo $pkgget ?>" class="btn btn-outline-danger btn-sm mt-2">Save</button> -->
+                                            </div>  
                                         </div>
-                                        <div class="altright">
-                                            <input type="submit" class="btn btn-outline-danger btn-sm" id="remove<?php echo $pkgget ?>" value="Remove" ></input> 
+                                        <div class="box-footer clearfix" style="padding-top: 10px;" style="padding-top: 10px;">
+                                            <button class="btn btn-outline-danger btn-sm" id="add" >Add new part</button>
                                         </div>
                                     </div>
-                                <?php }
-                                ?>
-                                <div class="box-footer clearfix" style="padding-top: 10px;" style="padding-top: 10px;">
-                                    <form action="/BikeLabs/includes/admin-pkg-process.inc.php" method="post">
-                                        <input type="submit" class="btn btn-outline-danger btn-sm" id="add<?php echo $pkgget ?>" value="Add new part" ></input> 
-                                        <input type="submit" class="btn btn-outline-danger btn-sm" id="edit<?php echo $pkgget ?>" value="Edit" ></input> 
-                                    </form>
-                                </div>
+                                </form>
                                 <?php
                             }
                             else{

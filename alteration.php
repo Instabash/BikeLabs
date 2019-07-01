@@ -4,6 +4,7 @@ include 'includes/restrictions.inc.php';
 logged_in();
 $title = 'Alteration';
 include_once 'includes/header.php';
+include_once 'includes/dbh.inc.php';
 ?>
 <section id="alter" class="section modsection content">
 	<form id="modform1" action = "includes/altprocess.inc.php" method = "post" autocomplete="off">
@@ -73,13 +74,17 @@ include_once 'includes/header.php';
 						<h5>Package 1</h5>
 						<div class="packageList" style="height: 250px;">
 							<ul>
-								<li>Chain Spocket</li>
-								<li>Silencer</li>
-								<li>Carburetor</li>
-								<li>Remove filter pipe</li>
-							</ul>
-						</div>
-						<div>
+								<?php
+								$sql = "SELECT * FROM modaltpackages WHERE map_pkg_1 = 1 AND map_type = 'alteration'";
+								$result = mysqli_query($conn, $sql);
+								while ($row = mysqli_fetch_assoc($result)) 
+									{?>
+										<li><?php echo $row['map_name']; ?></li>
+									<?php }
+									?>
+								</ul>
+							</div>
+							<div>
 							<!-- <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel" data-interval="1000">
 								<div class="carousel-inner" >
 									<div class="carousel-item active" data-interval="3000">
@@ -108,88 +113,95 @@ include_once 'includes/header.php';
 						<h5>Package 2</h5>
 						<div class="packageList" style="height: 250px;">
 							<ul>
-								<li>Piston (0, 50, 90)</li>
-								<li>Weights</li>
-								<li>Head Cylinder (124cc)</li>
-							</ul>
-						</div>
-						<div class="">
-							<div class="pkgslider border-new border border-dark rounded">
-								<div class="pkg1slide1"></div>
-								<div class="pkg1slide2"></div>
-								<div class="pkg1slide3"></div>
+								<?php
+								$sql = "SELECT * FROM modaltpackages WHERE map_pkg_2 = 1 AND map_type = 'alteration'";
+								$result = mysqli_query($conn, $sql);
+								while ($row = mysqli_fetch_assoc($result)) 
+									{?>
+										<li><?php echo $row['map_name']; ?></li>
+									<?php }
+									?>
+								</ul>
 							</div>
-							<label class="btncreative btn-1 btn-1a packageradio">
-								Select
-								<input type="radio" name="radiopkg" value="pkg2">
-							</label>
+							<div class="">
+								<div class="pkgslider border-new border border-dark rounded">
+									<div class="pkg1slide1"></div>
+									<div class="pkg1slide2"></div>
+									<div class="pkg1slide3"></div>
+								</div>
+								<label class="btncreative btn-1 btn-1a packageradio">
+									Select
+									<input type="radio" name="radiopkg" value="pkg2">
+								</label>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div><br>
-					<h3>Or</h3><br>
-					<label class="btncreative btn-1 btn-1a packageradio">
-						Choose custom parts
-						<input type="radio" name="radiopkg" id="togglecustom" value="2">
-					</label><br>
-					<div class="customparts"><br>
-						<select style="width: 100%" class="js-example-basic-multiple js-states form-control select2-hidden-accessible" multiple="multiple"  tabindex="-1" aria-hidden="true" name="select2[]" id="selectbox">
-							<option>Chain Spocket</option>
-							<option>Carburetor</option>
-							<option>Silencer</option>
-							<option>Remove filter pipe</option>
-							<option>Piston</option>
-							<option>Weights</option>
-							<option>Head Cylinder</option>
-						</select>
+					<div><br>
+						<h3>Or</h3><br>
+						<label class="btncreative btn-1 btn-1a packageradio">
+							Choose custom parts
+							<input type="radio" name="radiopkg" id="togglecustom" value="2">
+						</label><br>
+						<div class="customparts"><br>
+							<select style="width: 100%" class="js-example-basic-multiple js-states form-control select2-hidden-accessible" multiple="multiple"  tabindex="-1" aria-hidden="true" name="select2[]" id="selectbox">
+								<?php
+								$sql = "SELECT * FROM modaltpackages WHERE map_pkg_4 = 1 AND map_type = 'alteration'";
+								$result = mysqli_query($conn, $sql);
+								while ($row = mysqli_fetch_assoc($result)) 
+									{?>
+										<option><?php echo $row['map_name']; ?></option>
+									<?php }
+									?>
+								</select>
+							</div>
+						</div><br><br>
 					</div>
-				</div><br><br>
-			</div>
-			<div class="alterGenuine hide" id="show_2" style="margin:0 300px 0 300px;">
-				<h3>Step 3: Select what to Modify</h3><br>
-				<div class="border-new border border-dark rounded p-3">
-					<h5>Package 1</h5>
-					<div class="packageList" style="height: 250px;">
-						<ul>
-							<li>Genuine 70cc Carburetor</li>
-							<li>Genuine 70cc Piston</li>
-							<li>Genuine 70cc head cylinder</li>
-							<li>Genuine 70cc chain spocket</li>
-							<li>Genuine 70cc silencer</li>
-							<li>Genuine 70cc pipes</li>
-							<li>Genuine 70cc Weights</li>
-						</ul>
+					<div class="alterGenuine hide" id="show_2" style="margin:0 300px 0 300px;">
+						<h3>Step 3: Select what to Modify</h3><br>
+						<div class="border-new border border-dark rounded p-3">
+							<h5>Package 1</h5>
+							<div class="packageList" style="height: 250px;">
+								<ul>
+									<?php
+									$sql = "SELECT * FROM modaltpackages WHERE map_pkg_3 = 1 AND map_type = 'alteration'";
+									$result = mysqli_query($conn, $sql);
+									while ($row = mysqli_fetch_assoc($result)) 
+										{?>
+											<li><?php echo $row['map_name']; ?></li>
+										<?php }
+										?>
+									</ul>
+								</div>
+								<div class="pkgslider border-new border border-dark rounded">
+									<div class="pkg1slide1"></div>
+									<div class="pkg1slide2"></div>
+									<div class="pkg1slide3"></div>
+								</div>
+								<label class="btncreative btn-1 btn-1a packageradio">
+									Select
+									<input type="radio" name="radiopkg" value="pkg3">
+								</label>
+							</div>
+						</div>
+						<div class="modbtn1">
+							<button type="submit" name="btnalt" class="btn btn-danger" style="margin: 10px;" value="">Next</button>
+						</div>
 					</div>
-					<div class="pkgslider border-new border border-dark rounded">
-						<div class="pkg1slide1"></div>
-						<div class="pkg1slide2"></div>
-						<div class="pkg1slide3"></div>
-					</div>
-					<label class="btncreative btn-1 btn-1a packageradio">
-						Select
-						<input type="radio" name="radiopkg" value="pkg3">
-					</label>
-				</div>
-			</div>
-			<div class="modbtn1">
-				<button type="submit" name="btnalt" class="btn btn-danger" style="margin: 10px;" value="">Next</button>
-			</div>
-		</div>
-	</form>
-</section>
-<script type="text/javascript">
-	$('.packageradio').click(function() {
-		$('.packageradio').removeClass('activeradio');
-		$(this).addClass('activeradio');
-	});
-</script>
-<script>
-	$(".js-example-responsive").select2({
-		minimumResultsForSearch: -1,
-		placeholder: "Select..",
+				</form>
+			</section>
+			<script type="text/javascript">
+				$('.packageradio').click(function() {
+					$('.packageradio').removeClass('activeradio');
+					$(this).addClass('activeradio');
+				});
+			</script>
+			<script>
+				$(".js-example-responsive").select2({
+					minimumResultsForSearch: -1,
+					placeholder: "Select..",
     	width: 'resolve' // need to override the changed default
     });
-	
+
 </script>
 <?php
 include_once 'includes/footer.php';

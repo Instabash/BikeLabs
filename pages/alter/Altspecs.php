@@ -4,6 +4,7 @@ include '../../includes/restrictions.inc.php';
 logged_in();
 $title = 'Modification specifications';
 include_once '../../includes/header.php';
+include_once '../../includes/dbh.inc.php';
 ?>
 <?php
 if (isset($_GET['pkg'])) {
@@ -21,9 +22,13 @@ if (isset($_GET['pkg'])) {
 							<h5>Please specify any further modification you would like to implement from the package you have selected.</h5><br>
 							<div class="border-dark border border-new" style="padding:10px; padding-top: 30px;">
 							<?php
-							$pkg1 = array(
-								"Chain spocket","Silencer","Carburetor","Remove filter pipe"
-							);
+							$sql = "SELECT * FROM modaltpackages WHERE map_pkg_1 = 1 AND map_type = 'alteration'";
+							$result = mysqli_query($conn, $sql);
+							$pkg1 = array();
+							while ($row = mysqli_fetch_assoc($result)) 
+							{
+								$pkg1[] = $row['map_name'];
+							}
 							foreach ($pkg1 as $key) {?>
 								<div>
 									<label style="width: 200px;left: -20px;display: inline-block;vertical-align: middle;"><?php echo $key?></label><br><br>
@@ -35,9 +40,13 @@ if (isset($_GET['pkg'])) {
 							<h5>Please specify what modification you would like to implement from the package you have selected.</h5><br>
 							<div class="border-dark border border-new" style="padding:10px; padding-top: 30px;">
 							<?php
-							$pkg2 = array(
-								"Piston (0, 50, 90)","Weights","Head Cylinder (124cc)"
-							);
+							$sql = "SELECT * FROM modaltpackages WHERE map_pkg_2 = 1 AND map_type = 'alteration'";
+							$result = mysqli_query($conn, $sql);
+							$pkg2 = array();
+							while ($row = mysqli_fetch_assoc($result)) 
+							{
+								$pkg2[] = $row['map_name'];
+							}
 							foreach ($pkg2 as $key) {?>
 								<div class="">
 									<label style="width: 200px;left: -20px;display: inline-block;vertical-align: middle;"><?php echo $key?></label><br><br>
@@ -50,9 +59,13 @@ if (isset($_GET['pkg'])) {
 						<h5>Please specify what modification you would like to implement from the package you have selected.</h5><br>
 						<div class="border-dark border border-new" style="padding:10px; padding-top: 30px;">
 						<?php
-						$pkg3 = array(
-							"Genuine 70cc Carburetor","Genuine 70cc Piston","Genuine 70cc head cylinder","Genuine 70cc chain spocket","Genuine 70cc silencer","Genuine 70cc pipes", "Genuine 70cc Weights"
-						);
+						$sql = "SELECT * FROM modaltpackages WHERE map_pkg_3 = 1 AND map_type = 'alteration'";
+							$result = mysqli_query($conn, $sql);
+							$pkg3 = array();
+							while ($row = mysqli_fetch_assoc($result)) 
+							{
+								$pkg3[] = $row['map_name'];
+							}
 						foreach ($pkg3 as $key) 
 						{
 							?>

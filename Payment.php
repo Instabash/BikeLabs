@@ -170,7 +170,7 @@ include_once 'includes/header.php';
 							<div id="collapse_0" class="accordion-body in collapse" style="">
 								<ul style="list-style: none; padding: 10px;">
 									<?php
-									$sql = "SELECT * FROM modaltpackages WHERE map_pkg_1 = 1";
+									$sql = "SELECT * FROM modaltpackages WHERE map_pkg_1 = 1 AND map_type = 'modification'";
 									$result = mysqli_query($conn, $sql);
 									while ($row = mysqli_fetch_assoc($result)) 
 									{?>
@@ -197,7 +197,7 @@ include_once 'includes/header.php';
 							<div id="collapse_0" class="accordion-body in collapse" style="">
 								<ul style="list-style: none; padding: 10px;">
 									<?php
-									$sql = "SELECT * FROM modaltpackages WHERE map_pkg_2 = 1";
+									$sql = "SELECT * FROM modaltpackages WHERE map_pkg_2 = 1 AND map_type = 'modification'";
 									$result = mysqli_query($conn, $sql);
 									while ($row = mysqli_fetch_assoc($result)) 
 									{?>
@@ -225,7 +225,7 @@ include_once 'includes/header.php';
 									<div id="collapse_0" class="accordion-body in collapse" style="">
 										<ul style="list-style: none; padding: 10px;">
 											<?php
-											$sql = "SELECT * FROM modaltpackages WHERE map_pkg_3 = 1";
+											$sql = "SELECT * FROM modaltpackages WHERE map_pkg_3 = 1 AND map_type = 'modification'";
 											$result = mysqli_query($conn, $sql);
 											while ($row = mysqli_fetch_assoc($result)) 
 											{?>
