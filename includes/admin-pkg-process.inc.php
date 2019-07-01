@@ -70,3 +70,69 @@ elseif (isset($_POST['save1'])) {
 		exit();
 	}
 }
+elseif (isset($_POST['save2'])) {
+	$txtName = $_POST['txtName'];
+	$txtPrice = $_POST['txtPrice'];
+	$enable = 1;
+	$type = "modification";
+	echo $txtName;
+	echo $txtPrice;
+	$sql = "INSERT INTO modaltpackages (map_name, map_price, map_pkg_2, map_type) VALUES (?, ?, ?, ?)";
+	$stmt = mysqli_stmt_init($conn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) 
+	{
+		header("Location: 	../pages/admin/admin-edit.php?pkgmod=$pkg&error");
+		exit();
+	}
+	else
+	{
+		mysqli_stmt_bind_param($stmt, "ssss", $txtName, $txtPrice, $enable, $type);
+		mysqli_stmt_execute($stmt);
+		header("Location: 	../pages/admin/admin-edit.php?pkgmod=$pkg");
+		exit();
+	}
+}
+elseif (isset($_POST['save3'])) {
+	$txtName = $_POST['txtName'];
+	$txtPrice = $_POST['txtPrice'];
+	$enable = 1;
+	$type = "modification";
+	echo $txtName;
+	echo $txtPrice;
+	$sql = "INSERT INTO modaltpackages (map_name, map_price, map_pkg_3, map_type) VALUES (?, ?, ?, ?)";
+	$stmt = mysqli_stmt_init($conn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) 
+	{
+		header("Location: 	../pages/admin/admin-edit.php?pkgmod=$pkg&error");
+		exit();
+	}
+	else
+	{
+		mysqli_stmt_bind_param($stmt, "ssss", $txtName, $txtPrice, $enable, $type);
+		mysqli_stmt_execute($stmt);
+		header("Location: 	../pages/admin/admin-edit.php?pkgmod=$pkg");
+		exit();
+	}
+}
+elseif (isset($_POST['save4'])) {
+	$txtName = $_POST['txtName'];
+	$txtPrice = $_POST['txtPrice'];
+	$enable = 1;
+	$type = "modification";
+	echo $txtName;
+	echo $txtPrice;
+	$sql = "INSERT INTO modaltpackages (map_name, map_price, map_pkg_4, map_type) VALUES (?, ?, ?, ?)";
+	$stmt = mysqli_stmt_init($conn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) 
+	{
+		header("Location: 	../pages/admin/admin-edit.php?pkgmod=$pkg&error");
+		exit();
+	}
+	else
+	{
+		mysqli_stmt_bind_param($stmt, "ssss", $txtName, $txtPrice, $enable, $type);
+		mysqli_stmt_execute($stmt);
+		header("Location: 	../pages/admin/admin-edit.php?pkgmod=$pkg");
+		exit();
+	}
+}
