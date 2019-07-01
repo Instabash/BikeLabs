@@ -70,9 +70,9 @@ include '../../includes/dbh.inc.php';
 
                                                 <div class="row pl-4 pt-1 pb-1 border" id="" style="width: 100%;">
                                                     <div class="altright">
-                                                     <input type="text" value="<?php echo $row['map_name']; ?>" disabled style="background-color: transparent;border: none" class="textfieldToClose" name="pkgname<?php echo $row['map_id'] ?>"></input>
-                                                 </div>
-                                                 <div class="altright">
+                                                       <input type="text" value="<?php echo $row['map_name']; ?>" disabled style="background-color: transparent;border: none" class="textfieldToClose" name="pkgname<?php echo $row['map_id'] ?>"></input>
+                                                   </div>
+                                                   <div class="altright">
                                                     <input type="text" value="<?php echo $row['map_price'] ." Rs."; ?>" disabled style="background-color: transparent;border: none" class="textfieldToClose" name="pkgprice<?php echo $row['map_id'] ?>"></input>
                                                 </div>
                                                 <div class="altright">
@@ -84,17 +84,30 @@ include '../../includes/dbh.inc.php';
                                         <?php }
                                         ?>
                                         <div class="row pl-4 pt-1 pb-1 border" id="hiddenDiv" style="width: 100%;display: none">
-                                            <div class="altright">
-                                             <input type="text"   class="textfieldToClose" ></input>
-                                         </div>
-                                         <div class="altright">
-                                            <input type="text"  class="textfieldToClose" ></input>
+                                            <div style="float: left;">
+                                                <div class="altright">
+                                                    <label>Part name</label>
+                                                </div>
+                                                <div>
+                                                    <input type="text" name="txtName" class="textfieldToClose form-control mr-2" style="width: 200px;" ></input>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="altright">
+                                                    <label>Part price</label>
+                                                </div>
+                                                <div>
+                                                    <input type="text" name="txtPrice" class="textfieldToClose form-control ml-2" style="width: 200px;" ></input>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <button type="submit" name="save<?php echo $pkgget ?>" class="btn btn-outline-danger btn-sm mt-2">Save</button> -->
+                                            </div>  
                                         </div>
-                                    </div>
-                                    <div class="box-footer clearfix" style="padding-top: 10px;" style="padding-top: 10px;">
-                                        <!-- <input type="hidden" name="count" value="<?php echo $rowcount; ?>"> -->
-                                        <!-- <input type="submit" class="btn btn-outline-danger btn-sm" id="add<?php echo $pkgget ?>" name="add<?php echo $pkgget ?>" value="Add new part" ></input>  -->
-                                        <button class="btn btn-outline-danger btn-sm" id="add" >Add new part</button>
+                                        <div class="box-footer clearfix" style="padding-top: 10px;" style="padding-top: 10px;">
+                                            <!-- <input type="hidden" name="count" value="<?php echo $rowcount; ?>"> -->
+                                            <!-- <input type="submit" class="btn btn-outline-danger btn-sm" id="add<?php echo $pkgget ?>" name="add<?php echo $pkgget ?>" value="Add new part" ></input>  -->
+                                            <button class="btn btn-outline-danger btn-sm" id="add" >Add new part</button>
                                         <!-- <button class="btn btn-outline-danger btn-sm" id="edit" >Edit</button>
                                             <button type="submit" class="btn btn-outline-danger btn-sm" id="save1" name="save" value="<?php echo $row['map_id'] ?>" style="display: none" class="remove" >Save</button> -->
 
@@ -128,9 +141,9 @@ include '../../includes/dbh.inc.php';
                                     {?>
                                         <div class="row pl-4 pt-1 pb-1 border" style="width: 100%;">
                                             <div class="altright">
-                                             <input type="text" value="<?php echo $row['map_name']; ?>" style="background-color: transparent;border: none" class="textfieldToClose"></input>
-                                         </div>
-                                         <div class="altright">
+                                               <input type="text" value="<?php echo $row['map_name']; ?>" style="background-color: transparent;border: none" class="textfieldToClose"></input>
+                                           </div>
+                                           <div class="altright">
                                             <input type="text" value="<?php echo $row['map_price']; ?>" style="background-color: transparent;border: none" class="textfieldToClose"></input>
                                         </div>
                                         <div class="altright">
