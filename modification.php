@@ -67,7 +67,7 @@ include_once 'includes/dbh.inc.php';
 					<div class="packageList" style="height: 250px;">
 						<ul class="list-group"> 
 							<?php
-							$sql = "SELECT * FROM modaltpackages WHERE map_pkg_1 = 1";
+							$sql = "SELECT * FROM modaltpackages WHERE map_pkg_1 = 1 AND map_type = 'modification'";
 							$result = mysqli_query($conn, $sql);
 							while ($row = mysqli_fetch_assoc($result)) 
 							{?>
@@ -96,7 +96,7 @@ include_once 'includes/dbh.inc.php';
 					<div class="packageList" style="height: 250px;">
 						<ul class="list-group">
 							<?php
-							$sql = "SELECT * FROM modaltpackages WHERE map_pkg_2 = 1";
+							$sql = "SELECT * FROM modaltpackages WHERE map_pkg_2 = 1 AND map_type = 'modification'";
 							$result = mysqli_query($conn, $sql);
 							while ($row = mysqli_fetch_assoc($result)) 
 							{?>
@@ -122,7 +122,7 @@ include_once 'includes/dbh.inc.php';
 					<div class="packageList" style="height: 250px;">
 						<ul class="list-group">
 							<?php
-							$sql = "SELECT * FROM modaltpackages WHERE map_pkg_3 = 1";
+							$sql = "SELECT * FROM modaltpackages WHERE map_pkg_3 = 1 AND map_type = 'modification'";
 							$result = mysqli_query($conn, $sql);
 							while ($row = mysqli_fetch_assoc($result)) 
 							{?>
@@ -153,7 +153,7 @@ include_once 'includes/dbh.inc.php';
 				<div class="customparts"><br>
 					<select style="width: 100%" class="js-example-basic-multiple js-states form-control select2-hidden-accessible" multiple="multiple"  tabindex="-1" aria-hidden="true" name="select2[]" id="selectbox">\
 						<?php
-							$sql = "SELECT * FROM modaltpackages WHERE map_pkg_3 = 1";
+							$sql = "SELECT * FROM modaltpackages WHERE map_pkg_3 = 1 AND map_type = 'modification'";
 							$result = mysqli_query($conn, $sql);
 							while ($row = mysqli_fetch_assoc($result)) 
 							{?>
