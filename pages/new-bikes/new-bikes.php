@@ -218,8 +218,8 @@ $stmt = mysqli_stmt_init($conn);
 										<div class="formrowad p-2">
 											<label>Make</label>
 											<div class="select-wrap mb-2">
-												<!-- <select class="custom-select" name="category" id="category"> -->
-												<select class="js-example-responsive" name="category" id="category" style="width: 100%">
+												<select class="custom-select" name="category" id="category">
+												<!-- <select class="js-example-responsive" name="category" id="category" style="width: 100%"> -->
 													<option value="Honda">Honda</option>
 													<option value="SuperPower">SuperPower</option>
 													<option value="Unique">Unique</option> 
@@ -229,8 +229,8 @@ $stmt = mysqli_stmt_init($conn);
 										<div class="formrowad p-2">
 											<label>Make</label>
 											<div class="select-wrap mb-2">
-												<!-- <select class="custom-select" name="choices" id="choices"> -->
-												<select class="js-example-responsive" name="choices" id="choices" style="width: 100%">
+												<select class="custom-select" name="choices" id="choices">
+												<!-- <select class="js-example-responsive" name="choices" id="choices" style="width: 100%"> -->
 													<!-- populated using JavaScript -->
 												</select>
 											</div>
@@ -238,6 +238,7 @@ $stmt = mysqli_stmt_init($conn);
 										<div>
 											<input type="hidden" name="category2" value="<?php echo $bike1_make ?>">
 											<input type="hidden" name="choices2" value="<?php echo $bike1_model ?>">
+											<input type="hidden" name="currentid" value="<?php echo $_GET['bikeid'] ?>">
 										</div>
 									</div>
 								</div>
@@ -439,17 +440,86 @@ return;
 
 	        // names match option values in controlling select list
 	        Honda: {
-	        	text: ['CG-125', 'CD-70', 'CG-125 Deluxe', 'CB-150F', 'CD-150'],
-	        	value: ['125cc', '70cc', 'cg125del', 'cb150f', '150cc']
+	        	<?php
+	        	$sqlbikehonda = "SELECT DISTINCT bike_model FROM bikes WHERE bike_brand = 'Honda' ORDER BY bike_model DESC;";
+	        	$stmt = mysqli_stmt_init($conn);
+	        	if (!mysqli_stmt_prepare($stmt, $sqlbikehonda)) 
+	        	{
+	        		echo "SQL statement failed";
+	        	}
+	        	else
+	        	{
+	        		mysqli_stmt_execute($stmt);
+	        		$result = mysqli_stmt_get_result($stmt);
+	        		
+	        		while ($row = mysqli_fetch_assoc($result)) { 
+	        			$rows[] = $row; 
+	        		} 
+	        		foreach($rows as $row) {
+	        			$arrList[] = $row['bike_model'];
+	        		}
+	        		$text =  implode("',' ", $arrList);
+	        		$value =  implode("',' ", $arrList);
+	        		// }
+	        	}
+	        	echo "text: ['".$text."'],";
+	        	echo "\nvalue: ['".$value. "']";
+	        	?>
 	        },
 	        SuperPower: {
-	        	text: ['SP-70', 'SP-125', 'SP-100', 'PK-150'],
-	        	value: ['70cc', '125cc', 'sp100', '150cc']
+	        	<?php
+	        	$sqlbikehonda = "SELECT DISTINCT bike_model FROM bikes WHERE bike_brand = 'SuperPower' ORDER BY bike_model DESC;";
+	        	$stmt = mysqli_stmt_init($conn);
+	        	if (!mysqli_stmt_prepare($stmt, $sqlbikehonda)) 
+	        	{
+	        		echo "SQL statement failed";
+	        	}
+	        	else
+	        	{
+	        		mysqli_stmt_execute($stmt);
+	        		$result = mysqli_stmt_get_result($stmt);
+	        		
+	        		while ($row = mysqli_fetch_assoc($result)) { 
+	        			$rows2[] = $row; 
+	        		} 
+	        		foreach($rows2 as $row) {
+	        			$arrList2[] = $row['bike_model'];
+	        		}
+	        		$text =  implode("',' ", $arrList2);
+	        		$value =  implode("',' ", $arrList2);
+	        		// }
+	        	}
+	        	echo "text: ['".$text."'],";
+	        	echo "\nvalue: ['".$value. "']";
+	        	?>
 	        },
 	        Unique: {
 	            // example without values
-	            text: ['UD-70', 'UD-100', 'UD-125', 'UD-150'],
-	            value: ['70cc', 'ud100', '125cc', '150cc']
+	            <?php
+	        	$sqlbikehonda = "SELECT DISTINCT bike_model FROM bikes WHERE bike_brand = 'Unique' ORDER BY bike_model DESC;";
+	        	$stmt = mysqli_stmt_init($conn);
+	        	if (!mysqli_stmt_prepare($stmt, $sqlbikehonda)) 
+	        	{
+	        		echo "SQL statement failed";
+	        	}
+	        	else
+	        	{
+	        		mysqli_stmt_execute($stmt);
+	        		$result = mysqli_stmt_get_result($stmt);
+	        		
+	        		while ($row = mysqli_fetch_assoc($result)) { 
+	        			$rows3[] = $row; 
+	        		} 
+	        		foreach($rows3 as $row) {
+	        			$arrList3[] = $row['bike_model'];
+	        		}
+	        		$text =  implode("',' ", $arrList3);
+	        		$value =  implode("',' ", $arrList3);
+	        		// }
+	        	}
+	        	echo "text: ['".$text."'],";
+	        	echo "\nvalue: ['".$value. "']";
+	        	?>
 	        }
 
 	    }
