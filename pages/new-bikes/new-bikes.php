@@ -219,116 +219,124 @@ $stmt = mysqli_stmt_init($conn);
 											<label>Make</label>
 											<div class="select-wrap mb-2">
 												<select class="custom-select" name="category" id="category">
-												<!-- <select class="js-example-responsive" name="category" id="category" style="width: 100%"> -->
-													<option value="Honda">Honda</option>
-													<option value="SuperPower">SuperPower</option>
-													<option value="Unique">Unique</option> 
-												</select>
+													<!-- <select class="js-example-responsive" name="category" id="category" style="width: 100%"> -->
+														<!-- <option value="Honda">Honda</option>
+														<option value="SuperPower">SuperPower</option>
+														<option value="Unique">Unique</option>  -->
+														<?php
+														$sql = "SELECT DISTINCT bike_brand FROM bikes;";
+														$result = mysqli_query($conn, $sql);
+														while ($row = mysqli_fetch_assoc($result)) 
+															{?>
+																<option><?php echo $row['bike_brand']; ?></option>
+															<?php }
+															?>
+														</select>
+													</div>
+												</div>
+												<div class="formrowad p-2">
+													<label>Make</label>
+													<div class="select-wrap mb-2">
+														<select class="custom-select" name="choices" id="choices">
+															<!-- <select class="js-example-responsive" name="choices" id="choices" style="width: 100%"> -->
+																<!-- populated using JavaScript -->
+															</select>
+														</div>
+													</div>
+													<div>
+														<input type="hidden" name="category2" value="<?php echo $bike1_make ?>">
+														<input type="hidden" name="choices2" value="<?php echo $bike1_model ?>">
+														<input type="hidden" name="currentid" value="<?php echo $_GET['bikeid'] ?>">
+													</div>
+												</div>
 											</div>
 										</div>
-										<div class="formrowad p-2">
-											<label>Make</label>
-											<div class="select-wrap mb-2">
-												<select class="custom-select" name="choices" id="choices">
-												<!-- <select class="js-example-responsive" name="choices" id="choices" style="width: 100%"> -->
-													<!-- populated using JavaScript -->
-												</select>
-											</div>
-										</div>
-										<div>
-											<input type="hidden" name="category2" value="<?php echo $bike1_make ?>">
-											<input type="hidden" name="choices2" value="<?php echo $bike1_model ?>">
-											<input type="hidden" name="currentid" value="<?php echo $_GET['bikeid'] ?>">
-										</div>
-									</div>
+										<input type="submit" class="btn btn-outline-danger" name="cmpsubmit" value="Compare">
+									</form>
 								</div>
-							</div>
-							<input type="submit" class="btn btn-outline-danger" name="cmpsubmit" value="Compare">
-						</form>
+								<?php
+							}
+							?>
+						</div>
 					</div>
-					<?php
+				</div>
+			</section>
+			<script type="text/javascript" src="../../script/getparameters.js"></script>
+			<script>
+				var slideIndex = 1;
+				showDivs(slideIndex);
+
+				function plusDivs(n) {
+					showDivs(slideIndex += n);
 				}
-				?>
-			</div>
-		</div>
-	</div>
-</section>
-<script type="text/javascript" src="../../script/getparameters.js"></script>
-<script>
-	var slideIndex = 1;
-	showDivs(slideIndex);
 
-	function plusDivs(n) {
-		showDivs(slideIndex += n);
-	}
-
-	function showDivs(n) {
-		var i;
-		var x = document.getElementsByClassName("mySlides");
-		if (n > x.length) {slideIndex = 1}
-			if (n < 1) {slideIndex = x.length}
-				for (i = 0; i < x.length; i++) {
-					x[i].style.display = "none";  
-				}
-				x[slideIndex-1].style.display = "block";  
-			}
-			$('.btn-number').click(function(e){
-				e.preventDefault();
-
-				fieldName = $(this).attr('data-field');
-				type      = $(this).attr('data-type');
-				var input = $("input[name='"+fieldName+"']");
-				var currentVal = parseInt(input.val());
-				if (!isNaN(currentVal)) {
-					if(type == 'minus') {
-
-						if(currentVal > input.attr('min')) {
-							input.val(currentVal - 1).change();
-						} 
-						if(parseInt(input.val()) == input.attr('min')) {
-							$(this).attr('disabled', true);
+				function showDivs(n) {
+					var i;
+					var x = document.getElementsByClassName("mySlides");
+					if (n > x.length) {slideIndex = 1}
+						if (n < 1) {slideIndex = x.length}
+							for (i = 0; i < x.length; i++) {
+								x[i].style.display = "none";  
+							}
+							x[slideIndex-1].style.display = "block";  
 						}
+						$('.btn-number').click(function(e){
+							e.preventDefault();
 
-					} else if(type == 'plus') {
+							fieldName = $(this).attr('data-field');
+							type      = $(this).attr('data-type');
+							var input = $("input[name='"+fieldName+"']");
+							var currentVal = parseInt(input.val());
+							if (!isNaN(currentVal)) {
+								if(type == 'minus') {
 
-						if(currentVal < input.attr('max')) {
-							input.val(currentVal + 1).change();
-						}
-						if(parseInt(input.val()) == input.attr('max')) {
-							$(this).attr('disabled', true);
-						}
+									if(currentVal > input.attr('min')) {
+										input.val(currentVal - 1).change();
+									} 
+									if(parseInt(input.val()) == input.attr('min')) {
+										$(this).attr('disabled', true);
+									}
 
-					}
-				} else {
-					input.val(0);
-				}
-			});
-			$('.input-number').focusin(function(){
-				$(this).data('oldValue', $(this).val());
-			});
-			$('.input-number').change(function() {
+								} else if(type == 'plus') {
 
-				minValue =  parseInt($(this).attr('min'));
-				maxValue =  parseInt($(this).attr('max'));
-				valueCurrent = parseInt($(this).val());
+									if(currentVal < input.attr('max')) {
+										input.val(currentVal + 1).change();
+									}
+									if(parseInt(input.val()) == input.attr('max')) {
+										$(this).attr('disabled', true);
+									}
 
-				name = $(this).attr('name');
-				if(valueCurrent >= minValue) {
-					$(".btn-number[data-type='minus'][data-field='"+name+"']").removeAttr('disabled')
-				} else {
-					alert('Sorry, the minimum value was reached');
-					$(this).val($(this).data('oldValue'));
-				}
-				if(valueCurrent <= maxValue) {
-					$(".btn-number[data-type='plus'][data-field='"+name+"']").removeAttr('disabled')
-				} else {
-					alert('Sorry, the maximum value was reached');
-					$(this).val($(this).data('oldValue'));
-				}
+								}
+							} else {
+								input.val(0);
+							}
+						});
+						$('.input-number').focusin(function(){
+							$(this).data('oldValue', $(this).val());
+						});
+						$('.input-number').change(function() {
+
+							minValue =  parseInt($(this).attr('min'));
+							maxValue =  parseInt($(this).attr('max'));
+							valueCurrent = parseInt($(this).val());
+
+							name = $(this).attr('name');
+							if(valueCurrent >= minValue) {
+								$(".btn-number[data-type='minus'][data-field='"+name+"']").removeAttr('disabled')
+							} else {
+								alert('Sorry, the minimum value was reached');
+								$(this).val($(this).data('oldValue'));
+							}
+							if(valueCurrent <= maxValue) {
+								$(".btn-number[data-type='plus'][data-field='"+name+"']").removeAttr('disabled')
+							} else {
+								alert('Sorry, the maximum value was reached');
+								$(this).val($(this).data('oldValue'));
+							}
 
 
-			});
-			$(".input-number").keydown(function (e) {
+						});
+						$(".input-number").keydown(function (e) {
 	// Allow: backspace, delete, tab, escape, enter and .
 	if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 190]) !== -1 ||
 	// Allow: Ctrl+A
@@ -344,8 +352,8 @@ return;
 	}
 });
 
-			var query = window.location.search.substring(1);
-			var qs = parse_query_string(query);
+						var query = window.location.search.substring(1);
+						var qs = parse_query_string(query);
 	// console.log(qs.quant);	
 	var bike = qs.bike;
 	localStorage.setItem('bikeid', bike);
@@ -439,88 +447,172 @@ return;
 	    'choices': { // name of associated select list
 
 	        // names match option values in controlling select list
-	        Honda: {
-	        	<?php
-	        	$sqlbikehonda = "SELECT DISTINCT bike_model FROM bikes WHERE bike_brand = 'Honda' ORDER BY bike_model DESC;";
-	        	$stmt = mysqli_stmt_init($conn);
-	        	if (!mysqli_stmt_prepare($stmt, $sqlbikehonda)) 
-	        	{
-	        		echo "SQL statement failed";
-	        	}
-	        	else
-	        	{
-	        		mysqli_stmt_execute($stmt);
-	        		$result = mysqli_stmt_get_result($stmt);
-	        		
-	        		while ($row = mysqli_fetch_assoc($result)) { 
-	        			$rows[] = $row; 
-	        		} 
-	        		foreach($rows as $row) {
-	        			$arrList[] = $row['bike_model'];
-	        		}
-	        		$text =  implode("',' ", $arrList);
-	        		$value =  implode("',' ", $arrList);
-	        		// }
-	        	}
-	        	echo "text: ['".$text."'],";
-	        	echo "\nvalue: ['".$value. "']";
-	        	?>
-	        },
-	        SuperPower: {
-	        	<?php
-	        	$sqlbikehonda = "SELECT DISTINCT bike_model FROM bikes WHERE bike_brand = 'SuperPower' ORDER BY bike_model DESC;";
-	        	$stmt = mysqli_stmt_init($conn);
-	        	if (!mysqli_stmt_prepare($stmt, $sqlbikehonda)) 
-	        	{
-	        		echo "SQL statement failed";
-	        	}
-	        	else
-	        	{
-	        		mysqli_stmt_execute($stmt);
-	        		$result = mysqli_stmt_get_result($stmt);
-	        		
-	        		while ($row = mysqli_fetch_assoc($result)) { 
-	        			$rows2[] = $row; 
-	        		} 
-	        		foreach($rows2 as $row) {
-	        			$arrList2[] = $row['bike_model'];
-	        		}
-	        		$text =  implode("',' ", $arrList2);
-	        		$value =  implode("',' ", $arrList2);
-	        		// }
-	        	}
-	        	echo "text: ['".$text."'],";
-	        	echo "\nvalue: ['".$value. "']";
-	        	?>
-	        },
-	        Unique: {
-	            // example without values
-	            <?php
-	        	$sqlbikehonda = "SELECT DISTINCT bike_model FROM bikes WHERE bike_brand = 'Unique' ORDER BY bike_model DESC;";
-	        	$stmt = mysqli_stmt_init($conn);
-	        	if (!mysqli_stmt_prepare($stmt, $sqlbikehonda)) 
-	        	{
-	        		echo "SQL statement failed";
-	        	}
-	        	else
-	        	{
-	        		mysqli_stmt_execute($stmt);
-	        		$result = mysqli_stmt_get_result($stmt);
-	        		
-	        		while ($row = mysqli_fetch_assoc($result)) { 
-	        			$rows3[] = $row; 
-	        		} 
-	        		foreach($rows3 as $row) {
-	        			$arrList3[] = $row['bike_model'];
-	        		}
-	        		$text =  implode("',' ", $arrList3);
-	        		$value =  implode("',' ", $arrList3);
-	        		// }
-	        	}
-	        	echo "text: ['".$text."'],";
-	        	echo "\nvalue: ['".$value. "']";
-	        	?>
+	        <?php
+	        $sqlbike = "SELECT DISTINCT bike_brand FROM bikes ORDER BY bike_brand DESC;";
+	        $stmt = mysqli_stmt_init($conn);
+	        if (!mysqli_stmt_prepare($stmt, $sqlbike)) 
+	        {
+	        	echo "SQL statement failed";
 	        }
+	        else
+	        {
+	        	mysqli_stmt_execute($stmt);
+	        	$result1 = mysqli_stmt_get_result($stmt);
+
+	        	while ($row = mysqli_fetch_assoc($result1)) 
+	        	{ 
+	        		$rows[] = $row['bike_brand']; 
+
+	        	} 
+	        	for($i = 0; $i < count($rows) ;$i++)
+	        	{
+	        		echo $rows[$i].": {\n";
+	        		$sqlbikehonda = "SELECT DISTINCT bike_model FROM bikes WHERE bike_brand = '{$rows[$i]}' ORDER BY bike_model DESC;";
+	        		$stmt = mysqli_stmt_init($conn);
+	        		if (!mysqli_stmt_prepare($stmt, $sqlbikehonda)) 
+	        		{
+	        			echo "SQL statement failed";
+	        		}
+	        		else
+	        		{
+	        			mysqli_stmt_execute($stmt);
+	        			$result = mysqli_stmt_get_result($stmt);
+
+	        			while ($row2 = mysqli_fetch_assoc($result)) { 
+	        				$rows2[] = $row2['bike_model']; 
+	        			} 
+	        			// foreach($rows2 as $row2) {
+	        			// 	$arrList[] = $row2['bike_model'];
+	        			// }
+	        			$text =  implode("',' ", array_unique($rows2));
+	        			$value =  implode("',' ", array_unique($rows2));
+	        		}
+
+	        		echo "text: ['".$text."'],";
+	        		echo "\nvalue: ['".$value. "']";
+	        		if ($i == count($rows)-1) 
+	        		{
+	        			echo "}\n";
+	        		}
+	        		else{
+	        			echo "},\n";
+	        		}
+	        		unset($rows2); // $foo is gone
+					$rows2 = array(); // $foo is here again
+	        	}
+	        }
+	        ?>
+
+	        // Honda: {
+	        // 	<?php
+	        // 	$sqlbikehonda = "SELECT DISTINCT bike_model FROM bikes WHERE bike_brand = 'Honda' ORDER BY bike_model DESC;";
+	        // 	$stmt = mysqli_stmt_init($conn);
+	        // 	if (!mysqli_stmt_prepare($stmt, $sqlbikehonda)) 
+	        // 	{
+	        // 		echo "SQL statement failed";
+	        // 	}
+	        // 	else
+	        // 	{
+	        // 		mysqli_stmt_execute($stmt);
+	        // 		$result = mysqli_stmt_get_result($stmt);
+	        		
+	        // 		while ($row = mysqli_fetch_assoc($result)) { 
+	        // 			$rows[] = $row; 
+	        // 		} 
+	        // 		foreach($rows as $row) {
+	        // 			$arrList[] = $row['bike_model'];
+	        // 		}
+	        // 		$text =  implode("',' ", $arrList);
+	        // 		$value =  implode("',' ", $arrList);
+	        // 		// }
+	        // 	}
+	        // 	echo "text: ['".$text."'],";
+	        // 	echo "\nvalue: ['".$value. "']";
+	        // 	?>
+	        // },
+	        // SuperPower: {
+	        // 	<?php
+	        // 	$sqlbikehonda = "SELECT DISTINCT bike_model FROM bikes WHERE bike_brand = 'SuperPower' ORDER BY bike_model DESC;";
+	        // 	$stmt = mysqli_stmt_init($conn);
+	        // 	if (!mysqli_stmt_prepare($stmt, $sqlbikehonda)) 
+	        // 	{
+	        // 		echo "SQL statement failed";
+	        // 	}
+	        // 	else
+	        // 	{
+	        // 		mysqli_stmt_execute($stmt);
+	        // 		$result = mysqli_stmt_get_result($stmt);
+	        		
+	        // 		while ($row = mysqli_fetch_assoc($result)) { 
+	        // 			$rows2[] = $row; 
+	        // 		} 
+	        // 		foreach($rows2 as $row) {
+	        // 			$arrList2[] = $row['bike_model'];
+	        // 		}
+	        // 		$text =  implode("',' ", $arrList2);
+	        // 		$value =  implode("',' ", $arrList2);
+	        // 		// }
+	        // 	}
+	        // 	echo "text: ['".$text."'],";
+	        // 	echo "\nvalue: ['".$value. "']";
+	        // 	?>
+	        // },
+	        // Unique: {
+	        //     // example without values
+	        //     <?php
+	        //     $sqlbikehonda = "SELECT DISTINCT bike_model FROM bikes WHERE bike_brand = 'Unique' ORDER BY bike_model DESC;";
+	        //     $stmt = mysqli_stmt_init($conn);
+	        //     if (!mysqli_stmt_prepare($stmt, $sqlbikehonda)) 
+	        //     {
+	        //     	echo "SQL statement failed";
+	        //     }
+	        //     else
+	        //     {
+	        //     	mysqli_stmt_execute($stmt);
+	        //     	$result = mysqli_stmt_get_result($stmt);
+
+	        //     	while ($row = mysqli_fetch_assoc($result)) { 
+	        //     		$rows3[] = $row; 
+	        //     	} 
+	        //     	foreach($rows3 as $row) {
+	        //     		$arrList3[] = $row['bike_model'];
+	        //     	}
+	        //     	$text =  implode("',' ", $arrList3);
+	        //     	$value =  implode("',' ", $arrList3);
+	        // 		// }
+	        //     }
+	        //     echo "text: ['".$text."'],";
+	        //     echo "\nvalue: ['".$value. "']";
+	        //     ?>
+	        // },
+	        // United: {
+	        //     // example without values
+	        //     <?php
+	        //     $sqlbikehonda = "SELECT DISTINCT bike_model FROM bikes WHERE bike_brand = 'United' ORDER BY bike_model DESC;";
+	        //     $stmt = mysqli_stmt_init($conn);
+	        //     if (!mysqli_stmt_prepare($stmt, $sqlbikehonda)) 
+	        //     {
+	        //     	echo "SQL statement failed";
+	        //     }
+	        //     else
+	        //     {
+	        //     	mysqli_stmt_execute($stmt);
+	        //     	$result = mysqli_stmt_get_result($stmt);
+
+	        //     	while ($row = mysqli_fetch_assoc($result)) { 
+	        //     		$rows4[] = $row; 
+	        //     	} 
+	        //     	foreach($rows4 as $row) {
+	        //     		$arrList4[] = $row['bike_model'];
+	        //     	}
+	        //     	$text =  implode("',' ", $arrList4);
+	        //     	$value =  implode("',' ", $arrList4);
+	        // 		// }
+	        //     }
+	        //     echo "text: ['".$text."'],";
+	        //     echo "\nvalue: ['".$value. "']";
+	        //     ?>
+	        // }
 
 	    }
 	    
@@ -547,7 +639,7 @@ return;
 	$(".js-example-responsive").select2({
 		minimumResultsForSearch: -1,
     	width: 'resolve' // need to override the changed default
-	});
+    });
 </script>
 <?php
 include_once '../../includes/footer.php';

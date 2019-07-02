@@ -46,11 +46,14 @@ include '../../includes/dbh.inc.php';
                         <div class="form-row formrowad p-2">
                             <label>Brand</label>
                             <div class="select-wrap mb-2">
-                                <select class="js-example-responsive" name="bkbrand" style="width: 100px;">
+                                <select class="js-example-responsive" name="bkbrand" >
                                 <!-- <select class="custom-select" name="bkbrand" id="title"> -->
                                     <option value="0" selected>Select</option>
                                     <option value="Honda">Honda</option>
                                     <option value="SuperPower">SuperPower</option>
+                                    <option value="SuperStar">SuperStar</option>
+                                    <option value="Suzuki">Suzuki</option>
+                                    <option value="United">United</option>
                                     <option value="Unique">Unique</option>
                                 </select>
                             </div>
