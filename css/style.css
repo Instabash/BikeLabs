@@ -113,6 +113,12 @@ input, select {
 }
 
 /*-----------------------------------------Main code----------------------------------------------------*/
+
+html {
+  scroll-behavior: smooth;
+}
+
+
 .navbar-nav > li > .dropdown-menu > .dropdown-item:active { background-color: #000005 !important; }
 @media screen and (max-width: 580px){
   .hide-on-small{
@@ -1889,6 +1895,15 @@ table.dataTable thead .sorting_asc:after {
    /*-webkit-transform: translate(-100px, 0);
    transform: translate(-100px, 0);*/
  }
+  .demo a{
+    display: none;
+  }
+  #section02 a span {
+    display: none;
+  }
+  .demo a p {
+    display: none;
+  }
 }
 
 @media (min-width: 768px)
@@ -2009,8 +2024,7 @@ form.example button {
   float: left;
   width: 10%;
   padding: 5px;
-
-  background: #2196F3;
+  background: #007bff;
   color: white;
   font-size: 17px;
   border: 1px solid grey;
