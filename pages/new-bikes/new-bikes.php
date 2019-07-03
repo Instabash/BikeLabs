@@ -497,12 +497,12 @@ return;
 	        		else{
 	        			echo "},\n";
 	        		}
-	        		unset($rows2); // $foo is gone
-					$rows2 = array(); // $foo is here again
+	        		unset($rows2); 
+					$rows2 = array(); 
 	        	}
 	        }
 	        ?>
-
+		}
 	        // Honda: {
 	        // 	<?php
 	        // 	$sqlbikehonda = "SELECT DISTINCT bike_model FROM bikes WHERE bike_brand = 'Honda' ORDER BY bike_model DESC;";
@@ -557,64 +557,7 @@ return;
 	        // 	echo "\nvalue: ['".$value. "']";
 	        // 	?>
 	        // },
-	        // Unique: {
-	        //     // example without values
-	        //     <?php
-	        //     $sqlbikehonda = "SELECT DISTINCT bike_model FROM bikes WHERE bike_brand = 'Unique' ORDER BY bike_model DESC;";
-	        //     $stmt = mysqli_stmt_init($conn);
-	        //     if (!mysqli_stmt_prepare($stmt, $sqlbikehonda)) 
-	        //     {
-	        //     	echo "SQL statement failed";
-	        //     }
-	        //     else
-	        //     {
-	        //     	mysqli_stmt_execute($stmt);
-	        //     	$result = mysqli_stmt_get_result($stmt);
-
-	        //     	while ($row = mysqli_fetch_assoc($result)) { 
-	        //     		$rows3[] = $row; 
-	        //     	} 
-	        //     	foreach($rows3 as $row) {
-	        //     		$arrList3[] = $row['bike_model'];
-	        //     	}
-	        //     	$text =  implode("',' ", $arrList3);
-	        //     	$value =  implode("',' ", $arrList3);
-	        // 		// }
-	        //     }
-	        //     echo "text: ['".$text."'],";
-	        //     echo "\nvalue: ['".$value. "']";
-	        //     ?>
-	        // },
-	        // United: {
-	        //     // example without values
-	        //     <?php
-	        //     $sqlbikehonda = "SELECT DISTINCT bike_model FROM bikes WHERE bike_brand = 'United' ORDER BY bike_model DESC;";
-	        //     $stmt = mysqli_stmt_init($conn);
-	        //     if (!mysqli_stmt_prepare($stmt, $sqlbikehonda)) 
-	        //     {
-	        //     	echo "SQL statement failed";
-	        //     }
-	        //     else
-	        //     {
-	        //     	mysqli_stmt_execute($stmt);
-	        //     	$result = mysqli_stmt_get_result($stmt);
-
-	        //     	while ($row = mysqli_fetch_assoc($result)) { 
-	        //     		$rows4[] = $row; 
-	        //     	} 
-	        //     	foreach($rows4 as $row) {
-	        //     		$arrList4[] = $row['bike_model'];
-	        //     	}
-	        //     	$text =  implode("',' ", $arrList4);
-	        //     	$value =  implode("',' ", $arrList4);
-	        // 		// }
-	        //     }
-	        //     echo "text: ['".$text."'],";
-	        //     echo "\nvalue: ['".$value. "']";
-	        //     ?>
-	        // }
-
-	    }
+	   
 	    
 	};
 
