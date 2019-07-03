@@ -2,8 +2,36 @@
 session_start();
 include '../includes/restrictions.inc.php';
 logged_in();
-include_once '../includes/header.php';
+
 include_once '../includes/dbh.inc.php';
+if (isset($_GET['user'])) {
+	$sql1 = 'SELECT * FROM users WHERE uidUsers = "'.$_GET['user'].'"';
+	$r = mysqli_query($conn, $sql1);
+	if($r)
+	{
+		if(mysqli_num_rows($r)<1)
+		{
+			
+			header("Location: chat.php");
+		}
+	}
+}
+if ($_SESSION['usertype'] == 0 && isset($_GET['user'])) {
+	$sql1 = 'SELECT * FROM users WHERE uidUsers = "'.$_GET['user'].'"';
+	$r = mysqli_query($conn, $sql1);
+	if($r)
+	{
+		if(mysqli_num_rows($r)>0)
+		{
+			$row = $r->fetch_assoc();
+			if ($row['User_type'] == 0) {
+				// echo $row['User_type'];
+				header("Location: chat.php");
+			}
+		}
+	}
+}
+include_once '../includes/header.php';
 $user = $_SESSION['userUId'];
 $no_message = false;
 if (isset($_GET['user'])) {
@@ -25,10 +53,10 @@ else{
 				$receiver_name = $row['receiver_name'];
 
 				if ($_SESSION['userUId'] == $sender_name) {
-					$_GET['user'] = $receiver_name;
+					$r_name = $receiver_name;
 				}
 				else{
-					$_GET['user'] = $sender_name;
+					$r_name = $sender_name;
 				}
 			}
 		}
