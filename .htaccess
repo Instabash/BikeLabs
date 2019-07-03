@@ -1,1 +1,7 @@
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^pages/spareparts/spareparttemp/([0-9]+) pages/spareparts/spareparttemp.php?partid=$1 [NC,L]
+
 ErrorDocument 404 /BikeLabs/404-page.php
