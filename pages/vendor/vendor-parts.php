@@ -19,6 +19,7 @@ include '../../includes/dbh.inc.php';
             <a href="/BikeLabs/pages/vendor/vendor-sales.php" class="list-group-item list-group-item-action bg-light">Sales</a>
             <a href="/BikeLabs/pages/vendor/vendor-bikes.php" class="list-group-item list-group-item-action bg-light">Add new Bikes</a>
             <a href="/BikeLabs/pages/vendor/vendor-parts.php" class="list-group-item list-group-item-action bg-light">Add new Parts</a>
+            <a href="/BikeLabs/pages/vendor/vendor-modaltpkg.php" class="list-group-item list-group-item-action bg-light">View Mod/Alt packages</a>
 		</div>
 	</div>
 	<section id="modify" class="section modsection content content2">
