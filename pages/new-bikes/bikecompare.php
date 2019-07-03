@@ -1,5 +1,6 @@
 <?php
 include_once '../../includes/header.php';
+include_once '../../includes/dbh.inc.php';
 ?>
 
 <section id="postad" class="section postadsection content">
@@ -14,54 +15,73 @@ include_once '../../includes/header.php';
 							<label>Make</label>
 							<div class="select-wrap mb-2">
 								<select class="custom-select" name="category" id="category">
-									<option value="Honda">Honda</option>
-									<option value="SuperPower">SuperPower</option>
-									<option value="Unique">Unique</option> 
-								</select>
+									<?php
+									$sql = "SELECT DISTINCT bike_brand FROM bikes;";
+									$result = mysqli_query($conn, $sql);
+									while ($row = mysqli_fetch_assoc($result)) 
+										{?>
+											<option><?php echo $row['bike_brand']; ?></option>
+										<?php }
+										?>
+									</select>
+								</div>
+							</div>
+							<div class="formrowad p-2">
+								<label>Make</label>
+								<div class="select-wrap mb-2">
+									<select class="custom-select" name="choices" id="choices">
+										<!-- populated using JavaScript -->
+									</select>
+								</div>
 							</div>
 						</div>
-						<div class="formrowad p-2">
-							<label>Make</label>
-							<div class="select-wrap mb-2">
-								<select class="custom-select" name="choices" id="choices">
-									<!-- populated using JavaScript -->
-								</select>
+					</div>
+					<div class="mt-4 mb-4" style="border-right: 2px solid #dcd4d4;">
+					</div>
+					<div class="modright1">
+						<h5>Choose Bike (B)</h5>
+						<div id="demoForm" class="demoForm p-5">
+							<div class="formrowad p-2">
+								<label>Make</label>
+								<div class="select-wrap mb-2">
+									<select class="custom-select" name="category2" id="category2">
+										<?php
+									$sql = "SELECT DISTINCT bike_brand FROM bikes;";
+									$result = mysqli_query($conn, $sql);
+									while ($row = mysqli_fetch_assoc($result)) 
+										{?>
+											<option><?php echo $row['bike_brand']; ?></option>
+										<?php }
+										?>
+									</select>
+								</div>
+							</div>
+							<div class="formrowad p-2">
+								<label>Make</label>
+								<div class="select-wrap mb-2">
+									<select class="custom-select" name="choices2" id="choices2">
+										<!-- populated using JavaScript -->
+									</select>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="mt-4 mb-4" style="border-right: 2px solid #dcd4d4;">
-				</div>
-				<div class="modright1">
-					<h5>Choose Bike (B)</h5>
-					<div id="demoForm" class="demoForm p-5">
-						<div class="formrowad p-2">
-							<label>Make</label>
-							<div class="select-wrap mb-2">
-								<select class="custom-select" name="category2" id="category2">
-									<option value="Honda">Honda</option>
-									<option value="SuperPower">SuperPower</option>
-									<option value="Unique">Unique</option> 
-								</select>
-							</div>
-						</div>
-						<div class="formrowad p-2">
-							<label>Make</label>
-							<div class="select-wrap mb-2">
-								<select class="custom-select" name="choices2" id="choices2">
-									<!-- populated using JavaScript -->
-								</select>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<input type="submit" class="btn btn-outline-danger" name="cmpsubmit" value="Compare">
-		</form>
-	</div>
-</section>
-<script>
-	
+				<?php
+					if (isset($_GET['error'])) {
+						if ($_GET['error'] == 'same') {
+							?>
+							<p style="color: red !important;">You cannot compare the same bikes.</p><br>
+							<?php
+						}
+					}
+					?>
+				<input type="submit" class="btn btn-outline-danger" name="cmpsubmit2" value="Compare">
+			</form>
+		</div>
+	</section>
+	<script>
+
 	// to remove fn's from global namespace
 	(function() {
 
@@ -169,19 +189,74 @@ include_once '../../includes/header.php';
 	    'choices': { // name of associated select list
 
 	        // names match option values in controlling select list
-	        Honda: {
-	        	text: ['CG-125', 'CD-70', 'CG-125 Deluxe', 'CB-150F', 'CD-150'],
-	        	value: ['125cc', '70cc', 'cg125del', 'cb150f', '150cc']
-	        },
-	        SuperPower: {
-	        	text: ['SP-70', 'SP-125', 'SP-100', 'PK-150'],
-	        	value: ['70cc', '125cc', 'sp100', '150cc']
-	        },
-	        Unique: {
-	            // example without values
-	            text: ['UD-70', 'UD-100', 'UD-125', 'UD-150'],
-	            value: ['70cc', 'ud100', '125cc', '150cc']
+	         <?php
+	        $sqlbike = "SELECT DISTINCT bike_brand FROM bikes ORDER BY bike_brand DESC;";
+	        $stmt = mysqli_stmt_init($conn);
+	        if (!mysqli_stmt_prepare($stmt, $sqlbike)) 
+	        {
+	        	echo "SQL statement failed";
 	        }
+	        else
+	        {
+	        	mysqli_stmt_execute($stmt);
+	        	$result1 = mysqli_stmt_get_result($stmt);
+
+	        	while ($row = mysqli_fetch_assoc($result1)) 
+	        	{ 
+	        		$rows[] = $row['bike_brand']; 
+
+	        	} 
+	        	for($i = 0; $i < count($rows) ;$i++)
+	        	{
+	        		echo $rows[$i].": {\n";
+	        		$sqlbikehonda = "SELECT DISTINCT bike_model FROM bikes WHERE bike_brand = '{$rows[$i]}' ORDER BY bike_model DESC;";
+	        		$stmt = mysqli_stmt_init($conn);
+	        		if (!mysqli_stmt_prepare($stmt, $sqlbikehonda)) 
+	        		{
+	        			echo "SQL statement failed";
+	        		}
+	        		else
+	        		{
+	        			mysqli_stmt_execute($stmt);
+	        			$result = mysqli_stmt_get_result($stmt);
+
+	        			while ($row2 = mysqli_fetch_assoc($result)) { 
+	        				$rows2[] = $row2['bike_model']; 
+	        			} 
+	        			// foreach($rows2 as $row2) {
+	        			// 	$arrList[] = $row2['bike_model'];
+	        			// }
+	        			$text =  implode("',' ", array_unique($rows2));
+	        			$value =  implode("',' ", array_unique($rows2));
+	        		}
+
+	        		echo "text: ['".$text."'],";
+	        		echo "\nvalue: ['".$value. "']";
+	        		if ($i == count($rows)-1) 
+	        		{
+	        			echo "}\n";
+	        		}
+	        		else{
+	        			echo "},\n";
+	        		}
+	        		unset($rows2); 
+					$rows2 = array(); 
+	        	}
+	        }
+	        ?>
+	        // Honda: {
+	        // 	text: ['CG-125', 'CD-70', 'CG-125 Deluxe', 'CB-150F', 'CD-150'],
+	        // 	value: ['125cc', '70cc', 'cg125del', 'cb150f', '150cc']
+	        // },
+	        // SuperPower: {
+	        // 	text: ['SP-70', 'SP-125', 'SP-100', 'PK-150'],
+	        // 	value: ['70cc', '125cc', 'sp100', '150cc']
+	        // },
+	        // Unique: {
+	        //     // example without values
+	        //     text: ['UD-70', 'UD-100', 'UD-125', 'UD-150'],
+	        //     value: ['70cc', 'ud100', '125cc', '150cc']
+	        // }
 
 	    }
 	    
