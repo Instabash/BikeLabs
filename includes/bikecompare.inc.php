@@ -73,3 +73,54 @@ if (isset($_POST['cmpsubmit'])) {
 	// echo $bike2_id;
 	
 }
+elseif (isset($_POST['cmpsubmit2'])) {
+	$Bike1Make = trim($_POST['category2']);
+	$Bike1Model = trim($_POST['choices2']);
+	$Bike2Make = trim($_POST['category']);
+	$Bike2Model = trim($_POST['choices']);
+
+	$sqlbike1 = "SELECT * FROM bikes WHERE bike_brand = '$Bike1Make' AND bike_model = '$Bike1Model';";
+	$stmt = mysqli_stmt_init($conn);
+	if (!mysqli_stmt_prepare($stmt, $sqlbike1)) 
+	{
+		echo "SQL statement failed";
+	}
+	else
+	{
+		$arraybike = array();
+		mysqli_stmt_execute($stmt);
+		$result = mysqli_stmt_get_result($stmt);
+
+		while($row = mysqli_fetch_assoc($result)) {
+			$bike1_id = $row['bike_id'];
+		}
+	}
+	$sqlbike2 = "SELECT * FROM bikes WHERE bike_brand = '$Bike2Make' AND bike_model = '$Bike2Model';";
+	$stmt = mysqli_stmt_init($conn);
+	if (!mysqli_stmt_prepare($stmt, $sqlbike2)) 
+	{
+		echo "SQL statement failed";
+	}
+	else
+	{
+		$arraybike = array();
+		mysqli_stmt_execute($stmt);
+		$result = mysqli_stmt_get_result($stmt);
+
+		while($row = mysqli_fetch_assoc($result)) {
+			$bike2_id = $row['bike_id'];	
+		}
+	}
+	if ($bike1_id == 0 || $bike2_id == 0) {
+		header("Location: ../pages/new-bikes/bikecompare.php?error");
+	}
+	elseif ($bike1_id == $bike2_id) {
+		header("Location: ../pages/new-bikes/bikecompare.php?error=same");
+	}
+	else{
+		echo $arraystring = "bike1=" . $bike1_id . "&bike2=" . $bike2_id;
+		header("Location: ../pages/new-bikes/bikecompare/comparetemp.php?$arraystring");			
+	}
+	echo $bike1_id;
+	echo $bike2_id;
+}
