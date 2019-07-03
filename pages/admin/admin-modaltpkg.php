@@ -121,7 +121,7 @@ include '../../includes/dbh.inc.php';
                         </div>
 
                         <div class="table-responsive pl-4">
-                            <h5 class="box-title">Package 4</h5>
+                            <h5 class="box-title"><b>Package 4</b></h5>
                             <br><br>
                             <?php
                             $sql = "SELECT * FROM modaltpackages WHERE map_pkg_4 = 1 AND map_type = 'modification'";
@@ -238,7 +238,7 @@ include '../../includes/dbh.inc.php';
                     </div>
 
                     <div class="table-responsive pl-4">
-                        <h5 class="box-title">Package 4</h5>
+                        <h5 class="box-title"><b>Package 4</b></h5>
                         <br><br>
                         <?php
                         $sql = "SELECT * FROM modaltpackages WHERE map_pkg_4 = 1 AND map_type = 'alteration'";
