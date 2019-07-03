@@ -9,6 +9,10 @@ elseif (isset($_GET['partid'])){
 }
 include 'includes/restrictions.inc.php';
 logged_in();
+if (!isset($_SESSION['bikecart']) && !isset($_SESSION['cart']) && !isset($_SESSION['cartBuy-parts'])) {
+	header("Location: index.php");
+}
+else{
 $title = 'Address Confirmation';
 include_once 'includes/header.php';
 ?>
@@ -188,4 +192,5 @@ include_once 'includes/header.php';
 </script>
 <?php
 include_once 'includes/footer.php';
+}
 ?>

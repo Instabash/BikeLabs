@@ -1,12 +1,21 @@
 <?php
 session_start();
+
+include '../../includes/dbh.inc.php';
 include '../../includes/restrictions.inc.php';
 logged_in();
+user_protect();
 $title = 'Post an advert';
+$ad_id = $_GET['adid'];
+$sql = "SELECT * FROM post_ad WHERE ad_id='$ad_id'";
+$result = mysqli_query($conn, $sql);
+if (mysqli_num_rows($result)<1) {
+	header("Location: /BikeLabs/404-page.php");
+}
+else{
 include_once '../../includes/header.php';
-include '../../includes/dbh.inc.php';
 if (isset($_POST['editad'])) {
-	$ad_id = $_GET['adid'];
+	
 	$adtypesql = "SELECT * FROM post_ad WHERE ad_id = ?;";
 	$stmt = mysqli_stmt_init($conn);
 
@@ -837,4 +846,5 @@ switch($typeInt) {
 
     <?php
     include_once '../../includes/footer.php';
+}
     ?>

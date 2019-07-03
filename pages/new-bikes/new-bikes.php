@@ -1,5 +1,4 @@
 <?php
-include_once '../../includes/header.php';
 include_once '../../includes/dbh.inc.php';
 include_once '../../includes/restrictions.inc.php';
 redirect();
@@ -7,7 +6,11 @@ $bike_id = $_GET["bikeid"];
 
 $sql = "SELECT * FROM bikes WHERE bike_id='$bike_id'";
 $result = mysqli_query($conn, $sql);
-
+if (mysqli_num_rows($result)<1) {
+	header("Location: /BikeLabs/404-page.php");
+}
+else{
+include_once '../../includes/header.php';
 $stmt = mysqli_stmt_init($conn);
 ?>
 <section id="biketemplate" class="section biketemplatesec content">
@@ -586,4 +589,5 @@ return;
 </script>
 <?php
 include_once '../../includes/footer.php';
+}
 ?>

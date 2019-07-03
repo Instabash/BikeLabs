@@ -7,6 +7,7 @@ include '../../includes/dbh.inc.php';
 $user_id = $_SESSION['userId'];
 $spaartsql = "SELECT * FROM order_table WHERE idUsers = {$user_id} AND (order_status = 'Processing' OR order_status = 'Open');";
 $stmt = mysqli_stmt_init($conn);
+$assigned_vendor = 0;
 ?>
 <label href="#" class="list-group-item" style="width: auto;">User Panel
 	<button class="btn" id="menu-toggle"><i class="fas fa-bars"></i></button>
@@ -104,12 +105,20 @@ $stmt = mysqli_stmt_init($conn);
 								{
 									$vendor_name = $row2['uidUsers'];
 								}
+								$assigned_vendor = $vendor;
 							}
 							?>
 							<div style="width: 10%;" class="ml-1">
 								<form action="../chat.php?user=<?php echo $vendor_name; ?>" method="post">
 									<input type="hidden" name="vendor-id" value="<?php echo $row['assigned_vendor']; ?>">
-									<button class="btn btn-outline-danger" name="chat-btn">Chat with vendor</button>	
+									<?php
+									if (!$assigned_vendor == 0 || !empty($assigned_vendor)) {
+										?>
+										<button class="btn btn-outline-danger" name="chat-btn">Chat with vendor</button>	
+										<?php
+									}
+									?>
+									
 								</form>
 							</div>
 						</div>	

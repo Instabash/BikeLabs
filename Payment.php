@@ -2,6 +2,10 @@
 session_start();
 include 'includes/restrictions.inc.php';
 logged_in();
+if (!isset($_SESSION['del_method'])) {
+	header("Location: index.php");
+}
+else{
 if (isset($_SESSION['modORalt'])) {
 	$modoralt = $_SESSION['modORalt'];
 }
@@ -439,4 +443,5 @@ include_once 'includes/header.php';
 </script>
 <?php
 include_once 'includes/footer.php';
+}
 ?>

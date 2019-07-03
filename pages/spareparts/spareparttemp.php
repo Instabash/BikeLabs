@@ -1,5 +1,4 @@
 <?php
-include_once '../../includes/header.php';
 include_once '../../includes/dbh.inc.php';
 include_once '../../includes/restrictions.inc.php';
 redirect();
@@ -7,7 +6,11 @@ $part_id = $_GET["partid"];
 
 $sql = "SELECT * FROM post_ad WHERE ad_id='$part_id'";
 $result = mysqli_query($conn, $sql);
-
+if (mysqli_num_rows($result)<1) {
+	header("Location: /BikeLabs/404-page.php");
+}
+else{
+include_once '../../includes/header.php';
 $stmt = mysqli_stmt_init($conn);
 ?>
 <section id="biketemplate" class="section biketemplatesec content">
@@ -38,7 +41,7 @@ $stmt = mysqli_stmt_init($conn);
 						while ($row1 = mysqli_fetch_assoc($result1)) 
 						{
 							?>
-							<img class="mySlides " src="../../images/sparepartimg/<?php echo $row1['ad_image_name'] ?>" style="width:100%;height: 500px !important;">
+							<img class="mySlides " src="/BikeLabs/images/sparepartimg/<?php echo $row1['ad_image_name'] ?>" style="width:100%;height: 500px !important;">
 							<?php 
 						}			
 					}
@@ -67,7 +70,7 @@ $stmt = mysqli_stmt_init($conn);
 							$i++;
 							?>
 							<div class="w3-col s4" style="width: auto;">
-								<img class="demo w3-opacity w3-hover-opacity-off border-new border border-dark rounded " src="../../images/sparepartimg/<?php echo $row1['ad_image_name'] ?>" style="width:100px;height:75.47px !important;cursor:pointer" onclick="currentDiv(<?php echo $i ?>)">
+								<img class="demo w3-opacity w3-hover-opacity-off border-new border border-dark rounded " src="/BikeLabs/images/sparepartimg/<?php echo $row1['ad_image_name'] ?>" style="width:100px;height:75.47px !important;cursor:pointer" onclick="currentDiv(<?php echo $i ?>)">
 							</div>
 
 							<?php 
@@ -332,5 +335,6 @@ return;
 </script>
 
 <?php
-include_once '../../includes/footer.php';
+include_once '../../includes/footer.php';	
+}
 ?>

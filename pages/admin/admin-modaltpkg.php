@@ -204,7 +204,7 @@ include '../../includes/dbh.inc.php';
                         <?php }
                         ?>
                         <div class="box-footer clearfix" style="padding-top: 10px;">
-                            <form action="admin-edit.php?pkgalt=1" method="post">
+                            <form action="admin-edit.php?pkgalt=2" method="post">
                                 <input type="submit" class="btn btn-outline-danger btn-sm" id="edit6" value="Edit" ></input>  
                             </form>
                         </div>

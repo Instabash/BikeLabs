@@ -2,8 +2,30 @@
 session_start();
 include '../../includes/restrictions.inc.php';
 admin_protect();
-include '../../includes/header.php';
+
 include '../../includes/dbh.inc.php';
+
+if (isset($_GET['pkgmod']) && isset($_GET['pkgalt'])){
+    $pkggetmodnew = $_GET['pkgmod'];
+    $pkggetaltnew = $_GET['pkgalt'];
+
+    if ($pkggetmodnew == 1 || $pkggetaltnew == 1) {
+        $queryrownew = "map_pkg_1";
+    }
+    elseif ($pkggetmodnew == 2 || $pkggetaltnew == 2) {
+        $queryrownew = "map_pkg_2";
+    }
+    elseif ($pkggetmodnew == 3 || $pkggetaltnew == 3) {
+        $queryrownew = "map_pkg_3";
+    }
+    elseif ($pkggetmodnew == 4 || $pkggetaltnew == 4) {
+        $queryrownew = "map_pkg_4";
+    }
+    else{
+        header("Location: /BikeLabs/404-page.php");
+    }
+}
+include '../../includes/header.php';
 ?>
 <!-- Sidebar -->
 <label href="#" class="list-group-item" style="width: auto;">Admin Panel
@@ -47,13 +69,13 @@ include '../../includes/dbh.inc.php';
                                 if ($pkgget == 1) {
                                     $queryrow = "map_pkg_1";
                                 }
-                                if ($pkgget == 2) {
+                                elseif ($pkgget == 2) {
                                     $queryrow = "map_pkg_2";
                                 }
-                                if ($pkgget == 3) {
+                                elseif ($pkgget == 3) {
                                     $queryrow = "map_pkg_3";
                                 }
-                                if ($pkgget == 4) {
+                                elseif ($pkgget == 4) {
                                     $queryrow = "map_pkg_4";
                                 }
                                 $sql = "SELECT * FROM modaltpackages WHERE $queryrow = 1 AND map_type = 'modification';";

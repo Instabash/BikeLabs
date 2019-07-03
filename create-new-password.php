@@ -1,5 +1,10 @@
 <?php
-include_once 'includes/header.php';
+
+if (!isset($_GET['selector']) && !isset($_GET['validator'])) {
+	header("Location: index.php");
+}
+else{
+	include_once 'includes/header.php';
 ?>
 
 <section id="signup" class="section fontsec content">
@@ -31,4 +36,5 @@ include_once 'includes/header.php';
 
 <?php
 include_once 'includes/footer.php';
+}
 ?>
