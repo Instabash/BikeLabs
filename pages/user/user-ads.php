@@ -8,6 +8,7 @@ $user_id = $_SESSION['userId'];
 $spaartsql = "SELECT * FROM post_ad WHERE idUsers = {$user_id} ORDER BY `ad_date` DESC";;
 $stmt = mysqli_stmt_init($conn);
 ?>
+
 <label href="#" class="list-group-item" style="width: auto;">User Panel
 	<button class="btn" id="menu-toggle"><i class="fas fa-bars"></i></button>
 </label>
@@ -70,7 +71,27 @@ $stmt = mysqli_stmt_init($conn);
 						}
 						$isOdd = ! $isOdd;
 						?>">
-						
+							<div id="markSold" class="modal fade" role="dialog">
+							  <div class="modal-dialog">
+
+							    <!-- Modal content-->
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <h4 class="modal-title">Remove ad</h4>
+							        <button type="button" class="close" data-dismiss="modal">&times;</button>
+							      </div>
+							      <div class="modal-body">
+							        <p>Are you sure you want to remove this ad? You will not be able to undo this action.</p>
+							      </div>
+							      <div class="modal-footer">
+							        <form action="/BikeLabs/includes/markadsold.inc.php?ad_id=<?php echo $row['ad_id']; ?>" method="post">
+										<input class="btn-outline-danger btn" type="submit" name="mksold" value="Confirm">
+									</form>
+							      </div>
+							    </div>
+
+							  </div>
+							</div>
 							<div class="row">
 								<div style="flex:10%;" class="pl-3">
 									<img class="thumbimg rounded" src="../../images/sparepartimg/<?php echo $row1['ad_image_name'] ?>" style="border:3px solid black;">
@@ -85,9 +106,10 @@ $stmt = mysqli_stmt_init($conn);
 									<p><?php echo $row['ad_price'] ?> Rs.</p>
 								</div>
 								<div style="flex: 5%;margin: auto; width: 50%;">
-									<form action="/BikeLabs/includes/markadsold.inc.php?ad_id=<?php echo $row['ad_id']; ?>" method="post">
+									<input type="button" class="btn-outline-danger btn" data-toggle="modal" data-target="#markSold" value="Mark as sold"></input>
+									<!-- <form action="/BikeLabs/includes/markadsold.inc.php?ad_id=<?php echo $row['ad_id']; ?>" method="post">
 										<input class="btn-outline-danger btn" type="submit" name="mksold" value="Mark as sold">
-									</form>
+									</form> -->
 								</div>
 								<div style="flex: 5%;margin: auto; width: 50%;" class="ml-1">
 									<form action="../postad/editad.php?adid=<?php echo $row['ad_id']; ?>" method="post">
@@ -116,6 +138,12 @@ $stmt = mysqli_stmt_init($conn);
 		'info'        : false
 	})
 	
+</script>
+<script>
+	$("#menu-toggle").click(function(e) {
+		e.preventDefault();
+		$("#wrapper").toggleClass("toggled");
+	});
 </script>
 <?php
 include_once '../../includes/footer.php';
