@@ -2,6 +2,7 @@
 session_start();
 include '../../includes/restrictions.inc.php';
 logged_in();
+user_protect();
 $title = 'Post an advert';
 include_once '../../includes/header.php';
 ?>
