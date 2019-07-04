@@ -20,7 +20,7 @@ include '../../includes/dbh.inc.php';
 			<a href="/BikeLabs/pages/admin/admin-bikes.php" class="list-group-item list-group-item-action bg-light">Add new Bikes</a>
 			<a href="/BikeLabs/pages/admin/admin-parts.php" class="list-group-item list-group-item-action bg-light">Add new Parts</a>
 			<a href="/BikeLabs/pages/admin/admin-bike-parts.php" class="list-group-item list-group-item-action bg-light">Bikes/Parts Posted</a>
-			<a href="/BikeLabs/pages/admin/admin-modaltpkg.php" class="list-group-item list-group-item-action bg-light">Add Mod/Alt packages</a>
+			<a href="/BikeLabs/pages/admin/admin-modaltpkg.php" class="list-group-item list-group-item-action bg-light">Edit Mod/Alt packages</a>
 		</div>
 	</div>
 
@@ -117,8 +117,6 @@ include '../../includes/dbh.inc.php';
 								<thead>
 									<tr>
 										<th>Username</th>
-										<th>User address</th>
-										<th>User contact</th>
 										<th>User email</th>
 									</tr>
 								</thead>
@@ -142,8 +140,6 @@ include '../../includes/dbh.inc.php';
 											?>
 											<tr>
 												<td><span class="label label-success"><?php echo $row['uidUsers']; ?></span></td>
-												<td><?php echo $row['User_Address']; ?></td>
-												<td><span class="label label-success"><?php echo $row['User_Contact']; ?></span></td>
 												<td><?php echo $row['emailUsers']; ?></td>
 											</tr>
 											<?php
@@ -157,9 +153,6 @@ include '../../includes/dbh.inc.php';
 						<!-- /.table-responsive -->
 					</div>
 					<!-- /.box-body -->
-					<div class="box-footer clearfix">
-						<a href="#" class="btn btn-sm btn-primary pull-right">View All Users</a>
-					</div>
 					<!-- /.box-footer -->
 				</div>
 				<!-- /.box -->
