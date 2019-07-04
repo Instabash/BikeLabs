@@ -83,7 +83,7 @@ elseif (isset($_POST['vendor-close-order'])) {
 	}
 	else
 	{
-		header("Location: /BikeLabs/pages/admin/vendor-modaltprocessed.php?error=order");
+		header("Location: /BikeLabs/pages/vendor/vendor-modaltprocessed.php?error=order");
 		exit();
 	}
 	
