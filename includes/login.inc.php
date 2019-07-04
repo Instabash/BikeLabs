@@ -11,11 +11,16 @@ if (isset($_POST['login-submit']))
 	{
 		if (!isset($_SESSION['current_page1'])) {
 			$_SESSION['current_page1'] = $_SERVER['HTTP_REFERER'];
-			header("Location: ". $_SESSION['current_page1']."?error=emptyfields");
+			// header("Location: ". $_SESSION['current_page1']."?error=emptyfields");
+			header("Location: ". $_SESSION['current_page1']);
+			$_SESSION['error'] = "empty";
 			exit();	
 		}
 		else{
 			header("Location: ".$_SESSION['current_page1']."?error=emptyfields");
+			header("Location: ".$_SESSION['current_page1']);
+			$_SESSION['error'] = "empty";
+			exit();	
 		}
 	}
 	else
@@ -39,11 +44,16 @@ if (isset($_POST['login-submit']))
 				{
 					if (!isset($_SESSION['current_page1'])) {
 						$_SESSION['current_page1'] = $_SERVER['HTTP_REFERER'];
-						header("Location: ". $_SESSION['current_page1']."?error=wrongpwd2");
+						// header("Location: ". $_SESSION['current_page1']."?error=wrongpwd2");
+						header("Location: ". $_SESSION['current_page1']);
+						$_SESSION['error'] = "wrongpwd";
 						exit();	
 					}
 					else{
-						header("Location: ".$_SESSION['current_page1']."?error=wrongpwd2");
+						// header("Location: ".$_SESSION['current_page1']."?error=wrongpwd2");
+						header("Location: ".$_SESSION['current_page1']);
+						$_SESSION['error'] = "wrongpwd";
+						exit();	
 					}
 				}
 				elseif ($pwdCheck == true) 
@@ -53,19 +63,27 @@ if (isset($_POST['login-submit']))
 					$_SESSION['userUId'] = $row['uidUsers'];
 					$_SESSION['usertype'] = $row['User_type'];
 					if (isset($_SESSION['curr_page'])) {
-						header("Location: ../..".$_SESSION['curr_page']);
+						
+							header("Location: ../..".$_SESSION['curr_page']);
+							unset($_SESSION['error']);
+							exit();
+							// echo "string";
+						
 					}
 					else{
 						$_SESSION['current_page'] = $_SERVER['HTTP_REFERER'];
 						if ($row['User_type'] == 1) {
 							header("Location: /BikeLabs/pages/admin/admindash.php");
+							exit();	
 						}
 						elseif ($row['User_type'] == 2) {
 							header("Location: /BikeLabs/pages/vendor/vendordash.php");
+							exit();	
 						}
 						else{
 							//removing usertype=".row['User_type'] because of compare bike trouble"
 							header("Location: ". $_SESSION['current_page']);
+							exit();	
 						}
 					}
 					exit();
@@ -74,11 +92,16 @@ if (isset($_POST['login-submit']))
 				{
 					if (!isset($_SESSION['current_page1'])) {
 						$_SESSION['current_page1'] = $_SERVER['HTTP_REFERER'];
-						header("Location: ". $_SESSION['current_page1']."?error=wrongpwd");
+						// header("Location: ". $_SESSION['current_page1']."?error=wrongpwd");
+						header("Location: ". $_SESSION['current_page1']);
+						$_SESSION['error'] = "wrongpwd";
 						exit();	
 					}
 					else{
-						header("Location: ".$_SESSION['current_page1']."?error=wrongpwd");
+						// header("Location: ".$_SESSION['current_page1']."?error=wrongpwd");
+						header("Location: ".$_SESSION['current_page1']);
+						$_SESSION['error'] = "wrongpwd";
+						exit();	
 					}
 				}
 			}
@@ -86,11 +109,16 @@ if (isset($_POST['login-submit']))
 			{
 				if (!isset($_SESSION['current_page1'])) {
 					$_SESSION['current_page1'] = $_SERVER['HTTP_REFERER'];
-					header("Location: ". $_SESSION['current_page1']."?error=nouser");
+					// header("Location: ". $_SESSION['current_page1']."?error=nouser");
+					header("Location: ". $_SESSION['current_page1']);
+					$_SESSION['error'] = "nouser";
 					exit();	
 				}
 				else{
-					header("Location: ".$_SESSION['current_page1']."?error=nouser");
+					// header("Location: ".$_SESSION['current_page1']."?error=nouser");
+					header("Location: ".$_SESSION['current_page1']);
+					$_SESSION['error'] = "nouser";
+					exit();	
 				}
 			}
 		}
