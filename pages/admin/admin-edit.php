@@ -51,6 +51,15 @@ include '../../includes/header.php';
                 <div class="box-header">
                     <h3 class="box-title">Edit Mod/Alt Packages</h3>
                 </div>
+                <?php
+                if (isset($_GET['error'])) 
+                {
+                    if ($_GET['error'] == "empty") 
+                    {
+                        echo '<p style="color:red;padding:5px;";>Fill in all the fields!</p>';
+                    }
+                }
+                ?>
             </div>
         </div>
 
@@ -87,23 +96,44 @@ include '../../includes/header.php';
                                         <?php
                                         $result = mysqli_query($conn, $sql);
                                         $rowcount=mysqli_num_rows($result);
+                                        $i = 1;
                                         while ($row = mysqli_fetch_assoc($result)) 
                                             {?>
 
-                                                <div class="row pl-4 pt-1 pb-1 border" id="" style="width: 100%;">
-                                                    <div class="altright">
+                                                <div class="row pl-4 pb-2 border" id="" style="width: 100%;">
+                                                    <div class="altright pt-2">
                                                      <input type="text" value="<?php echo $row['map_name']; ?>" disabled style="background-color: transparent;border: none" class="textfieldToClose" name="pkgname<?php echo $row['map_id'] ?>"></input>
                                                  </div>
-                                                 <div class="altright">
+                                                 <div class="altright pt-2">
                                                     <input type="text" value="<?php echo $row['map_price'] ." Rs."; ?>" disabled style="background-color: transparent;border: none" class="textfieldToClose" name="pkgprice<?php echo $row['map_id'] ?>"></input>
                                                 </div>
-                                                <div class="altright">
+                                                <div class="altright pt-2">
                                                     <input type="hidden" name="pkg" value="<?php echo $pkgget?>">
-                                                    <button type="submit" class="btn btn-outline-danger btn-sm" name="remove<?php echo $pkgget ?>" value="<?php echo $row['map_id'] ?>" class="remove" >Remove</button> 
+                                                    <div id="remMod<?php echo $i; ?>" class="modal fade" role="dialog">
+                                                        <div class="modal-dialog">
+                                                        <!-- Modal content-->
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title">Confirm</h4>
+                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <p>Please press the button below to Confirm.</p>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="submit" class="btn btn-outline-danger btn-sm" name="remove<?php echo $pkgget ?>" value="<?php echo $row['map_id'] ?>" class="remove" >Remove</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#remMod<?php echo $i; ?>">Remove</button>
+                                                    <!-- <button type="submit" class="btn btn-outline-danger btn-sm" name="remove<?php echo $pkgget ?>" value="<?php echo $row['map_id'] ?>" class="remove" >Remove</button>  -->
                                                 </div>
 
                                             </div>
-                                        <?php }
+                                        <?php 
+                                        $i++;
+                                    }
                                         ?>
                                         <div class="row pl-4 pt-1 pb-1 border" id="hiddenDiv" style="width: 100%;display: none">
                                             <div style="float: left;">
@@ -123,7 +153,26 @@ include '../../includes/header.php';
                                                 </div>
                                             </div>
                                             <div>
-                                                <button type="submit" name="save<?php echo $pkgget ?>" class="btn btn-outline-danger btn-sm mt-2">Save</button> -->
+                                                <div id="saveMod" class="modal fade" role="dialog">
+                                                    <div class="modal-dialog">
+                                                    <!-- Modal content-->
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title">Confirm</h4>
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p>Please press the button below to Confirm.</p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="submit" name="save<?php echo $pkgget ?>" class="btn btn-outline-danger btn-sm mt-2">Save</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button type="button" class="btn btn-outline-danger btn-sm mt-2" data-toggle="modal" data-target="#saveMod">Save</button>
+                                                <!-- <button type="submit" name="save<?php echo $pkgget ?>" class="btn btn-outline-danger btn-sm mt-2">Save</button> -->
+                                                <button type="submit" name="cancel" id="cancel" class="btn btn-outline-danger btn-sm mt-2">Cancel</button> 
                                             </div>  
                                         </div>
                                         <div class="box-footer clearfix" style="padding-top: 10px;" style="padding-top: 10px;">
@@ -157,23 +206,44 @@ include '../../includes/header.php';
                                         <?php
                                         $result = mysqli_query($conn, $sql);
                                         $rowcount=mysqli_num_rows($result);
+                                        $i = 1;
                                         while ($row = mysqli_fetch_assoc($result)) 
                                             {?>
 
-                                                <div class="row pl-4 pt-1 pb-1 border" id="" style="width: 100%;">
-                                                    <div class="altright">
+                                                <div class="row pl-4 pb-2 border" id="" style="width: 100%;">
+                                                    <div class="altright pt-2">
                                                      <input type="text" value="<?php echo $row['map_name']; ?>" disabled style="background-color: transparent;border: none" class="textfieldToClose" name="pkgname<?php echo $row['map_id'] ?>"></input>
                                                  </div>
-                                                 <div class="altright">
+                                                 <div class="altright pt-2  ">
                                                     <input type="text" value="<?php echo $row['map_price'] ." Rs."; ?>" disabled style="background-color: transparent;border: none" class="textfieldToClose" name="pkgprice<?php echo $row['map_id'] ?>"></input>
                                                 </div>
-                                                <div class="altright">
+                                                <div class="altright pt-2">
                                                     <input type="hidden" name="pkg" value="<?php echo $pkgget?>">
-                                                    <button type="submit" class="btn btn-outline-danger btn-sm" name="removealt<?php echo $pkgget ?>" value="<?php echo $row['map_id'] ?>" class="remove" >Remove</button> 
+                                                    <div id="remAlt<?php echo $i; ?>" class="modal fade" role="dialog">
+                                                        <div class="modal-dialog">
+                                                        <!-- Modal content-->
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title">Confirm</h4>
+                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <p>Please press the button below to Confirm.</p>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="submit" class="btn btn-outline-danger btn-sm" name="removealt<?php echo $pkgget ?>" value="<?php echo $row['map_id'] ?>" class="remove" >Confirm</button> 
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#remAlt<?php echo $i; ?>">Remove</button>
+                                                    <!-- <button type="submit" class="btn btn-outline-danger btn-sm" name="removealt<?php echo $pkgget ?>" value="<?php echo $row['map_id'] ?>" class="remove" >Remove</button>  -->
                                                 </div>
 
                                             </div>
-                                        <?php }
+                                        <?php 
+                                        $i++;
+                                    }
                                         ?>
                                         <div class="row pl-4 pt-1 pb-1 border" id="hiddenDiv" style="width: 100%;display: none">
                                             <div style="float: left;">
@@ -193,7 +263,26 @@ include '../../includes/header.php';
                                                 </div>
                                             </div>
                                             <div>
-                                                <button type="submit" name="savealt<?php echo $pkgget ?>" class="btn btn-outline-danger btn-sm mt-2">Save</button> -->
+                                                <div id="saveAlt" class="modal fade" role="dialog">
+                                                    <div class="modal-dialog">
+                                                    <!-- Modal content-->
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title">Confirm</h4>
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p>Please press the button below to Confirm.</p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="submit" name="savealt<?php echo $pkgget ?>" class="btn btn-outline-danger btn-sm mt-2">Confirm</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button type="button" class="btn btn-outline-danger btn-sm mt-2" data-toggle="modal" data-target="#saveAlt">Save</button>
+                                                <!-- <button type="submit" name="savealt<?php echo $pkgget ?>" class="btn btn-outline-danger btn-sm mt-2">Save</button> -->
+                                                <button type="submit" name="cancel" id="cancel" class="btn btn-outline-danger btn-sm mt-2">Cancel</button>
                                             </div>  
                                         </div>
                                         <div class="box-footer clearfix" style="padding-top: 10px;" style="padding-top: 10px;">
@@ -238,34 +327,12 @@ include '../../includes/header.php';
 
         
         document.getElementById("hiddenDiv").style.display = "inline-block";
-        // var mydiv = document.getElementById("fillDiv");
-        // var newcontent = document.createElement('div');
+    });
+    $('#cancel').click(function(){
+        event.preventDefault();
+
         
-        // newcontent.innerHTML = ["<br>"+
-        // "<div>"+
-        // "<div class='row pl-4 pt-1 pb-1 border' style='width: 100%;'>"+
-        //                                         '<div class="altright">'+
-        //                                          '<input type="text"  style="background-color: transparent;" class="textfieldToClose" name="pkgname14">'+
-        //                                      '</div>'+
-        //                                      '<div class="altright">'+
-        //                                         '<input type="text"  style="background-color: transparent;" class="textfieldToClose" name="pkgprice14">'+
-        //                                     '</div>'+
-        //                                     '<div class="altright">'+
-        //                                         '<input type="hidden" name="pkg" value="1">'+
-        //                                         '<button type="submit" class="btn btn-outline-danger btn-sm" name="remove1" value="14">Remove</button> '+
-        //                                     '</div>'+
-        //                                 '</div>'];
-        //     while (newcontent.firstChild) {
-        //         mydiv.appendChild(newcontent.firstChild);
-        //     }
-        // event.preventDefault()
-        
-        // for(var i = 0; i < collection.length; i++) {
-        //     collection[i].style.border = '1px black solid' ? '' : '1px black solid';
-        //     collection[i].disabled = false
-        // }
-        // document.getElementById("save1").style.display = "inline-block";
-        // document.getElementById('edit').setAttribute("disabled","disabled");
+        document.getElementById("hiddenDiv").style.display = "none";
     });
 </script>
 <?php
