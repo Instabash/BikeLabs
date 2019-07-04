@@ -7,9 +7,10 @@ if (isset($_GET['bikeid'])) {
 elseif (isset($_GET['partid'])){
 	unset($_SESSION['bikecart']);
 }
+
 include 'includes/restrictions.inc.php';
 logged_in();
-if (!isset($_SESSION['bikecart']) && !isset($_SESSION['cart']) && !isset($_SESSION['cartBuy-parts'])) {
+if (!isset($_SESSION['bikecart']) && !isset($_SESSION['cart']) && !isset($_SESSION['cartBuy-parts']) && !isset($_SESSION['modcart']) && !isset($_SESSION['altcart'])) {
 	header("Location: index.php");
 }
 else{
