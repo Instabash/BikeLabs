@@ -1,7 +1,6 @@
 <?php
 include_once '../../includes/dbh.inc.php';
-include_once '../../includes/restrictions.inc.php';
-redirect();
+
 $bike_id = $_GET["bikeid"];
 
 $sql = "SELECT * FROM bikes WHERE bike_id='$bike_id'";
@@ -11,6 +10,8 @@ if (mysqli_num_rows($result)<1) {
 }
 else{
 include_once '../../includes/header.php';
+include_once '../../includes/restrictions.inc.php';
+redirect();
 $stmt = mysqli_stmt_init($conn);
 ?>
 <section id="biketemplate" class="section biketemplatesec content">
