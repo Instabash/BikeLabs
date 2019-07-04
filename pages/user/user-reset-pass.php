@@ -111,6 +111,12 @@ $user_id = $_SESSION['userId'];
 		});                           
 	});
 </script>
+<script>
+	$("#menu-toggle").click(function(e) {
+		e.preventDefault();
+		$("#wrapper").toggleClass("toggled");
+	});
+</script>
 <?php
 include_once '../../includes/footer.php';
 ?>
