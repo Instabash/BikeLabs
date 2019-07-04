@@ -20,4 +20,7 @@ if (isset($_POST['submit-remove'])) {
 			}
 		}
 	}
+	else{
+		header("Location: /BikeLabs/pages/admin/admin-vendor.php?error=selectvendor");
+	}
 }
