@@ -17,27 +17,25 @@ include_once 'includes/dbh.inc.php';
 include_once 'includes/header.php';
 ?>
 <div id="confirmPay" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Confirm Transaction</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-      <div class="modal-body">
-        <p>Please press the button below to Confirm.</p>
-      </div>
-      <div class="modal-footer">
-        <form action="includes/payment.inc.php" method="post">
-			<div class="payment-btn pt-4">
-				<button type="submit" name="btnplaceorder" class="btn btn-outline-danger" value="">Place order</button>
+	<div class="modal-dialog">
+	<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Confirm Transaction</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
-		</form>
-      </div>
-    </div>
-
-  </div>
+			<div class="modal-body">
+				<p>Please press the button below to Confirm.</p>
+			</div>
+			<div class="modal-footer">
+				<form action="includes/payment.inc.php" method="post">
+					<div class="payment-btn pt-4">
+						<button type="submit" name="btnplaceorder" class="btn btn-outline-danger" value="">Place order</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </div>
 <section id="payment" class="section paymentsec content">
 	<div class="container">
@@ -405,7 +403,7 @@ include_once 'includes/header.php';
 					}
 					?>
 					<div class="payment-btn pt-4">
-						<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#confirmPay">Open Modal</button>
+						<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#confirmPay">Buy</button>
 					</div>
 					<!-- <form action="includes/payment.inc.php" method="post">
 						<div class="payment-btn pt-4">

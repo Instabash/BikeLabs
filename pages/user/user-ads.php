@@ -46,6 +46,7 @@ $stmt = mysqli_stmt_init($conn);
 			mysqli_stmt_execute($stmt);
 			$result = mysqli_stmt_get_result($stmt);
 			$isOdd = true;
+			$i = 1;
 			while ($row = mysqli_fetch_assoc($result)) {
 				$imgnamesql = "SELECT ad_image_name, MIN(ad_image_thumb) FROM post_ad_images WHERE ad_id = {$row['ad_id']} GROUP BY ad_id;";
 
@@ -57,7 +58,7 @@ $stmt = mysqli_stmt_init($conn);
 				{
 					mysqli_stmt_execute($stmt);
 					$result1 = mysqli_stmt_get_result($stmt);
-
+					
 					while ($row1 = mysqli_fetch_assoc($result1)) 
 					{
 										//echo $row['ad_image_name'];
@@ -71,7 +72,7 @@ $stmt = mysqli_stmt_init($conn);
 						}
 						$isOdd = ! $isOdd;
 						?>">
-							<div id="markSold" class="modal fade" role="dialog">
+							<div id="markSold<?php echo $i; ?>" class="modal fade" role="dialog">
 							  <div class="modal-dialog">
 
 							    <!-- Modal content-->
@@ -106,7 +107,7 @@ $stmt = mysqli_stmt_init($conn);
 									<p><?php echo $row['ad_price'] ?> Rs.</p>
 								</div>
 								<div style="flex: 5%;margin: auto; width: 50%;">
-									<input type="button" class="btn-outline-danger btn" data-toggle="modal" data-target="#markSold" value="Mark as sold"></input>
+									<input type="button" class="btn-outline-danger btn" data-toggle="modal" data-target="#markSold<?php echo $i; ?>" value="Mark as sold"></input>
 									<!-- <form action="/BikeLabs/includes/markadsold.inc.php?ad_id=<?php echo $row['ad_id']; ?>" method="post">
 										<input class="btn-outline-danger btn" type="submit" name="mksold" value="Mark as sold">
 									</form> -->
@@ -121,6 +122,7 @@ $stmt = mysqli_stmt_init($conn);
 						
 					</div>
 					<?php 
+					$i++;
 				}			
 			}
 		}	

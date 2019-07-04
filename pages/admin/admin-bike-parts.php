@@ -20,7 +20,7 @@ include '../../includes/dbh.inc.php';
 			<a href="/BikeLabs/pages/admin/admin-bikes.php" class="list-group-item list-group-item-action bg-light">Add new Bikes</a>
 			<a href="/BikeLabs/pages/admin/admin-parts.php" class="list-group-item list-group-item-action bg-light">Add new Parts</a>
 			<a href="/BikeLabs/pages/admin/admin-bike-parts.php" class="list-group-item list-group-item-action bg-light">Bikes/Parts Posted</a>
-			<a href="/BikeLabs/pages/admin/admin-modaltpkg.php" class="list-group-item list-group-item-action bg-light">Add Mod/Alt packages</a>
+			<a href="/BikeLabs/pages/admin/admin-modaltpkg.php" class="list-group-item list-group-item-action bg-light">Edit Mod/Alt packages</a>
 		</div>
 	</div>
 	<section id="modify" class="section modsection content content2">
@@ -62,6 +62,7 @@ include '../../includes/dbh.inc.php';
 									{
 										mysqli_stmt_execute($stmt);
 										$result = mysqli_stmt_get_result($stmt);
+										$i = 1;
 										while($row = mysqli_fetch_assoc($result))
 										{
 											?>
@@ -73,11 +74,30 @@ include '../../includes/dbh.inc.php';
 												<td><?php echo $row['bike_price']; ?></td>
 												<td>
 													<form action="/BikeLabs/includes/markadsold.inc.php?part_id=<?php echo $row['bike_id']; ?>" method="post">
-														<input class="btn-outline-danger btn" type="submit" name="remove-bike" value="Remove Bike">
+														<div id="remBike<?php echo $i; ?>" class="modal fade" role="dialog">
+															<div class="modal-dialog">
+															<!-- Modal content-->
+																<div class="modal-content">
+																	<div class="modal-header">
+																		<h4 class="modal-title">Confirm Removal</h4>
+																		<button type="button" class="close" data-dismiss="modal">&times;</button>
+																	</div>
+																	<div class="modal-body">
+																		<p>Please press the button below to Confirm.</p>
+																	</div>
+																	<div class="modal-footer">
+																		<input class="btn-outline-danger btn" type="submit" name="remove-bike" value="Confirm">
+																	</div>
+																</div>
+															</div>
+														</div>
+														<button type="button" class="btn-outline-danger btn" data-toggle="modal" data-target="#remBike<?php echo $i; ?>">Remove Bike</button>
+														<!-- <input class="btn-outline-danger btn" type="submit" name="remove-bike" value="Remove Bike"> -->
 													</form>
 												</td>
 											</tr>
 											<?php
+											$i++;
 										}
 									}
 									?>
@@ -122,6 +142,7 @@ include '../../includes/dbh.inc.php';
 									{
 										mysqli_stmt_execute($stmt);
 										$result = mysqli_stmt_get_result($stmt);
+										$j = 1;
 										while($row = mysqli_fetch_assoc($result))
 										{
 											?>
@@ -131,11 +152,30 @@ include '../../includes/dbh.inc.php';
 												<td><?php echo $row['part_price']; ?></td>
 												<td>
 													<form action="/BikeLabs/includes/markadsold.inc.php?part_id=<?php echo $row['part_id']; ?>" method="post">
-														<input class="btn-outline-danger btn" type="submit" name="remove-part" value="Remove Part">
+														<div id="remPart<?php echo $j; ?>" class="modal fade" role="dialog">
+															<div class="modal-dialog">
+															<!-- Modal content-->
+																<div class="modal-content">
+																	<div class="modal-header">
+																		<h4 class="modal-title">Confirm Removal</h4>
+																		<button type="button" class="close" data-dismiss="modal">&times;</button>
+																	</div>
+																	<div class="modal-body">
+																		<p>Please press the button below to Confirm.</p>
+																	</div>
+																	<div class="modal-footer">
+																		<input class="btn-outline-danger btn" type="submit" name="remove-part" value="Confirm">
+																	</div>
+																</div>
+															</div>
+														</div>
+														<button type="button" class="btn-outline-danger btn" data-toggle="modal" data-target="#remPart<?php echo $j; ?>">Remove Part</button>
+														<!-- <input class="btn-outline-danger btn" type="submit" name="remove-part" value="Remove Part"> -->
 													</form>
 												</td>
 											</tr>
 											<?php
+											$j++;
 										}
 									}
 									?>

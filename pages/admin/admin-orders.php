@@ -25,7 +25,7 @@ include '../../includes/dbh.inc.php';
 			<a href="/BikeLabs/pages/admin/admin-bikes.php" class="list-group-item list-group-item-action bg-light">Add new Bikes</a>
 			<a href="/BikeLabs/pages/admin/admin-parts.php" class="list-group-item list-group-item-action bg-light">Add new Parts</a>
 			<a href="/BikeLabs/pages/admin/admin-bike-parts.php" class="list-group-item list-group-item-action bg-light">Bikes/Parts Posted</a>
-			<a href="/BikeLabs/pages/admin/admin-modaltpkg.php" class="list-group-item list-group-item-action bg-light">Add Mod/Alt packages</a>
+			<a href="/BikeLabs/pages/admin/admin-modaltpkg.php" class="list-group-item list-group-item-action bg-light">Edit Mod/Alt packages</a>
 		</div>
 	</div>
 	<section id="modify" class="section modsection content content2">
@@ -40,9 +40,35 @@ include '../../includes/dbh.inc.php';
 						<!-- /.box-header -->
 						<form action="/BikeLabs/includes/admin-orders.inc.php" method="post">
 							<div class="pb-3">
-								<input class="btn btn-primary" type="submit" name="admin-appr-order" value="Approve Order">
+								<div id="apprOrder" class="modal fade" role="dialog">
+									<div class="modal-dialog">
+									<!-- Modal content-->
+										<div class="modal-content">
+											<div class="modal-header">
+												<h4 class="modal-title">Confirm</h4>
+												<button type="button" class="close" data-dismiss="modal">&times;</button>
+											</div>
+											<div class="modal-body">
+												<p>Please press the button below to Confirm.</p>
+											</div>
+											<div class="modal-footer">
+												<input class="btn btn-primary" type="submit" name="admin-appr-order" value="Approve Order">
+											</div>
+										</div>
+									</div>
+								</div>
+								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#apprOrder">Approve Order</button>
+								<!-- <input class="btn btn-primary" type="submit" name="admin-appr-order" value="Approve Order"> -->
 							</div>
-							
+							<?php
+							if (isset($_GET['error'])) 
+							{
+								if ($_GET['error'] == "order") 
+								{
+									echo '<p style="color:red;padding:5px;";>Select a order to approve!</p>';
+								}
+							}
+							?>
 							<div class="box-body">
 								<table id="example1" class="table table-bordered table-striped">
 									<thead>

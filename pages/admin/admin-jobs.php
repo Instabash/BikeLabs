@@ -20,7 +20,7 @@ include '../../includes/dbh.inc.php';
 			<a href="/BikeLabs/pages/admin/admin-bikes.php" class="list-group-item list-group-item-action bg-light">Add new Bikes</a>
 			<a href="/BikeLabs/pages/admin/admin-parts.php" class="list-group-item list-group-item-action bg-light">Add new Parts</a>
 			<a href="/BikeLabs/pages/admin/admin-bike-parts.php" class="list-group-item list-group-item-action bg-light">Bikes/Parts Posted</a>
-			<a href="/BikeLabs/pages/admin/admin-modaltpkg.php" class="list-group-item list-group-item-action bg-light">Add Mod/Alt packages</a>
+			<a href="/BikeLabs/pages/admin/admin-modaltpkg.php" class="list-group-item list-group-item-action bg-light">Edit Mod/Alt packages</a>
 		</div>
 	</div>
 	<section id="modify" class="section modsection content content2">
@@ -60,7 +60,25 @@ include '../../includes/dbh.inc.php';
 									}
 									?>
 								</select>
-								<input class="btn btn-primary" type="submit" name="submit-job" value="Assign job">
+								<div id="assignJob" class="modal fade" role="dialog">
+									<div class="modal-dialog">
+									<!-- Modal content-->
+										<div class="modal-content">
+											<div class="modal-header">
+												<h4 class="modal-title">Confirm Assignment</h4>
+												<button type="button" class="close" data-dismiss="modal">&times;</button>
+											</div>
+											<div class="modal-body">
+												<p>Please press the button below to Confirm.</p>
+											</div>
+											<div class="modal-footer">
+												<input class="btn btn-primary" type="submit" name="submit-job" value="Confirm">
+											</div>
+										</div>
+									</div>
+								</div>
+								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#assignJob">Assign job</button>
+								<!-- <input class="btn btn-primary" type="submit" name="submit-job" value="Assign job"> -->
 							</div>
 							<?php
 							if (isset($_GET['error'])) 
@@ -106,6 +124,7 @@ include '../../includes/dbh.inc.php';
 											while($row = mysqli_fetch_assoc($result))
 											{
 												$orderid = $row['order_id'];
+												echo $orderid;
 												$sql2 = "SELECT * FROM order_items WHERE order_id = ?;";
 												$stmt2 = mysqli_stmt_init($conn);
 												if (!mysqli_stmt_prepare($stmt2, $sql2)) 
