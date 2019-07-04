@@ -10,6 +10,7 @@ elseif (isset($_GET['partid'])){
 
 include 'includes/restrictions.inc.php';
 logged_in();
+user_protect();
 if (!isset($_SESSION['bikecart']) && !isset($_SESSION['cart']) && !isset($_SESSION['cartBuy-parts']) && !isset($_SESSION['modcart']) && !isset($_SESSION['altcart'])) {
 	header("Location: index.php");
 }
