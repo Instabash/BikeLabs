@@ -1,6 +1,9 @@
 <?php
 session_start();
+unset($_SESSION['modcart']);
 unset($_SESSION['altcart']);
+unset($_SESSION['bikecart']);
+unset($_SESSION['cart']);
 include_once 'dbh.inc.php';
 
 $sql = "SELECT * FROM modaltpackages WHERE map_pkg_1 = 1 AND map_type = 'alteration'";
