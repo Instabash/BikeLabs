@@ -9,7 +9,7 @@ redirect();
 ?>
 <section id="spparts" class="section sppartsection content">
 	<div class="container">
-		<h3>New Spareparts</h3> <br>
+		<h3>Sparepart Ads.</h3> <br>
 		<form class="example" action="includes/search.inc.php" method="post">
 			<input type="text" placeholder="Search.." name="search">
 			<button type="submit" name="submit-search-usp"><i class="fa fa-search"></i></button>
@@ -87,8 +87,8 @@ redirect();
 						$no_of_records_per_page = 12;
 						$offset = ($pageno-1) * $no_of_records_per_page;
 
-						$total_pages_sql =  "SELECT COUNT(*) FROM post_ad WHERE ad_type = 'sparepart'";
-						$result = mysqli_query($conn,$total_pages_sql);	
+						$total_pages_sql = "SELECT COUNT(*) FROM post_ad WHERE ad_type = 'sparepart'";
+						$result = mysqli_query($conn, $total_pages_sql);	
 
 						$total_rows = mysqli_fetch_array($result)[0];
 						$total_pages = ceil($total_rows / $no_of_records_per_page);		
@@ -98,7 +98,7 @@ redirect();
 						{
 							$stmt = mysqli_stmt_init($conn);
 							$query = $_GET['s'];
-							$searchsql = "SELECT * FROM post_ad WHERE ad_title LIKE '%$query%' OR ad_description LIKE '%$query%' OR ad_price LIKE '%$query%' OR bike_make LIKE '%$query%' AND (ad_type = 'sparepart') ORDER BY `ad_date` DESC LIMIT {$offset}, {$no_of_records_per_page};";
+							$searchsql = "SELECT * FROM post_ad WHERE ad_type = 'sparepart' AND (ad_title LIKE '%$query%' OR ad_description LIKE '%$query%' OR ad_price LIKE '%$query%' OR bike_make LIKE '%$query%') ORDER BY `ad_date` DESC LIMIT {$offset}, {$no_of_records_per_page};";
 							$resultsearch = mysqli_query($conn, $searchsql);
 							$queryResult = mysqli_num_rows($resultsearch);
 							if ($queryResult > 0) { 
