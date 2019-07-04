@@ -8,7 +8,7 @@ redirect();
 <style>
 .demo a {
 	position: absolute;
-	left: 49%;
+	left: 50%;
 	z-index: 2;
 	display: inline-block;
 	-webkit-transform: translate(0, -50%);
@@ -101,7 +101,7 @@ redirect();
 		</p>
 	</div>
 	<section id="section02" class="demo">
-  		<a href="#modify"><span></span><p>Scroll</p></a>
+  		<a href="#modify"><span></span><p></p></a>
 	</section>
 </div>
 <!-- Modify section -->
