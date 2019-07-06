@@ -23,112 +23,113 @@ $assigned_vendor = 0;
 	</div>
 
 	<!-- Main content -->
-	<section class="section modsection content content2" style="padding-left:5%;width: 100%;">
-		<div class="pb-5" >
-			<h3>Pending Orders</h3><hr style="border-color:black !important">
-		</div>
-		
-		<div class="row">
-			<div style="width: 15%;margin-left: 25px;"><label>Order type</label></div>
-			<div style="width: 15%;"><label>Order status</label></div>
-			<div style="width: 15%;"><label>Order data</label></div>
-			<div style="width: 15%;"><label>Order address</label></div>
-			<div style="width: 15%;"><label>Order price</label></div>
-			<div style="width: 15%;"><label>Order quantity</label></div>
-		</div>
-		<?php 
-		if(!mysqli_stmt_prepare($stmt, $spaartsql))
-		{
-			echo "SQL statement failed";
-		}
-		else
-		{
-			mysqli_stmt_execute($stmt);
-			$result = mysqli_stmt_get_result($stmt);
-			$isOdd = true;
-			while ($row = mysqli_fetch_assoc($result)) {
-				$imgnamesql = "SELECT * FROM order_items WHERE order_id = {$row['order_id']};";
-
-				if(!mysqli_stmt_prepare($stmt, $imgnamesql))
-				{
-					echo "SQL statement failed";
-				}
-				else
-				{
-					mysqli_stmt_execute($stmt);
-					$result1 = mysqli_stmt_get_result($stmt);
-
-					while ($row1 = mysqli_fetch_assoc($result1)) 
+	<section class="section bike-parts modsection content content2" style="padding-left:5%;width: 100%;">
+		<div style="overflow-x:auto;">
+			<div class="pb-5" >
+				<h3>Pending Orders</h3><hr style="border-color:black !important">
+			</div>
+			<table id="example1" class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th>Order type</th>
+						<th>Order status</th>
+						<th>Order date</th>
+						<th>Order address</th>
+						<th>Order price</th>
+						<th>Order quantity</th>
+						<th>Chat</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php 
+					if(!mysqli_stmt_prepare($stmt, $spaartsql))
 					{
-						?>
-						<div class="p-3 mt-3 border-new border border-dark rounded " style="width: 100%;border-radius: 8px !important;<?php if ($isOdd) {
-							echo 'background-color: #f8f9fa;';
-						}
-						else{
-							echo "background-color: white;";
-						}
-						$isOdd = ! $isOdd;
-						?>">
-						
-						<div class="row">
-							<div style="width: 15%;margin-left: 20px;">
-								<label href=""><?php echo $row['order_type'] ?></label>
-							</div>
-							<div style="width: 15%;">
-								<label><?php echo $row['order_status']; ?></label>
-							</div>
-							<div style="width: 15%;">
-								<label><?php echo $row['order_date'] ?></label>
-							</div>
-							<div style="width: 16%;">
-								<label><?php echo $row1['Order_Address'] ?></label>
-							</div>
-							<div style="width: 16%;" class="ml-1">
-								<label><?php echo $row1['Order_price'] ?> Rs.</label>
-							</div>
-							<div style="width: 6%;" class="ml-1">
-								<label><?php echo $row1['Order_quantity'] ?></label>
-							</div>
-							<?php 
-							$sql = 'SELECT * FROM users WHERE idUsers = ?';
-							if(!mysqli_stmt_prepare($stmt, $sql))
+						echo "SQL statement failed";
+					}
+					else
+					{
+						mysqli_stmt_execute($stmt);
+						$result = mysqli_stmt_get_result($stmt);
+						$isOdd = true;
+						while ($row = mysqli_fetch_assoc($result)) 
+						{
+							$imgnamesql = "SELECT * FROM order_items WHERE order_id = {$row['order_id']};";
+
+							if(!mysqli_stmt_prepare($stmt, $imgnamesql))
 							{
 								echo "SQL statement failed";
 							}
 							else
 							{
-								$vendor = $row['assigned_vendor'];
-								mysqli_stmt_bind_param($stmt, "s", $vendor);
 								mysqli_stmt_execute($stmt);
-								$result2 = mysqli_stmt_get_result($stmt);
-								if ($row2 = mysqli_fetch_assoc($result2)) 
+								$result1 = mysqli_stmt_get_result($stmt);
+
+								while ($row1 = mysqli_fetch_assoc($result1)) 
 								{
-									$vendor_name = $row2['uidUsers'];
-								}
-								$assigned_vendor = $vendor;
-							}
-							?>
-							<div style="width: 10%;" class="ml-1">
-								<form action="../chat.php?user=<?php echo $vendor_name; ?>" method="post">
-									<input type="hidden" name="vendor-id" value="<?php echo $row['assigned_vendor']; ?>">
-									<?php
-									if (!$assigned_vendor == 0 || !empty($assigned_vendor)) {
-										?>
-										<button class="btn btn-outline-danger" name="chat-btn">Chat with vendor</button>	
-										<?php
-									}
 									?>
-									
-								</form>
-							</div>
-						</div>	
-					</div>
-					<?php 
-				}			
-			}
-		}	
-	}
-	?>>
+									<tr>
+										<td><?php echo $row['order_type']; ?></td>
+										<td><?php echo $row['order_status']; ?></td>
+										<td><?php echo $row['order_date']; ?></td>
+										<td><?php echo $row1['Order_Address']; ?></td>
+										<td><?php echo $row1['Order_price']; ?></td>
+										<td><?php echo $row1['Order_quantity']; ?></td>
+										<td>
+											<?php 
+										$sql = 'SELECT * FROM users WHERE idUsers = ?';
+										if(!mysqli_stmt_prepare($stmt, $sql))
+										{
+											echo "SQL statement failed";
+										}
+										else
+										{
+											$vendor = $row['assigned_vendor'];
+											mysqli_stmt_bind_param($stmt, "s", $vendor);
+											mysqli_stmt_execute($stmt);
+											$result2 = mysqli_stmt_get_result($stmt);
+											if ($row2 = mysqli_fetch_assoc($result2)) 
+											{
+												$vendor_name = $row2['uidUsers'];
+											}
+											$assigned_vendor = $vendor;
+										}
+										?>
+										<div style="width: 10%;" class="ml-1">
+											<form action="../chat.php?user=<?php echo $vendor_name; ?>" method="post">
+												<input type="hidden" name="vendor-id" value="<?php echo $row['assigned_vendor']; ?>">
+												<?php
+												if (!$assigned_vendor == 0 || !empty($assigned_vendor)) 
+												{
+													?>
+													<input type="submit" class="btn btn-outline-danger" name="chat-btn" value="Chat with vendor"></input>	
+													<?php
+												}
+												?>
+
+											</form>
+										</div>
+										</td>
+									</tr>		
+									<?php 
+								}			
+							}
+						}	
+					}
+					?>
+				</tbody>
+				<tfoot>
+					<tr>
+						<th>Order type</th>
+						<th>Order status</th>
+						<th>Order date</th>
+						<th>Order address</th>
+						<th>Order price</th>
+						<th>Order quantity</th>
+						<th>Chat</th>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
 </section>	
 </div>
 <script>
@@ -140,7 +141,7 @@ $assigned_vendor = 0;
 		'ordering'    : true,
 		'info'        : false
 	})
-	
+
 </script>
 <script>
 	$("#menu-toggle").click(function(e) {

@@ -28,10 +28,10 @@ include '../../includes/dbh.inc.php';
 			<a href="/BikeLabs/pages/admin/admin-modaltpkg.php" class="list-group-item list-group-item-action bg-light">Edit Mod/Alt packages</a>
 		</div>
 	</div>
-	<section id="modify" class="section modsection content content2">
+	<section id="modify" class="section bike-parts modsection content content2">
 		<div class="container">
 			<div class="row">
-				<div class="col-xs-12">
+				<div class="col-xs-12" style="overflow-x:auto;">
 					<!-- /.box -->
 					<div class="box">
 						<div class="box-header">
@@ -159,7 +159,7 @@ include '../../includes/dbh.inc.php';
 								<h3 class="box-title">Order details</h3>
 							</div><hr style="color: black;">
 							<div class="row pt-5 ">
-								<div class="col-sm-6 ">
+								<div class="col-sm-6 bike-table" style="overflow-x:auto;">
 									<div class="box-header">
 										<h3 class="box-title">Bike Order Detail</h3>
 									</div>
@@ -249,7 +249,7 @@ include '../../includes/dbh.inc.php';
 										</tfoot>
 									</table>
 								</div>
-								<div class="col-sm-6 ">
+								<div class="col-sm-6 part-table" style="overflow-x:auto;">
 									<div class="box-header">
 										<h3 class="box-title">Part Order Detail</h3>
 									</div>

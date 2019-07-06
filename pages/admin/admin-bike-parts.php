@@ -23,10 +23,10 @@ include '../../includes/dbh.inc.php';
 			<a href="/BikeLabs/pages/admin/admin-modaltpkg.php" class="list-group-item list-group-item-action bg-light">Edit Mod/Alt packages</a>
 		</div>
 	</div>
-	<section id="modify" class="section modsection content content2">
+	<section id="modify" class="bike-parts section modsection content content2">
 		<div class="container">
 			<div class="row">
-				<div class="col-xs-12">
+				<div class="col-xs-12" style="overflow-x:auto;">
 					<!-- /.box -->
 					<div class="box">
 						<div class="box-header">
@@ -34,7 +34,7 @@ include '../../includes/dbh.inc.php';
 						</div>
 						<!-- /.box-header -->
 						
-						<div class="box-body">
+						<div class="box-body" >
 							<label class="">Posted Bikes</label>
 							<br><br>
 							<table id="example1" class="table table-bordered table-striped">

@@ -30,7 +30,7 @@ include '../../includes/dbh.inc.php';
 		</div>
 		<div class="row pt-5" style="width: 100%;">
 			<!-- Left col -->
-			<div class="col-sm-6 ">
+			<div class="col-sm-6 bike-table" style="overflow-x:auto;">
 				<div class="box box-info">
 					<div class="box-header with-border">
 						<h3 class="box-title">Latest Orders</h3>
@@ -99,13 +99,13 @@ include '../../includes/dbh.inc.php';
 					</div>
 					<!-- /.box-body -->
 					<div class="box-footer clearfix">
-						<a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a>
+						<a href="javascript:void(0)" class="btn btn-sm btn-primary pull-right">View All Orders</a>
 					</div>
 					<!-- /.box-footer -->
 				</div>
 				<!-- /.box -->
 			</div>
-			<div class="col-sm-6 ">
+			<div class="col-sm-6 bike-table" style="overflow-x:auto;">
 				<div class="box box-info">
 					<div class="box-header with-border">
 						<h3 class="box-title">Latest Sales</h3>
@@ -174,13 +174,13 @@ include '../../includes/dbh.inc.php';
 					</div>
 					<!-- /.box-body -->
 					<div class="box-footer clearfix">
-						<a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a>
+						<a href="javascript:void(0)" class="btn btn-sm btn-primary pull-right">View All Orders</a>
 					</div>
 					<!-- /.box-footer -->
 				</div>
 				<!-- /.box -->
 			</div>
-			<div class="col-sm-6 pt-5">
+			<div class="col-sm-6 pt-5 bike-table" style="overflow-x:auto;">
 				<div class="box box-info">
 					<div class="box-header with-border">
 						<h3 class="box-title">Latest messages</h3>

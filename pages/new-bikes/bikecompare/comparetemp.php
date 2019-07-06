@@ -89,7 +89,7 @@ else
 		<div style="padding-bottom: 50px;">
 			<h2 style=""><?php echo $bike1Name . " Vs. " . $bike2Name; ?></h2 >
 		</div>
-		<div style="background-color: #f2f3f3;border-radius: 4px;">
+		<div style="background-color: #f2f3f3;border-radius: 4px;width: 100%;" class="compDiv">
 			<table style="width: 100%;margin-bottom: 60px;">
 				<col style="width:30%" span="4" />
 				<tr>
@@ -113,7 +113,9 @@ else
 							{
 								?>
 								<td class="" style="width: 30%;padding: 30px;">
-									<img src="/BikeLabs/images/sparepartimg/<?php echo $row2['bike_image_name']; ?>" style="border:2px solid black;border-radius: 4px;width:100%;height: 290px !important;"> <br><br>
+									<div class="compImg">
+										<img src="/BikeLabs/images/sparepartimg/<?php echo $row2['bike_image_name']; ?>" style="border:2px solid black;border-radius: 4px;width:100%;height: 290px !important;"> <br><br>
+									</div>
 									<h5 style="text-align: center;"><?php echo $bike1Name; ?></h5>
 								</td>
 								<?php 
@@ -122,7 +124,9 @@ else
 							{
 								?>
 								<td class="" style="width: 30%;padding: 30px;">
-									<img src="/BikeLabs/images/sparepartimg/<?php echo $row2['bike_image_name']; ?>" style="border:2px solid black;border-radius: 4px;width:100%;height: 290px !important;"> <br><br>
+									<div class="compImg">
+										<img src="/BikeLabs/images/sparepartimg/<?php echo $row2['bike_image_name']; ?>" style="border:2px solid black;border-radius: 4px;width:100%;height: 290px !important;"> <br><br>
+									</div>
 									<h5 style="text-align: center;"><?php echo $bike2Name; ?></h5>
 								</td>
 								<?php 
@@ -133,59 +137,61 @@ else
 				</tr>
 			</table>
 		</div>
-		<table class="table table-bordered table-striped" style="width:100%">
-			<col style="width:20%" span="4" />
-			<tr>
-				<th><h6>Engine Type</h6></th>
-				<td><p style="text-align: center;"><?php echo $bike1eng; ?></p></td>
-				<td><p style="text-align: center;"><?php echo $bike2eng; ?></p></td>
-			</tr>
-			<tr>
-				<th><h6>Bore & Stroke</h6></th>
-				<td><p style="text-align: center;"><?php echo $bike1bore_str; ?></p></td>
-				<td><p style="text-align: center;"><?php echo $bike2bore_str; ?></p></td>
-			</tr>
-			<tr>
-				<th><h6>Transmission</h6></th>
-				<td><p style="text-align: center;"><?php echo $bike1trans; ?></p></td>
-				<td><p style="text-align: center;"><?php echo $bike2trans; ?></p></td>
-			</tr>
-			<tr>
-				<th><h6>Starting</h6></th>
-				<td><p style="text-align: center;"><?php echo $bike1starting; ?></p></td>
-				<td><p style="text-align: center;"><?php echo $bike2starting; ?></p></td>
-			</tr>
-			<tr>
-				<th><h6>Frame</h6></th>
-				<td><p style="text-align: center;"><?php echo $bike1frame; ?></p></td>
-				<td><p style="text-align: center;"><?php echo $bike2frame; ?></p></td>
-			</tr>
-			<tr>
-				<th><h6>Dimension (Lxwxh)</h6></th>
-				<td><p style="text-align: center;"><?php echo $bike1dimensions; ?></p></td>
-				<td><p style="text-align: center;"><?php echo $bike2dimensions; ?></p></td>
-			</tr>
-			<tr>
-				<th><h6>Petrol Capacity</h6></th>
-				<td><p style="text-align: center;"><?php echo $bike1petrol_cap; ?></p></td>
-				<td><p style="text-align: center;"><?php echo $bike2petrol_cap; ?></p></td>
-			</tr>
-			<tr>
-				<th><h6>Tyre at Front</h6></th>
-				<td><p style="text-align: center;"><?php echo $bike1f_tyre; ?></p></td>
-				<td><p style="text-align: center;"><?php echo $bike2f_tyre; ?></p></td>
-			</tr>
-			<tr>
-				<th><h6>Tyre at Back</h6></th>
-				<td><p style="text-align: center;"><?php echo $bike1b_tyre; ?></p></td>
-				<td><p style="text-align: center;"><?php echo $bike2b_tyre; ?></p></td>
-			</tr>
-			<tr>
-				<th><h6>Dry Weight</h6></th>
-				<td><p style="text-align: center;"><?php echo $bike1dry_weight; ?></p></td>
-				<td><p style="text-align: center;"><?php echo $bike2dry_weight; ?></p></td>
-			</tr>
-		</table>
+		<div style="overflow-x:auto;">
+			<table class="table table-bordered table-striped" style="width:100%;">
+				<col style="width:20%" span="4" />
+				<tr>
+					<th><h6>Engine Type</h6></th>
+					<td><p style="text-align: center;"><?php echo $bike1eng; ?></p></td>
+					<td><p style="text-align: center;"><?php echo $bike2eng; ?></p></td>
+				</tr>
+				<tr>
+					<th><h6>Bore & Stroke</h6></th>
+					<td><p style="text-align: center;"><?php echo $bike1bore_str; ?></p></td>
+					<td><p style="text-align: center;"><?php echo $bike2bore_str; ?></p></td>
+				</tr>
+				<tr>
+					<th><h6>Transmission</h6></th>
+					<td><p style="text-align: center;"><?php echo $bike1trans; ?></p></td>
+					<td><p style="text-align: center;"><?php echo $bike2trans; ?></p></td>
+				</tr>
+				<tr>
+					<th><h6>Starting</h6></th>
+					<td><p style="text-align: center;"><?php echo $bike1starting; ?></p></td>
+					<td><p style="text-align: center;"><?php echo $bike2starting; ?></p></td>
+				</tr>
+				<tr>
+					<th><h6>Frame</h6></th>
+					<td><p style="text-align: center;"><?php echo $bike1frame; ?></p></td>
+					<td><p style="text-align: center;"><?php echo $bike2frame; ?></p></td>
+				</tr>
+				<tr>
+					<th><h6>Dimension (Lxwxh)</h6></th>
+					<td><p style="text-align: center;"><?php echo $bike1dimensions; ?></p></td>
+					<td><p style="text-align: center;"><?php echo $bike2dimensions; ?></p></td>
+				</tr>
+				<tr>
+					<th><h6>Petrol Capacity</h6></th>
+					<td><p style="text-align: center;"><?php echo $bike1petrol_cap; ?></p></td>
+					<td><p style="text-align: center;"><?php echo $bike2petrol_cap; ?></p></td>
+				</tr>
+				<tr>
+					<th><h6>Tyre at Front</h6></th>
+					<td><p style="text-align: center;"><?php echo $bike1f_tyre; ?></p></td>
+					<td><p style="text-align: center;"><?php echo $bike2f_tyre; ?></p></td>
+				</tr>
+				<tr>
+					<th><h6>Tyre at Back</h6></th>
+					<td><p style="text-align: center;"><?php echo $bike1b_tyre; ?></p></td>
+					<td><p style="text-align: center;"><?php echo $bike2b_tyre; ?></p></td>
+				</tr>
+				<tr>
+					<th><h6>Dry Weight</h6></th>
+					<td><p style="text-align: center;"><?php echo $bike1dry_weight; ?></p></td>
+					<td><p style="text-align: center;"><?php echo $bike2dry_weight; ?></p></td>
+				</tr>
+			</table>
+		</div>
 	</div>
 </section>
  <?php   

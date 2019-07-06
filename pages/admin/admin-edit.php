@@ -65,7 +65,7 @@ include '../../includes/header.php';
 
         <div class="row pt-4" style="width: 100%;padding-left:5%">
             <!-- Left col -->
-            <div class="col-sm-6 ">
+            <div class="col-sm-6 editpkgdiv">
                 <div class="box box-info">
                     <!-- /.box-header -->
                     <div class="box-body">

@@ -23,10 +23,10 @@ include '../../includes/dbh.inc.php';
 			<a href="/BikeLabs/pages/admin/admin-modaltpkg.php" class="list-group-item list-group-item-action bg-light">Edit Mod/Alt packages</a>
 		</div>
 	</div>
-	<section id="modify" class="section modsection content content2">
+	<section id="modify" class="section bike-parts modsection content content2">
 		<div class="container">
 			<div class="row">
-				<div class="col-xs-12">
+				<div class="col-xs-12" style="overflow-x:auto;">
 					<!-- /.box -->
 					<div class="box">
 						<div class="box-header">
@@ -34,32 +34,34 @@ include '../../includes/dbh.inc.php';
 						</div>
 						<!-- /.box-header -->
 						<form action="/BikeLabs/includes/admin-orders.inc.php" method="post">
-							<div class="pb-3">
+							<div class="pb-3 ">
 								<label>Select Vendor</label>
-								<select class="custom-select" name="vendor-select" style="width: 15%;">
-									<option value="" disabled selected>Select</option>
-									<?php
+								<div class="select-wrap mb-2">
+									<select class="custom-select" name="vendor-select" style="width: 15%;">
+										<option value="" disabled selected>Select</option>
+										<?php
 
-									$sql3 = "SELECT * FROM users WHERE User_type = '2';";
-									$stmt3 = mysqli_stmt_init($conn);
-									if (!mysqli_stmt_prepare($stmt3, $sql3)) 
-									{
-										header("Location: ../index.php?error=sqlerror");
-										exit();
-									}
-									else
-									{
-										mysqli_stmt_execute($stmt3);
-										$result3 = mysqli_stmt_get_result($stmt3);
-										while($row3 = mysqli_fetch_assoc($result3))
+										$sql3 = "SELECT * FROM users WHERE User_type = '2';";
+										$stmt3 = mysqli_stmt_init($conn);
+										if (!mysqli_stmt_prepare($stmt3, $sql3)) 
 										{
-											?>
-											<option value="<?php echo $row3['idUsers'] ?>"><?php echo $row3['uidUsers']; ?></option>
-											<?php
-										}	
-									}
-									?>
-								</select>
+											header("Location: ../index.php?error=sqlerror");
+											exit();
+										}
+										else
+										{
+											mysqli_stmt_execute($stmt3);
+											$result3 = mysqli_stmt_get_result($stmt3);
+											while($row3 = mysqli_fetch_assoc($result3))
+											{
+												?>
+												<option value="<?php echo $row3['idUsers'] ?>"><?php echo $row3['uidUsers']; ?></option>
+												<?php
+											}	
+										}
+										?>
+									</select>
+								</div>
 								<div id="assignJob" class="modal fade" role="dialog">
 									<div class="modal-dialog">
 									<!-- Modal content-->

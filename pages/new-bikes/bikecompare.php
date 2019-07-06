@@ -8,13 +8,13 @@ include_once '../../includes/dbh.inc.php';
 		<h4>Compare bikes</h4>
 		<form action="../../includes/bikecompare.inc.php" method="post">
 			<div class="row pt-5 pl-5 pr-5">
-				<div class="modleft1">
+				<div class="modleft1 bikeComp">
 					<h5>Choose Bike (A)</h5>
 					<div id="demoForm" class="demoForm p-5">
 						<div class="formrowad p-2">
 							<label>Make</label>
 							<div class="select-wrap mb-2">
-								<select class="custom-select" name="category" id="category">
+								<select class="custom-select bikeCompSelect" name="category" id="category" >
 									<?php
 									$sql = "SELECT DISTINCT bike_brand FROM bikes;";
 									$result = mysqli_query($conn, $sql);
@@ -29,7 +29,7 @@ include_once '../../includes/dbh.inc.php';
 							<div class="formrowad p-2">
 								<label>Make</label>
 								<div class="select-wrap mb-2">
-									<select class="custom-select" name="choices" id="choices">
+									<select class="custom-select bikeCompSelect" name="choices" id="choices">
 										<!-- populated using JavaScript -->
 									</select>
 								</div>
@@ -38,13 +38,13 @@ include_once '../../includes/dbh.inc.php';
 					</div>
 					<div class="mt-4 mb-4" style="border-right: 2px solid #dcd4d4;">
 					</div>
-					<div class="modright1">
+					<div class="modright1 bikeComp	">
 						<h5>Choose Bike (B)</h5>
 						<div id="demoForm" class="demoForm p-5">
 							<div class="formrowad p-2">
 								<label>Make</label>
 								<div class="select-wrap mb-2">
-									<select class="custom-select" name="category2" id="category2">
+									<select class="custom-select bikeCompSelect" name="category2" id="category2">
 										<?php
 									$sql = "SELECT DISTINCT bike_brand FROM bikes;";
 									$result = mysqli_query($conn, $sql);
@@ -59,7 +59,7 @@ include_once '../../includes/dbh.inc.php';
 							<div class="formrowad p-2">
 								<label>Make</label>
 								<div class="select-wrap mb-2">
-									<select class="custom-select" name="choices2" id="choices2">
+									<select class="custom-select bikeCompSelect" name="choices2" id="choices2">
 										<!-- populated using JavaScript -->
 									</select>
 								</div>

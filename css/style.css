@@ -120,27 +120,7 @@ html {
 
 
 .navbar-nav > li > .dropdown-menu > .dropdown-item:active { background-color: #000005 !important; }
-@media screen and (max-width: 580px){
-  .hide-on-small{
-    display: none;
-  }
 
-  #showcase{
-    height: 50vh;
-  }
-
-  #showcase .container{
-    margin-top: 15vh;
-  }
-
-  #showcase h1{
-    font-size: 3rem;
-  }
-
-  #showcase h2{
-    font-size: 1.5rem;
-  }
-}
 
 @font-face{
   font-family: DancingScript;
@@ -1059,17 +1039,7 @@ input::-webkit-input-placeholder {
   background-color: royalblue;
 }
 
-/* Add responsiveness - display the form controls vertically instead of horizontally on screens that are less than 800px wide */
-@media (max-width: 800px) {
-  .form-inline input {
-    margin: 10px 0;
-  }
 
-  .form-inline {
-    flex-direction: column;
-    align-items: stretch;
-  }
-}
 /*------------------------------------------------------------------------------------*/
 /*FILTERS*/
 /*------------------------------------------------------------------------------------*/
@@ -1576,12 +1546,6 @@ input[type="radio"] {
   min-height: calc(100vh - 138px);
 }
 
-@media only screen and (max-width: 760px), (min-width: 768px) and (max-width: 1024px) {
-  /* ... */
-  select {
-    width: 150px;
-  }
-}
 
 .product-item {
   padding: 15px;
@@ -1685,36 +1649,7 @@ input[type="radio"] {
 }
 
 
-@media (max-width: 800px) {
-  .form-row input {
-    margin: 10px 0;
-  }
 
-  .form-row label {
-    text-align: center;
-    width: 100%;
-    margin-right: 0;
-  }
-
-  .imageupload{ 
-    text-align: center; 
-  }
-
-  .addressbtn{
-    float: none !important;
-  }
-
-  .formrowad {
-    flex-direction: column;
-    align-items: stretch;
-  }
-}
-@media (max-width: 1024px) {
-  .imagelist{
-    flex-direction: column;
-    align-items: stretch;
-  }
-}
 
 .newbtn{
   background-color: white !important;
@@ -1877,7 +1812,8 @@ table.dataTable thead .sorting_asc:after {
   font-size: 14px;
 }
 
-@media (max-width: 767px){
+/*-------------Media queries----------------*/
+@media only screen and  (max-width: 768px){
   #sidebar-wrapper{
     -webkit-transform: translate(-230px, 0);
     -ms-transform: translate(-230px, 0);
@@ -1885,16 +1821,24 @@ table.dataTable thead .sorting_asc:after {
     transform: translate(-230px, 0);
   }
 }
-@media (max-width: 767px){
+@media only screen and  (max-width: 768px){
   .content-wrapper{
     float: left;
   }
 }
-@media (max-width: 767px){
+@media only screen and  (max-width: 768px){
   .section {
    /*-webkit-transform: translate(-100px, 0);
    transform: translate(-100px, 0);*/
  }
+ .bike-parts{
+  width:100%;
+  padding-left: 10%;
+ }
+ #sidebar-wrapper{
+  width: 0;
+ }
+
   .demo a{
     display: none;
   }
@@ -1906,10 +1850,183 @@ table.dataTable thead .sorting_asc:after {
   }
 }
 
-@media (min-width: 768px)
+@media only screen and  (min-width: 768px)
 {
   .col-sm-6 {
     width: 50%;
+  }
+
+}
+@media only screen and  screen and (max-width: 580px){
+  .hide-on-small{
+    display: none;
+  }
+
+  #showcase{
+    height: 50vh;
+  }
+
+  #showcase .container{
+    margin-top: 15vh;
+  }
+
+  #showcase h1{
+    font-size: 3rem;
+  }
+
+  #showcase h2{
+    font-size: 1.5rem;
+  }
+}
+/* Add responsiveness - display the form controls vertically instead of horizontally on screens that are less than 800px wide */
+@media only screen and  (max-width: 800px) {
+  .form-inline input {
+    margin: 10px 0;
+  }
+  /*#example1_filter{
+    padding-bottom: 10px;
+    float: left;
+  }
+   #example4_filter{
+    padding-bottom: 10px;
+    float: left;
+  }*/
+   .dataTables_filter{
+    padding-bottom: 10px;
+    float: left;
+  }
+  .dataTables_length{
+    /*padding-bottom: 10px;*/
+    float: left;
+  }
+  .form-inline {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media only screen and  (max-width: 320px){
+  #example1_filter{
+    display: none;
+  }
+}
+
+@media only screen and (max-width:997px){
+  .form-row label {
+    text-align: center;
+    width: 100%;
+    margin-right: 0;
+}
+.formrowad {
+    flex-direction: column;
+    align-items: stretch;
+}
+.select2{
+    width: 100% !important;
+  } 
+}
+
+@media only screen and (max-width: 760px), (min-width: 768px) and (max-width: 1024px) {
+  /* ... */
+  select {
+    width: 150px;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .nav-link {
+    padding-left: 10px !important;
+  }
+  .dropdown{
+    padding-left: 10px !important;
+  }
+  .header-logo{
+    padding-bottom: 20px;
+  }
+}
+@media only screen and  (max-width: 997px){
+  .bikeposteg{
+    display: none;
+  }
+}
+@media only screen and  (max-width: 768px){
+  .compImg{
+    display: none;
+  }
+}
+@media only screen and  (max-width: 768px){
+  .bikeComp{
+    flex: 100%;
+  }
+  .bikeCompSelect{
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 0;
+    position: relative;
+    vertical-align: middle;
+  }
+}
+@media only screen and  (max-width: 572px){
+  .compDiv{
+    display: none;
+  }
+}
+
+@media only screen and  (max-width: 768px) {
+  .form-row input {
+    margin: 10px 0;
+  }
+
+  
+
+  .form-row label {
+    text-align: center;
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .imageupload{ 
+    text-align: center; 
+  }
+
+  .addressbtn{
+    float: none !important;
+  }
+
+  .formrowad {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .jobselect{
+    flex-direction: column;
+    align-items: stretch;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+  .custom-select{
+     width: 100% !important;
+  }
+}
+@media only screen and  (max-width: 1024px) {
+  .imagelist{
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .carousel{
+    margin-right: 10%;
+    margin-left: 10%;
+  }
+}
+@media only screen and  (max-width: 1269px) {
+  .bike-table{
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .part-table{
+   flex: 0 0 100%;
+    max-width: 100%;
   }
 }
 

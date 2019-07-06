@@ -22,7 +22,7 @@ include '../../includes/dbh.inc.php';
             <a href="/BikeLabs/pages/vendor/vendor-modaltpkg.php" class="list-group-item list-group-item-action bg-light">View Mod/Alt packages</a>
         </div>
     </div>
-    <section id="modify" class="section modsection content content2">
+    <section id="modify" class="section modsection content content2" style="overflow-x:auto;">
       <div class="container">
          <div class="row">
             <div class="col-xs-12">
@@ -32,7 +32,6 @@ include '../../includes/dbh.inc.php';
                         <h3 class="box-title">Add new bikes</h3>
                     </div>
                  <!-- /.box-header -->
-
                 <div class="advertpick clearfix ">
                      <form class="p-2" action="/BikeLabs/includes/new-bikes.inc.php" method="post" enctype="multipart/form-data" id="bkform">
                         <hr>
@@ -41,7 +40,7 @@ include '../../includes/dbh.inc.php';
                         <div class="form-row formrowad p-2">
                             <label>Brand</label>
                             <div class="select-wrap mb-2">
-                                <select class="js-example-responsive" name="bkbrand" style="width: 100px;">
+                                <select class="js-example-responsive" name="bkbrand">
                                 <!-- <select class="custom-select" name="bkbrand" id="title"> -->
                                     <option value="0" selected>Select</option>
                                     <option value="Honda">Honda</option>
@@ -75,7 +74,7 @@ include '../../includes/dbh.inc.php';
                             <div>
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="bkengine" placeholder="Engine type" aria-label="Engine type" aria-describedby="basic-addon1">
-                                    <small style="color: black" class="p-2 pl-5"><i>Eg. 4-stroke Single cylinder</i></small>
+                                    <small style="color: black" class="p-2 pl-5 bikeposteg"><i>Eg. 4-stroke Single cylinder</i></small>
                                 </div>
                             </div>
                         </div>
@@ -85,7 +84,7 @@ include '../../includes/dbh.inc.php';
                             <div>
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="bkborestroke" placeholder="Bore and Stroke" aria-label="Bore and Stroke" aria-describedby="basic-addon1" data-inputmask="'mask': '99.9 - 99.9 mm'">
-                                    <small style="color: black" class="p-2 pl-5"><i>Eg. 56.6-49.4</i></small>
+                                    <small style="color: black" class="p-2 pl-5 bikeposteg"><i>Eg. 56.6-49.4</i></small>
                                 </div>
                             </div>
                         </div>
@@ -94,7 +93,7 @@ include '../../includes/dbh.inc.php';
                             <div>
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="bktrans" placeholder="Transmission" aria-label="Transmission" aria-describedby="basic-addon1" data-inputmask="'mask': '9 - speed'">
-                                    <small style="color: black" class="p-2 pl-5"><i>Eg. 4 speed</i></small>
+                                    <small style="color: black" class="p-2 pl-5 bikeposteg"><i>Eg. 4 speed</i></small>
                                 </div>
                             </div>
                         </div>
@@ -103,7 +102,7 @@ include '../../includes/dbh.inc.php';
                             <div>
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="bkstart" placeholder="Starting" aria-label="Starting" aria-describedby="basic-addon1">
-                                    <small style="color: black" class="p-2 pl-5"><i>Eg. Kick start</i></small>
+                                    <small style="color: black" class="p-2 pl-5 bikeposteg"><i>Eg. Kick start</i></small>
                                 </div>
                             </div>
                         </div>
@@ -112,7 +111,7 @@ include '../../includes/dbh.inc.php';
                             <div>
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="bkframe" placeholder="Frame" aria-label="Frame" aria-describedby="basic-addon1">
-                                    <small style="color: black" class="p-2 pl-5"><i>Eg. Backbone type</i></small>
+                                    <small style="color: black" class="p-2 pl-5 bikeposteg"><i>Eg. Backbone type</i></small>
                                 </div>
                             </div>
                         </div>
@@ -121,7 +120,7 @@ include '../../includes/dbh.inc.php';
                             <div>
                                 <div class="input-group">
                                     <input type="number" class="form-control" name="bkdim" placeholder="Dimensions" aria-label="Dimensions" aria-describedby="basic-addon1">
-                                    <small style="color: black" class="p-2 pl-5"><i>(Lxwxh)</i></small>
+                                    <small style="color: black" class="p-2 pl-5 bikeposteg"><i>(Lxwxh)</i></small>
                                 </div>
                             </div>
                         </div>
@@ -130,7 +129,7 @@ include '../../includes/dbh.inc.php';
                             <div>
                                 <div class="input-group">
                                     <input type="number" class="form-control" name="bkpetcap" placeholder="Petrol Capacity" aria-label="Petrol Capacity" aria-describedby="basic-addon1">
-                                    <small style="color: black" class="p-2 pl-5"><i>In litres</i></small>
+                                    <small style="color: black" class="p-2 pl-5 bikeposteg"><i>In litres</i></small>
                                 </div>
                             </div>
                         </div>
@@ -139,7 +138,7 @@ include '../../includes/dbh.inc.php';
                             <div>
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="bkftyre" placeholder="Tyre at front" aria-label="Tyre at front" aria-describedby="basic-addon1" data-inputmask="'mask': '99.99 - 99.99'">
-                                    <small style="color: black" class="p-2 pl-5"><i>Eg. 90 - 104</i></small>
+                                    <small style="color: black" class="p-2 pl-5 bikeposteg"><i>Eg. 90 - 104</i></small>
                                 </div>
                             </div>
                         </div>
@@ -156,7 +155,7 @@ include '../../includes/dbh.inc.php';
                             <div>
                                 <div class="input-group">
                                     <input type="number" class="form-control" name="bkdweight" placeholder="Dry Weight" aria-label="Dry Weight" aria-describedby="basic-addon1">
-                                    <small style="color: black" class="p-2 pl-5"><i>In Kilograms</i></small>
+                                    <small style="color: black" class="p-2 pl-5 bikeposteg"><i>In Kilograms</i></small>
                                 </div>
                             </div>
                         </div>

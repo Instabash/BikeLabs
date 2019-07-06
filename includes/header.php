@@ -155,7 +155,7 @@ if(!isset($_SESSION))
 
 	<div class="head-container collapse navbar-collapse" id="navbarSupportedContent" >
 		<ul class="navbar-nav mr-auto">
-			<h2 class="unselectable" style="color: #dc3545;padding-right: 30px;">BikeLabs</h2>
+			<h2 class="unselectable header-logo" style="color: #dc3545;padding-right: 30px;">BikeLabs</h2>
 			<li class="nav-item header-padding" style="color: #dc3545;">
 				<a class="nav-link" href="/BikeLabs/index.php">Home <span class="sr-only">(current)</span></a>
 			</li>
