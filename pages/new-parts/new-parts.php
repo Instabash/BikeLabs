@@ -14,8 +14,8 @@ $stmt = mysqli_stmt_init($conn);
 ?>
 <section id="biketemplate" class="section biketemplatesec content">
 	<div class="container max-w">
-		<div class="paymentmain" style="margin-left: 0px;margin-right: 0px">
-			<div class="paymentleft border-new border border-dark rounded mt-5 " style="">
+		<div class="paymentmain imageDiv" style="margin-left: 0px;margin-right: 0px">
+			<div class="paymentleft border-new border border-dark rounded mt-5 imageDivRight" style="">
 				<div class="w3-content w3-display-container">
 
 					<?php
@@ -32,7 +32,7 @@ $stmt = mysqli_stmt_init($conn);
 						while ($row1 = mysqli_fetch_assoc($result1)) 
 						{
 							?>
-							<img class="mySlides" src="../../images/sparepartimg/<?php echo $row1['part_image_name'] ?>" style="width:100%;height: 500px !important;">
+							<img class="mySlides" src="../../images/sparepartimg/<?php echo $row1['part_image_name'] ?>" style="width:100%;height: 500px;">
 							<?php 
 						}			
 					}
@@ -65,7 +65,7 @@ $stmt = mysqli_stmt_init($conn);
 					?>
 				</div>
 			</div>
-			<div class="paymentright">
+			<div class="paymentright imageDivRight">
 				<div class="border-new border border-dark rounded mt-5 p-3" style="">
 					<?php
 					if($row = mysqli_fetch_assoc($result))
@@ -112,7 +112,7 @@ $stmt = mysqli_stmt_init($conn);
 						<p>
 							Quantity
 						</p><br>
-						<div class="input-group" style="padding-left: 100px;padding-right: 100px;">
+						<div class="input-group quantityDiv" style="padding-left: 100px;padding-right: 100px;">
 							<span class="input-group-btn">
 								<button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant">
 									<span class="fas fa-minus-square"></span>
@@ -134,12 +134,12 @@ $stmt = mysqli_stmt_init($conn);
 				</form>
 			</div>
 		</div>
-		<div class="paymentmain" style="margin-left: 0px;margin-right: 0px">
-			<div class="paymentleft">
+		<div class="paymentmain imageDiv" style="margin-left: 0px;margin-right: 0px">
+			<div class="paymentleft imageDivRight" >
 				<div class="border-new border border-dark rounded mt-5 p-3" style="">
 					<div>
 					<h5><b>Description</b></h5><br>	
-					<p><?php echo $row['part_description']; ?></p>
+					<p style="word-break: break-all;"><?php echo $row['part_description']; ?></p>
 					</div>
 					
 				</div>

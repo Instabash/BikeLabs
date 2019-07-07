@@ -16,7 +16,7 @@ redirect();
 		</form>
 		<div class="search-page-new">
 			<div class="row">
-				<div class="mt-3 col-md-2 used-car-refine-search">
+				<div class="mt-4 col-md-2 used-car-refine-search">
 					<div class="sidebar-filters border-new">
 						<div class="filter-panel-new box">
 							<form action="includes/search.inc.php" method="post">
@@ -75,7 +75,7 @@ redirect();
 						</div>
 					</div>
 				</div>
-				<div class="col-md-10">
+				<div class="col-md-10 bike-results">
 					<div class="row">
 						
 						<?php

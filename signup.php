@@ -48,39 +48,39 @@ include_once 'includes/header.php';
 			?>
 			<div class="mt-4 border border-new border-black p-4" style="box-shadow: 6px 6px #e6e6e6;border-color: #cad1d8 !important;">
 				<div class="form-row modmarginleft">
-					<div class="col-3" >
+					<div class="col-3 signuptext " >
 						<input class="form-control logintext" type="text" name="uid" placeholder="Username" value="<?= isset($_GET['uid']) ? $_GET['uid'] : ''; ?>">
 					</div>
 				</div><br>
 				<div class="form-row modmarginleft">
-					<div class="col-3" >
+					<div class="col-3 signuptext" >
 						<input class="form-control logintext" type="text" name="mail" placeholder="E-mail" value="<?= isset($_GET['mail']) ? $_GET['mail'] : ''; ?>">
 					</div>
 				</div><br>
 				<div class="form-row modmarginleft">
-					<div class="col-3" >
+					<div class="col-3 signuptext" >
 						<input class="form-control logintext" type="text" name="fname" placeholder="First Name" value="<?= isset($_GET['fname']) ? $_GET['fname'] : ''; ?>">
 					</div>
 				</div><br>
 				<div class="form-row modmarginleft">
-					<div class="col-3" >
+					<div class="col-3 signuptext" >
 						<input class="form-control logintext" type="text" name="lname" placeholder="Last Name" value="<?= isset($_GET['lname']) ? $_GET['lname'] : ''; ?>">
 					</div>
 				</div><br>
 				<div class="form-row modmarginleft">
-					<div class="col-3" >
+					<div class="col-3 signuptext" >
 						<input class="form-control logintext" type="password" id = "password" name="pwd" placeholder="Password">
 						
 					</div>
 				</div><br>
 				<div class="form-row modmarginleft">
-					<div class="col-3" >
+					<div class="col-3 signuptext" >
 						<input class="form-control logintext" type="password" name="pwd-repeat" placeholder="Repeat password">
 						<span id="result" style="color: red;"></span>
 					</div>
 				</div><br>
 				<div class="form-row modmarginleft">
-					<div class="col-3" >
+					<div class="col-3 signuptext" >
 						<button class="loginbtn" type="submit" name="signup-submit">Signup</button>
 					</div>
 				</div>

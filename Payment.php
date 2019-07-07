@@ -89,8 +89,8 @@ include_once 'includes/header.php';
 			<a href="newspareparts.php">Edit your shopping bag</a>
 		</div>
 	<?php } ?>
-	<div class="paymentmain" style="margin-left: 0px;margin-right: 0px">
-		<div class="p-3 mt-3 border-new border border-dark rounded paymentleft">
+	<div class="paymentmain imageDiv" style="margin-left: 0px;margin-right: 0px">
+		<div class="p-3 mt-3 border-new border border-dark rounded paymentleft imageDivRight">
 			<div class="payment-method-div-third">
 				<div style="width: 98%;">
 					<h5><b>Pay using Cash on delivery</b></h5><br>
@@ -109,7 +109,7 @@ include_once 'includes/header.php';
 			</div>
 		</div>
 
-		<div class="p-3 mt-3 border-new border-0 border-dark rounded paymentright">
+		<div class="p-3 mt-3 border-new border-0 border-dark rounded paymentright imageDivRight">
 			<h4 class="pb-3">Your cart</h4><hr>
 			<?php
 			if(isset($_SESSION['cart']))

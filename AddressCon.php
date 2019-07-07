@@ -24,7 +24,7 @@ include_once 'includes/header.php';
 		<h3>How would you like to recieve your order?</h3><br>
 		<form class="p-2" action="includes/addresscon.inc.php" method="post">
 			<input type="hidden" name="bikeorpart" value="<?php if (isset($_GET['bikeid'])) {echo 'bikeid=$_GET["bikeid"]';}elseif($_GET['partid']){echo 'partid=$_GET["partid"]';} ?>">
-			<div class="form-check-inline">
+			<div class="">
 				<div class="btncreative btn-1 btn-1a" onclick="switch_div(1)">
 					<?php
 					if (isset($_GET['bikeid']) || isset($_GET['partid'])) {?>
@@ -74,7 +74,7 @@ include_once 'includes/header.php';
 						}
 					}
 					?>
-					<div class="form-row p-2 pt-4 mb-3">
+					<div class="form-row formrowad p-2 pt-4 mb-3">
 						<label for="title">Title</label>
 						<div class="select-wrap ">
 							<select class="js-example-responsive" name="title" style="width: 100px;">
@@ -89,7 +89,7 @@ include_once 'includes/header.php';
 							</select>
 						</div>
 					</div>
-					<div class="form-row p-2">
+					<div class="form-row formrowad p-2">
 						<label>First Name</label>
 						<div>
 							<div class="input-group mb-3">
@@ -97,7 +97,7 @@ include_once 'includes/header.php';
 							</div>
 						</div>
 					</div>
-					<div class="form-row p-2">
+					<div class="form-row formrowad p-2">
 						<label>Last Name</label>
 						<div class="">
 							<div class="input-group mb-3">
@@ -105,7 +105,7 @@ include_once 'includes/header.php';
 							</div>
 						</div>
 					</div>
-					<div class="form-row p-2">
+					<div class="form-row formrowad p-2">
 						<label>Phone Number</label>
 						<div>
 							<div class="input-group mb-3">
@@ -113,7 +113,7 @@ include_once 'includes/header.php';
 							</div>
 						</div>
 					</div>
-					<div class="form-row p-2">
+					<div class="form-row formrowad p-2">
 						<label>Country/Region</label>
 						<div class="select-wrap mb-3">
 							<select class="js-example-responsive" name="countryorregion" style="width: 100px;">
@@ -126,7 +126,7 @@ include_once 'includes/header.php';
 								</select>
 							</div>
 						</div>
-						<div class="form-row p-2">
+						<div class="form-row formrowad p-2">
 							<label>House name/Number</label>
 							<div class="">
 								<div class="input-group mb-3">
@@ -134,7 +134,7 @@ include_once 'includes/header.php';
 								</div>
 							</div>
 						</div>
-						<div class="form-row p-2">
+						<div class="form-row formrowad p-2">
 							<label>Postcode</label>
 							<div class="">
 								<div class="input-group mb-3">
@@ -159,7 +159,7 @@ include_once 'includes/header.php';
 
 					<div class="border-new border border-dark rounded">
 						<h4 class="text-left p-3">Select a store</h4>
-						<div class="form-row pl-3 pt-3">
+						<div class="form-row formrowad pl-3 pt-3">
 							<div class="select-wrap">
 								<div class="input-group mb-3 pt-1">
 									<select class="js-example-responsive" name="storepickup">

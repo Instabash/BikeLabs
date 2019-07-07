@@ -9,8 +9,8 @@ include_once 'includes/header.php';
 ?>
 <section id="cart" class="section fontsec content">
 	<div class="container">
-		<div class="paymentmain" style="margin-left: 0px;margin-right: 0px">
-			<div class="paymentleft">
+		<div class="paymentmain imageDiv" style="margin-left: 0px;margin-right: 0px">
+			<div class="paymentleft imageDivRight">
 				<div class="p-3 mt-3 border-new border border-dark rounded ">
 					<div class="payment-method-div-third">
 						<div style="width: 98%;">
@@ -24,8 +24,8 @@ include_once 'includes/header.php';
 							<?php
 							if (!empty($_SESSION["cart"])) {?>
 								<table style="width:100%">
-									<tr>
-										<th><input type="checkbox" name="checkAll"><a style="padding-left:5px;">Select Items</a></th>
+									<tr class="cartHeadings">
+										<th><input type="checkbox" name="checkAll" class=""><a style="padding-left:5px;">Select Items</a></th>
 										<th></th>
 										<th>Price</th>
 										<th>Quantity</th>
@@ -37,13 +37,14 @@ include_once 'includes/header.php';
 										<form action="includes/cartprocess.inc.php?partid=<?php echo $item['product_id'] ?>" method="post">
 											<tr>
 												<td align="center" valign="middle">
-													<input type="checkbox" name="checkitem">
+													<input type="checkbox" name="checkitem" class="cartHeadings">
 													<img class="border border-dark border-new thumbimg p-1" src="images/sparepartimg/<?php echo $item['default_img'];?>">
 													
 													<a href=""><?php echo $item['title'];?></a>
 												</td>
 												<td>
-													<button class="btn btn-danger" type="submit" name="removeItem">remove</button>
+													<button class="btn btn-danger cartRem" type="submit" name="removeItem" >remove</button>
+													<button class="btn btn-danger cartRemx" type="submit" name="removeItem" style="display: none;">x</button>
 												</td>
 												<td align="center" valign="middle">
 													<p><?php echo $item['price'];?> Rs.</p>
@@ -78,7 +79,7 @@ include_once 'includes/header.php';
 					if (!empty($_SESSION["cart"])) 
 					{
 						?>
-						<div class="p-3 mt-3 border-new border-0 border-dark rounded paymentright">
+						<div class="p-3 mt-3 border-new border-0 border-dark rounded paymentright imageDivRight">
 							<h4 class="pb-3">Your cart:</h4>
 							<?php
 							$total_price = 0;

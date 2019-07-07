@@ -9,11 +9,11 @@ include_once 'includes/header.php';
 			<p>An E-mail will be sent to you with instructions on how to reset your password.</p>
 			<form action="includes/reset-request.inc.php" method="post">
 				<div class="form-group modmarginleft">
-					<div class="pt-4">
+					<div class="pt-4 logintext1">
 						<input type="text" style="width: 250px;" class="logintext" name="email" placeholder="Enter your E-mail address.">
 					</div>
 				</div>
-				<button type="submit" class="loginbtn" name="reset-request-submit">Receive new password by E-mail</button>
+				<button type="submit" class="loginbtn" name="reset-request-submit">Reset Password</button>
 			</form>
 			<div class="pt-4">	
 			<?php

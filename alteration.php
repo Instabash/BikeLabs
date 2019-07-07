@@ -70,7 +70,7 @@ include_once 'includes/dbh.inc.php';
 				<h3>Step 3: Select what to Modify</h3><br>
 				<h6>We offer 2 packages of our own</h6><br>
 				<div class="row">
-					<div class="modleft1 border-new border border-dark rounded p-3" style="margin:0 5px 0 100px;">
+					<div class="modleft1 border-new border border-dark rounded p-3" >
 						<h5>Package 1</h5>
 						<div class="packageList" style="height: 250px;">
 							<ul>
@@ -109,7 +109,7 @@ include_once 'includes/dbh.inc.php';
 							</label>
 						</div>
 					</div>
-					<div class="modright1 border-new border border-dark rounded p-3" style="margin:0 100px 0 5px;">
+					<div class="modright1 border-new border border-dark rounded p-3" >
 						<h5>Package 2</h5>
 						<div class="packageList" style="height: 250px;">
 							<ul>
@@ -156,7 +156,7 @@ include_once 'includes/dbh.inc.php';
 							</div>
 						</div><br><br>
 					</div>
-					<div class="alterGenuine hide" id="show_2" style="margin:0 300px 0 300px;">
+					<div class="alterGenuine hide" id="show_2" >
 						<h3>Step 3: Select what to Modify</h3><br>
 						<div class="border-new border border-dark rounded p-3">
 							<h5>Package 1</h5>

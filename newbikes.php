@@ -160,7 +160,7 @@ redirect();
 					</div>
 				</div>
 
-				<div class="col-md-10">
+				<div class="col-md-10 bike-results">
 					<div class="row">
 						
 						<?php

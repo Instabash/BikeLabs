@@ -28,27 +28,6 @@ $stmt = mysqli_stmt_init($conn);
 		<div class="pb-5" >
 			<h3>Posted Ads.</h3><hr style="border-color:black !important">
 		</div>
-		<div id="markSold<?php echo $i; ?>" class="modal fade" role="dialog">
-			<div class="modal-dialog">
-
-				<!-- Modal content-->
-				<div class="modal-content">
-					<div class="modal-header">
-						<h4 class="modal-title">Remove ad</h4>
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-					</div>
-					<div class="modal-body">
-						<p>Are you sure you want to remove this ad? You will not be able to undo this action.</p>
-					</div>
-					<div class="modal-footer">
-						<form action="/BikeLabs/includes/markadsold.inc.php?ad_id=<?php echo $row['ad_id']; ?>" method="post">
-							<input class="btn-outline-danger btn" type="submit" name="mksold" value="Confirm">
-						</form>
-					</div>
-				</div>
-
-			</div>
-		</div>
 		<div style="overflow-x:auto;">
 			<table id="example1" class="table table-bordered table-striped">
 				<thead>
@@ -88,6 +67,27 @@ $stmt = mysqli_stmt_init($conn);
 								{
 								//echo $row['ad_image_name'];
 									?>
+									<div id="markSold<?php echo $i; ?>" class="modal fade" role="dialog">
+										<div class="modal-dialog">
+
+											<!-- Modal content-->
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title">Remove ad</h4>
+													<button type="button" class="close" data-dismiss="modal">&times;</button>
+												</div>
+												<div class="modal-body">
+													<p>Are you sure you want to remove this ad? You will not be able to undo this action.</p>
+												</div>
+												<div class="modal-footer">
+													<form action="/BikeLabs/includes/markadsold.inc.php?ad_id=<?php echo $row['ad_id']; ?>" method="post">
+														<input class="btn-outline-danger btn" type="submit" name="mksold" value="Confirm">
+													</form>
+												</div>
+											</div>
+
+										</div>
+									</div>
 									<tr>
 										<td><img class="thumbimg rounded" src="../../images/sparepartimg/<?php echo $row1['ad_image_name'] ?>" style="border:3px solid black;min-width: 80px;"></td>
 										<td><?php echo $row['ad_title'] ?></td>
@@ -106,6 +106,7 @@ $stmt = mysqli_stmt_init($conn);
 									<?php
 								}			
 							}
+							$i++;
 						}	
 					}
 					?>

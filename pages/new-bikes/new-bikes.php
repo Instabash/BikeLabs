@@ -16,8 +16,8 @@ $stmt = mysqli_stmt_init($conn);
 ?>
 <section id="biketemplate" class="section biketemplatesec content">
 	<div class="container max-w">
-		<div class="paymentmain" style="margin-left: 0px;margin-right: 0px">
-			<div class="paymentleft border-new border border-dark rounded mt-5 ">
+		<div class="paymentmain imageDiv" style="margin-left: 0px;margin-right: 0px">
+			<div class="paymentleft border-new border border-dark rounded mt-5 imageDivRight ">
 				<div class="w3-content w3-display-container">
 					<?php
 					$imgnamesql = "SELECT bike_image_name FROM b_images WHERE bike_id = {$_GET["bikeid"]};";
@@ -33,7 +33,7 @@ $stmt = mysqli_stmt_init($conn);
 						while ($row1 = mysqli_fetch_assoc($result1)) 
 						{
 							?>
-							<img class="mySlides" src="../../images/sparepartimg/<?php echo $row1['bike_image_name'] ?>" style="width:100%;height: 500px !important;">
+							<img class="mySlides" src="../../images/sparepartimg/<?php echo $row1['bike_image_name'] ?>" style="width:100%;height: 500px;">
 							<?php 
 						}			
 					}
@@ -66,7 +66,7 @@ $stmt = mysqli_stmt_init($conn);
 					?>
 				</div>
 			</div>
-			<div class="paymentright">
+			<div class="paymentright imageDivRight">
 				<div class="border-new border border-dark rounded mt-5 p-3">
 					<?php
 					if($row = mysqli_fetch_assoc($result))

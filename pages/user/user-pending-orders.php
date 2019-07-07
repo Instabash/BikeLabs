@@ -94,19 +94,23 @@ $assigned_vendor = 0;
 											$assigned_vendor = $vendor;
 										}
 										?>
-										<div style="width: 10%;" class="ml-1">
+										<div>
+										<?php
+										if (!$assigned_vendor == 0 || !empty($assigned_vendor)) 
+										{
+											?>
 											<form action="../chat.php?user=<?php echo $vendor_name; ?>" method="post">
 												<input type="hidden" name="vendor-id" value="<?php echo $row['assigned_vendor']; ?>">
-												<?php
-												if (!$assigned_vendor == 0 || !empty($assigned_vendor)) 
-												{
-													?>
-													<input type="submit" class="btn btn-outline-danger" name="chat-btn" value="Chat with vendor"></input>	
-													<?php
-												}
-												?>
-
+												<input type="submit" class="btn btn-outline-danger" name="chat-btn" value="Chat with vendor"></input>	
 											</form>
+											<?php
+										}
+										else{
+											?>
+											<p>No vendor assigned yet</p>
+											<?php
+										}
+										?>
 										</div>
 										</td>
 									</tr>		

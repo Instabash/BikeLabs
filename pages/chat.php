@@ -122,7 +122,7 @@ $stmt = mysqli_stmt_init($conn);
 												?>
 												<div class="chat_list active_chat">
 													<div class="chat_people">
-														<div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+														<div class="chat_img"> <img src="../images/user-profile.png" alt="user-profile"> </div>
 														<div class="chat_ib">
 															<h5><?php echo '<a href="?user='.$receiver_name.'">'. $receiver_name.'</a>'; ?> <span class="chat_date">Dec 25</span></h5>
 														</div>
@@ -147,7 +147,7 @@ $stmt = mysqli_stmt_init($conn);
 												
 												<div class="chat_list active_chat">
 													<div class="chat_people">
-														<div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+														<div class="chat_img"> <img src="../images/user-profile.png" alt="user-profile"> </div>
 														<div class="chat_ib">
 															<h5><?php echo '<a href="?user='.$sender_name.'">'. $sender_name.'</a>'; ?> <span class="chat_date">Dec 25</span></h5>
 														</div>
@@ -212,7 +212,7 @@ $stmt = mysqli_stmt_init($conn);
 											?>
 											<div class="incoming_msg">
 												<div class="incoming_msg_img pt-3">
-													<img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> 
+													<img src="../images/user-profile.png" alt="user-profile">
 												</div>
 												<div class="received_msg">
 													<div class="received_withd_msg">

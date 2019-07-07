@@ -1821,9 +1821,34 @@ table.dataTable thead .sorting_asc:after {
     transform: translate(-230px, 0);
   }
 }
+@media only screen and (max-width: 768px){
+  .used-car-refine-search{
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+  .bike-results{
+    flex: 0 0 75%;
+    max-width: 75%;
+  }
+}
 @media only screen and  (max-width: 768px){
   .content-wrapper{
     float: left;
+  }
+  
+}
+@media only screen and  (max-width: 375px){
+  .demoForm{
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+  }
+  .loginbtn{
+    width: 100%;
+    padding:5px !important;
+  }
+  .logintext{
+    width: 100%;
+    padding:5px !important;
   }
 }
 @media only screen and  (max-width: 768px){
@@ -1909,8 +1934,40 @@ table.dataTable thead .sorting_asc:after {
   #example1_filter{
     display: none;
   }
+  .btncreative{
+    margin: 15px 0px !important;
+  }
+  .logintext1{
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+  .logintext{
+    margin-left: 10%;
+    margin-right: 10%;
+    overflow: hidden;
+  }
 }
 
+
+ 
+  @media only screen and  (max-width: 580px){
+   .cartHeadings{
+    display: none;
+  }
+  .cartRem{
+    display: none;
+  }
+  .cartRemx{
+    display: inline-block !important;
+    border-radius: 200px;
+  }
+}
+
+@media only screen and  (max-width: 332px){
+  .incoming_msg_img {
+    display: none; 
+  }
+}
 @media only screen and (max-width:997px){
   .form-row label {
     text-align: center;
@@ -1955,6 +2012,25 @@ table.dataTable thead .sorting_asc:after {
   }
 }
 @media only screen and  (max-width: 768px){
+  .inbox_people{
+    width: 100%;
+    height: 260px;
+    overflow: auto;
+  }
+  .mesgs{
+    width: 100%;
+    overflow: auto;
+  }
+  .inbox_chat{
+    height: 100%;
+  }
+  
+  .signuptext{
+    flex: 0 0 100%; 
+     max-width: 100%; 
+  }
+}
+@media only screen and  (max-width: 768px){
   .bikeComp{
     flex: 100%;
   }
@@ -1972,12 +2048,51 @@ table.dataTable thead .sorting_asc:after {
   }
 }
 
+@media only screen and  (max-width: 425px){
+  .mySlides{
+   width: 100% !important;
+  height: auto !important;
+  }
+  .quantityDiv{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+  .select-small{
+    max-width: 100%;
+    flex: 0%;
+  }
+  .pagination{
+    margin-left: auto !important;
+  }
+  .used-car-refine-search{
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .bike-results{
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
 @media only screen and  (max-width: 768px) {
   .form-row input {
     margin: 10px 0;
   }
 
-  
+  .imageDiv {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .imageDivRight {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 0; 
+    flex-grow: 0; 
+    -webkit-flex-basis: 0px; 
+    flex-basis: 0px; 
+    margin-left: 0px;
+    width:100%;
+  }
 
   .form-row label {
     text-align: center;
@@ -2007,6 +2122,15 @@ table.dataTable thead .sorting_asc:after {
   }
   .custom-select{
      width: 100% !important;
+  }
+}
+@media only screen and  (max-width: 599px) {
+  .wordwrap { 
+     white-space: pre-wrap;      /* CSS3 */   
+     white-space: -moz-pre-wrap; /* Firefox */    
+     white-space: -pre-wrap;     /* Opera <7 */   
+     white-space: -o-pre-wrap;   /* Opera 7 */    
+     word-wrap: break-word;      /* IE */
   }
 }
 @media only screen and  (max-width: 1024px) {
