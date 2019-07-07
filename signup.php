@@ -1,4 +1,8 @@
 <?php
+
+include_once 'includes/restrictions.inc.php';
+session_start();
+signup_restrict();
 include_once 'includes/header.php';
 ?>
 

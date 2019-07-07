@@ -10,6 +10,14 @@ function logged_in(){
 	}
 }
 
+function signup_restrict()
+{
+	if (isset($_SESSION['userUId'])) {
+		header("Location: /BikeLabs/index.php");
+		exit();
+	}
+}
+
 function admin_protect(){
 	$userId = $_SESSION['userId'];
 	if (is_admin($userId) === false) {
