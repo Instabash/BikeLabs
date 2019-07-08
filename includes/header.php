@@ -188,7 +188,7 @@ if(!isset($_SESSION))
 			if(!isset($_SESSION['userId']))
 				{?>
 					<li class="dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Login </a>
+						<a class="nav-link dropdown-toggle login-drop" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Login </a>
 						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 							<form class="px-4 py-3" action="/BikeLabs/includes/login.inc.php" method="post">
 								<div class="form-group">
