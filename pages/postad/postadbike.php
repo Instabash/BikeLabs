@@ -450,7 +450,7 @@ include_once '../../includes/header.php';
                     }else
                     if (data == 3) 
                     {
-                        document.getElementById("empty").innerHTML = "Please enter a price between the ranges of 5000 to 5000000 Rs.";
+                        document.getElementById("empty").innerHTML = "Please enter a price between the ranges of 5000 to 50,00,000 Rs.";
                     }else
                     if (data == 4) 
                     {
