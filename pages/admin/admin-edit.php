@@ -56,7 +56,11 @@ include '../../includes/header.php';
                 {
                     if ($_GET['error'] == "empty") 
                     {
-                        echo '<p style="color:red;padding:5px;";>Fill in all the fields!</p>';
+                        echo '<p style="color:red !important;padding:5px;";>Fill in all the fields.</p>';
+                    }
+                    elseif ($_GET['error'] == "price") 
+                    {
+                        echo '<p style="color:red !important;padding:5px;";>Please enter a price within range of 100 to 50000 Rs.</p>';
                     }
                 }
                 ?>
@@ -149,7 +153,7 @@ include '../../includes/header.php';
                                                     <label>Part price</label>
                                                 </div>
                                                 <div>
-                                                    <input type="text" name="txtPrice" class="textfieldToClose form-control ml-2" style="width: 200px;" ></input>
+                                                    <input type="number" name="txtPrice" class="textfieldToClose form-control ml-2" style="width: 200px;" ></input>
                                                 </div>
                                             </div>
                                             <div>
@@ -259,7 +263,7 @@ include '../../includes/header.php';
                                                     <label>Part price</label>
                                                 </div>
                                                 <div>
-                                                    <input type="text" name="txtPrice" class="textfieldToClose form-control ml-2" style="width: 200px;" ></input>
+                                                    <input type="number" name="txtPrice" class="textfieldToClose form-control ml-2" style="width: 200px;" ></input>
                                                 </div>
                                             </div>
                                             <div>
