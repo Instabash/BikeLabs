@@ -51,6 +51,11 @@ elseif (isset($_POST['remove4'])) {
 elseif (isset($_POST['save1'])) {
 	$txtName = $_POST['txtName'];
 	$txtPrice = $_POST['txtPrice'];
+	if ($txtPrice > 50000 || $txtPrice < 100) 
+	{
+		header("Location: ../pages/admin/admin-edit.php?pkgmod=$pkg&error=price");
+		exit();
+	}
 	$enable = 1;
 	$type = "modification";
 	echo $txtName;
@@ -79,6 +84,11 @@ elseif (isset($_POST['save1'])) {
 elseif (isset($_POST['save2'])) {
 	$txtName = $_POST['txtName'];
 	$txtPrice = $_POST['txtPrice'];
+	if ($txtPrice > 50000 || $txtPrice < 100) 
+	{
+		header("Location: ../pages/admin/admin-edit.php?pkgmod=$pkg&error=price");
+		exit();
+	}
 	$enable = 1;
 	$type = "modification";
 	echo $txtName;
@@ -107,6 +117,11 @@ elseif (isset($_POST['save2'])) {
 elseif (isset($_POST['save3'])) {
 	$txtName = $_POST['txtName'];
 	$txtPrice = $_POST['txtPrice'];
+	if ($txtPrice > 50000 || $txtPrice < 100) 
+	{
+		header("Location: ../pages/admin/admin-edit.php?pkgmod=$pkg&error=price");
+		exit();
+	}
 	$enable = 1;
 	$type = "modification";
 	echo $txtName;
@@ -135,6 +150,11 @@ elseif (isset($_POST['save3'])) {
 elseif (isset($_POST['save4'])) {
 	$txtName = $_POST['txtName'];
 	$txtPrice = $_POST['txtPrice'];
+	if ($txtPrice > 50000 || $txtPrice < 100) 
+	{
+		header("Location: ../pages/admin/admin-edit.php?pkgmod=$pkg&error=price");
+		exit();
+	}
 	$enable = 1;
 	$type = "modification";
 	echo $txtName;
@@ -209,6 +229,11 @@ elseif (isset($_POST['removealt4'])) {
 elseif (isset($_POST['savealt1'])) {
 	$txtName = $_POST['txtName'];
 	$txtPrice = $_POST['txtPrice'];
+	if ($txtPrice > 50000 || $txtPrice < 100) 
+	{
+		header("Location: ../pages/admin/admin-edit.php?pkgalt=$pkg&error=price");
+		exit();
+	}
 	$enable = 1;
 	$type = "alteration";
 	echo $txtName;
@@ -237,6 +262,11 @@ elseif (isset($_POST['savealt1'])) {
 elseif (isset($_POST['savealt2'])) {
 	$txtName = $_POST['txtName'];
 	$txtPrice = $_POST['txtPrice'];
+	if ($txtPrice > 50000 || $txtPrice < 100) 
+	{
+		header("Location: ../pages/admin/admin-edit.php?pkgalt=$pkg&error=price");
+		exit();
+	}
 	$enable = 1;
 	$type = "alteration";
 	echo $txtName;
@@ -265,6 +295,11 @@ elseif (isset($_POST['savealt2'])) {
 elseif (isset($_POST['savealt3'])) {
 	$txtName = $_POST['txtName'];
 	$txtPrice = $_POST['txtPrice'];
+	if ($txtPrice > 50000 || $txtPrice < 100) 
+	{
+		header("Location: ../pages/admin/admin-edit.php?pkgalt=$pkg&error=price");
+		exit();
+	}
 	$enable = 1;
 	$type = "alteration";
 	echo $txtName;
@@ -293,6 +328,11 @@ elseif (isset($_POST['savealt3'])) {
 elseif (isset($_POST['savealt4'])) {
 	$txtName = $_POST['txtName'];
 	$txtPrice = $_POST['txtPrice'];
+	if ($txtPrice > 50000 || $txtPrice < 100) 
+	{
+		header("Location: ../pages/admin/admin-edit.php?pkgalt=$pkg&error=price");
+		exit();
+	}
 	$enable = 1;
 	$type = "alteration";
 	echo $txtName;
