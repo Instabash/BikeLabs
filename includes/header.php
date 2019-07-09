@@ -239,9 +239,9 @@ if(!isset($_SESSION))
 			if (isset($_SESSION['userId'])) 
 			{
 				?>
-				<div id="cartIcon" style="margin-right: 20px;">
+				<div id="cartIcon" class="nav-item header-padding" style="margin-right: 20px;">
 					<a href="/BikeLabs/cart.php">
-						<img id="image" style="width: 30px;margin-right: 20px;" src="/BikeLabs/images/cart3.svg">
+						<img id="image" style="padding-left: 10px;left: auto;" src="/BikeLabs/images/cart3.svg">
 						<div id="text" style = "color: #dc3545;">
 							<span class="day">
 								<?php
@@ -267,20 +267,20 @@ if(!isset($_SESSION))
 				if ($_SESSION['usertype'] == "1") {
 
 					?>
-					<p style="margin:5px;color:black;">Logged in as : <a href="/../BikeLabs/pages/admin/admindash.php"> <?php echo $userId ?> </a></p>
+					<p class="header-padding" style="padding-left:15px;margin:5px;color:black;">Logged in as : <a href="/../BikeLabs/pages/admin/admindash.php"> <?php echo $userId ?> </a></p>
 					<?php 
 				}
 				elseif ($_SESSION['usertype'] == "2") {
 					?>
-					<p style="margin:5px;color:black;">Logged in as : <a href="/../BikeLabs/pages/vendor/vendordash.php"> <?php echo $userId ?> </a></p>
+					<p class="header-padding" style="padding-left:15px;margin:5px;color:black;">Logged in as : <a href="/../BikeLabs/pages/vendor/vendordash.php"> <?php echo $userId ?> </a></p>
 					<?php 
 				}
 				else{
 					?>
-					<p style="margin:5px;color:black;">Logged in as : <a href="/../BikeLabs/pages/user/userdash.php"> <?php echo $userId ?> </a></p>
+					<p class="header-padding" style="padding-left:15px;margin:5px;color:black;">Logged in as : <a href="/../BikeLabs/pages/user/userdash.php"> <?php echo $userId ?> </a></p>
 					<?php 
 				}?>
-				<form class="" action="/BikeLabs/includes/logout.inc.php" style="margin-left: 10px;" method="post">
+				<form class="" action="/BikeLabs/includes/logout.inc.php" style="margin-left: 15px;" method="post">
 					<button type="submit" class="btn btn-outline-danger" name="logout-submit">Logout</button>
 				</form>
 				<?php
