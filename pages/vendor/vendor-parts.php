@@ -197,6 +197,7 @@ include '../../includes/dbh.inc.php';
                     console.log('v1', validated);
                     validated = false;
                     // alert("Height and Width must not exceed 100px.");
+                    document.getElementById("error").innerHTML = "The uploaded image has dimensions lower than 300x300";
                     console.log('v2', validated);
                     e.preventDefault();
 

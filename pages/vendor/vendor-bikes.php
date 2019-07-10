@@ -46,6 +46,10 @@ include '../../includes/dbh.inc.php';
                                     <option value="Honda">Honda</option>
                                     <option value="SuperPower">SuperPower</option>
                                     <option value="Unique">Unique</option>
+                                    <option value="Superstar">Superstar</option>
+                                    <option value="Yamaha">Yamaha</option>
+                                    <option value="United">United</option>
+                                    <option value="Suzuki">Suzuki</option>
                                 </select>
                             </div>
                         </div>
@@ -316,8 +320,10 @@ include '../../includes/dbh.inc.php';
                     validated = false;
                     // alert("Height and Width must not exceed 100px.");
                     console.log('v2', validated);
+                    // e.preventDefault();
+                    document.getElementById("error").innerHTML = "The uploaded image has dimensions lower than 300x300";
                     e.preventDefault();
-
+                    return;
                     dfrd1.resolve();
                 } else {
 
@@ -527,6 +533,15 @@ include '../../includes/dbh.inc.php';
                     if (data == 4) 
                     {
                         document.getElementById("empty").innerHTML = "Please select images";
+                    }else
+                    if (data == 6) 
+                    {
+                        document.getElementById("empty").innerHTML = "There was an error";
+                    }
+                    else
+                    if (data == 7) 
+                    {
+                        document.getElementById("empty").innerHTML = "There was an error";
                     }
                     else
                         if (data == 5) 
