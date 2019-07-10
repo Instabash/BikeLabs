@@ -2,6 +2,7 @@
 session_start();
 
 include_once 'dbh.inc.php';
+include_once 'constants.inc.php';
 if (isset($_POST['images'])) 
 {
 	$Condition = $_POST['spcondition'];
@@ -13,6 +14,24 @@ if (isset($_POST['images']))
 	if ($CountryReg == "0") {
 		$CountryReg = "";
 	}
+
+	//----------------constant checking-------------//
+	$object = new constantsinc();
+
+	$accConds = $object ->bikeConds;
+	$accCountry = $object ->addCountry;
+	
+	if (!in_array($Condition, $accConds)) 
+	{
+	    echo json_encode(7);
+		exit();
+	}
+	elseif (!in_array($CountryReg, $accCountry)) 
+	{
+	   	echo json_encode(8);
+		exit();
+	}
+	//----------------constant checking-------------//
 
 	$Title = $_POST['sptitle'];
 	

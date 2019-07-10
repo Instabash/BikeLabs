@@ -6,9 +6,21 @@ if (isset($_POST['submit-job'])) {
 		if(!empty($_POST['order-check'])) {
 			$selectedvendor = $_POST['vendor-select'];
 			foreach($_POST['order-check'] as $check) {
-				$sql = "UPDATE order_table SET order_status = 'Processing', assigned_vendor = '$selectedvendor' WHERE order_id = '$check'";
+				$sql = "SELECT * FROM users WHERE User_type = '2' AND uidUsers = '$selectedvendor';";
 				$result = mysqli_query($conn, $sql);
-				header("Location: /BikeLabs/pages/admin/admin-jobs.php?successr");
+				if($row = mysqli_fetch_assoc($result))
+				{
+					$sql2 = "UPDATE order_table SET order_status = 'Processing', assigned_vendor = '$selectedvendor' WHERE order_id = '$check'";
+					$result2 = mysqli_query($conn, $sql2);
+					header("Location: /BikeLabs/pages/admin/admin-jobs.php?successr");	
+					exit();
+					// echo "success";
+				}
+				else{
+					header("Location: /BikeLabs/pages/admin/admin-jobs.php?error");	
+					exit();
+					// echo "failed";
+				}
 			}
 		}
 		else

@@ -13,6 +13,9 @@ unset($_SESSION['new_b_p_address']);
 unset($_SESSION['new_b_p_address_store']);
 unset($_SESSION['modORalt']);
 
+include_once 'constants.inc.php';
+$object = new constantsinc();
+
 if (isset($_SESSION['cart']) || isset($_SESSION['bikecart'])) {
 	if (isset($_POST['homepickbtn'])) {
 		$title = $_POST['title'];
@@ -23,6 +26,23 @@ if (isset($_SESSION['cart']) || isset($_SESSION['bikecart'])) {
 		$hnameorno = $_POST['hnameorno'];
 		$pcode = $_POST['pcode'];
 		$del_method = "Home Pickup";
+
+		//----------------constant checking-------------//
+		$accTitle = $object ->addTitle;
+		$accCountry = $object ->addCountry;
+		
+		if (!in_array($title, $accTitle)) 
+		{
+		    header("Location: ../AddressCon.php?error=error");
+			exit();
+		}
+		elseif (!in_array($countryreg, $accCountry)) 
+		{
+		    header("Location: ../AddressCon.php?error=error");
+			exit();
+		}
+		//----------------constant checking-------------//
+
 		if(empty($title) || empty($fname) || empty($lname) || empty($phone) || empty($countryreg) || empty($hnameorno) || empty($pcode) || empty($del_method))
 		{
 			header("Location: ../AddressCon.php?error=emptyfields&title=".$title."&fname=".$fname."&lname=".$lname."&countryreg=".$countryreg."&hnameorno=".$hnameorno."&pcode=".$pcode."&del_method=".$del_method."&phone=".$phone);
@@ -60,6 +80,15 @@ if (isset($_SESSION['cart']) || isset($_SESSION['bikecart'])) {
 		$_SESSION['del_method'] = $del_method;
 		$store = $_POST['storepickup'];
 		$_SESSION['new_b_p_address_store'] = $store;
+		//----------------constant checking-------------//
+		$accStores = $object ->addStores;
+		
+		if (!in_array($store, $accStores)) 
+		{
+		    header("Location: ../AddressCon.php?error=error");
+			exit();
+		}
+		//----------------constant checking-------------//
 		header("Location: ../payment.php");
 	}
 }
@@ -75,6 +104,23 @@ elseif (isset($_SESSION['modcart'])) {
 		$hnameorno = trim($_POST['hnameorno']);
 		$pcode = trim($_POST['pcode']);
 		$del_method = "Home Pickup";
+
+		//----------------constant checking-------------//
+		$accTitle = $object ->addTitle;
+		$accCountry = $object ->addCountry;
+		
+		if (!in_array($title, $accTitle)) 
+		{
+		    header("Location: ../AddressCon.php?error=error");
+			exit();
+		}
+		elseif (!in_array($countryreg, $accCountry)) 
+		{
+		    header("Location: ../AddressCon.php?error=error");
+			exit();
+		}
+		//----------------constant checking-------------//
+
 		if(empty($title) || empty($fname) || empty($lname) || empty($phone) || empty($countryreg) || empty($hnameorno) || empty($pcode) || empty($del_method))
 		{
 			header("Location: ../AddressCon.php?error=emptyfields&title=".$title."&fname=".$fname."&lname=".$lname."&countryreg=".$countryreg."&hnameorno=".$hnameorno."&pcode=".$pcode."&del_method=".$del_method."&phone=".$phone);
@@ -113,6 +159,15 @@ elseif (isset($_SESSION['modcart'])) {
 		$_SESSION['del_method'] = $del_method;
 		$store = $_POST['storepickup'];
 		$_SESSION['modaddress_store'] = $store;
+		//----------------constant checking-------------//
+		$accStores = $object ->addStores;
+		
+		if (!in_array($store, $accStores)) 
+		{
+		    header("Location: ../AddressCon.php?error=error");
+			exit();
+		}
+		//----------------constant checking-------------//
 		// echo $store;
 		$_SESSION['modORalt'] = "modification";
 		header("Location: ../payment.php");
@@ -128,6 +183,23 @@ elseif (isset($_SESSION['altcart'])) {
 		$hnameorno = $_POST['hnameorno'];
 		$pcode = $_POST['pcode'];
 		$del_method = "Home Pickup";
+
+		//----------------constant checking-------------//
+		$accTitle = $object ->addTitle;
+		$accCountry = $object ->addCountry;
+		
+		if (!in_array($title, $accTitle)) 
+		{
+		    header("Location: ../AddressCon.php?error=error");
+			exit();
+		}
+		elseif (!in_array($countryreg, $accCountry)) 
+		{
+		    header("Location: ../AddressCon.php?error=error");
+			exit();
+		}
+		//----------------constant checking-------------//
+
 
 		$_SESSION['del_method'] = $del_method;
 		$_SESSION['altaddress'][] = array(
@@ -148,6 +220,15 @@ elseif (isset($_SESSION['altcart'])) {
 		$_SESSION['del_method'] = $del_method;
 		$store = $_POST['storepickup'];
 		$_SESSION['altaddress_store'] = $store;
+		//----------------constant checking-------------//
+		$accStores = $object ->addStores;
+		
+		if (!in_array($store, $accStores)) 
+		{
+		    header("Location: ../AddressCon.php?error=error");
+			exit();
+		}
+		//----------------constant checking-------------//
 		$_SESSION['modORalt'] = "alteration";
 		header("Location: ../payment.php");
 	}

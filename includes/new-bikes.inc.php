@@ -2,6 +2,7 @@
 session_start();
 
 include_once 'dbh.inc.php';
+include_once 'constants.inc.php';
 if (isset($_POST['images'])) 
 {
 	// $Title = $_POST['bktitle'];
@@ -14,6 +15,24 @@ if (isset($_POST['images']))
 	if ($Model == "0") {
 		$Model = "";
 	}
+
+	//----------------constant checking-------------//
+	$object = new constantsinc();
+
+	$accBrand = $object ->bikeMakes;
+	$accModel = $object ->bikeModels;
+	
+	if (!in_array($Brand, $accBrand)) 
+	{
+	    echo json_encode(6);
+		exit();
+	}
+	elseif (!in_array($Model, $accModel)) 
+	{
+	    echo json_encode(7);
+		exit();
+	}
+	//----------------constant checking-------------//
 
 	$Year = $_POST['bkyear'];
 	$EngineType = $_POST['bkengine'];

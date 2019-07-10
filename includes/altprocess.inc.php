@@ -7,19 +7,40 @@ unset($_SESSION["pkg2"]);
 unset($_SESSION["pkg3"]);
 unset($_SESSION['pkg4']);
 unset($_SESSION["altspecs"]);
+
 if(isset($_POST['btnalt']))
 {
+	include_once 'constants.inc.php';
+
 	$model = $_POST['altmodelselect'];
 	$year = $_POST['altyearselect'];
 	$make = $_POST['altmakeselect'];
 	$selectedpkg = $_POST['radiopkg'];
 
-	$_SESSION['altspecs']['model'] = $model;
-	$_SESSION['altspecs']['year'] = $year;
-	$_SESSION['altspecs']['make'] = $make;
+	//----------------constant checking-------------//
+	$object = new constantsinc();
+
+	$accModels = $object ->bikeModels;
+	$accMakes = $object ->bikeMakes;
+	
+	if (!in_array($model, $accModels)) 
+	{
+	    header("Location: ../alteration.php?error=error");
+		exit();
+	}
+	elseif (!in_array($make, $accMakes)) 
+	{
+	    header("Location: ../alteration.php?error=error");
+		exit();
+	}
+	//----------------constant checking-------------//
 	
 	if ($model == "" || $year == "" || $make == "") {
 		header("Location: ../alteration.php?error=emptyfields");
+		exit();
+	}
+	elseif ($year<1990 || $year>date("Y")) {
+		header("Location: ../modification.php?error=invalidyear");
 		exit();
 	}
 	elseif($selectedpkg == "")
@@ -27,6 +48,10 @@ if(isset($_POST['btnalt']))
 		header("Location: ../alteration.php?error=nopkgselected");
 		exit();
 	}
+
+	$_SESSION['altspecs']['model'] = $model;
+	$_SESSION['altspecs']['year'] = $year;
+	$_SESSION['altspecs']['make'] = $make;
 
 	if ($selectedpkg == "pkg1") {
 		header("Location: ../pages/alter/Altspecs.php?pkg=1");

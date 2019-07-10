@@ -10,13 +10,35 @@ unset($_SESSION["modspecs"]);
 
 if(isset($_POST['btnmod']))
 {
+	include_once 'constants.inc.php';
+
 	$model = $_POST['modmodelselect'];
 	$year = $_POST['modyearselect'];
 	$make = $_POST['modmakeselect'];
 	$selectedpkg = $_POST['radiopkg'];
 
+	$object = new constantsinc();
+
+	$accModels = $object ->bikeModels;
+	$accMakes = $object ->bikeMakes;
+	
+	if (!in_array($model, $accModels)) 
+	{
+	    header("Location: ../modification.php?error=error");
+		exit();
+	}
+	elseif (!in_array($make, $accMakes)) 
+	{
+	    header("Location: ../modification.php?error=error");
+		exit();
+	}
+		
 	if ($model == "" || $year == "" || $make == "") {
 		header("Location: ../modification.php?error=emptyfields");
+		exit();
+	}
+	elseif ($year<1990 || $year>date("Y")) {
+		header("Location: ../modification.php?error=invalidyear");
 		exit();
 	}
 	elseif($selectedpkg == "")
