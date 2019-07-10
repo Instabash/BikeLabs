@@ -83,6 +83,8 @@ include_once 'includes/header.php';
 							<h4 class="pb-3">Your cart:</h4>
 							<?php
 							$total_price = 0;
+							$tax = 500;
+							$subtotal = 0;
 							foreach($_SESSION['cart'] as $item)
 							{
 								$priceind = $item['price'];
@@ -97,7 +99,8 @@ include_once 'includes/header.php';
 									</div>
 								</div>
 								<?php
-								$total_price += $pricetotal;
+								$subtotal += $pricetotal;
+								$total_price = $subtotal+$tax;
 							}?>
 						}
 						<div class="row mt-5">
@@ -107,8 +110,8 @@ include_once 'includes/header.php';
 								<p class="border-right border-bottom border-dark">Total:</p>
 							</div>
 							<div class="payment-total-right">
-								<p class="border-top border-bottom border-dark">0 Rs.</p>
-								<p class="border-bottom border-dark">0 Rs.</p>
+								<p class="border-top border-bottom border-dark"><?php echo $tax; ?> Rs.</p>
+								<p class="border-bottom border-dark"><?php echo $subtotal; ?> Rs.</p>
 								<p class="border-bottom border-dark"><?php echo $total_price; ?> Rs.</p>
 							</div>
 						</div>
