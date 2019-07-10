@@ -1,6 +1,11 @@
 <?php
 if (!isset($_GET['bike1']) || !isset($_GET['bike2'])) {
 	header("Location: /BikeLabs/404-page.php");
+	exit();
+}
+elseif ($_GET['bike1'] == $_GET['bike2']) {
+	header("Location: ../new-bikes.php?bikeid=".$_GET['bike1']."&error=samebike");
+	exit();
 }
 else{
 include_once '../../../includes/header.php';
