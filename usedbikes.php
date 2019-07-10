@@ -59,6 +59,18 @@ redirect();
 														<label for="yamaha">Yamaha</label>
 													</label>
 												</li>
+												<li>
+													<label class="filter-check clearfix">
+														<input type="checkbox" rel="united" id="united" class="makecheck" name="makecheck[]" value="United"/>
+														<label for="united">United</label>
+													</label>
+												</li>
+												<li>
+													<label class="filter-check clearfix">
+														<input type="checkbox" rel="suzuki" id="suzuki" class="makecheck" name="makecheck[]" value="Suzuki"/>
+														<label for="suzuki">Suzuki</label>
+													</label>
+												</li>
 											</ul>
 										</div>
 									</div>
