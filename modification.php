@@ -19,19 +19,8 @@ include_once 'includes/dbh.inc.php';
 					<select class="custom-select js-example-responsive model" id="modelselect" name="modmodelselect">
 						<option selected value="">Model</option>
 						<option value="70cc">70cc</option>
-						<option value="150cc">125cc</option>
-						<option value="125cc">150cc</option>
-					</select>
-				</div>
-			</div><br>
-			<div class="form-row modmarginleft">
-				<div class="col-4 select-small pb-4">
-					<label class="pr-2">Year</label>
-					<select class="custom-select js-example-responsive make" id="yearselect" name="modyearselect">
-						<option selected value="">Year</option>
-						<option value="2018">2018</option>
-						<option value="2017">2017</option>
-						<option value="2016">2016</option>
+						<option value="125cc">125cc</option>
+						<option value="150cc">150cc</option>
 					</select>
 				</div>
 			</div><br>
@@ -41,12 +30,29 @@ include_once 'includes/dbh.inc.php';
 					<select class="custom-select js-example-responsive year" name="modmakeselect">
 						<option selected value="">Make</option>
 						<option value="Honda">Honda</option>
-						<option value="SuperPower">SuperPower</option>
-						<option value="Unique">Unique</option>
+                        <option value="SuperPower">SuperPower</option>
+                        <option value="Unique">Unique</option>
+                        <option value="Superstar">Superstar</option>
+                        <option value="Yamaha">Yamaha</option>
+                        <option value="United">United</option>
+                        <option value="Suzuki">Suzuki</option>
 					</select>
 				</div>
-			</div><br><br>
-
+			</div><br>
+			<div class="form-row modmarginleft">
+				<div class="col-4 select-small pb-4">
+					<label class="pr-2">Year</label>
+					<div class="input-group">
+						<input type="number" class="form-control" name="modyearselect" placeholder="Year" aria-label="Year" aria-describedby="basic-addon1" style="text-align:center;">
+					</div>
+					<!-- <select class="custom-select js-example-responsive make" id="yearselect" name="modyearselect">
+						<option selected value="">Year</option>
+						<option value="2018">2018</option>
+						<option value="2017">2017</option>
+						<option value="2016">2016</option>
+					</select> -->
+				</div>
+			</div><br>
 			<?php
 			if (isset($_GET['error'])) {
 				if ($_GET['error'] == "emptyfields") 
@@ -55,6 +61,9 @@ include_once 'includes/dbh.inc.php';
 				}
 				elseif ($_GET['error'] == "nopkgselected") {
 					echo '<p style="color:red !important ;padding:5px;";>Please select a package</p>';
+				}
+				elseif ($_GET['error'] == "invalidyear") {
+					echo '<p style="color:red !important ;padding:5px;";>You have entered an invalid Year.</p>';
 				}
 			}
 			?>
