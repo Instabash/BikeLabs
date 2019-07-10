@@ -1386,7 +1386,7 @@ th, td {
   z-index:100;
   position:absolute;    
   color: #dc3545;
-  left:30px;
+  left:42px;
   bottom:30px;
 }
 
@@ -1981,6 +1981,9 @@ table.dataTable thead .sorting_asc:after {
 .select2{
     width: 100% !important;
   } 
+  #cartIcon{
+    margin-top: 10px;
+  }
 }
 
 @media only screen and (max-width: 760px), (min-width: 768px) and (max-width: 1024px) {
