@@ -77,6 +77,11 @@ if (isset($_POST['editad'])) {
 											<option value="Honda">Honda</option>
 											<option value="SuperPower">SuperPower</option>
 											<option value="Unique">Unique</option>
+			                                <option value="Superstar">Superstar</option>
+			                                <option value="Yamaha">Yamaha</option>
+			                                <option value="United">United</option>
+			                                <option value="Suzuki">Suzuki</option>
+			                                <option value="Other">Other</option>
 										</select>
 									</div>
 								</div>
@@ -767,6 +772,18 @@ switch($typeInt) {
                     if (data == 6) 
                     {
                     	document.getElementById("empty").innerHTML = "Please select images";
+                    }else
+                    if (data == 8) 
+                    {
+                        document.getElementById("empty").innerHTML = "There was an error";
+                    }else
+                    if (data == 9) 
+                    {
+                        document.getElementById("empty").innerHTML = "There was an error";
+                    }else
+                    if (data == 10) 
+                    {
+                        document.getElementById("empty").innerHTML = "There was an error";
                     }
                     else
                     	if (data == 7) 
@@ -826,6 +843,15 @@ switch($typeInt) {
                     if (data == 5) 
                     {
                     	document.getElementById("empty").innerHTML = "Please select images";
+                    }else
+                    if (data == 7) 
+                    {
+                        document.getElementById("empty").innerHTML = "There was an error";
+                    }
+                    else
+                    if (data == 8) 
+                    {
+                        document.getElementById("empty").innerHTML = "There was an error";
                     }
                     else
                     	if (data == 6) 

@@ -435,6 +435,15 @@ include_once '../../includes/header.php';
                     if (data == 5) 
                     {
                         document.getElementById("empty").innerHTML = "Please select images";
+                    }else
+                    if (data == 7) 
+                    {
+                        document.getElementById("empty").innerHTML = "There was an error";
+                    }
+                    else
+                    if (data == 8) 
+                    {
+                        document.getElementById("empty").innerHTML = "There was an error";
                     }
                     else
                         if (data == 6) 

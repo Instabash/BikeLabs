@@ -53,6 +53,11 @@ include_once '../../includes/header.php';
 								<option value="Honda">Honda</option>
 								<option value="SuperPower">SuperPower</option>
 								<option value="Unique">Unique</option>
+                                <option value="Superstar">Superstar</option>
+                                <option value="Yamaha">Yamaha</option>
+                                <option value="United">United</option>
+                                <option value="Suzuki">Suzuki</option>
+                                <option value="Other">Other</option>
 							</select>
 						</div>
 					</div>
@@ -463,6 +468,18 @@ include_once '../../includes/header.php';
                     if (data == 6) 
                     {
                         document.getElementById("empty").innerHTML = "Please select images";
+                    }else
+                    if (data == 8) 
+                    {
+                        document.getElementById("empty").innerHTML = "There was an error";
+                    }else
+                    if (data == 9) 
+                    {
+                        document.getElementById("empty").innerHTML = "There was an error";
+                    }else
+                    if (data == 10) 
+                    {
+                        document.getElementById("empty").innerHTML = "There was an error";
                     }
                     else
                         if (data == 7) 
