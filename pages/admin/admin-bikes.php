@@ -51,10 +51,11 @@ include '../../includes/dbh.inc.php';
                                     <option value="0" selected>Select</option>
                                     <option value="Honda">Honda</option>
                                     <option value="SuperPower">SuperPower</option>
-                                    <option value="SuperStar">SuperStar</option>
-                                    <option value="Suzuki">Suzuki</option>
-                                    <option value="United">United</option>
                                     <option value="Unique">Unique</option>
+                                    <option value="Superstar">Superstar</option>
+                                    <option value="Yamaha">Yamaha</option>
+                                    <option value="United">United</option>
+                                    <option value="Suzuki">Suzuki</option>
                                 </select>
                             </div>
                         </div>
@@ -137,7 +138,7 @@ include '../../includes/dbh.inc.php';
                             <label for="bkpetcap">Petrol Capacity</label>
                             <div>
                                 <div class="input-group">
-                                    <input type="number" class="form-control" name="bkpetcap" placeholder="Petrol Capacity" aria-label="Petrol Capacity" aria-describedby="basic-addon1">
+                                    <input type="number" class="form-control" name="bkpetcap" placeholder="Petrol Capacity" aria-label="Petrol Capacity" aria-describedby="basic-addon1" step="0.1">
                                     <small style="color: black" class="p-2 pl-5 bikeposteg"><i>In litres</i></small>
                                 </div>
                             </div>
@@ -535,6 +536,15 @@ include '../../includes/dbh.inc.php';
                     if (data == 4) 
                     {
                         document.getElementById("empty").innerHTML = "Please select images";
+                    }else
+                    if (data == 6) 
+                    {
+                        document.getElementById("empty").innerHTML = "There was an error";
+                    }
+                    else
+                    if (data == 7) 
+                    {
+                        document.getElementById("empty").innerHTML = "There was an error";
                     }
                     else
                         if (data == 5) 
