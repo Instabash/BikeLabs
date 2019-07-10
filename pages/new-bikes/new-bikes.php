@@ -15,6 +15,23 @@ redirect();
 $stmt = mysqli_stmt_init($conn);
 ?>
 <section id="biketemplate" class="section biketemplatesec content">
+	<div id="errormodal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+		<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Error</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<p>You cannot compare the same bikes, please choose different motorbikes to compare.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="container max-w">
 		<div class="paymentmain imageDiv" style="margin-left: 0px;margin-right: 0px">
 			<div class="paymentleft border-new border border-dark rounded mt-5 imageDivRight ">
@@ -587,6 +604,19 @@ return;
 		minimumResultsForSearch: -1,
     	width: 'resolve' // need to override the changed default
     });
+</script>
+<script type="text/javascript">
+var url = window.location.href;
+<?php
+	if (isset($_GET['error'])) {
+		if ($_GET['error'] == 'samebike') {
+			?>
+			$('#errormodal').modal('show');
+			<?php
+		}
+	}
+	unset($_SESSION['error']);
+?>
 </script>
 <?php
 include_once '../../includes/footer.php';
