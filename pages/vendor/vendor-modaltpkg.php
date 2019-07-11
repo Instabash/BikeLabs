@@ -2,6 +2,7 @@
 session_start();
 include '../../includes/restrictions.inc.php';
 vendor_protect();
+$title = 'Packages';
 include '../../includes/header.php';
 include '../../includes/dbh.inc.php';
 ?>

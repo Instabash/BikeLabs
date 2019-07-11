@@ -25,6 +25,7 @@ if (isset($_GET['pkgmod']) && isset($_GET['pkgalt'])){
         header("Location: /BikeLabs/404-page.php");
     }
 }
+$title = 'Edit packages';
 include '../../includes/header.php';
 ?>
 <!-- Sidebar -->

@@ -5,7 +5,7 @@ include '../../includes/dbh.inc.php';
 include '../../includes/restrictions.inc.php';
 logged_in();
 user_protect();
-$title = 'Post an advert';
+$title = 'Edit advert';
 $ad_id = $_GET['adid'];
 $sql = "SELECT * FROM post_ad WHERE ad_id='$ad_id'";
 $result = mysqli_query($conn, $sql);

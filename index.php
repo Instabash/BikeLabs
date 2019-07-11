@@ -90,12 +90,12 @@ redirect();
 <div id="showcase">
 	<div class="section-main container">
 		<h1 class="unselectable">Bikelabs</h1>
-		<h2>All of your biking needs in one place.</h2>
-		<p class="lead hide-on-small">
+		<h2 style="color: white !important;">All of your biking needs in one place.</h2>
+		<p class="lead hide-on-small" style="color: white !important;">
 			Bikelabs is the best way to experience all of your 
 			motorbike related needs in one centralized hub. 
 		</p>
-		<p class="lead hide-on-small">
+		<p class="lead hide-on-small" style="color: white !important;">
 			Why waste time searching for mechanics, when the 
 			mechanic can come to you.
 		</p>
@@ -117,7 +117,7 @@ redirect();
 		  <div class='slide2'></div>
 		  <div class='slide3'></div>
 		</div> -->
-		<div id="carouselExampleInterval" class="carousel slide" data-ride="carousel" data-interval="1000">
+		<div id="carouselExampleInterval" class="carousel slide border-new border border-dark rounded" data-ride="carousel" data-interval="1000">
 			<div class="carousel-inner" >
 				<div class="carousel-item active" data-interval="3000">
 					<img src="images/modify.jpg" class="d-block w-100" alt="...">
@@ -148,7 +148,7 @@ redirect();
 		  <div class='slide2'></div>
 		  <div class='slide3'></div>
 		</div> -->
-		<div id="carouselExampleInterval" class="carousel slide" data-ride="carousel" data-interval="1000">
+		<div id="carouselExampleInterval" class="carousel slide border-new border border-dark rounded" data-ride="carousel" data-interval="1000">
 			<div class="carousel-inner" >
 				<div class="carousel-item active" data-interval="3000">
 					<img src="images/modify.jpg" class="d-block w-100" alt="...">
@@ -170,9 +170,9 @@ redirect();
 <section id="spareparts" class="section">
 	<div class="container">
 		<h2 class="section-head">
-			<i class="fas fa-cogs"></i> <h1 class="unselectable">Spare Parts</h1>
+			<i class="fas fa-cogs"></i> <h1 class="unselectable">Purchase</h1>
 		</h2>
-		<p class="lead">Purchase new motorbikes, or spare parts that your bike needs.</p>
+		<p class="lead">Purchase new motorbikes, or spare parts for your bike.</p>
 		<p class="lead">Choose from a variety of different vendors and retailers.</p>
 		<a href="spparts.php" class="btn btn-outline-danger mb mt">Purchase</a>
 		<!-- <div class='slider border-new border border-dark rounded'>
@@ -180,16 +180,16 @@ redirect();
 		  <div class='slide5'></div>
 		  <div class='slide6'></div>
 		</div> -->
-		<div id="carouselExampleInterval" class="carousel slide" data-ride="carousel" data-interval="1000">
+		<div id="carouselExampleInterval" class="carousel slide border-new border border-dark rounded" data-ride="carousel" data-interval="1000">
 			<div class="carousel-inner" >
 				<div class="carousel-item active" data-interval="3000">
-					<img src="images/modify.jpg" class="d-block w-100" alt="...">
+					<img src="images/purchase1.jpg" class="d-block w-100" alt="...">
 				</div>
 				<div class="carousel-item" data-interval="3000">
-					<img src="images/modify2.jpg" class="d-block w-100" alt="...">
+					<img src="images/purchase2.jpg" class="d-block w-100" alt="...">
 				</div>
 				<div class="carousel-item" data-interval="3000">
-					<img src="images/modify3.jpg" class="d-block w-100" alt="...">
+					<img src="images/purchase3.jpg" class="d-block w-100" style="height: 726.66px;" alt="...">
 				</div>
 			</div>
 		</div>
@@ -212,16 +212,16 @@ redirect();
 		  <div class='slide8'></div>
 		  <div class='slide9'></div>
 		</div> -->
-		<div id="carouselExampleInterval" class="carousel slide" data-ride="carousel" data-interval="1000">
+		<div id="carouselExampleInterval" class="carousel slide border-new border border-dark rounded" data-ride="carousel" data-interval="1000">
 			<div class="carousel-inner" >
 				<div class="carousel-item active" data-interval="3000">
-					<img src="images/modify.jpg" class="d-block w-100" alt="...">
+					<img src="images/a_dvert1.jpg" class="d-block w-100" alt="...">
 				</div>
 				<div class="carousel-item" data-interval="3000">
-					<img src="images/modify2.jpg" class="d-block w-100" alt="...">
+					<img src="images/a_dvert3.jpg" class="d-block w-100" alt="...">
 				</div>
 				<div class="carousel-item" data-interval="3000">
-					<img src="images/modify3.jpg" class="d-block w-100" alt="...">
+					<img src="images/a_dvert4.jpg" class="d-block w-100" alt="...">
 				</div>
 			</div>
 		</div>
@@ -237,7 +237,7 @@ redirect();
 		<p class="lead">Compare two motorbikes beforehand to be sure of your purchase.</p>
 		<p class="lead">Get detailed information about the motorbikes you compare.</p>
 		<a href="pages/new-bikes/bikecompare.php" class="btn btn-outline-danger mb mt">Compare Bikes.</a>
-		<div id="carouselExampleInterval" class="carousel slide" data-ride="carousel" data-interval="1000">
+		<div id="carouselExampleInterval" class="carousel slide border-new border border-dark rounded" data-ride="carousel" data-interval="1000">
 			<div class="carousel-inner" >
 				<div class="carousel-item active" data-interval="3000">
 					<img src="images/modify.jpg" class="d-block w-100" alt="...">

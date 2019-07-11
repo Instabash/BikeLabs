@@ -2,6 +2,7 @@
 session_start();
 include '../../includes/restrictions.inc.php';
 admin_protect();
+$title = 'Edit packages';
 include '../../includes/header.php';
 include '../../includes/dbh.inc.php';
 ?>

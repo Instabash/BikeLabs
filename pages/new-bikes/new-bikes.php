@@ -9,6 +9,7 @@ if (mysqli_num_rows($result)<1) {
 	header("Location: /BikeLabs/404-page.php");
 }
 else{
+	$title = 'New motorbikes';
 include_once '../../includes/header.php';
 include_once '../../includes/restrictions.inc.php';
 redirect();

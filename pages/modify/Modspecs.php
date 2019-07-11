@@ -2,7 +2,7 @@
 session_start();
 include '../../includes/restrictions.inc.php';
 logged_in();
-$title = 'Modification specifications';
+$title = 'Modification';
 include_once '../../includes/header.php';
 include_once '../../includes/dbh.inc.php';
 ?>

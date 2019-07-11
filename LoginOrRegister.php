@@ -2,7 +2,9 @@
 include_once 'includes/restrictions.inc.php';
 session_start();
 signup_restrict();
+$title = 'Login or register';
 include_once 'includes/header.php';
+
 ?>
 
 <section id="signup" class="section fontsec content">

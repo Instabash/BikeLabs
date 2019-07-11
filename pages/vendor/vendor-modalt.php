@@ -2,6 +2,7 @@
 session_start();
 include '../../includes/restrictions.inc.php';
 vendor_protect();
+$title = 'Pending Mod/Alt orders';
 include '../../includes/header.php';
 include '../../includes/dbh.inc.php';
 $vendor_name = $_SESSION['userId'];
@@ -220,9 +221,9 @@ $vendor_name = $_SESSION['userId'];
 																		<td><?php echo $row3['modaltbikemodel']; ?></td>
 																		<td><?php echo $row3['modaltbikeyear']; ?></td>
 																		<td><?php echo $row3['modaltpkg']; ?></td>
-																		<td><?php echo $row3['modaltselectedpts']; ?></td>
-																		<td><?php echo $row3['modaltselectedtheme']; ?></td>
-																		<td><?php echo $row3['modaltselectedpaint']; ?></td>
+																		<td><?php if(!empty($row3['modaltselectedpts'])){echo $row3['modaltselectedpts'];} else{echo "Not selected";}  ?></td>
+																		<td><?php if(!empty($row3['modaltselectedtheme'])){echo $row3['modaltselectedtheme'];} else{echo "Not selected";}  ?></td>
+																		<td><?php if(!empty($row3['modaltselectedpaint'])){echo $row3['modaltselectedpaint'];} else{echo "Not selected";}  ?></td>
 																		<td><?php echo $row3['modaltdescription']; ?></td>
 																	</tr>
 																	<?php

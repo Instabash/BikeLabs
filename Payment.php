@@ -13,6 +13,10 @@ else{
 	$modoralt = "";
 }
 $title = 'Payment';
+if (!isset($_SESSION['bikecart']) && !isset($_SESSION['cart']) && !isset($_SESSION['cartBuy-parts']) && !isset($_SESSION['modcart']) && !isset($_SESSION['altcart'])) {
+	header("Location: index.php");
+}
+else{
 include_once 'includes/dbh.inc.php';
 include_once 'includes/header.php';
 ?>
@@ -468,5 +472,6 @@ include_once 'includes/header.php';
 </script>
 <?php
 include_once 'includes/footer.php';
+}
 }
 ?>

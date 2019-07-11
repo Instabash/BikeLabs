@@ -1,6 +1,6 @@
 <?php
 session_start();
-$title = 'Used motorbikes';
+$title = 'Motorbikes Ads.';
 include_once 'includes/header.php';
 include_once 'includes/dbh.inc.php';
 include_once 'includes/restrictions.inc.php';

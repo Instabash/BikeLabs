@@ -1,5 +1,7 @@
 <?php
+$title = 'Reset password';
 include_once 'includes/header.php';
+
 ?>
 
 <section id="signup" class="section fontsec content">

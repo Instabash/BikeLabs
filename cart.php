@@ -2,7 +2,7 @@
 session_start();
 include 'includes/restrictions.inc.php';
 logged_in();
-$title = 'Payment';
+$title = 'Cart';
 include_once 'includes/dbh.inc.php';
 include_once 'includes/header.php';
 	// $part_id = $_GET["partid"];

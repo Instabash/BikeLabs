@@ -1,4 +1,5 @@
 <?php
+	$title = '404-page';
 	include_once 'includes/header.php';
 ?>
 <section id="modify" class="section content">

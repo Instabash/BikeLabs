@@ -1882,9 +1882,9 @@ table.dataTable thead .sorting_asc:after {
   }
 
 }
-@media only screen and  screen and (max-width: 580px){
+@media only screen and (max-width: 580px){
   .hide-on-small{
-    display: none;
+    display: none !important;
   }
 
   #showcase{

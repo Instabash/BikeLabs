@@ -1,5 +1,6 @@
 <?php
 session_start();
+$title = 'Chat';
 include '../includes/restrictions.inc.php';
 logged_in();
 

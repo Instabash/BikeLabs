@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 
 include_once '../includes/header.php';
 include_once '../includes/dbh.inc.php';
@@ -220,4 +220,4 @@ $stmt = mysqli_stmt_init($conn);
 
 <?php
 include_once '../includes/footer.php';
-?>
+?> -->

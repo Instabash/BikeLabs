@@ -8,6 +8,7 @@ elseif ($_GET['bike1'] == $_GET['bike2']) {
 	exit();
 }
 else{
+	$title = 'Compare bikes';
 include_once '../../../includes/header.php';
 include_once '../../../includes/dbh.inc.php';
 

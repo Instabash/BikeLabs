@@ -2,6 +2,7 @@
 
 if (!isset($_GET['selector']) && !isset($_GET['validator'])) {
 	header("Location: index.php");
+	$title = 'Create new password';
 }
 else{
 	include_once 'includes/header.php';
