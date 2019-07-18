@@ -40,7 +40,7 @@ include '../../includes/dbh.inc.php';
 					<!-- /.box-header -->
 					<div class="box-body">
 						<div class="table-responsive">
-							<table class="table no-margin">
+							<table id="example1" class="table table-bordered table-striped">
 								<thead>
 									<tr>
 										<th>Order id</th>
@@ -114,7 +114,7 @@ include '../../includes/dbh.inc.php';
 					<!-- /.box-header -->
 					<div class="box-body">
 						<div class="table-responsive">
-							<table class="table no-margin">
+							<table id="example2" class="table table-bordered table-striped">
 								<thead>
 									<tr>
 										<th>Username</th>
@@ -168,7 +168,7 @@ include '../../includes/dbh.inc.php';
 					<!-- /.box-header -->
 					<div class="box-body">
 						<div class="table-responsive">
-							<table id="example1" class="table table-bordered table-striped">
+							<table id="example3" class="table table-bordered table-striped">
 								<thead>
 									<tr>
 										<th>Sender</th>
@@ -228,14 +228,8 @@ include '../../includes/dbh.inc.php';
 <script>
 	$(function () {
 		$('#example1').DataTable()
-		$('#example2').DataTable({
-			'paging'      : true,
-			'lengthChange': false,
-			'searching'   : false,
-			'ordering'    : true,
-			'info'        : true,
-			'autoWidth'   : false
-		})
+		$('#example2').DataTable()
+		$('#example3').DataTable()
 	})
 </script>
 <script>
