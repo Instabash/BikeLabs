@@ -2288,3 +2288,34 @@ form.example::after {
   clear: both;
   display: table;
 }
+
+#search-bar{
+  background-color: white !important;
+}
+
+#search-bar::placeholder{
+  color:black;
+}
+
+.pace {
+  -webkit-pointer-events: none;
+  pointer-events: none;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.pace-inactive {
+  display: none;
+}
+
+.pace .pace-progress {
+  background: #dc3545;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  right: 100%;
+  width: 100%;
+  height: 3px;
+}
