@@ -9,9 +9,9 @@ redirect();
 ?>
 <section id="spparts" class="section sppartsection content">
 	<div class="container">
-		<h3>Motorbikes Ads.</h3> <br>
+		<h3>Motorbike Ads.</h3> <br>
 		<form class="example" action="includes/search.inc.php" method="post">
-			<input type="text" placeholder="Search.." name="search">
+			<input type="text" id="search-bar" placeholder="Search.." name="search">
 			<button type="submit" name="submit-search-ub"><i class="fa fa-search"></i></button>
 		</form>
 		<div class="search-page-new">

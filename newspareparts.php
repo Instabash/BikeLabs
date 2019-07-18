@@ -11,7 +11,7 @@ redirect();
 	<div class="container">
 		<h3>New Spareparts</h3> <br>
 		<form class="example" action="includes/search.inc.php" method="post">
-			<input type="text" placeholder="Search.." name="search">
+			<input type="text" id="search-bar" placeholder="Search.." name="search">
 			<button type="submit" name="submit-search-nsp"><i class="fa fa-search"></i></button>
 		</form>
 		<div class="search-page-new">
