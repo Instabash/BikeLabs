@@ -92,6 +92,10 @@ else
 
 <section id="postad" class="section postadsection content">
 	<div class="container">
+		<div style="float: left;">
+			<!-- <button class="btn"></button> -->
+			<a href="<?php echo $_SERVER['HTTP_REFERER']; ?>"><img src="/BikeLabs/images/arrow-left-solid.svg" style="width: 40px;height: 40px;"></a>
+		</div>
 		<div style="padding-bottom: 50px;">
 			<h2 style=""><?php echo $bike1Name . " Vs. " . $bike2Name; ?></h2 >
 		</div>
