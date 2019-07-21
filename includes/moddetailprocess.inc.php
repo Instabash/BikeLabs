@@ -58,7 +58,7 @@ if (isset($_POST['btnmod2'])) {
 		//----------------constant checking-------------//
 		if (!in_array($paint, $accPaints)) 
 		{
-		    header("Location: /BikeLabs/pages/modify/Modspecs.php?pkg=".$selectedpkg."&error=error");
+			header("Location: /BikeLabs/pages/modify/Modspecs.php?pkg=".$selectedpkg."&error=error");
 			exit();
 		}
 		//----------------constant checking-------------//
@@ -76,12 +76,12 @@ if (isset($_POST['btnmod2'])) {
 		//----------------constant checking-------------//
 		if (!in_array($theme, $accThemes)) 
 		{
-		    header("Location: /BikeLabs/pages/modify/Modspecs.php?pkg=".$selectedpkg."&error=error");
+			header("Location: /BikeLabs/pages/modify/Modspecs.php?pkg=".$selectedpkg."&error=error");
 			exit();
 		}
 		elseif (!in_array($paint, $accPaints)) 
 		{
-		    header("Location: /BikeLabs/pages/modify/Modspecs.php?pkg=".$selectedpkg."&error=error");
+			header("Location: /BikeLabs/pages/modify/Modspecs.php?pkg=".$selectedpkg."&error=error");
 			exit();
 		}
 		//----------------constant checking-------------//
@@ -100,12 +100,12 @@ if (isset($_POST['btnmod2'])) {
 		//----------------constant checking-------------//
 		if (!in_array($theme, $accThemes)) 
 		{
-		    header("Location: /BikeLabs/pages/modify/Modspecs.php?pkg=".$selectedpkg."&error=error");
+			header("Location: /BikeLabs/pages/modify/Modspecs.php?pkg=".$selectedpkg."&error=error");
 			exit();
 		}
 		elseif (!in_array($paint, $accPaints)) 
 		{
-		    header("Location: /BikeLabs/pages/modify/Modspecs.php?pkg=".$selectedpkg."&error=error");
+			header("Location: /BikeLabs/pages/modify/Modspecs.php?pkg=".$selectedpkg."&error=error");
 			exit();
 		}
 		//----------------constant checking-------------//
@@ -119,21 +119,27 @@ if (isset($_POST['btnmod2'])) {
 		header("Location: ../addresscon.php");
 	}
 	if ($selectedpkg == "custom") {
-		$paint = $_POST['modpaintselect'];
-		$theme = $_POST['modthemeselect'];
+		if (isset($_POST['modpaintselect'])) {
+			$paint = $_POST['modpaintselect'];
+		
+			if (!in_array($paint, $accPaints)) 
+			{
+				header("Location: /BikeLabs/pages/modify/Modspecs.php?pkg=".$selectedpkg."&error=error");
+				exit();
+			}
+		}
+		if (isset($_POST['modthemeselect'])) {
+			$theme = $_POST['modthemeselect'];
+			if (!in_array($theme, $accThemes)) 
+			{
+				header("Location: /BikeLabs/pages/modify/Modspecs.php?pkg=".$selectedpkg."&error=error");
+				exit();
+			}
+		}
 		$specified = $_POST['customspecifytxtarea'];
 		$selectedpkg = $_SESSION['packageselected'];
 		//----------------constant checking-------------//
-		if (!in_array($theme, $accThemes)) 
-		{
-		    header("Location: /BikeLabs/pages/modify/Modspecs.php?pkg=".$selectedpkg."&error=error");
-			exit();
-		}
-		elseif (!in_array($paint, $accPaints)) 
-		{
-		    header("Location: /BikeLabs/pages/modify/Modspecs.php?pkg=".$selectedpkg."&error=error");
-			exit();
-		}
+		
 		//----------------constant checking-------------//
 		$_SESSION['modcart'][] = array(
 			'selectedpkg' => $selectedpkg,
