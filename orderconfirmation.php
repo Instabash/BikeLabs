@@ -38,7 +38,7 @@ include_once 'includes/dbh.inc.php';
 							
 					?></h3>
 					<form method="post" action="includes/printpdf.inc.php">
-						<button type="submit" name="print-vouchers" class="btn btn-danger mt-3 print-remove">Print</button>
+						<button type="submit" name="print-vouchers" class="btn btn-outline-danger mt-3 print-remove">Print</button>
 					</form>
 			</div>
 			<hr>
@@ -82,6 +82,12 @@ include_once 'includes/dbh.inc.php';
 				<p>
 				<?php
 					$output = str_replace(',', '<br />', $row['order_summary']);
+					$firstBreak = strpos($output, '<br />');
+					if($firstBreak === false) {
+					    $output = "<b>$output</b>";
+					} else {
+					    $output = '<b>' . substr($output, 0, $firstBreak) . '</b>' . substr($output, $firstBreak);
+					}
 					echo $output;
 				?>
 				</p>
@@ -90,6 +96,32 @@ include_once 'includes/dbh.inc.php';
 				<h3>Payment information</h3>
 			</div>
 			<hr>
+			<div style="padding: 10px;">
+				<p><b>Price</b></p>
+				<p>
+				<?php
+					// echo $row['payment_type'];
+				$order_id = $_SESSION["order_id"];
+				$pricesql = "SELECT * FROM order_items WHERE order_id = ?";
+				$stmt = mysqli_stmt_init($conn);
+
+				if (!mysqli_stmt_prepare($stmt, $pricesql)) {
+					echo "SQL statement failed";
+				}
+				else
+				{
+					mysqli_stmt_bind_param($stmt, "s", $order_id);
+					mysqli_stmt_execute($stmt);
+					$result2 = mysqli_stmt_get_result($stmt);
+
+					if($row2 = mysqli_fetch_assoc($result2))
+					{
+						echo $row2['Order_price'] ." Rs.";
+					}
+				}
+				?>
+				</p>
+			</div>
 			<div style="padding: 10px;">
 				<p><b>Payment type</b></p>
 				<p>
