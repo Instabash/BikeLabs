@@ -191,7 +191,7 @@ include_once 'includes/header.php';
 						<div class="accordion-group" id="make">
 							<div class="accordion-heading">
 								<div class="border border-dark border-new accordion-toggle collapsed" data-toggle="collapse" href="#collapse_0" aria-expanded="false">
-									<b><h5 class="p-2">Selected package</h5><p><b><?php echo $item['selectedpkg'];?></b></p>
+									<h5 class="p-2">Selected package</h5><p><b><?php echo $item['selectedpkg'];?></b></p>
 									<a href="#">Click for package details
 										<i class="fa fa-caret-down"></i>
 									</a>
@@ -204,7 +204,8 @@ include_once 'includes/header.php';
 									$result = mysqli_query($conn, $sql);
 									while ($row = mysqli_fetch_assoc($result)) 
 									{?>
-										<li><?php echo $row['map_name']; ?></li>
+										<li><b><?php echo $row['map_name']; ?></b></li>
+										<li><?php echo $row['map_price']; ?> Rs.</li>
 									<?php }
 									?>
 								</ul>
@@ -212,7 +213,7 @@ include_once 'includes/header.php';
 						</div>
 						<!-- <div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div> -->
 						<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><label><?php echo $item['description'];?></label><br></div>
-						<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><label><?php echo $item['price']." Rs.";?></label><br></div><?php
+						<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><label><b><?php echo $item['price']." Rs.";?></b></label><br></div><?php
 					}
 					elseif ($item['selectedpkg'] == 2){?>
 						<div class="accordion-group" id="make">
@@ -231,7 +232,8 @@ include_once 'includes/header.php';
 									$result = mysqli_query($conn, $sql);
 									while ($row = mysqli_fetch_assoc($result)) 
 									{?>
-										<li><?php echo $row['map_name']; ?></li>
+										<li><b><?php echo $row['map_name']; ?></b></li>
+										<li><?php echo $row['map_price']; ?> Rs.</li>
 									<?php }
 									?>
 								</ul>
@@ -240,7 +242,7 @@ include_once 'includes/header.php';
 							<!-- <div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div>
 								<div class="border border-dark border-new"><h5 class="p-2">Theme</h5><?php echo $item['theme'];?><br></div> -->
 								<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><label><?php echo $item['description'];?></label><br></div>
-								<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><label><?php echo $item['price']." Rs.";?></label><br></div><?php
+								<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><label><b><?php echo $item['price']." Rs.";?></b></label><br></div><?php
 							}
 							elseif ($item['selectedpkg'] == 3){?>
 								<div class="accordion-group" id="make">
@@ -259,7 +261,8 @@ include_once 'includes/header.php';
 											$result = mysqli_query($conn, $sql);
 											while ($row = mysqli_fetch_assoc($result)) 
 											{?>
-												<li><?php echo $row['map_name']; ?></li>
+												<li><b><?php echo $row['map_name']; ?></b></li>
+												<li><?php echo $row['map_price']; ?> Rs.</li>
 											<?php }
 											?>
 										</ul>
@@ -268,9 +271,8 @@ include_once 'includes/header.php';
 							<!-- <div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div>
 								<div class="border border-dark border-new"><h5 class="p-2">Theme</h5><?php echo $item['theme'];?><br></div> -->
 								<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><label><?php echo $item['description'];?></label><br></div>
-								<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><label><?php echo $item['price']." Rs.";?></label><br></div>
-
-							<?php }
+								<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><label><b><?php echo $item['price']." Rs.";?></b></label><br></div><?php
+							}
 							elseif ($item['selectedpkg'] == "custom") {?>
 								<div class="accordion-group" id="make">
 									<div class="accordion-heading">
@@ -285,9 +287,20 @@ include_once 'includes/header.php';
 										<ul style="list-style: none; padding: 10px;">
 											<?php 
 											foreach($_SESSION['pkg4'] as $key=>$value)
-												{?>
-													<li><?php echo $value; ?></li>
-
+												{
+													?>
+													<!-- <li><?php echo $value; ?></li> -->
+													<?php
+													$sql = "SELECT DISTINCT map_name, map_price FROM modaltpackages WHERE map_name = '$value' AND map_type = 'modification'";
+													$result = mysqli_query($conn, $sql);
+													while ($row = mysqli_fetch_assoc($result)) 
+													{?>
+														
+														<li><b><?php echo $row['map_name']; ?></b></li>
+														<li><?php echo $row['map_price']; ?> Rs.</li>
+													<?php }
+													
+													?>
 												<?php }
 												?>
 											</ul>
@@ -296,9 +309,8 @@ include_once 'includes/header.php';
 							<!-- <div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div>
 								<div class="border border-dark border-new"><h5 class="p-2">Theme</h5><?php echo $item['theme'];?><br></div> -->
 								<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><label><?php echo $item['description'];?></label><br></div>
-								<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><label><?php echo $item['price']." Rs.";?></label><br></div>
-
-							<?php }
+								<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><label><b><?php echo $item['price']." Rs.";?></b></label><br></div><?php
+						}
 						}
 					}
 					elseif ($modoralt == "alteration") {
@@ -318,15 +330,20 @@ include_once 'includes/header.php';
 									</div>
 									<div id="collapse_0" class="accordion-body in collapse" style="">
 										<ul style="list-style: none; padding: 10px;">
-											<li>Chain spocket</li>
-											<li>Silencer</li>
-											<li>Carburetor</li>
-											<li>Remove filter pipe</li>
+											<?php
+												$sql = "SELECT * FROM modaltpackages WHERE map_pkg_1 = 1 AND map_type = 'alteration'";
+												$result = mysqli_query($conn, $sql);
+												while ($row = mysqli_fetch_assoc($result)) 
+												{?>
+													<li><b><?php echo $row['map_name']; ?></b></li>
+													<li><?php echo $row['map_price']; ?> Rs.</li>
+												<?php }
+											?>
 										</ul>
 									</div>
 								</div>
 								<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><label><?php echo $item['description'];?></label><br></div>
-								<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><label><?php echo $item['price']." Rs.";?></label><br></div><?php
+								<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><label><b><?php echo $item['price']." Rs.";?></b></label><br></div><?php
 							}
 							elseif ($item['selectedpkg'] == 2){?>
 								<div class="accordion-group" id="make">
@@ -340,14 +357,20 @@ include_once 'includes/header.php';
 									</div>
 									<div id="collapse_0" class="accordion-body in collapse" style="">
 										<ul style="list-style: none; padding: 10px;">
-											<li>Piston (0, 50, 90)</li>
-											<li>Weights</li>
-											<li>Head Cylinder (124cc)</li>
+											<?php
+												$sql = "SELECT * FROM modaltpackages WHERE map_pkg_2 = 1 AND map_type = 'alteration'";
+												$result = mysqli_query($conn, $sql);
+												while ($row = mysqli_fetch_assoc($result)) 
+												{?>
+													<li><b><?php echo $row['map_name']; ?></b></li>
+													<li><?php echo $row['map_price']; ?> Rs.</li>
+												<?php }
+											?>
 										</ul>
 									</div>
 								</div>
 								<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><label><?php echo $item['description'];?></label><br></div>
-								<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><label><?php echo $item['price']." Rs.";?></label><br></div><?php
+								<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><label><b><?php echo $item['price']." Rs.";?></b></label><br></div><?php
 							}
 							elseif ($item['selectedpkg'] == 3){?>
 								<div class="accordion-group" id="make">
@@ -361,20 +384,21 @@ include_once 'includes/header.php';
 									</div>
 									<div id="collapse_0" class="accordion-body in collapse" style="">
 										<ul style="list-style: none; padding: 10px;">
-											<li>Genuine 70cc Carburetor</li>
-											<li>Genuine 70cc Piston</li>
-											<li>Genuine 70cc Head Cylinder</li>
-											<li>Genuine 70cc Chain Spocket</li>
-											<li>Genuine 70cc Silencer</li>
-											<li>Genuine 70cc Pipes</li>
-											<li>Genuine 70cc Weights</li>
+											<?php
+												$sql = "SELECT * FROM modaltpackages WHERE map_pkg_3 = 1 AND map_type = 'alteration'";
+												$result = mysqli_query($conn, $sql);
+												while ($row = mysqli_fetch_assoc($result)) 
+												{?>
+													<li><b><?php echo $row['map_name']; ?></b></li>
+													<li><?php echo $row['map_price']; ?> Rs.</li>
+												<?php }
+											?>
 										</ul>
 									</div>
 								</div>
 								<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><label><?php echo $item['description'];?></label><br></div>
-								<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><label><?php echo $item['price']." Rs.";?></label><br></div>
-
-							<?php }
+								<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><label><b><?php echo $item['price']." Rs.";?></b></label><br></div><?php
+							}
 							elseif ($item['selectedpkg'] == "custom") {?>
 								<div class="accordion-group" id="make">
 									<div class="accordion-heading">
@@ -389,8 +413,20 @@ include_once 'includes/header.php';
 										<ul style="list-style: none; padding: 10px;">
 											<?php 
 											foreach($_SESSION['pkg4'] as $key=>$value)
-												{?>
-													<li><?php echo $value; ?></li>
+												{
+													?>
+													<!-- <li><?php echo $value; ?></li> -->
+													<?php
+													$sql = "SELECT DISTINCT map_name, map_price FROM modaltpackages WHERE map_name = '$value' AND map_type = 'alteration'";
+													$result = mysqli_query($conn, $sql);
+													while ($row = mysqli_fetch_assoc($result)) 
+													{?>
+														
+														<li><b><?php echo $row['map_name']; ?></b></li>
+														<li><?php echo $row['map_price']; ?> Rs.</li>
+													<?php }
+													
+													?>
 
 												<?php }
 												?>
@@ -400,9 +436,8 @@ include_once 'includes/header.php';
 							<!-- <div class="border border-dark border-new"><h5 class="p-2">Paint</h5><?php echo $item['paint'];?><br></div>
 								<div class="border border-dark border-new"><h5 class="p-2">Theme</h5><?php echo $item['theme'];?><br></div> -->
 								<div class="border border-dark border-new"><h5 class="p-2">Instructions for mechanic</h5><label><?php echo $item['description'];?></label><br></div>
-								<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><label><?php echo $item['price']." Rs.";?></label><br></div>
-
-							<?php }
+								<div class="border border-dark border-new"><h5 class="p-2">Package Price</h5><label><b><?php echo $item['price']." Rs.";?></b></label><br></div><?php
+							}
 						}
 					}
 					?>
