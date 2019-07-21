@@ -79,7 +79,7 @@ include_once 'includes/dbh.inc.php';
 			<div class="fullAlter hide" id="show_1" style="margin-bottom: 20px;">
 				<h3>Step 3: Select what to Modify</h3><br>
 				<h6>We offer 2 packages of our own</h6><br>
-				<div class="row">
+				<div class="row alt-r-l" style="padding-left: 15%;padding-right: 15%;">
 					<div class="modleft1 border-new border border-dark rounded p-3" >
 						<h5>Package 1</h5>
 						<div class="packageList" style="height: 250px;">
@@ -119,7 +119,7 @@ include_once 'includes/dbh.inc.php';
 							</label>
 						</div>
 					</div>
-					<div class="modright1 border-new border border-dark rounded p-3" >
+					<div class="modright1 border-new border border-dark rounded p-3"  >
 						<h5>Package 2</h5>
 						<div class="packageList" style="height: 250px;">
 							<ul>
@@ -166,7 +166,7 @@ include_once 'includes/dbh.inc.php';
 							</div>
 						</div><br><br>
 					</div>
-					<div class="alterGenuine hide" id="show_2" >
+					<div class="alterGenuine hide" id="show_2" style="padding-left: 25%;padding-right: 25%;">
 						<h3>Step 3: Select what to Modify</h3><br>
 						<div class="border-new border border-dark rounded p-3">
 							<h5>Package 1</h5>
@@ -194,7 +194,7 @@ include_once 'includes/dbh.inc.php';
 							</div>
 						</div>
 						<div class="modbtn1">
-							<button type="submit" name="btnalt" class="btn btn-danger" style="margin: 10px;" value="">Next</button>
+							<button type="submit" name="btnalt" class="btn btn-outline-danger" style="margin: 10px;" value="">Next</button>
 						</div>
 					</div>
 				</form>
