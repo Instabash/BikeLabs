@@ -2059,6 +2059,14 @@ table.dataTable thead .sorting_asc:after {
    width: 100% !important;
   height: auto !important;
   }
+  .alterGenuine{
+  padding-left: 0% !important;
+  padding-right: 0% !important;
+}
+.alt-r-l{
+  padding-left: 0% !important;
+  padding-right: 0% !important;
+}
   .quantityDiv{
     padding-left: 0px !important;
     padding-right: 0px !important;
@@ -2140,6 +2148,12 @@ table.dataTable thead .sorting_asc:after {
   }
 }
 @media only screen and  (max-width: 1024px) {
+  .custom-select{
+     width: 100% !important;
+  }
+  .select2{
+    width: 100% !important;
+  } 
   .imagelist{
     flex-direction: column;
     align-items: stretch;
@@ -2319,3 +2333,4 @@ form.example::after {
   width: 100%;
   height: 3px;
 }
+
