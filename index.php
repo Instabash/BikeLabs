@@ -151,13 +151,13 @@ redirect();
 		<div id="carouselExampleInterval" class="carousel slide border-new border border-dark rounded" data-ride="carousel" data-interval="1000">
 			<div class="carousel-inner" >
 				<div class="carousel-item active" data-interval="3000">
-					<img src="images/modify.jpg" class="d-block w-100" alt="...">
+					<img src="images/bikemod1.jpg" class="d-block w-100" alt="..." >
 				</div>
 				<div class="carousel-item" data-interval="3000">
-					<img src="images/modify2.jpg" class="d-block w-100" alt="...">
+					<img src="images/bikemod2.jpg" class="d-block w-100" alt="...">
 				</div>
 				<div class="carousel-item" data-interval="3000">
-					<img src="images/modify3.jpg" class="d-block w-100" alt="...">
+					<img src="images/bikemod3.jpg" class="d-block w-100" alt="...">
 				</div>
 			</div>
 		</div>
@@ -189,7 +189,7 @@ redirect();
 					<img src="images/purchase2.jpg" class="d-block w-100" alt="...">
 				</div>
 				<div class="carousel-item" data-interval="3000">
-					<img src="images/purchase3.jpg" class="d-block w-100" style="height: 726.66px;" alt="...">
+					<img src="images/sparts.jpg" class="d-block w-100"  alt="...">
 				</div>
 			</div>
 		</div>
@@ -240,13 +240,13 @@ redirect();
 		<div id="carouselExampleInterval" class="carousel slide border-new border border-dark rounded" data-ride="carousel" data-interval="1000">
 			<div class="carousel-inner" >
 				<div class="carousel-item active" data-interval="3000">
-					<img src="images/modify.jpg" class="d-block w-100" alt="...">
+					<img src="images/bikecomp1.jpg" class="d-block w-100" alt="...">
 				</div>
 				<div class="carousel-item" data-interval="3000">
-					<img src="images/modify2.jpg" class="d-block w-100" alt="...">
+					<img src="images/bikecomp2.jpg" class="d-block w-100" alt="...">
 				</div>
 				<div class="carousel-item" data-interval="3000">
-					<img src="images/modify3.jpg" class="d-block w-100" alt="...">
+					<img src="images/bikecomp3.jpg" class="d-block w-100" alt="...">
 				</div>
 			</div>
 		</div>
