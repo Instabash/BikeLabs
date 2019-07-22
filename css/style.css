@@ -667,63 +667,63 @@ input[type="file"] {
 }
 
 .pkg1slide1{
-  background: url(../images/modify.jpg)no-repeat center;
+  background: url(../images/package1.jpg)no-repeat center;
   background-size: cover;
   animation:fade10 8s infinite;
   -webkit-animation:fade10 8s infinite;
 }
 
 .pkg1slide2{
-  background: url(../images/modify2.jpg)no-repeat center;
+  background: url(../images/package1-2.jpg)no-repeat center;
   background-size: cover;
   animation:fade11 8s infinite;
   -webkit-animation:fade11 8s infinite;
 }
 
 .pkg1slide3{
-  background: url(../images/modify3.jpg)no-repeat center;
+  background: url(../images/package1-3.jpg)no-repeat center;
   background-size: cover;
   animation:fade12 8s infinite;
   -webkit-animation:fade12 8s infinite;
 }
 
 .pkg2slide1{
-  background: url(../images/purchase1.jpg)no-repeat center;
+  background: url(../images/package2.jpg)no-repeat center;
   background-size: cover;
   animation:fade13 8s infinite;
   -webkit-animation:fade13 8s infinite;
 }
 
 .pkg2slide2{
-  background: url(../images/purchase2.jpg)no-repeat center;
+  background: url(../images/package2-2.jpg)no-repeat center;
   background-size: cover;
   animation:fade14 8s infinite;
   -webkit-animation:fade14 8s infinite;
 }
 
 .pkg2slide3{
-  background: url(../images/purchase3.jpg)no-repeat center;
+  background: url(../images/package2-3.jpg)no-repeat center;
   background-size: cover;
   animation:fade15 8s infinite;
   -webkit-animation:fade15 8s infinite;
 }
 
 .pkg3slide1{
-  background: url(../images/a_dvert1.jpg)no-repeat center;
+  background: url(../images/package3.jpg)no-repeat center;
   background-size: cover;
   animation:fade13 8s infinite;
   -webkit-animation:fade13 8s infinite;
 }
 
 .pkg3slide2{
-  background: url(../images/a_dvert2.jpg)no-repeat center;
+  background: url(../images/package3-2.jpg)no-repeat center;
   background-size: cover;
   animation:fade14 8s infinite;
   -webkit-animation:fade14 8s infinite;
 }
 
 .pkg3slide3{
-  background: url(../images/purchase2.jpg)no-repeat center;
+  background: url(../images/package3-3.jpg)no-repeat center;
   background-size: cover;
   animation:fade15 8s infinite;
   -webkit-animation:fade15 8s infinite;
