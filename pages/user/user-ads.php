@@ -11,7 +11,7 @@ $stmt = mysqli_stmt_init($conn);
 ?>
 
 <label href="#" class="list-group-item" style="width: auto;">User Panel
-	<button class="btn" id="menu-toggle"><i class="fas fa-bars"></i></button>
+	<button class="btn" id="menu-toggle"><img style="width: 10px;" src="../../images/bars-solid.svg"></button>
 </label>
 <div class="d-flex" id="wrapper">
 	<div class="bg-light border-right" id="sidebar-wrapper">
