@@ -241,8 +241,7 @@ $stmt = mysqli_stmt_init($conn);
 							<div class="input_msg_write">
 								<form id="chatmsgsub">
 									<input type="text" class="write_msg" id="chatmsg" placeholder="Type a message" />
-
-									<button class="msg_send_btn" name="msgsendbtn" type="submit"><i class="fa fa-paper-plane pr-1" aria-hidden="true"></i></button>
+									<button class="msg_send_btn" name="msgsendbtn" type="submit"><img style="width: 20px;height: 20px;" class="pr-1 pt-1" src="../images/paper-plane-regular.svg"></button>
 								</form>
 							</div>
 						</div>
