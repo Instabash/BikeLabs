@@ -8,7 +8,7 @@ include '../../includes/dbh.inc.php';
 ?>
 <!-- Sidebar -->
 <label href="#" class="list-group-item" style="width: auto;">Admin Panel
-	<button class="btn" id="menu-toggle"><i class="fas fa-bars"></i></button>
+	<button class="btn" id="menu-toggle"><img style="width: 10px;" src="../../images/bars-solid.svg"></button>
 </label>
 <div class="d-flex" id="wrapper">
 	<div class="bg-light border-right" id="sidebar-wrapper">
@@ -52,7 +52,7 @@ include '../../includes/dbh.inc.php';
 								<tbody>
 									<?php
 
-									$sql = "SELECT * FROM order_table WHERE order_status = 'Processing' ORDER BY order_date DESC LIMIT 5;";
+									$sql = "SELECT * FROM order_table WHERE order_status = 'Processing' AND assigned_vendor = '12' ORDER BY order_date DESC LIMIT 5;";
 									$stmt = mysqli_stmt_init($conn);
 									if (!mysqli_stmt_prepare($stmt, $sql)) 
 									{
