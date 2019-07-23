@@ -12,7 +12,7 @@ redirect();
 		<h3>New Spareparts</h3> <br>
 		<form class="example" action="includes/search.inc.php" method="post">
 			<input type="text" id="search-bar" placeholder="Search.." name="search">
-			<button type="submit" name="submit-search-nsp"><i class="fa fa-search"></i></button>
+			<button type="submit" name="submit-search-nsp"><img style="width:16px;height: 16px;" src="images/search-solid.svg"></button>
 		</form>
 		<div class="search-page-new">
 			<div class="row">
@@ -23,7 +23,7 @@ redirect();
 								<div class="accordion-group" id="price">
 									<div class="accordion-heading">
 										<a class="accordion-toggle" data-toggle="collapse" href="#collapse_2">
-											<i class="fa fa-caret-down"></i>Price
+											Price<img style="width: 10px;float:right;padding-top: 5px;" src="images/caret-down.svg">
 										</a>
 									</div>
 									<div id="collapse_2" class="accordion-body collapse in">
