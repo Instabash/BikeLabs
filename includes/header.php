@@ -262,18 +262,19 @@ if(!isset($_SESSION))
 		<?php
 			if(isset($_SESSION['userId']))
 			{
-				$userId = $_SESSION["userUId"];
+				$userId = $_SESSION["FullName"];
+				$vendorid = $_SESSION['userUId'];
 				?>
 				<?php
 				if ($_SESSION['usertype'] == "1") {
 
 					?>
-					<p class="header-padding" style="padding-left:15px;margin:5px;color:black;">Logged in as : <a href="/../BikeLabs/pages/admin/admindash.php"> <?php echo $userId ?> </a></p>
+					<p class="header-padding" style="padding-left:15px;margin:5px;color:black;">Logged in as : <a href="/../BikeLabs/pages/admin/admindash.php"> Administrator </a></p>
 					<?php 
 				}
 				elseif ($_SESSION['usertype'] == "2") {
 					?>
-					<p class="header-padding" style="padding-left:15px;margin:5px;color:black;">Logged in as : <a href="/../BikeLabs/pages/vendor/vendordash.php"> <?php echo $userId ?> </a></p>
+					<p class="header-padding" style="padding-left:15px;margin:5px;color:black;">Logged in as : <a href="/../BikeLabs/pages/vendor/vendordash.php"> <?php echo $vendorid ?> </a></p>
 					<?php 
 				}
 				else{
