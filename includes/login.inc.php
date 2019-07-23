@@ -62,15 +62,9 @@ if (isset($_POST['login-submit']))
 					$_SESSION['userId'] = $row['idUsers'];
 					$_SESSION['userUId'] = $row['uidUsers'];
 					$_SESSION['usertype'] = $row['User_type'];
-					if (isset($_SESSION['curr_page'])) {
-						
-							header("Location: ../..".$_SESSION['curr_page']);
-							unset($_SESSION['error']);
-							exit();
-							// echo "string";
-						
-					}
-					else{
+					$_SESSION['FullName'] = $row['User_fname'] . " " .  $row['User_lname'];
+					
+					
 						$_SESSION['current_page'] = $_SERVER['HTTP_REFERER'];
 						if ($row['User_type'] == 1) {
 							header("Location: /BikeLabs/pages/admin/admindash.php");
@@ -85,7 +79,11 @@ if (isset($_POST['login-submit']))
 							header("Location: ". $_SESSION['current_page']);
 							exit();	
 						}
-					}
+						if (isset($_SESSION['curr_page'])) {
+							header("Location: ../..".$_SESSION['curr_page']);
+							unset($_SESSION['error']);
+							exit();
+						}
 					exit();
 				}
 				else
