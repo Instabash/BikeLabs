@@ -5,7 +5,6 @@ logged_in();
 $title = 'Cart';
 include_once 'includes/dbh.inc.php';
 include_once 'includes/header.php';
-	// $part_id = $_GET["partid"];
 ?>
 <section id="cart" class="section fontsec content">
 	<div class="container">
@@ -25,7 +24,7 @@ include_once 'includes/header.php';
 							if (!empty($_SESSION["cart"])) {?>
 								<table style="width:100%">
 									<tr class="cartHeadings">
-										<th><input type="checkbox" name="checkAll" class=""><a style="padding-left:5px;">Select Items</a></th>
+										
 										<th></th>
 										<th>Price</th>
 										<th>Quantity</th>
@@ -37,13 +36,13 @@ include_once 'includes/header.php';
 										<form action="includes/cartprocess.inc.php?partid=<?php echo $item['product_id'] ?>" method="post">
 											<tr>
 												<td align="center" valign="middle">
-													<input type="checkbox" name="checkitem" class="cartHeadings">
+													
 													<img class="border border-dark border-new thumbimg p-1" src="images/sparepartimg/<?php echo $item['default_img'];?>">
 													
-													<a href=""><?php echo $item['title'];?></a>
+													<a href="#"><?php echo $item['title'];?></a>
 												</td>
 												<td>
-													<button class="btn btn-danger cartRem" type="submit" name="removeItem" >remove</button>
+													<button class="btn btn-outline-danger cartRem" type="submit" name="removeItem" >remove</button>
 													<button class="btn btn-danger cartRemx" type="submit" name="removeItem" style="display: none;">x</button>
 												</td>
 												<td align="center" valign="middle">
@@ -118,7 +117,7 @@ include_once 'includes/header.php';
 						<form action="/BikeLabs/includes/cartprocess.inc.php" method="post">
 							<div class="payment-btn pt-4">
 								<input type="hidden" name="quant" value="<?php echo $quant ?>">
-								<button type="submit" name="cartBuy-parts" class="btn btn-outline-danger">Buy now</button>
+								<button type="submit" name="cartBuy-parts" class="btn btn-outline-danger">Proceed to checkout</button>
 							</div>
 						</form>
 					</div>
