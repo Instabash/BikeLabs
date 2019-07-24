@@ -4,7 +4,7 @@ include '../../includes/restrictions.inc.php';
 admin_protect();
 
 include '../../includes/dbh.inc.php';
-
+include '../../includes/sidebar.inc.php';
 if (isset($_GET['pkgmod']) && isset($_GET['pkgalt'])){
     $pkggetmodnew = $_GET['pkgmod'];
     $pkggetaltnew = $_GET['pkgalt'];
@@ -33,19 +33,9 @@ include '../../includes/header.php';
    <button class="btn" id="menu-toggle"><img style="width: 10px;" src="../../images/bars-solid.svg"></button>
 </label>
 <div class="d-flex" id="wrapper">
-    <div class="bg-light border-right" id="sidebar-wrapper">
-        <div class="list-group list-group-flush">
-            <a href="/BikeLabs/pages/admin/admindash.php" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-            <a href="/BikeLabs/pages/admin/admin-jobs.php" class="list-group-item list-group-item-action bg-light">Pending Jobs</a>
-            <a href="/BikeLabs/pages/admin/admin-orders.php" class="list-group-item list-group-item-action bg-light">Pending Orders</a>
-            <a href="/BikeLabs/pages/admin/admin-vendor.php" class="list-group-item list-group-item-action bg-light">Vendor management</a>
-            <a href="/BikeLabs/pages/admin/admin-sales.php" class="list-group-item list-group-item-action bg-light">Sales</a>
-            <a href="/BikeLabs/pages/admin/admin-bikes.php" class="list-group-item list-group-item-action bg-light">Add new Bikes</a>
-            <a href="/BikeLabs/pages/admin/admin-parts.php" class="list-group-item list-group-item-action bg-light">Add new Parts</a>
-            <a href="/BikeLabs/pages/admin/admin-bike-parts.php" class="list-group-item list-group-item-action bg-light">Bikes/Parts Posted</a>
-            <a href="/BikeLabs/pages/admin/admin-modaltpkg.php" class="list-group-item list-group-item-action bg-light">Edit Mod/Alt packages</a>
-        </div>
-    </div>
+    <?php
+    adminsidebar();
+    ?>
     <section class="section modsection content content2" style="width: 100%;">
         <div class="container">
             <div class="box">

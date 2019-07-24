@@ -5,20 +5,16 @@ user_protect();
 $title = 'Reset password';
 include '../../includes/header.php';
 include '../../includes/dbh.inc.php';
+include '../../includes/sidebar.inc.php';
 $user_id = $_SESSION['userId'];
 ?>
 <label href="#" class="list-group-item" style="width: auto;">User Panel
 	<button class="btn" id="menu-toggle"><img style="width: 10px;" src="../../images/bars-solid.svg"></button>
 </label>
 <div class="d-flex" id="wrapper">
-	<div class="bg-light border-right" id="sidebar-wrapper">
-		<div class="list-group list-group-flush">
-			<a href="/BikeLabs/pages/user/userdash.php" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-			<a href="/BikeLabs/pages/user/user-ads.php" class="list-group-item list-group-item-action bg-light">Posted Adverts.</a>
-			<a href="/BikeLabs/pages/user/user-purchases.php" class="list-group-item list-group-item-action bg-light">Past Purchases</a>
-			<a href="/BikeLabs/pages/user/user-pending-orders.php" class="list-group-item list-group-item-action bg-light">Pending Orders</a>
-		</div>
-	</div>
+	<?php
+	usersidebar();
+	?>
 
 	<!-- Main content -->
 	<section class="section modsection content content2" style="padding-left:5%;width: 100%;">
