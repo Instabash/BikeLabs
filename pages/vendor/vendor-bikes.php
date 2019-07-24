@@ -5,24 +5,16 @@ vendor_protect();
 $title = 'Add bikes';
 include '../../includes/header.php';
 include '../../includes/dbh.inc.php';
+include '../../includes/sidebar.inc.php';
 ?>
 <!-- Sidebar -->
 <label href="#" class="list-group-item" style="width: auto;">Vendor Panel
 	<button class="btn" id="menu-toggle"><img style="width: 10px;" src="../../images/bars-solid.svg"></button>
 </label>
 <div class="d-flex" id="wrapper">
-	<div class="bg-light border-right" id="sidebar-wrapper">
-		<div class="list-group list-group-flush">
-			<a href="/BikeLabs/pages/vendor/vendordash.php" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-            <a href="/BikeLabs/pages/vendor/vendor-orders.php" class="list-group-item list-group-item-action bg-light">Pending Orders</a>
-            <a href="/BikeLabs/pages/vendor/vendor-modalt.php" class="list-group-item list-group-item-action bg-light">Pending Mod/Alt Orders</a>
-            <a href="/BikeLabs/pages/vendor/vendor-modaltprocessed.php" class="list-group-item list-group-item-action bg-light">Processed Mod/Alt Orders</a>
-            <a href="/BikeLabs/pages/vendor/vendor-sales.php" class="list-group-item list-group-item-action bg-light">Sales</a>
-            <a href="/BikeLabs/pages/vendor/vendor-bikes.php" class="list-group-item list-group-item-action bg-light">Add new Bikes</a>
-            <a href="/BikeLabs/pages/vendor/vendor-parts.php" class="list-group-item list-group-item-action bg-light">Add new Parts</a>
-            <a href="/BikeLabs/pages/vendor/vendor-modaltpkg.php" class="list-group-item list-group-item-action bg-light">View Mod/Alt packages</a>
-        </div>
-    </div>
+	<?php
+    vendorsidebar();
+    ?>
     <section id="modify" class="section modsection content content2" style="overflow-x:auto;">
       <div class="container">
          <div class="row">
