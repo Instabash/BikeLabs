@@ -32,11 +32,6 @@ if(isset($_POST['signup-submit']))
 		header("Location: ../signup.php?error=invalidmail&uid=".$username);
 		exit();
 	}
-	// elseif (!preg_match("/^((\+92)|(0092))-{0,1}\d{3}-{0,1}\d{7}$|^\d{11}$|^\d{4}-\d{7}$/", $phone)) 
-	// {
-	// 	header("Location: ../signup.php?error=invalidphone");
-	// 	exit();
-	// }
 	elseif (!preg_match("/^[a-zA-Z0-9]*$/", $username)) 
 	{
 		header("Location: ../signup.php?error=invaliduid&mail=".$email);
