@@ -92,8 +92,6 @@ if (isset($_SESSION['cart']) || isset($_SESSION['bikecart'])) {
 		header("Location: ../payment.php");
 	}
 }
-
-
 elseif (isset($_SESSION['modcart'])) {
 	if (isset($_POST['homepickbtn'])) {
 		$title = trim($_POST['title']);
