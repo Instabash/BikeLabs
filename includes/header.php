@@ -239,20 +239,22 @@ if(!isset($_SESSION))
 		<?php
 			if (isset($_SESSION['userId'])) 
 			{
+				if ($_SESSION['usertype'] == 0){
 				?>
-				<div id="cartIcon" class="nav-item header-padding" style="margin-right: 20px;">
-					<a href="/BikeLabs/cart.php">
-						<img id="image" style="padding-left: 10px;left: auto;" src="/BikeLabs/images/cart3.svg">
-						<div id="text" style = "color: #dc3545;">
-							<span class="day">
-								<?php
-								if (isset($_SESSION['cart'])) 
-								{
-									if (!count($_SESSION['cart']) == 0) 
+					<div id="cartIcon" class="nav-item header-padding" style="margin-right: 20px;">
+						<a href="/BikeLabs/cart.php">
+							<img id="image" style="padding-left: 10px;left: auto;" src="/BikeLabs/images/cart3.svg">
+							<div id="text" style = "color: #dc3545;">
+								<span class="day">
+									<?php
+									if (isset($_SESSION['cart'])) 
 									{
-										echo count($_SESSION['cart']);
-									}
-								} 	
+										if (!count($_SESSION['cart']) == 0) 
+										{
+											echo count($_SESSION['cart']);
+										}
+									} 	
+								}
 							}
 							?>
 						</span>
