@@ -24,3 +24,8 @@ if (isset($_POST['submit-remove'])) {
 		header("Location: /BikeLabs/pages/admin/admin-vendor.php?error=selectvendor");
 	}
 }
+elseif (isset($_POST['pwdchange'])) {
+	$vid = $_POST['pwdchange'];
+	// echo $vid;
+	header("Location: ../pages/admin/vendor-reset-pass.php?vid=$vid");
+}
