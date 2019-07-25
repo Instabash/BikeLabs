@@ -48,7 +48,7 @@ if(isset($_POST['signup-submit']))
 	}
 	else
 	{
-		$sql = "SELECT uidUsers FROM users WHERE uidUsers=?";
+		$sql = "SELECT uidUsers FROM users WHERE uidUsers=? OR emailUsers=?";
 		$stmt = mysqli_stmt_init($conn);
 		if (!mysqli_stmt_prepare($stmt, $sql)) 
 		{
@@ -57,7 +57,7 @@ if(isset($_POST['signup-submit']))
 		}
 		else
 		{
-			mysqli_stmt_bind_param($stmt, "s", $username);
+			mysqli_stmt_bind_param($stmt, "ss", $username, $email);
 			mysqli_stmt_execute($stmt);
 			mysqli_stmt_store_result($stmt);
 			$resultCheck = mysqli_stmt_num_rows($stmt);
@@ -126,7 +126,7 @@ elseif(isset($_POST['signup-vendor']))
 	}
 	elseif(!$uppercase || !$lowercase || !$number || strlen($password) < 7)
 	{
-		header("Location: /BikeLabs/pages/admin/admin-vendor.php?error=pwdstr&uid=".$username."&mail=".$email."&address=".$address."&phone=".$phone.$password);
+		header("Location: /BikeLabs/pages/admin/admin-vendor.php?error=pwdstr&uid=".$username."&mail=".$email."&address=".$address."&phone=".$phone);
 		exit();
 	}
 	elseif ($password !== $passwordRepeat) {
@@ -135,7 +135,7 @@ elseif(isset($_POST['signup-vendor']))
 	}
 	else
 	{
-		$sql = "SELECT uidUsers FROM users WHERE uidUsers=?";
+		$sql = "SELECT uidUsers FROM users WHERE uidUsers=? OR emailUsers=?";
 		$stmt = mysqli_stmt_init($conn);
 		if (!mysqli_stmt_prepare($stmt, $sql)) 
 		{
@@ -144,13 +144,13 @@ elseif(isset($_POST['signup-vendor']))
 		}
 		else
 		{
-			mysqli_stmt_bind_param($stmt, "s", $username);
+			mysqli_stmt_bind_param($stmt, "ss", $username, $email);
 			mysqli_stmt_execute($stmt);
 			mysqli_stmt_store_result($stmt);
 			$resultCheck = mysqli_stmt_num_rows($stmt);
 			if($resultCheck > 0)
 			{
-				header("Location: /BikeLabs/pages/admin/admin-vendor.php?error=usertaken&mail=".$email);
+				header("Location: /BikeLabs/pages/admin/admin-vendor.php?error=usertaken&address=".$address."&phone=".$phone);
 				exit();
 			}
 			else
