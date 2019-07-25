@@ -601,7 +601,8 @@ input[type="file"] {
 
 .slide1,.slide2,.slide3,.slide4,.slide5,.slide6,.slide7,.slide8,.slide9,
 .pkg1slide1,.pkg1slide2,.pkg1slide3,.pkg2slide1,.pkg2slide2,.pkg2slide3,
-.pkg3slide1,.pkg3slide2,.pkg3slide3 {
+.pkg3slide1,.pkg3slide2,.pkg3slide3,.alt1img1,.alt1img2,.alt1img3
+,.alt2img1,.alt2img2,.alt2img3,.alt3img1,.alt3img2,.alt3img3 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -727,6 +728,50 @@ input[type="file"] {
   background-size: cover;
   animation:fade15 8s infinite;
   -webkit-animation:fade15 8s infinite;
+}
+.alt1img1{
+  background: url(../images/alt1.jpg)no-repeat center;
+  background-size: cover;
+  animation:fade13 8s infinite;
+  -webkit-animation:fade13 8s infinite;
+}
+.alt1img2{
+  background: url(../images/alt2.jpg)no-repeat center;
+  background-size: cover;
+  animation:fade14 8s infinite;
+  -webkit-animation:fade14 8s infinite;
+}
+.alt1img3{
+  background: url(../images/alt1.jpg)no-repeat center;
+  background-size: cover;
+  animation:fade15 8s infinite;
+  -webkit-animation:fade15 8s infinite;
+}
+.alt2img1{
+  background: url(../images/alt3.jpg)no-repeat center;
+  background-size: cover;
+  animation:fade13 8s infinite;
+  -webkit-animation:fade13 8s infinite;
+
+}
+.alt2img2{
+  background: url(../images/alt4.jpg)no-repeat center;
+  background-size: cover;
+  animation:fade14 8s infinite;
+  -webkit-animation:fade14 8s infinite;
+
+}
+.alt2img3{
+  background: url(../images/alt3.jpg)no-repeat center;
+  background-size: cover;
+  animation:fade15 8s infinite;
+  -webkit-animation:fade15 8s infinite;
+
+}
+.alt3img1{
+  background: url(../images/altgen.jpg)no-repeat center;
+  background-size: cover;
+
 }
 
 .select2-search__field { width: 100% !important; }
