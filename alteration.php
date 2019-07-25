@@ -109,9 +109,9 @@ include_once 'includes/dbh.inc.php';
 								</div>
 							</div> -->
 							<div class="pkgslider border-new border border-dark rounded">
-								<div class="pkg1slide1"></div>
-								<div class="pkg1slide2"></div>
-								<div class="pkg1slide3"></div>
+								<div class="alt1img1"></div>
+								<div class="alt1img2"></div>
+								<div class="alt1img3"></div>
 							</div>
 							<label class="btncreative btn-1 btn-1a packageradio">
 								Select
@@ -135,9 +135,9 @@ include_once 'includes/dbh.inc.php';
 							</div>
 							<div class="">
 								<div class="pkgslider border-new border border-dark rounded">
-									<div class="pkg1slide1"></div>
-									<div class="pkg1slide2"></div>
-									<div class="pkg1slide3"></div>
+									<div class="alt2img1"></div>
+									<div class="alt2img2"></div>
+									<div class="alt2img3"></div>
 								</div>
 								<label class="btncreative btn-1 btn-1a packageradio">
 									Select
@@ -183,9 +183,7 @@ include_once 'includes/dbh.inc.php';
 									</ul>
 								</div>
 								<div class="pkgslider border-new border border-dark rounded">
-									<div class="pkg1slide1"></div>
-									<div class="pkg1slide2"></div>
-									<div class="pkg1slide3"></div>
+									<div class="alt3img1"></div>
 								</div>
 								<label class="btncreative btn-1 btn-1a packageradio">
 									Select
