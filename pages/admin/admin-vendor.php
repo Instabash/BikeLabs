@@ -71,6 +71,7 @@ include '../../includes/sidebar.inc.php';
 										echo '<p style="color:green!important;padding:5px;";>Vendor added!</p>';
 									}
 								}
+								
 								?>
 								<div class=" ">
 									<div class="" >
@@ -109,6 +110,14 @@ include '../../includes/sidebar.inc.php';
 								</div>
 							</div>
 						</form>
+						<?php
+						if (isset($_GET['change'])) {
+							if ($_GET['change'] == "success") 
+							{
+								echo '<p style="color:green !important;padding:5px;";>Password changed successfully!</p>';
+							}
+						}
+						?>
 						<form action="/BikeLabs/includes/removevendor.inc.php" method="post">
 							<div class="box-body">
 								<label class="">All vendors</label>
@@ -120,6 +129,7 @@ include '../../includes/sidebar.inc.php';
 											<th>Vendor name</th>
 											<th>Vendor contact information</th>
 											<th>Vendor address</th>
+											<th>Password</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -145,6 +155,8 @@ include '../../includes/sidebar.inc.php';
 													<td><?php echo $row['uidUsers']; ?></td>
 													<td><?php echo $row['User_Contact']; ?></td>
 													<td><?php echo $row['User_Address']; ?></td>
+													<!--  -->
+													<td><button type="submit" class="btn btn-outline-danger" name="pwdchange" value="<?php echo $row['idUsers']; ?>">Change password</button></td>
 												</tr>
 												<?php
 											}
@@ -158,6 +170,7 @@ include '../../includes/sidebar.inc.php';
 											<th>Vendor name</th>
 											<th>Vendor contact information</th>
 											<th>Vendor address</th>
+											<th>Password</th>
 										</tr>
 									</tfoot>
 								</table>
