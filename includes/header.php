@@ -310,6 +310,11 @@ var url = window.location.href;
 		}
 		elseif ($_SESSION['error'] == 'wrongpwd') {
 			?>
+			$('#pwdmodal').modal('show');
+			<?php
+		}
+		elseif ($_SESSION['error'] == 'nouser') {
+			?>
 			$('#nousermodal').modal('show');
 			<?php
 		}
