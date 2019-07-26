@@ -2272,6 +2272,12 @@ input[type=number]::-webkit-outer-spin-button {
     border: .0625rem solid transparent;
 }
 
+.ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 .logintext{
       width: 100%;
     padding: .375rem .75rem;
