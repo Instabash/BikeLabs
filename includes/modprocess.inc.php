@@ -47,6 +47,7 @@ if(isset($_POST['btnmod']))
 		exit();
 	}
 
+
 	$_SESSION['modspecs']['model'] = $model;
 	$_SESSION['modspecs']['year'] = $year;
 	$_SESSION['modspecs']['make'] = $make;
@@ -61,12 +62,18 @@ if(isset($_POST['btnmod']))
 		header("Location: ../pages/modify/Modspecs.php?pkg=3");
 	}
 	elseif ($selectedpkg == "2") {
-		$ctmpts = array();
-		foreach ($_POST['select2'] as $selectedOption)
-		{
-			$ctmpts[] = $selectedOption;
+		if (empty($_POST['select2'])) {
+			header("Location: ../modification.php?error=nopkgselected");
+			exit();
 		}
-		$_SESSION['pkg4'] = $ctmpts;
-		header("Location: ../pages/modify/Modspecs.php?pkg=custom");
+		else{
+			$ctmpts = array();
+			foreach ($_POST['select2'] as $selectedOption)
+			{
+				$ctmpts[] = $selectedOption;
+			}
+			$_SESSION['pkg4'] = $ctmpts;
+			header("Location: ../pages/modify/Modspecs.php?pkg=custom");
+		}
 	}
 }

@@ -25,12 +25,12 @@ if(isset($_POST['btnalt']))
 	
 	if (!in_array($model, $accModels)) 
 	{
-	    header("Location: ../alteration.php?error=error");
+		header("Location: ../alteration.php?error=error");
 		exit();
 	}
 	elseif (!in_array($make, $accMakes)) 
 	{
-	    header("Location: ../alteration.php?error=error");
+		header("Location: ../alteration.php?error=error");
 		exit();
 	}
 	//----------------constant checking-------------//
@@ -63,12 +63,18 @@ if(isset($_POST['btnalt']))
 		header("Location: ../pages/alter/Altspecs.php?pkg=3");
 	}
 	elseif ($selectedpkg == "2") {
-		$ctmpts = array();
-		foreach ($_POST['select2'] as $selectedOption)
-		{
-			$ctmpts[] = $selectedOption;
+		if (empty($_POST['select2'])) {
+			header("Location: ../modification.php?error=nopkgselected");
+			exit();
 		}
-		$_SESSION['pkg4'] = $ctmpts;
-		header("Location: ../pages/alter/Altspecs.php?pkg=custom");
+		else{
+			$ctmpts = array();
+			foreach ($_POST['select2'] as $selectedOption)
+			{
+				$ctmpts[] = $selectedOption;
+			}
+			$_SESSION['pkg4'] = $ctmpts;
+			header("Location: ../pages/alter/Altspecs.php?pkg=custom");
+		}
 	}
 }
