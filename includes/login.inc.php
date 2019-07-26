@@ -74,16 +74,17 @@ if (isset($_POST['login-submit']))
 							header("Location: /BikeLabs/pages/vendor/vendordash.php");
 							exit();	
 						}
+						elseif (isset($_SESSION['curr_page'])) {
+							header("Location: ../..".$_SESSION['curr_page']);
+							unset($_SESSION['error']);
+							exit();
+						}
 						else{
 							//removing usertype=".row['User_type'] because of compare bike trouble"
 							header("Location: ". $_SESSION['current_page']);
 							exit();	
 						}
-						if (isset($_SESSION['curr_page'])) {
-							header("Location: ../..".$_SESSION['curr_page']);
-							unset($_SESSION['error']);
-							exit();
-						}
+						
 					exit();
 				}
 				else
