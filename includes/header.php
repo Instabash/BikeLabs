@@ -183,6 +183,9 @@ if(!isset($_SESSION))
 			<li class="nav-item header-padding" style="color: #dc3545;">
 				<a class="nav-link" href="/BikeLabs/postad.php">Post An Advertisement</a>
 			</li>
+			<li class="nav-item header-padding" style="color: #dc3545;">
+				<a class="nav-link" href="/BikeLabs/contact.php">Contact</a>
+			</li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 		<?php
