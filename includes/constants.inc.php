@@ -2,7 +2,7 @@
 class constantsinc {
 	
 			public $bikeModels = array("70cc", "125cc", "150cc");
-			public $bikeMakes = array("Honda", "SuperPower", "Unique", "Superstar", "Yamaha", "United", "Suzuki");
+			public $bikeMakes = array("Honda", "SuperPower", "Unique", "Superstar", "Yamaha", "United", "Suzuki", "Other");
 			public $bikeConds = array("New", "Used");
 			public $modPaints = array("Black", "White", "Blue", "Grey", "Red", "Yellow", "Purple", "Green");
 			public $modThemes = array("Flaming skulls theme", "Harley davidson theme", "Batman theme", "Superman theme", "Ironman theme");
