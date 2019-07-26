@@ -210,10 +210,10 @@ redirect();
 													<a href="pages/spareparts/spareparttemp.php?partid=<?php echo $row['ad_id'] ?>">
 														<div class="product-item">
 															<img src="images/sparepartimg/<?php echo $row1['ad_image_name'] ?>" style="height: 200px !important;width: 100% !important;">
-															<div>
+															<div class="ellipsis">
 																<label class="productName"><?php echo $row['ad_title'] ?></label><br>
 																<label><b>Price:</b></label>
-																<label class="price"><?php echo $row['ad_price'] ?> Rs.</label>
+																<label class="price"><?php echo number_format($row['ad_price']) ?> Rs.</label>
 															</div>
 														</div>
 													</a>
@@ -236,7 +236,7 @@ redirect();
 						{
 						?>
 						<?php 
-						$spaartsql = "SELECT * FROM post_ad WHERE ad_type = 'bike' ORDER BY `ad_date` DESC LIMIT {$offset}, {$no_of_records_per_page};";
+						$spaartsql = "SELECT * FROM post_ad WHERE ad_type = 'bike' ORDER BY `ad_id` DESC LIMIT {$offset}, {$no_of_records_per_page};";
 						$stmt = mysqli_stmt_init($conn);
 						if(!mysqli_stmt_prepare($stmt, $spaartsql))
 						{
@@ -333,10 +333,10 @@ redirect();
 																					<a href="pages/spareparts/spareparttemp.php?partid=<?php echo $row['ad_id'] ?>">
 																						<div class="product-item">
 																							<img src="images/sparepartimg/<?php echo $row1['ad_image_name'] ?>" style="height: 200px !important;width: 100% !important;">
-																							<div>
+																							<div class="ellipsis">
 																								<label class="productName"><?php echo $row['ad_title'] ?></label><br>
 																								<label><b>Price:</b></label>
-																								<label class="price"><?php echo $row['ad_price'] ?> Rs.</label>
+																								<label class="price"><?php echo number_format($row['ad_price']) ?> Rs.</label>
 																							</div>
 																						</div>
 																					</a>
@@ -392,10 +392,10 @@ redirect();
 																						<a href="pages/spareparts/spareparttemp.php?partid=<?php echo $row['ad_id'] ?>">
 																							<div class="product-item">
 																								<img src="images/sparepartimg/<?php echo $row1['ad_image_name'] ?>" style="height: 200px !important;width: 100% !important;">
-																								<div>
+																								<div class="ellipsis">
 																									<label class="productName"><?php echo $row['ad_title'] ?></label><br>
 																									<label><b>Price:</b></label>
-																									<label class="price"><?php echo $row['ad_price'] ?> Rs.</label>
+																									<label class="price"><?php echo number_format($row['ad_price']) ?> Rs.</label>
 																								</div>
 																							</div>
 																						</a>
@@ -449,10 +449,10 @@ redirect();
 																						<a href="pages/spareparts/spareparttemp.php?partid=<?php echo $row['ad_id'] ?>">
 																							<div class="product-item">
 																								<img src="images/sparepartimg/<?php echo $row1['ad_image_name'] ?>" style="height: 200px !important;width: 100% !important;">
-																								<div>
+																								<div class="ellipsis">
 																									<label class="productName"><?php echo $row['ad_title'] ?></label><br>
 																									<label><b>Price:</b></label>
-																									<label class="price"><?php echo $row['ad_price'] ?> Rs.</label>
+																									<label class="price"><?php echo number_format($row['ad_price']) ?> Rs.</label>
 																								</div>
 																							</div>
 																						</a>
@@ -508,10 +508,10 @@ redirect();
 																								<a href="pages/spareparts/spareparttemp.php?partid=<?php echo $row['ad_id'] ?>">
 																									<div class="product-item">
 																										<img src="images/sparepartimg/<?php echo $row1['ad_image_name'] ?>" style="height: 200px !important;width: 100% !important;">
-																										<div>
+																										<div class="ellipsis">
 																											<label class="productName"><?php echo $row['ad_title'] ?></label><br>
 																											<label><b>Price:</b></label>
-																											<label class="price"><?php echo $row['ad_price'] ?> Rs.</label>
+																											<label class="price"><?php echo number_format($row['ad_price']) ?> Rs.</label>
 																										</div>
 																									</div>
 																								</a>
@@ -564,10 +564,10 @@ redirect();
 																								<a href="pages/spareparts/spareparttemp.php?partid=<?php echo $row['ad_id'] ?>">
 																									<div class="product-item">
 																										<img src="images/sparepartimg/<?php echo $row1['ad_image_name'] ?>" style="height: 200px !important;width: 100% !important;">
-																										<div>
+																										<div class="ellipsis">
 																											<label class="productName"><?php echo $row['ad_title'] ?></label><br>
 																											<label><b>Price:</b></label>
-																											<label class="price"><?php echo $row['ad_price'] ?> Rs.</label>
+																											<label class="price"><?php echo number_format($row['ad_price']) ?> Rs.</label>
 																										</div>
 																									</div>
 																								</a>
@@ -620,10 +620,10 @@ redirect();
 																									<a href="pages/spareparts/spareparttemp.php?partid=<?php echo $row['ad_id'] ?>">
 																										<div class="product-item">
 																											<img src="images/sparepartimg/<?php echo $row1['ad_image_name'] ?>" style="height: 200px !important;width: 100% !important;">
-																											<div>
+																											<div class="ellipsis">
 																												<label class="productName"><?php echo $row['ad_title'] ?></label><br>
 																												<label><b>Price:</b></label>
-																												<label class="price"><?php echo $row['ad_price'] ?> Rs.</label>
+																												<label class="price"><?php echo number_format($row['ad_price']) ?> Rs.</label>
 																											</div>
 																										</div>
 																									</a>
@@ -677,10 +677,10 @@ redirect();
 																										<a href="pages/spareparts/spareparttemp.php?partid=<?php echo $row['ad_id'] ?>">
 																											<div class="product-item">
 																												<img src="images/sparepartimg/<?php echo $row1['ad_image_name'] ?>" style="height: 200px !important;width: 100% !important;">
-																												<div>
+																												<div class="ellipsis">
 																													<label class="productName"><?php echo $row['ad_title'] ?></label><br>
 																													<label><b>Price:</b></label>
-																													<label class="price"><?php echo $row['ad_price'] ?> Rs.</label>
+																													<label class="price"><?php echo number_format($row['ad_price']) ?> Rs.</label>
 																												</div>
 																											</div>
 																										</a>
@@ -701,10 +701,10 @@ redirect();
 																			<a href="pages/spareparts/spareparttemp.php?partid=<?php echo $row['ad_id'] ?>">
 																				<div class="product-item">
 																					<img src="images/sparepartimg/<?php echo $row1['ad_image_name'] ?>" style="height: 200px !important;width: 100% !important;">
-																					<div class="nigger">
+																					<div class="ellipsis">
 																						<label class="productName"><?php echo $row['ad_title'] ?></label><br>
 																						<label><b>Price:</b></label>
-																						<label class="price"><?php echo $row['ad_price'] ?> Rs.</label>
+																						<label class="price"><?php echo number_format($row['ad_price']) ?> Rs.</label>
 																					</div>
 																				</div>
 																			</a>

@@ -121,10 +121,10 @@ redirect();
 													<div class="product-item">
 														<a href="pages/new-parts/new-parts.php?partid=<?php echo $row['part_id'] ?>">
 															<img src="images/sparepartimg/<?php echo $row1['part_image_name'] ?>" style="height: 200px !important;width: 100% !important;">
-															<div>
+															<div class="ellipsis">
 																<label class="productName"><?php echo $row['part_name'] ?></label><br>
 																<label><b>Price:</b></label>
-																<label class="price"><?php echo $row['part_price'] ?> Rs.</label>
+																<label class="price"><?php echo number_format($row['part_price']) ?> Rs.</label>
 															</div>
 														</a>
 													</div>
@@ -222,10 +222,10 @@ redirect();
 																				<div class="product-item">
 																					<a href="pages/new-parts/new-parts.php?partid=<?php echo $row['part_id'] ?>">
 																						<img src="images/sparepartimg/<?php echo $row1['part_image_name'] ?>" style="height: 200px !important;width: 100% !important;">
-																						<div>
+																						<div class="ellipsis">
 																							<label class="productName"><?php echo $row['part_name'] ?></label><br>
 																							<label><b>Price:</b></label>
-																							<label class="price"><?php echo $row['part_price'] ?> Rs.</label>
+																							<label class="price"><?php echo number_format($row['part_price']) ?> Rs.</label>
 																						</div>
 																					</a>
 																				</div>
@@ -246,10 +246,10 @@ redirect();
 													<div class="product-item">
 														<a href="pages/new-parts/new-parts.php?partid=<?php echo $row['part_id'] ?>">
 															<img src="images/sparepartimg/<?php echo $row1['part_image_name'] ?>" style="height: 200px !important;width: 100% !important;">
-															<div>
+															<div class="ellipsis">
 																<label class="productName"><?php echo $row['part_name'] ?></label><br>
 																<label><b>Price:</b></label>
-																<label class="price"><?php echo $row['part_price'] ?> Rs.</label>
+																<label class="price"><?php echo number_format($row['part_price']) ?> Rs.</label>
 															</div>
 														</a>
 													</div>

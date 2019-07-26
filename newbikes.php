@@ -219,10 +219,10 @@ redirect();
 												<a href="pages/new-bikes/new-bikes.php?bikeid=<?php echo $row['bike_id'] ?>">
 													<div class="product-item">
 														<img src="images/sparepartimg/<?php echo $row1['bike_image_name'] ?>"  style="height: 200px !important;width: 100% !important;">
-														<div class="nigger">
+														<div class="ellipsis">
 															<label class="productName"><?php echo $row['bike_brand'] . " " . $row['bike_model'] . " " . $row['bikeyear']; ?></label><br>
 															<label>Price:</label>
-															<label class="price"><?php echo $row['bike_price'] ?></label>
+															<label class="price"><?php echo number_format($row['bike_price']) ?></label>
 														</div>
 													</div>
 												</a>
@@ -245,7 +245,7 @@ redirect();
 						{
 						?>
 						<?php 
-						$spaartsql = "SELECT * FROM bikes LIMIT {$offset}, {$no_of_records_per_page};";
+						$spaartsql = "SELECT * FROM bikes ORDER BY bike_id DESC LIMIT {$offset}, {$no_of_records_per_page};";
 						$stmt = mysqli_stmt_init($conn);
 						if(!mysqli_stmt_prepare($stmt, $spaartsql))
 						{
@@ -341,10 +341,10 @@ redirect();
 																					<a href="pages/new-bikes/new-bikes.php?bikeid=<?php echo $row['bike_id'] ?>">
 																						<div class="product-item">
 																							<img src="images/sparepartimg/<?php echo $row1['bike_image_name'] ?>"  style="height: 200px !important;width: 100% !important;">
-																							<div class="nigger">
+																							<div class="ellipsis">
 																								<label class="productName"><?php echo $row['bike_brand'] . " " . $row['bike_model'] . " " . $row['bikeyear']; ?></label><br>
 																								<label>Price:</label>
-																								<label class="price"><?php echo $row['bike_price'] ?></label>
+																								<label class="price"><?php echo number_format($row['bike_price']) ?></label>
 																							</div>
 																						</div>
 																					</a>
@@ -400,10 +400,10 @@ redirect();
 																						<a href="pages/new-bikes/new-bikes.php?bikeid=<?php echo $row['bike_id'] ?>">
 																							<div class="product-item">
 																								<img src="images/sparepartimg/<?php echo $row1['bike_image_name'] ?>"  style="height: 200px !important;width: 100% !important;">
-																								<div class="nigger">
+																								<div class="ellipsis">
 																									<label class="productName"><?php echo $row['bike_brand'] . " " . $row['bike_model'] . " " . $row['bikeyear']; ?></label><br>
 																									<label>Price:</label>
-																									<label class="price"><?php echo $row['bike_price'] ?></label>
+																									<label class="price"><?php echo number_format($row['bike_price']) ?></label>
 																								</div>
 																							</div>
 																						</a>
@@ -457,10 +457,10 @@ redirect();
 																						<a href="pages/new-bikes/new-bikes.php?bikeid=<?php echo $row['bike_id'] ?>">
 																							<div class="product-item">
 																								<img src="images/sparepartimg/<?php echo $row1['bike_image_name'] ?>"  style="height: 200px !important;width: 100% !important;">
-																								<div class="nigger">
+																								<div class="ellipsis">
 																									<label class="productName"><?php echo $row['bike_brand'] . " " . $row['bike_model'] . " " . $row['bikeyear']; ?></label><br>
 																									<label>Price:</label>
-																									<label class="price"><?php echo $row['bike_price'] ?></label>
+																									<label class="price"><?php echo number_format($row['bike_price']) ?></label>
 																								</div>
 																							</div>
 																						</a>
@@ -516,10 +516,10 @@ redirect();
 																								<a href="pages/new-bikes/new-bikes.php?bikeid=<?php echo $row['bike_id'] ?>">
 																									<div class="product-item">
 																										<img src="images/sparepartimg/<?php echo $row1['bike_image_name'] ?>"  style="height: 200px !important;width: 100% !important;">
-																										<div class="nigger">
+																										<div class="ellipsis">
 																											<label class="productName"><?php echo $row['bike_brand'] . " " . $row['bike_model'] . " " . $row['bikeyear']; ?></label><br>
 																											<label>Price:</label>
-																											<label class="price"><?php echo $row['bike_price'] ?></label>
+																											<label class="price"><?php echo number_format($row['bike_price']) ?></label>
 																										</div>
 																									</div>
 																								</a>
@@ -572,10 +572,10 @@ redirect();
 																								<a href="pages/new-bikes/new-bikes.php?bikeid=<?php echo $row['bike_id'] ?>">
 																									<div class="product-item">
 																										<img src="images/sparepartimg/<?php echo $row1['bike_image_name'] ?>"  style="height: 200px !important;width: 100% !important;">
-																										<div class="nigger">
+																										<div class="ellipsis">
 																											<label class="productName"><?php echo $row['bike_brand'] . " " . $row['bike_model'] . " " . $row['bikeyear']; ?></label><br>
 																											<label>Price:</label>
-																											<label class="price"><?php echo $row['bike_price'] ?></label>
+																											<label class="price"><?php echo number_format($row['bike_price']) ?></label>
 																										</div>
 																									</div>
 																								</a>
@@ -628,10 +628,10 @@ redirect();
 																									<a href="pages/new-bikes/new-bikes.php?bikeid=<?php echo $row['bike_id'] ?>">
 																										<div class="product-item">
 																											<img src="images/sparepartimg/<?php echo $row1['bike_image_name'] ?>"  style="height: 200px !important;width: 100% !important;">
-																											<div class="nigger">
+																											<div class="ellipsis">
 																												<label class="productName"><?php echo $row['bike_brand'] . " " . $row['bike_model'] . " " . $row['bikeyear']; ?></label><br>
 																												<label>Price:</label>
-																												<label class="price"><?php echo $row['bike_price'] ?></label>
+																												<label class="price"><?php echo number_format($row['bike_price']) ?></label>
 																											</div>
 																										</div>
 																									</a>
@@ -684,10 +684,10 @@ redirect();
 																										<a href="pages/new-bikes/new-bikes.php?bikeid=<?php echo $row['bike_id'] ?>">
 																											<div class="product-item">
 																												<img src="images/sparepartimg/<?php echo $row1['bike_image_name'] ?>"  style="height: 200px !important;width: 100% !important;">
-																												<div class="nigger">
+																												<div class="ellipsis">
 																													<label class="productName"><?php echo $row['bike_brand'] . " " . $row['bike_model'] . " " . $row['bikeyear']; ?></label><br>
 																													<label>Price:</label>
-																													<label class="price"><?php echo $row['bike_price'] ?></label>
+																													<label class="price"><?php echo number_format($row['bike_price']) ?></label>
 																												</div>
 																											</div>
 																										</a>
@@ -708,10 +708,10 @@ redirect();
 																			<a href="pages/new-bikes/new-bikes.php?bikeid=<?php echo $row['bike_id'] ?>">
 																				<div class="product-item">
 																					<img src="images/sparepartimg/<?php echo $row1['bike_image_name'] ?>"  style="height: 200px !important;width: 100% !important;">
-																					<div class="nigger">
+																					<div class="ellipsis">
 																						<label class="productName"><?php echo $row['bike_brand'] . " " . $row['bike_model'] . " " . $row['bikeyear']; ?></label><br>
 																						<label><b>Price:</b></label>
-																						<label class="price"><?php echo $row['bike_price'] ?> Rs.</label>
+																						<label class="price"><?php echo number_format($row['bike_price']) ?> Rs.</label>
 																					</div>
 																				</div>
 																			</a>
