@@ -83,12 +83,24 @@ include_once 'includes/dbh.inc.php';
 				<?php
 					$output = str_replace(',', '<br />', $row['order_summary']);
 					$firstBreak = strpos($output, '<br />');
-					if($firstBreak === false) {
-					    $output = "<b>$output</b>";
-					} else {
-					    $output = '<b>' . substr($output, 0, $firstBreak) . '</b>' . substr($output, $firstBreak);
+					$firstWord = explode(' ',trim($output))[0];
+					$firstWord = trim($firstWord,'<br');
+					if($firstWord == "Modification" || $firstWord == "Alteration") {
+						$output = str_replace(',', '<br />', $row['order_summary']);
+						$firstBreak = strpos($output, '<br />');
+						if($firstBreak === false) {
+						    $output = "<b>$output</b>";
+						} else {
+						    $output = '<b>' . substr($output, 0, $firstBreak) . '</b>' . substr($output, $firstBreak);
+						}
+						echo $output;
 					}
-					echo $output;
+					else{
+						$output = str_replace('.', '<br /><br>', $row['order_summary']);
+						$firstBreak = strpos($output, '<br />');
+						$output = '<b>' . substr($output, 0, $firstBreak) . '</b>' . substr($output, $firstBreak);
+						echo $output;
+					}
 				?>
 				</p>
 			</div>
