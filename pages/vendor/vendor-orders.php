@@ -342,14 +342,8 @@ $vendor_name = $_SESSION['userId'];
 <script>
 	$(function () {
 		$('#example1').DataTable()
-		$('#example2').DataTable({
-			'paging'      : true,
-			'lengthChange': false,
-			'searching'   : false,
-			'ordering'    : true,
-			'info'        : true,
-			'autoWidth'   : false
-		})
+		$('#example3').DataTable()
+		$('#example4').DataTable()
 	})
 </script>
 <?php

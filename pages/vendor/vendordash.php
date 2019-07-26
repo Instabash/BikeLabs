@@ -31,7 +31,7 @@ include '../../includes/sidebar.inc.php';
 					<!-- /.box-header -->
 					<div class="box-body">
 						<div class="table-responsive">
-							<table class="table no-margin">
+							<table id="example1" class="table table-bordered table-striped">
 								<thead>
 									<tr>
 										<th>Order id</th>
@@ -43,7 +43,9 @@ include '../../includes/sidebar.inc.php';
 								<tbody>
 									<?php
 									$vendor_name = $_SESSION['userId'];
-									$sql = "SELECT * FROM order_table WHERE order_status = 'Approved' AND assigned_vendor = ? LIMIT 5 ;";
+
+									$sql = "SELECT * FROM order_table WHERE (order_type = 'bike' OR order_type = 'parts') AND assigned_vendor = ? LIMIT 5 ;";
+									
 									$stmt = mysqli_stmt_init($conn);
 									if (!mysqli_stmt_prepare($stmt, $sql)) 
 									{
@@ -92,7 +94,7 @@ include '../../includes/sidebar.inc.php';
 					</div>
 					<!-- /.box-body -->
 					<div class="box-footer clearfix">
-						<a href="javascript:void(0)" class="btn btn-sm btn-primary pull-right">View All Orders</a>
+						<a href="vendor-orders.php" class="btn btn-sm btn-primary pull-right">View All Orders</a>
 					</div>
 					<!-- /.box-footer -->
 				</div>
@@ -106,7 +108,7 @@ include '../../includes/sidebar.inc.php';
 					<!-- /.box-header -->
 					<div class="box-body">
 						<div class="table-responsive">
-							<table class="table no-margin">
+							<table id="example2" class="table table-bordered table-striped">
 								<thead>
 									<tr>
 										<th>Order id</th>
@@ -167,7 +169,7 @@ include '../../includes/sidebar.inc.php';
 					</div>
 					<!-- /.box-body -->
 					<div class="box-footer clearfix">
-						<a href="javascript:void(0)" class="btn btn-sm btn-primary pull-right">View All Orders</a>
+						<a href="vendor-sales.php" class="btn btn-sm btn-primary pull-right">View All Sales</a>
 					</div>
 					<!-- /.box-footer -->
 				</div>
@@ -181,7 +183,7 @@ include '../../includes/sidebar.inc.php';
 					<!-- /.box-header -->
 					<div class="box-body">
 						<div class="table-responsive">
-							<table id="example1" class="table table-bordered table-striped">
+							<table id="example3" class="table table-bordered table-striped">
 								<thead>
 									<tr>
 										<th>Sender</th>
@@ -242,14 +244,8 @@ include '../../includes/sidebar.inc.php';
 <script>
 	$(function () {
 		$('#example1').DataTable()
-		$('#example2').DataTable({
-			'paging'      : true,
-			'lengthChange': false,
-			'searching'   : false,
-			'ordering'    : true,
-			'info'        : true,
-			'autoWidth'   : false
-		})
+		$('#example2').DataTable()
+		$('#example3').DataTable()
 	})
 </script>
 <script>
