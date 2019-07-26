@@ -147,7 +147,7 @@ redirect();
 						{
 						?>
 						<?php 
-						$spaartsql = "SELECT * FROM post_ad WHERE ad_type = 'sparepart' ORDER BY `ad_date` DESC LIMIT {$offset}, {$no_of_records_per_page};";
+						$spaartsql = "SELECT * FROM post_ad WHERE ad_type = 'sparepart' ORDER BY `ad_id` DESC LIMIT {$offset}, {$no_of_records_per_page};";
 						$stmt = mysqli_stmt_init($conn);
 						if(!mysqli_stmt_prepare($stmt, $spaartsql))
 						{
