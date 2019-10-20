@@ -116,13 +116,13 @@ $stmt = mysqli_stmt_init($conn);
 						<div class="input-group quantityDiv" style="padding-left: 100px;padding-right: 100px;">
 							<span class="input-group-btn">
 								<button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant">
-									<span class="fas fa-minus-square"></span>
+									<img style="width: 14px;" src="/BikeLabs/images/minus-square-solid.svg">
 								</button>
 							</span>
 							<input type="text" name="quant" class="form-control input-number" value="1" min="1" max="10">
 							<span class="input-group-btn">
 								<button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant">
-									<span class="fas fa-plus-square"></span>
+									<img style="width: 14px;" src="/BikeLabs/images/plus-square-solid.svg">
 								</button>
 							</span>
 						</div>

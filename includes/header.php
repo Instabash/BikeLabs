@@ -20,8 +20,8 @@ if(!isset($_SESSION))
 	<link rel="shortcut icon" href="../favicon.ico"> 
 
 	<!--font awesome css-->
-	<script src="https://kit.fontawesome.com/aa4e02e399.js"></script>
-
+	<!-- <script src="https://kit.fontawesome.com/aa4e02e399.js"></script> -->
+	<script src="/BikeLabs/script/jquery-3.3.1.min.js"></script>
 	<!------------------------------------------------------------------Font css------------------------------------------->
 	<!-- <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet"> -->
 	<link rel="stylesheet" type="text/css" href="/BikeLabs/css/PTSans.css">
