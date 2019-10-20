@@ -81,6 +81,27 @@ $stmt = mysqli_stmt_init($conn);
 					?>
 				</div>
 			</div>
+			<div id="markSold" class="modal fade" role="dialog">
+					<div class="modal-dialog">
+
+						<!-- Modal content-->
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title">Remove ad</h4>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+							<div class="modal-body">
+								<p>Are you sure you want to remove this ad? You will not be able to undo this action.</p>
+							</div>
+							<div class="modal-footer">
+								<form action="/BikeLabs/includes/markadsold.inc.php?partid=<?php echo $part_id; ?>" method="post">
+									<input class="btn-outline-danger btn" type="submit" name="mksold" value="Confirm">
+								</form>
+							</div>
+						</div>
+
+					</div>
+				</div>
 			<div class="paymentright imageDivRight">
 				<div class="border-new border border-dark rounded mt-5 p-3" style="">
 					<?php
@@ -130,7 +151,8 @@ $stmt = mysqli_stmt_init($conn);
 						echo $row['ad_date'];
 					?></p>
 				</div>
-				<form action="../../includes/markadsold.inc.php?partid=$part_id" method="post">
+				
+				<form action="../../includes/markadsold.inc.php?partid=<?php echo $part_id; ?>" method="post">
 					<div class="border-new border border-dark rounded mt-2 p-3">
 						<?php 
 						if(isset($_SESSION['userId']))
@@ -138,7 +160,8 @@ $stmt = mysqli_stmt_init($conn);
 							if (($row['idUsers'] == $_SESSION['userId'])) 
 							{
 								?>
-								<button type="button" name="mksold" class="btn btn-outline-danger">Mark Ad. as sold</button>
+								<input type="button" class="btn-outline-danger btn" data-toggle="modal" data-target="#markSold" value="Mark as sold"></input>
+								<!-- <button type="submit" name="mksold" class="btn btn-outline-danger">Mark Ad. as sold</button> -->
 								<?php 
 							}
 							else

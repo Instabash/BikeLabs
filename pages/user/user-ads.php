@@ -76,7 +76,7 @@ $stmt = mysqli_stmt_init($conn);
 													<p>Are you sure you want to remove this ad? You will not be able to undo this action.</p>
 												</div>
 												<div class="modal-footer">
-													<form action="/BikeLabs/includes/markadsold.inc.php?ad_id=<?php echo $row['ad_id']; ?>" method="post">
+													<form action="/BikeLabs/includes/markadsold.inc.php?partid=<?php echo $row['ad_id']; ?>" method="post">
 														<input class="btn-outline-danger btn" type="submit" name="mksold" value="Confirm">
 													</form>
 												</div>

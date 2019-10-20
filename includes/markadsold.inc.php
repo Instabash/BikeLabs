@@ -1,7 +1,8 @@
 <?php
 include 'dbh.inc.php';
+
 if (isset($_POST['mksold'])) {
-	$part_id = $_GET['ad_id'];
+	$part_id = $_GET['partid'];
 
 	$sql = "DELETE FROM post_ad_images WHERE ad_id = ?;";
 	$stmt = mysqli_stmt_init($conn);
